@@ -4,12 +4,9 @@ import { env } from '../config/env.js';
 import { withJobRun } from '../jobs/jobRun.js';
 import { normalizeHandle } from '../lib/handle.js';
 import { PostOwner } from '../models/PostOwner.js';
-import { canRun } from './budget.js';
+import { BudgetError, canRun } from './budget.js';
 import { runActor, type ApifyClientOptions } from './client.js';
-
-export const postUrl = (shortcode: string) => `https://www.instagram.com/p/${shortcode}/`;
-
-export class BudgetError extends Error {}
+import { postUrl } from './posts.js';
 
 /** The cached owner, else one Apify run. Returns null if the post can't be read (private, deleted). */
 export async function lookupPostOwner(shortcode: string, opts: ApifyClientOptions = {}): Promise<string | null> {

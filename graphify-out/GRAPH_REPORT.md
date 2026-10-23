@@ -1,16 +1,16 @@
 # Graph Report - backend  (2026-10-23)
 
 ## Corpus Check
-- 130 files · ~30,196 words
+- 135 files · ~33,633 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 559 nodes · 1314 edges · 25 communities (24 shown, 1 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.71)
+- 595 nodes · 1511 edges · 19 communities (18 shown, 1 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 9 edges (avg confidence: 0.73)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9175fbde`
+- Built from commit: `e128902d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -19,12 +19,12 @@
 - [[_COMMUNITY_compilerOptions|compilerOptions]]
 - [[_COMMUNITY_scripts|scripts]]
 - [[_COMMUNITY_logger.ts|logger.ts]]
-- [[_COMMUNITY_index.ts|index.ts]]
 - [[_COMMUNITY_devDependencies|devDependencies]]
 - [[_COMMUNITY_package.json|package.json]]
 - [[_COMMUNITY_backend|backend/]]
 - [[_COMMUNITY_webhook-spike.ts|webhook-spike.ts]]
 - [[_COMMUNITY_budget.ts|budget.ts]]
+- [[_COMMUNITY_extractTagged.ts|extractTagged.ts]]
 - [[_COMMUNITY_index.ts|index.ts]]
 - [[_COMMUNITY_tsconfig.test.json|tsconfig.test.json]]
 - [[_COMMUNITY_encryptField.ts|encryptField.ts]]
@@ -32,37 +32,37 @@
 - [[_COMMUNITY_Admin.ts|Admin.ts]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Env` - 24 edges
-2. `Backend build plan (pagesanj) — micro-task todo list` - 18 edges
-3. `normalizeHandle()` - 16 edges
-4. `logger` - 16 edges
-5. `createShop()` - 15 edges
-6. `useMongo()` - 14 edges
-7. `scripts` - 13 edges
-8. `getQueue()` - 13 edges
-9. `updateShop()` - 13 edges
-10. `createAdminAccount()` - 12 edges
+1. `Env` - 28 edges
+2. `normalizeHandle()` - 20 edges
+3. `logger` - 18 edges
+4. `Backend build plan (pagesanj) — micro-task todo list` - 18 edges
+5. `getQueue()` - 16 edges
+6. `createShop()` - 15 edges
+7. `useMongo()` - 15 edges
+8. `scripts` - 13 edges
+9. `isDuplicateKey()` - 13 edges
+10. `QUEUES` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `startWorkers()` --references--> `worker`  [EXTRACTED]
   backend/src/queues/startWorkers.ts → backend/package.json
-- `rejects()` --indirect_call--> `HttpError`  [INFERRED]
-  backend/tests/integration/shopsServices.test.ts → backend/src/lib/errorHandler.ts
-- `fetchProfile()` --calls--> `canRun()`  [EXTRACTED]
-  backend/src/queues/workers/apifyProfile.worker.ts → backend/src/apify/budget.ts
-- `lookupPostOwner()` --calls--> `normalizeHandle()`  [EXTRACTED]
-  backend/src/apify/postOwner.ts → backend/src/lib/handle.ts
 - `createApp()` --indirect_call--> `errorHandler()`  [INFERRED]
   backend/src/app.ts → backend/src/lib/errorHandler.ts
+- `rejects()` --indirect_call--> `HttpError`  [INFERRED]
+  backend/tests/integration/shopsServices.test.ts → backend/src/lib/errorHandler.ts
+- `enqueueProfile()` --calls--> `getQueue()`  [EXTRACTED]
+  backend/src/routes/admin/shops.ts → backend/src/queues/queues.ts
+- `runBackfill()` --calls--> `ingestPosts()`  [EXTRACTED]
+  backend/src/apify/backfill.ts → backend/src/apify/ingest.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (25 total, 1 thin omitted)
+## Communities (19 total, 1 thin omitted)
 
 ### Community 0 - "index.ts"
-Cohesion: 0.10
-Nodes (32): csrfTokenFor(), requireCsrf(), SAFE_METHODS, verifyCsrf(), adminCookieOptions(), AdminIdentity, endAdminSession(), Express (+24 more)
+Cohesion: 0.11
+Nodes (30): csrfTokenFor(), requireCsrf(), SAFE_METHODS, verifyCsrf(), adminCookieOptions(), AdminIdentity, endAdminSession(), Express (+22 more)
 
 ### Community 1 - "compilerOptions"
 Cohesion: 0.14
@@ -70,11 +70,7 @@ Nodes (13): compilerOptions, esModuleInterop, module, moduleResolution, noUnchec
 
 ### Community 3 - "logger.ts"
 Cohesion: 0.06
-Nodes (50): username, app, dir, createApp(), Env, schema, connectDb(), disconnectDb() (+42 more)
-
-### Community 4 - "index.ts"
-Cohesion: 0.28
-Nodes (7): checkImage(), ImageCheck, ImageMime, sniffImageMime(), jpeg, png, webp
+Nodes (56): lookupPostOwner(), BotDeps, jobLogger(), createRedis(), REVIEWER_PERMISSIONS, ReviewerSourceDoc, reviewerSourceSchema, DmInboundData (+48 more)
 
 ### Community 6 - "devDependencies"
 Cohesion: 0.05
@@ -89,16 +85,20 @@ Cohesion: 0.33
 Nodes (5): backend/, Commands, graphify, Rules, Structure
 
 ### Community 13 - "webhook-spike.ts"
-Cohesion: 0.15
-Nodes (15): fixture, allow(), drainSends(), PNG, samples, apifyRoutes(), fakeFetch(), json() (+7 more)
+Cohesion: 0.10
+Nodes (24): GraphError, RETRYABLE_CODES, SendOptions, sendText(), signBody(), verifySignature(), processDmSend(), fixture (+16 more)
 
 ### Community 15 - "budget.ts"
-Cohesion: 0.08
-Nodes (36): BudgetCheck, canRun(), RunKind, ApifyClientOptions, ApifyError, ApifyRun, ApifyUsage, call() (+28 more)
+Cohesion: 0.06
+Nodes (50): username, handle, out, app, dir, runBackfill(), BudgetCheck, BudgetError (+42 more)
+
+### Community 18 - "extractTagged.ts"
+Cohesion: 0.22
+Nodes (15): extractTagged(), IngestCounts, ingestPosts(), ApifyPost, postTime(), postUrl(), normalizeHandle(), isDuplicateKey() (+7 more)
 
 ### Community 25 - "index.ts"
-Cohesion: 0.09
-Nodes (37): BotDeps, BotOutcome, handleMessage(), detectLang(), Lang, LookupDeps, lookupHandle(), LookupResult (+29 more)
+Cohesion: 0.11
+Nodes (34): BotOutcome, handleMessage(), detectLang(), Lang, LookupDeps, lookupHandle(), LookupResult, ReviewSummary (+26 more)
 
 ### Community 35 - "tsconfig.test.json"
 Cohesion: 0.33
@@ -106,18 +106,18 @@ Nodes (5): compilerOptions, noEmit, rootDir, extends, include
 
 ### Community 36 - "encryptField.ts"
 Cohesion: 0.08
-Nodes (42): RFC-4648, RFC-6238, importAdmin(), trustMeAdmin, authenticateAdmin(), AuthResult, createAdminAccount(), reserveAttempt() (+34 more)
+Nodes (44): RFC-4648, RFC-6238, createApp(), importAdmin(), trustMeAdmin, authenticateAdmin(), AuthResult, createAdminAccount() (+36 more)
 
 ### Community 38 - "imageCheck.ts"
-Cohesion: 0.06
-Nodes (71): handle, out, first(), mapProfile(), phone(), ScrapedProfile, website(), normalizeEmail() (+63 more)
+Cohesion: 0.05
+Nodes (72): first(), mapProfile(), phone(), ProfileItem, ScrapedProfile, website(), normalizeEmail(), normalizePhone() (+64 more)
 
 ### Community 45 - "Admin.ts"
-Cohesion: 0.05
-Nodes (47): DeletionRequestDoc, deletionRequestSchema, DmEventDoc, dmEventSchema, ADMIN_ROLES, DELETION_STATUSES, Direction, DIRECTIONS (+39 more)
+Cohesion: 0.06
+Nodes (43): DeletionRequestDoc, deletionRequestSchema, DmEventDoc, dmEventSchema, DELETION_STATUSES, Direction, DIRECTIONS, DM_KINDS (+35 more)
 
 ## Knowledge Gaps
-- **179 isolated node(s):** `name`, `version`, `private`, `type`, `node` (+174 more)
+- **187 isolated node(s):** `name`, `version`, `private`, `type`, `node` (+182 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -125,16 +125,16 @@ Nodes (47): DeletionRequestDoc, deletionRequestSchema, DmEventDoc, dmEventSchema
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `startWorkers()` connect `logger.ts` to `devDependencies`?**
-  _High betweenness centrality (0.118) - this node is a cross-community bridge._
+  _High betweenness centrality (0.114) - this node is a cross-community bridge._
 - **Why does `worker` connect `devDependencies` to `logger.ts`?**
-  _High betweenness centrality (0.116) - this node is a cross-community bridge._
+  _High betweenness centrality (0.111) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `private` to the rest of the system?**
-  _179 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _187 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10810810810810811 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
 - **Should `logger.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06322624743677376 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.061052631578947365 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._

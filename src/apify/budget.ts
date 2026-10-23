@@ -3,6 +3,9 @@
 import { env } from '../config/env.js';
 import { getUsage, type ApifyClientOptions } from './client.js';
 
+/** The guard said no; not worth retrying until next month. */
+export class BudgetError extends Error {}
+
 export type RunKind = 'daily' | 'backfill' | 'post_owner' | 'profile';
 
 export type BudgetCheck =

@@ -133,14 +133,16 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 9 — Reviewer sources + daily check (M3, PRD §6)
 
+*Done except 9.1: no real post-scraper output is in the repo, so `tests/fixtures/apify/posts.docs-sample.json` is built from the fields PRD §6.2 verified (pinned post, a post tagging a shop by its previous handle plus a sponsor, a reel tagging two unknown pages, a post with no tags). Save a real run over it when convenient. `taggedUsers` is read as objects with `username` or as plain strings. New env `APIFY_IGNORE_HANDLES` (comma-separated). Posts with no tagged business are counted as `skipped` in `jobRuns` and logged; there's no collection for them. Pinned posts are still ingested (they just never set "newest"). The daily check matches items to sources by `ownerUsername`, skips posts not newer than `lastSeenPostAt`, and posts already stored for that source. A wishlist entry isn't counted twice for the same post. Backfill above the budget stop is skipped (`counts.skippedBudget`) and not marked done; "run backfill now" forces a re-run. A source's handle can't be edited (posts match by handle). Budget stops, Apify 4xx and failed runs are not retried (`noPaidRetry`). Admin API: `/admin/api/reviewer-sources` (GET, POST, PATCH /:id, POST /:id/backfill) and `/admin/api/jobs` (GET /runs, GET /usage, POST /daily-check).*
+
 - [ ] 9.1 Save a real post-scraper fixture (`tests/fixtures/apify/posts.json`, from discovery run).
-- [ ] 9.2 `apify/extractTagged.ts` + test: union of `mentions` + `taggedUsers`, minus reviewer, minus ignore list (env `APIFY_IGNORE_HANDLES`, add to env + `.env.example`).
-- [ ] 9.3 `services/reviews.ts` + test: `createPendingFromPost(post, source)` → per tagged handle: shop found → pending review on shop, else wishlist (`reviewer_post`) + review on wishlist; duplicate-key = skip; `skipped` audit for no tags.
-- [ ] 9.4 `apify/dailyCheck.ts` + test: one combined run for followed sources (`resultsLimit` 10), dedupe by shortcode, update `lastSeenShortcode/At` ignoring `isPinned`, counts.
-- [ ] 9.5 `apify/backfill.ts` + test: per source, budget guard, `backfillLimit`, mark `backfillDone`.
-- [ ] 9.6 `apify-daily` and `apify-backfill` workers; enqueue backfill when a source is created with `follow: true`.
-- [ ] 9.7 `routes/admin/reviewerSources.ts`: CRUD, toggle follow, "run backfill now".
-- [ ] 9.8 `routes/admin/jobs.ts`: recent `jobRuns`, Apify usage this month, "run daily check now".
+- [x] 9.2 `apify/extractTagged.ts` + test: union of `mentions` + `taggedUsers`, minus reviewer, minus ignore list (env `APIFY_IGNORE_HANDLES`, add to env + `.env.example`).
+- [x] 9.3 `services/reviews.ts` + test: `createPendingFromPost(post, source)` → per tagged handle: shop found → pending review on shop, else wishlist (`reviewer_post`) + review on wishlist; duplicate-key = skip; `skipped` audit for no tags.
+- [x] 9.4 `apify/dailyCheck.ts` + test: one combined run for followed sources (`resultsLimit` 10), dedupe by shortcode, update `lastSeenShortcode/At` ignoring `isPinned`, counts.
+- [x] 9.5 `apify/backfill.ts` + test: per source, budget guard, `backfillLimit`, mark `backfillDone`.
+- [x] 9.6 `apify-daily` and `apify-backfill` workers; enqueue backfill when a source is created with `follow: true`.
+- [x] 9.7 `routes/admin/reviewerSources.ts`: CRUD, toggle follow, "run backfill now".
+- [x] 9.8 `routes/admin/jobs.ts`: recent `jobRuns`, Apify usage this month, "run daily check now".
 
 ## Phase 10 — Moderation + wishlist admin (M3, PRD §9.2)
 

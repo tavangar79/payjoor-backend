@@ -4,7 +4,8 @@
 import { UnrecoverableError, type Job } from 'bullmq';
 import type { Logger } from 'pino';
 import { ApifyError, type ApifyClientOptions } from '../../apify/client.js';
-import { BudgetError, lookupPostOwner } from '../../apify/postOwner.js';
+import { BudgetError } from '../../apify/budget.js';
+import { lookupPostOwner } from '../../apify/postOwner.js';
 import { dmJobId, isFinalAttempt, postOwnerData, type PostOwnerData } from '../jobData.js';
 import { QUEUES } from '../names.js';
 import { getQueue } from '../queues.js';

@@ -26,6 +26,11 @@ const schema = z.object({
   APIFY_BUDGET_STOP_USD: z.coerce.number().default(4.5),
   APIFY_PROFILE_ACTOR: z.string().default('apify~instagram-profile-scraper'),
   APIFY_POST_ACTOR: z.string().default('apify~instagram-post-scraper'),
+  // Comma-separated handles tagged in reviewer posts that aren't shops, e.g. sponsors (§6.1).
+  APIFY_IGNORE_HANDLES: z
+    .string()
+    .default('')
+    .transform((v) => v.split(',').map((h) => h.trim().replace(/^@/, '').toLowerCase()).filter(Boolean)),
   DAILY_CHECK_CRON: z.string().default('0 9 * * *'),
 
   SESSION_SECRET: z.string().min(32),

@@ -410,7 +410,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_admin_create",
-      "community": 3,
+      "community": 15,
       "norm_label": "admin-create.ts"
     },
     {
@@ -420,7 +420,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_admin_import",
-      "community": 3,
+      "community": 15,
       "norm_label": "admin-import.ts"
     },
     {
@@ -430,7 +430,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "scripts_admin_import_username",
-      "community": 3,
+      "community": 15,
       "norm_label": "username"
     },
     {
@@ -440,7 +440,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_apify_profile_spike",
-      "community": 38,
+      "community": 15,
       "norm_label": "apify-profile-spike.ts"
     },
     {
@@ -450,7 +450,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "scripts_apify_profile_spike_handle",
-      "community": 38,
+      "community": 15,
       "norm_label": "handle"
     },
     {
@@ -460,7 +460,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "scripts_apify_profile_spike_out",
-      "community": 38,
+      "community": 15,
       "norm_label": "out"
     },
     {
@@ -470,7 +470,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_webhook_spike",
-      "community": 3,
+      "community": 15,
       "norm_label": "webhook-spike.ts"
     },
     {
@@ -480,7 +480,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "scripts_webhook_spike_dir",
-      "community": 3,
+      "community": 15,
       "norm_label": "dir"
     },
     {
@@ -490,7 +490,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "scripts_webhook_spike_app",
-      "community": 3,
+      "community": 15,
       "norm_label": "app"
     },
     {
@@ -500,8 +500,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_apify_backfill",
-      "community": 14,
+      "community": 15,
       "norm_label": "backfill.ts"
+    },
+    {
+      "label": "runBackfill()",
+      "file_type": "code",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_apify_backfill_runbackfill",
+      "community": 15,
+      "norm_label": "runbackfill()"
     },
     {
       "label": "budget.ts",
@@ -514,10 +524,20 @@
       "norm_label": "budget.ts"
     },
     {
+      "label": "BudgetError",
+      "file_type": "code",
+      "source_file": "backend/src/apify/budget.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_apify_budget_budgeterror",
+      "community": 15,
+      "norm_label": "budgeterror"
+    },
+    {
       "label": "RunKind",
       "file_type": "code",
       "source_file": "backend/src/apify/budget.ts",
-      "source_location": "L6",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "src_apify_budget_runkind",
       "community": 15,
@@ -527,7 +547,7 @@
       "label": "BudgetCheck",
       "file_type": "code",
       "source_file": "backend/src/apify/budget.ts",
-      "source_location": "L8",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "src_apify_budget_budgetcheck",
       "community": 15,
@@ -537,7 +557,7 @@
       "label": "canRun()",
       "file_type": "code",
       "source_file": "backend/src/apify/budget.ts",
-      "source_location": "L12",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "src_apify_budget_canrun",
       "community": 15,
@@ -690,8 +710,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_apify_dailycheck",
-      "community": 17,
+      "community": 15,
       "norm_label": "dailycheck.ts"
+    },
+    {
+      "label": "runDailyCheck()",
+      "file_type": "code",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_apify_dailycheck_rundailycheck",
+      "community": 15,
+      "norm_label": "rundailycheck()"
     },
     {
       "label": "extractTagged.ts",
@@ -704,6 +734,46 @@
       "norm_label": "extracttagged.ts"
     },
     {
+      "label": "extractTagged()",
+      "file_type": "code",
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_apify_extracttagged_extracttagged",
+      "community": 18,
+      "norm_label": "extracttagged()"
+    },
+    {
+      "label": "ingest.ts",
+      "file_type": "code",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_apify_ingest",
+      "community": 18,
+      "norm_label": "ingest.ts"
+    },
+    {
+      "label": "IngestCounts",
+      "file_type": "code",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_apify_ingest_ingestcounts",
+      "community": 18,
+      "norm_label": "ingestcounts"
+    },
+    {
+      "label": "ingestPosts()",
+      "file_type": "code",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_apify_ingest_ingestposts",
+      "community": 18,
+      "norm_label": "ingestposts()"
+    },
+    {
       "label": "postOwner.ts",
       "file_type": "code",
       "source_file": "backend/src/apify/postOwner.ts",
@@ -714,34 +784,54 @@
       "norm_label": "postowner.ts"
     },
     {
-      "label": "postUrl()",
-      "file_type": "code",
-      "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "src_apify_postowner_posturl",
-      "community": 15,
-      "norm_label": "posturl()"
-    },
-    {
-      "label": "BudgetError",
+      "label": "lookupPostOwner()",
       "file_type": "code",
       "source_file": "backend/src/apify/postOwner.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "id": "src_apify_postowner_budgeterror",
-      "community": 15,
-      "norm_label": "budgeterror"
+      "id": "src_apify_postowner_lookuppostowner",
+      "community": 3,
+      "norm_label": "lookuppostowner()"
     },
     {
-      "label": "lookupPostOwner()",
+      "label": "posts.ts",
       "file_type": "code",
-      "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L15",
+      "source_file": "backend/src/apify/posts.ts",
+      "source_location": "L1",
       "_origin": "ast",
-      "id": "src_apify_postowner_lookuppostowner",
-      "community": 15,
-      "norm_label": "lookuppostowner()"
+      "id": "src_apify_posts",
+      "community": 18,
+      "norm_label": "posts.ts"
+    },
+    {
+      "label": "ApifyPost",
+      "file_type": "code",
+      "source_file": "backend/src/apify/posts.ts",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "src_apify_posts_apifypost",
+      "community": 18,
+      "norm_label": "apifypost"
+    },
+    {
+      "label": "postUrl()",
+      "file_type": "code",
+      "source_file": "backend/src/apify/posts.ts",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "src_apify_posts_posturl",
+      "community": 18,
+      "norm_label": "posturl()"
+    },
+    {
+      "label": "postTime()",
+      "file_type": "code",
+      "source_file": "backend/src/apify/posts.ts",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_apify_posts_posttime",
+      "community": 18,
+      "norm_label": "posttime()"
     },
     {
       "label": "profile.ts",
@@ -760,7 +850,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_apify_profile_profileitem",
-      "community": 15,
+      "community": 38,
       "norm_label": "profileitem"
     },
     {
@@ -830,7 +920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app",
-      "community": 3,
+      "community": 15,
       "norm_label": "app.ts"
     },
     {
@@ -840,7 +930,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_createapp",
-      "community": 3,
+      "community": 36,
       "norm_label": "createapp()"
     },
     {
@@ -1270,7 +1360,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_bot_index_botdeps",
-      "community": 25,
+      "community": 3,
       "norm_label": "botdeps"
     },
     {
@@ -1590,7 +1680,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_config_env",
-      "community": 3,
+      "community": 15,
       "norm_label": "env.ts"
     },
     {
@@ -1600,17 +1690,17 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_config_env_schema",
-      "community": 3,
+      "community": 15,
       "norm_label": "schema"
     },
     {
       "label": "Env",
       "file_type": "code",
       "source_file": "backend/src/config/env.ts",
-      "source_location": "L42",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "src_config_env_env",
-      "community": 3,
+      "community": 15,
       "norm_label": "env"
     },
     {
@@ -1810,7 +1900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_db",
-      "community": 3,
+      "community": 15,
       "norm_label": "db.ts"
     },
     {
@@ -1820,7 +1910,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_lib_db_connectdb",
-      "community": 3,
+      "community": 15,
       "norm_label": "connectdb()"
     },
     {
@@ -1830,7 +1920,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_lib_db_disconnectdb",
-      "community": 3,
+      "community": 15,
       "norm_label": "disconnectdb()"
     },
     {
@@ -1840,7 +1930,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_lib_db_isdbconnected",
-      "community": 3,
+      "community": 15,
       "norm_label": "isdbconnected()"
     },
     {
@@ -1910,7 +2000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_errorhandler",
-      "community": 3,
+      "community": 15,
       "norm_label": "errorhandler.ts"
     },
     {
@@ -1940,7 +2030,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_lib_errorhandler_errorhandler",
-      "community": 3,
+      "community": 15,
       "norm_label": "errorhandler()"
     },
     {
@@ -1950,7 +2040,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_handle",
-      "community": 38,
+      "community": 18,
       "norm_label": "handle.ts"
     },
     {
@@ -1960,7 +2050,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_lib_handle_normalizehandle",
-      "community": 38,
+      "community": 18,
       "norm_label": "normalizehandle()"
     },
     {
@@ -1970,7 +2060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_imagecheck",
-      "community": 4,
+      "community": 38,
       "norm_label": "imagecheck.ts"
     },
     {
@@ -1980,7 +2070,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_lib_imagecheck_imagemime",
-      "community": 4,
+      "community": 38,
       "norm_label": "imagemime"
     },
     {
@@ -1990,7 +2080,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_lib_imagecheck_imagecheck",
-      "community": 4,
+      "community": 38,
       "norm_label": "imagecheck"
     },
     {
@@ -2000,7 +2090,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_lib_imagecheck_sniffimagemime",
-      "community": 4,
+      "community": 38,
       "norm_label": "sniffimagemime()"
     },
     {
@@ -2010,7 +2100,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_lib_imagecheck_checkimage",
-      "community": 4,
+      "community": 38,
       "norm_label": "checkimage()"
     },
     {
@@ -2020,7 +2110,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_logger",
-      "community": 3,
+      "community": 15,
       "norm_label": "logger.ts"
     },
     {
@@ -2030,7 +2120,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_lib_logger_logger",
-      "community": 3,
+      "community": 15,
       "norm_label": "logger"
     },
     {
@@ -2050,7 +2140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_mongo",
-      "community": 38,
+      "community": 18,
       "norm_label": "mongo.ts"
     },
     {
@@ -2060,7 +2150,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_lib_mongo_isduplicatekey",
-      "community": 38,
+      "community": 18,
       "norm_label": "isduplicatekey()"
     },
     {
@@ -2140,7 +2230,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_redis",
-      "community": 3,
+      "community": 15,
       "norm_label": "redis.ts"
     },
     {
@@ -2190,7 +2280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_meta_sendapi",
-      "community": 3,
+      "community": 13,
       "norm_label": "sendapi.ts"
     },
     {
@@ -2200,7 +2290,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_meta_sendapi_retryable_codes",
-      "community": 3,
+      "community": 13,
       "norm_label": "retryable_codes"
     },
     {
@@ -2210,7 +2300,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_meta_sendapi_grapherror",
-      "community": 3,
+      "community": 13,
       "norm_label": "grapherror"
     },
     {
@@ -2220,7 +2310,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_meta_sendapi_grapherror_constructor",
-      "community": 3,
+      "community": 13,
       "norm_label": ".constructor()"
     },
     {
@@ -2230,7 +2320,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_meta_sendapi_sendoptions",
-      "community": 3,
+      "community": 13,
       "norm_label": "sendoptions"
     },
     {
@@ -2240,7 +2330,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_meta_sendapi_sendtext",
-      "community": 3,
+      "community": 13,
       "norm_label": "sendtext()"
     },
     {
@@ -2250,7 +2340,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_meta_signature",
-      "community": 3,
+      "community": 13,
       "norm_label": "signature.ts"
     },
     {
@@ -2260,7 +2350,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_meta_signature_signbody",
-      "community": 3,
+      "community": 13,
       "norm_label": "signbody()"
     },
     {
@@ -2270,7 +2360,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_meta_signature_verifysignature",
-      "community": 3,
+      "community": 13,
       "norm_label": "verifysignature()"
     },
     {
@@ -2610,7 +2700,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_reviewersource",
-      "community": 45,
+      "community": 3,
       "norm_label": "reviewersource.ts"
     },
     {
@@ -2620,7 +2710,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_reviewersource_reviewersourceschema",
-      "community": 45,
+      "community": 3,
       "norm_label": "reviewersourceschema"
     },
     {
@@ -2630,7 +2720,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_models_reviewersource_reviewersourcedoc",
-      "community": 45,
+      "community": 3,
       "norm_label": "reviewersourcedoc"
     },
     {
@@ -2840,7 +2930,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_models_enums_reviewer_permissions",
-      "community": 45,
+      "community": 3,
       "norm_label": "reviewer_permissions"
     },
     {
@@ -2950,7 +3040,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_models_enums_admin_roles",
-      "community": 45,
+      "community": 36,
       "norm_label": "admin_roles"
     },
     {
@@ -3000,7 +3090,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_jobdata",
-      "community": 15,
+      "community": 3,
       "norm_label": "jobdata.ts"
     },
     {
@@ -3010,7 +3100,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_queues_jobdata_dmmessage",
-      "community": 15,
+      "community": 3,
       "norm_label": "dmmessage"
     },
     {
@@ -3020,7 +3110,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_queues_jobdata_dminbounddata",
-      "community": 15,
+      "community": 3,
       "norm_label": "dminbounddata"
     },
     {
@@ -3030,7 +3120,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_queues_jobdata_postownerdata",
-      "community": 15,
+      "community": 3,
       "norm_label": "postownerdata"
     },
     {
@@ -3040,7 +3130,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_queues_jobdata_dmsenddata",
-      "community": 15,
+      "community": 3,
       "norm_label": "dmsenddata"
     },
     {
@@ -3050,7 +3140,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_queues_jobdata_dmjobid",
-      "community": 15,
+      "community": 3,
       "norm_label": "dmjobid()"
     },
     {
@@ -3060,7 +3150,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_queues_jobdata_isfinalattempt",
-      "community": 15,
+      "community": 3,
       "norm_label": "isfinalattempt()"
     },
     {
@@ -3070,7 +3160,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_names",
-      "community": 38,
+      "community": 3,
       "norm_label": "names.ts"
     },
     {
@@ -3080,7 +3170,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_queues_names_queues",
-      "community": 38,
+      "community": 3,
       "norm_label": "queues"
     },
     {
@@ -3230,8 +3320,28 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_workers_apifybackfill_worker",
-      "community": 60,
+      "community": 3,
       "norm_label": "apifybackfill.worker.ts"
+    },
+    {
+      "label": "BackfillJobData",
+      "file_type": "code",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_queues_workers_apifybackfill_worker_backfilljobdata",
+      "community": 3,
+      "norm_label": "backfilljobdata"
+    },
+    {
+      "label": "apifyBackfillWorker",
+      "file_type": "code",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_queues_workers_apifybackfill_worker_apifybackfillworker",
+      "community": 3,
+      "norm_label": "apifybackfillworker"
     },
     {
       "label": "apifyDaily.worker.ts",
@@ -3240,8 +3350,28 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_workers_apifydaily_worker",
-      "community": 61,
+      "community": 15,
       "norm_label": "apifydaily.worker.ts"
+    },
+    {
+      "label": "noPaidRetry()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_queues_workers_apifydaily_worker_nopaidretry",
+      "community": 3,
+      "norm_label": "nopaidretry()"
+    },
+    {
+      "label": "apifyDailyWorker",
+      "file_type": "code",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_queues_workers_apifydaily_worker_apifydailyworker",
+      "community": 3,
+      "norm_label": "apifydailyworker"
     },
     {
       "label": "apifyProfile.worker.ts",
@@ -3250,7 +3380,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_workers_apifyprofile_worker",
-      "community": 38,
+      "community": 15,
       "norm_label": "apifyprofile.worker.ts"
     },
     {
@@ -3260,7 +3390,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_queues_workers_apifyprofile_worker_profilejobdata",
-      "community": 38,
+      "community": 15,
       "norm_label": "profilejobdata"
     },
     {
@@ -3270,7 +3400,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_queues_workers_apifyprofile_worker_profiledraft",
-      "community": 38,
+      "community": 15,
       "norm_label": "profiledraft"
     },
     {
@@ -3280,7 +3410,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_queues_workers_apifyprofile_worker_profiledeps",
-      "community": 38,
+      "community": 15,
       "norm_label": "profiledeps"
     },
     {
@@ -3310,7 +3440,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_workers_dminbound_worker",
-      "community": 25,
+      "community": 3,
       "norm_label": "dminbound.worker.ts"
     },
     {
@@ -3320,7 +3450,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_queues_workers_dminbound_worker_processdminbound",
-      "community": 25,
+      "community": 3,
       "norm_label": "processdminbound()"
     },
     {
@@ -3380,7 +3510,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_queues_workers_dmsend_worker_processdmsend",
-      "community": 3,
+      "community": 13,
       "norm_label": "processdmsend()"
     },
     {
@@ -3407,7 +3537,7 @@
       "label": "WorkerDefinition",
       "file_type": "code",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L10",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "src_queues_workers_index_workerdefinition",
       "community": 3,
@@ -3417,7 +3547,7 @@
       "label": "workerDefinitions",
       "file_type": "code",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L17",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "src_queues_workers_index_workerdefinitions",
       "community": 3,
@@ -3430,34 +3560,34 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_workers_postowner_worker",
-      "community": 15,
+      "community": 3,
       "norm_label": "postowner.worker.ts"
     },
     {
       "label": "finishDm()",
       "file_type": "code",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L13",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "src_queues_workers_postowner_worker_finishdm",
-      "community": 15,
+      "community": 3,
       "norm_label": "finishdm()"
     },
     {
       "label": "processPostOwner()",
       "file_type": "code",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L17",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "src_queues_workers_postowner_worker_processpostowner",
-      "community": 15,
+      "community": 3,
       "norm_label": "processpostowner()"
     },
     {
       "label": "postOwnerWorker",
       "file_type": "code",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "src_queues_workers_postowner_worker_postownerworker",
       "community": 3,
@@ -3600,18 +3730,28 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_admin_jobs",
-      "community": 0,
+      "community": 3,
       "norm_label": "jobs.ts"
     },
     {
       "label": "jobsRouter",
       "file_type": "code",
       "source_file": "backend/src/routes/admin/jobs.ts",
-      "source_location": "L4",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "src_routes_admin_jobs_jobsrouter",
       "community": 0,
       "norm_label": "jobsrouter"
+    },
+    {
+      "label": "runsQuery",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_routes_admin_jobs_runsquery",
+      "community": 3,
+      "norm_label": "runsquery"
     },
     {
       "label": "queuesBoard.ts",
@@ -3670,18 +3810,58 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_admin_reviewersources",
-      "community": 0,
+      "community": 3,
       "norm_label": "reviewersources.ts"
     },
     {
       "label": "reviewerSourcesRouter",
       "file_type": "code",
       "source_file": "backend/src/routes/admin/reviewerSources.ts",
-      "source_location": "L4",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "src_routes_admin_reviewersources_reviewersourcesrouter",
-      "community": 0,
+      "community": 3,
       "norm_label": "reviewersourcesrouter"
+    },
+    {
+      "label": "fields",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_routes_admin_reviewersources_fields",
+      "community": 3,
+      "norm_label": "fields"
+    },
+    {
+      "label": "createBody",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "src_routes_admin_reviewersources_createbody",
+      "community": 3,
+      "norm_label": "createbody"
+    },
+    {
+      "label": "updateBody",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_routes_admin_reviewersources_updatebody",
+      "community": 3,
+      "norm_label": "updatebody"
+    },
+    {
+      "label": "idParam()",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "src_routes_admin_reviewersources_idparam",
+      "community": 38,
+      "norm_label": "idparam()"
     },
     {
       "label": "reviews.ts",
@@ -3720,7 +3900,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_routes_admin_shops_shopsrouter",
-      "community": 0,
+      "community": 38,
       "norm_label": "shopsrouter"
     },
     {
@@ -3800,7 +3980,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "src_routes_admin_shops_enqueueprofile",
-      "community": 3,
+      "community": 38,
       "norm_label": "enqueueprofile()"
     },
     {
@@ -3830,7 +4010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_landing",
-      "community": 3,
+      "community": 15,
       "norm_label": "landing.ts"
     },
     {
@@ -3840,7 +4020,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_routes_landing_landingrouter",
-      "community": 3,
+      "community": 15,
       "norm_label": "landingrouter"
     },
     {
@@ -3850,7 +4030,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_media",
-      "community": 3,
+      "community": 15,
       "norm_label": "media.ts"
     },
     {
@@ -3860,7 +4040,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_routes_media_mediarouter",
-      "community": 3,
+      "community": 15,
       "norm_label": "mediarouter"
     },
     {
@@ -3870,7 +4050,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_routes_meta",
-      "community": 3,
+      "community": 15,
       "norm_label": "meta.ts"
     },
     {
@@ -3880,7 +4060,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_routes_meta_metarouter",
-      "community": 3,
+      "community": 15,
       "norm_label": "metarouter"
     },
     {
@@ -3930,7 +4110,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_server",
-      "community": 3,
+      "community": 15,
       "norm_label": "server.ts"
     },
     {
@@ -3940,7 +4120,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_server_app",
-      "community": 3,
+      "community": 15,
       "norm_label": "app"
     },
     {
@@ -3950,7 +4130,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_server_server",
-      "community": 3,
+      "community": 15,
       "norm_label": "server"
     },
     {
@@ -3960,7 +4140,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_server_shutdown",
-      "community": 3,
+      "community": 15,
       "norm_label": "shutdown()"
     },
     {
@@ -3970,7 +4150,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_botdeps",
-      "community": 25,
+      "community": 3,
       "norm_label": "botdeps.ts"
     },
     {
@@ -3980,7 +4160,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_services_botdeps_reviewerhandles",
-      "community": 25,
+      "community": 3,
       "norm_label": "reviewerhandles()"
     },
     {
@@ -3990,7 +4170,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_services_botdeps_botdeps",
-      "community": 25,
+      "community": 3,
       "norm_label": "botdeps"
     },
     {
@@ -4084,14 +4264,144 @@
       "norm_label": "deletion.ts"
     },
     {
+      "label": "reviewerSources.ts",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_services_reviewersources",
+      "community": 3,
+      "norm_label": "reviewersources.ts"
+    },
+    {
+      "label": "SourceInput",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_services_reviewersources_sourceinput",
+      "community": 3,
+      "norm_label": "sourceinput"
+    },
+    {
+      "label": "enqueueBackfill()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "src_services_reviewersources_enqueuebackfill",
+      "community": 3,
+      "norm_label": "enqueuebackfill()"
+    },
+    {
+      "label": "needsBackfill()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_services_reviewersources_needsbackfill",
+      "community": 3,
+      "norm_label": "needsbackfill()"
+    },
+    {
+      "label": "createSource()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "src_services_reviewersources_createsource",
+      "community": 3,
+      "norm_label": "createsource()"
+    },
+    {
+      "label": "updateSource()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "src_services_reviewersources_updatesource",
+      "community": 3,
+      "norm_label": "updatesource()"
+    },
+    {
+      "label": "listSources()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "src_services_reviewersources_listsources",
+      "community": 3,
+      "norm_label": "listsources()"
+    },
+    {
       "label": "reviews.ts",
       "file_type": "code",
       "source_file": "backend/src/services/reviews.ts",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_reviews",
-      "community": 69,
+      "community": 18,
       "norm_label": "reviews.ts"
+    },
+    {
+      "label": "PostCounts",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_services_reviews_postcounts",
+      "community": 18,
+      "norm_label": "postcounts"
+    },
+    {
+      "label": "emptyPostCounts()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "src_services_reviews_emptypostcounts",
+      "community": 18,
+      "norm_label": "emptypostcounts()"
+    },
+    {
+      "label": "Source",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_services_reviews_source",
+      "community": 18,
+      "norm_label": "source"
+    },
+    {
+      "label": "reviewFields()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "src_services_reviews_reviewfields",
+      "community": 18,
+      "norm_label": "reviewfields()"
+    },
+    {
+      "label": "createOnce()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "src_services_reviews_createonce",
+      "community": 18,
+      "norm_label": "createonce()"
+    },
+    {
+      "label": "createPendingFromPost()",
+      "file_type": "code",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "src_services_reviews_creatependingfrompost",
+      "community": 18,
+      "norm_label": "creatependingfrompost()"
     },
     {
       "label": "shops.ts",
@@ -4110,7 +4420,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_services_shops_storedimage",
-      "community": 38,
+      "community": 15,
       "norm_label": "storedimage"
     },
     {
@@ -4300,7 +4610,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_wishlist",
-      "community": 45,
+      "community": 18,
       "norm_label": "wishlist.ts"
     },
     {
@@ -4310,7 +4620,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_services_wishlist_addrequest",
-      "community": 38,
+      "community": 18,
       "norm_label": "addrequest()"
     },
     {
@@ -4420,7 +4730,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_integration_db_test",
-      "community": 3,
+      "community": 36,
       "norm_label": "db.test.ts"
     },
     {
@@ -4702,6 +5012,56 @@
       "id": "tests_integration_queuesboard_test",
       "community": 36,
       "norm_label": "queuesboard.test.ts"
+    },
+    {
+      "label": "reviewerPosts.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_integration_reviewerposts_test",
+      "community": 13,
+      "norm_label": "reviewerposts.test.ts"
+    },
+    {
+      "label": "posts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "tests_integration_reviewerposts_test_posts",
+      "community": 13,
+      "norm_label": "posts"
+    },
+    {
+      "label": "PNG",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "tests_integration_reviewerposts_test_png",
+      "community": 13,
+      "norm_label": "png"
+    },
+    {
+      "label": "source()",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "tests_integration_reviewerposts_test_source",
+      "community": 15,
+      "norm_label": "source()"
+    },
+    {
+      "label": "admin()",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "tests_integration_reviewerposts_test_admin",
+      "community": 13,
+      "norm_label": "admin()"
     },
     {
       "label": "shopsRoutes.test.ts",
@@ -5040,7 +5400,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_unit_handle_test",
-      "community": 38,
+      "community": 18,
       "norm_label": "handle.test.ts"
     },
     {
@@ -5050,7 +5410,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_unit_imagecheck_test",
-      "community": 4,
+      "community": 38,
       "norm_label": "imagecheck.test.ts"
     },
     {
@@ -5060,7 +5420,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tests_unit_imagecheck_test_jpeg",
-      "community": 4,
+      "community": 38,
       "norm_label": "jpeg"
     },
     {
@@ -5070,7 +5430,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "tests_unit_imagecheck_test_png",
-      "community": 4,
+      "community": 38,
       "norm_label": "png"
     },
     {
@@ -5080,7 +5440,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tests_unit_imagecheck_test_webp",
-      "community": 4,
+      "community": 38,
       "norm_label": "webp"
     },
     {
@@ -5090,7 +5450,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_unit_meta_test",
-      "community": 3,
+      "community": 13,
       "norm_label": "meta.test.ts"
     },
     {
@@ -5487,7 +5847,7 @@
       "label": "Phase 10 \u2014 Moderation + wishlist admin (M3, PRD \u00a79.2)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L145",
+      "source_location": "L147",
       "_origin": "ast",
       "id": "backend_plan_phase_10_moderation_wishlist_admin_m3_prd_9_2",
       "community": 7,
@@ -5497,7 +5857,7 @@
       "label": "Phase 11 \u2014 Meta compliance + landing render (M4, PRD \u00a77, \u00a710)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L152",
+      "source_location": "L154",
       "_origin": "ast",
       "id": "backend_plan_phase_11_meta_compliance_landing_render_m4_prd_7_10",
       "community": 7,
@@ -5507,7 +5867,7 @@
       "label": "Phase 12 \u2014 Hardening",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L161",
+      "source_location": "L163",
       "_origin": "ast",
       "id": "backend_plan_phase_12_hardening",
       "community": 7,
@@ -5517,7 +5877,7 @@
       "label": "Critical files",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L170",
+      "source_location": "L172",
       "_origin": "ast",
       "id": "backend_plan_critical_files",
       "community": 7,
@@ -5527,7 +5887,7 @@
       "label": "Verification",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L174",
+      "source_location": "L176",
       "_origin": "ast",
       "id": "backend_plan_verification",
       "community": 7,
@@ -6335,8 +6695,260 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "backend/src/apify/budget.ts",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_backfill_runbackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
       "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_budget",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_budget_canrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_client_apifyclientoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_client_runactor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_ingest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_ingest_ingestposts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_posts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_apify_posts_apifypost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_jobs_jobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_jobs_jobrun_withjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_lib_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_lib_logger_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_apify_backfill",
+      "target": "src_models_reviewersource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_apify_backfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_apify_backfill_runbackfill",
+      "target": "src_apify_budget_canrun"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_apify_backfill_runbackfill",
+      "target": "src_apify_ingest_ingestposts"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_apify_backfill_runbackfill",
+      "target": "src_jobs_jobrun_withjobrun"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/src/apify/backfill.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_apify_backfill_runbackfill",
+      "target": "tests_integration_reviewerposts_test_source"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_apify_backfill_runbackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/budget.ts",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_apify_budget",
       "target": "src_apify_budget_budgetcheck",
@@ -6346,7 +6958,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/apify/budget.ts",
-      "source_location": "L12",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_apify_budget",
+      "target": "src_apify_budget_budgeterror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/budget.ts",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "src_apify_budget",
       "target": "src_apify_budget_canrun",
@@ -6356,7 +6978,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/apify/budget.ts",
-      "source_location": "L6",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_apify_budget",
       "target": "src_apify_budget_runkind",
@@ -6421,10 +7043,32 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_budget",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/apify/postOwner.ts",
       "source_location": "L7",
       "weight": 1.0,
       "source": "src_apify_postowner",
+      "target": "src_apify_budget",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
       "target": "src_apify_budget",
       "confidence_score": 1.0
     },
@@ -6443,6 +7087,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/postOwner.worker.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_queues_workers_postowner_worker",
+      "target": "src_apify_budget",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/unit/apify.test.ts",
       "source_location": "L4",
       "weight": 1.0,
@@ -6451,15 +7106,81 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_budget_budgeterror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/postOwner.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_apify_postowner",
+      "target": "src_apify_budget_budgeterror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
+      "target": "src_apify_budget_budgeterror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/postOwner.worker.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_queues_workers_postowner_worker",
+      "target": "src_apify_budget_budgeterror",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/apify/budget.ts",
-      "source_location": "L13",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_apify_budget_canrun",
       "target": "src_apify_client_getusage"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_budget_canrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck_rundailycheck",
+      "target": "src_apify_budget_canrun"
     },
     {
       "relation": "imports",
@@ -6478,7 +7199,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L20",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_apify_postowner_lookuppostowner",
       "target": "src_apify_budget_canrun"
@@ -6662,10 +7383,32 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/apify/postOwner.ts",
       "source_location": "L8",
       "weight": 1.0,
       "source": "src_apify_postowner",
+      "target": "src_apify_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
       "target": "src_apify_client",
       "confidence_score": 1.0
     },
@@ -6695,6 +7438,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
+      "target": "src_apify_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/unit/apify.test.ts",
       "source_location": "L3",
       "weight": 1.0,
@@ -6710,6 +7464,17 @@
       "weight": 1.0,
       "source": "src_apify_client_apifyerror",
       "target": "src_apify_client_apifyerror_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
+      "target": "src_apify_client_apifyerror",
       "confidence_score": 1.0
     },
     {
@@ -6755,6 +7520,17 @@
       "weight": 1.0,
       "source": "src_apify_client_waitforrun",
       "target": "src_apify_client_terminal"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_client_apifyclientoptions",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -6848,11 +7624,33 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
+      "target": "src_apify_client_getusage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/unit/apify.test.ts",
       "source_location": "L3",
       "weight": 1.0,
       "source": "tests_unit_apify_test",
       "target": "src_apify_client_getusage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_client_runactor",
       "confidence_score": 1.0
     },
     {
@@ -6891,31 +7689,480 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L12",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L13",
       "weight": 1.0,
-      "source": "src_apify_postowner",
-      "target": "src_apify_postowner_budgeterror",
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_dailycheck_rundailycheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_ingest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_ingest_ingestposts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_posts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_apify_posts_apifypost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_jobs_jobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_jobs_jobrun_withjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck",
+      "target": "src_models_reviewersource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
+      "target": "src_apify_dailycheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck_rundailycheck",
+      "target": "src_apify_ingest_ingestposts"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck_rundailycheck",
+      "target": "src_jobs_jobrun_withjobrun"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/src/apify/dailyCheck.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_apify_dailycheck_rundailycheck",
+      "target": "tests_integration_reviewerposts_test_source"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
+      "target": "src_apify_dailycheck_rundailycheck",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_apify_extracttagged",
+      "target": "src_apify_extracttagged_extracttagged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_extracttagged",
+      "target": "src_apify_posts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_extracttagged",
+      "target": "src_apify_posts_apifypost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_apify_extracttagged",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_apify_extracttagged",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_apify_extracttagged",
+      "target": "src_lib_handle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_apify_extracttagged",
+      "target": "src_lib_handle_normalizehandle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_apify_extracttagged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/extractTagged.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_apify_extracttagged_extracttagged",
+      "target": "src_lib_handle_normalizehandle"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_apify_extracttagged_extracttagged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_services_reviews_creatependingfrompost",
+      "target": "src_apify_extracttagged_extracttagged"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_apify_ingest_ingestcounts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_apify_ingest_ingestposts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_apify_posts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_apify_posts_apifypost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_apify_posts_posttime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_models_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_models_reviewersource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_models_reviewersource_reviewersourcedoc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_services_reviews",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_services_reviews_creatependingfrompost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_services_reviews_emptypostcounts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_apify_ingest",
+      "target": "src_services_reviews_postcounts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_apify_ingest_ingestposts",
+      "target": "src_apify_posts_posttime"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "src_apify_ingest_ingestposts",
+      "target": "src_services_reviews_creatependingfrompost"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/apify/ingest.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_apify_ingest_ingestposts",
+      "target": "src_services_reviews_emptypostcounts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L15",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_apify_postowner",
       "target": "src_apify_postowner_lookuppostowner",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L10",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_apify_postowner",
-      "target": "src_apify_postowner_posturl",
+      "target": "src_apify_posts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/postOwner.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_apify_postowner",
+      "target": "src_apify_posts_posturl",
       "confidence_score": 1.0
     },
     {
@@ -7000,7 +8247,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_apify_postowner",
@@ -7010,23 +8257,12 @@
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L24",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "src_apify_postowner_lookuppostowner",
-      "target": "src_apify_postowner_posturl",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "src_queues_workers_postowner_worker",
-      "target": "src_apify_postowner_budgeterror",
-      "confidence_score": 1.0
+      "target": "src_apify_posts_posturl"
     },
     {
       "relation": "calls",
@@ -7034,7 +8270,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L19",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_apify_postowner_lookuppostowner",
       "target": "src_jobs_jobrun_withjobrun"
@@ -7045,7 +8281,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/apify/postOwner.ts",
-      "source_location": "L30",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_apify_postowner_lookuppostowner",
       "target": "src_lib_handle_normalizehandle"
@@ -7055,7 +8291,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_apify_postowner_lookuppostowner",
@@ -7067,10 +8303,106 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker_processpostowner",
       "target": "src_apify_postowner_lookuppostowner"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/posts.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_apify_posts",
+      "target": "src_apify_posts_apifypost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/posts.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_apify_posts",
+      "target": "src_apify_posts_posttime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/apify/posts.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_apify_posts",
+      "target": "src_apify_posts_posturl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_apify_posts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_apify_posts_apifypost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_apify_posts_posturl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_services_reviews_reviewfields",
+      "target": "src_apify_posts_posturl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_apify_posts_posttime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "src_services_reviews_creatependingfrompost",
+      "target": "src_apify_posts_posttime"
     },
     {
       "relation": "contains",
@@ -10559,7 +11891,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/config/env.ts",
-      "source_location": "L44",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "src_config_env",
       "target": "src_config_env_env",
@@ -10682,6 +12014,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_queues_workers_dminbound_worker",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
       "target": "src_config_env",
       "confidence_score": 1.0
     },
@@ -10825,6 +12168,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_queues_workers_dminbound_worker",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
       "target": "src_config_env_env",
       "confidence_score": 1.0
     },
@@ -11877,6 +13231,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_lib_errorhandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/shops.ts",
       "source_location": "L4",
       "weight": 1.0,
@@ -11892,6 +13257,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_services_categories",
+      "target": "src_lib_errorhandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
       "target": "src_lib_errorhandler",
       "confidence_score": 1.0
     },
@@ -11953,6 +13329,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_lib_errorhandler_httperror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/shops.ts",
       "source_location": "L4",
       "weight": 1.0,
@@ -11968,6 +13355,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_services_categories",
+      "target": "src_lib_errorhandler_httperror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
       "target": "src_lib_errorhandler_httperror",
       "confidence_score": 1.0
     },
@@ -12051,6 +13449,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_lib_handle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/services/shops.ts",
       "source_location": "L9",
       "weight": 1.0,
@@ -12112,6 +13521,28 @@
       "source": "src_routes_admin_shops",
       "target": "src_lib_handle_normalizehandle",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_lib_handle_normalizehandle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_services_reviewersources_createsource",
+      "target": "src_lib_handle_normalizehandle"
     },
     {
       "relation": "imports",
@@ -12386,6 +13817,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_lib_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/worker.ts",
       "source_location": "L3",
       "weight": 1.0,
@@ -12476,7 +13918,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker_processpostowner",
       "target": "src_lib_logger_logger"
@@ -12500,6 +13942,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_server",
+      "target": "src_lib_logger_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_services_reviews",
       "target": "src_lib_logger_logger",
       "confidence_score": 1.0
     },
@@ -12581,6 +14034,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_lib_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/apifyProfile.worker.ts",
       "source_location": "L13",
       "weight": 1.0,
@@ -12603,6 +14067,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_lib_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/shops.ts",
       "source_location": "L7",
       "weight": 1.0,
@@ -12618,6 +14093,28 @@
       "source_location": "L6",
       "weight": 1.0,
       "source": "src_services_categories",
+      "target": "src_lib_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_lib_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_services_reviews",
       "target": "src_lib_mongo",
       "confidence_score": 1.0
     },
@@ -12680,6 +14177,50 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_lib_mongo_isduplicatekey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_services_reviewersources_createsource",
+      "target": "src_lib_mongo_isduplicatekey"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_lib_mongo_isduplicatekey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_services_reviews_createonce",
+      "target": "src_lib_mongo_isduplicatekey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/services/shops.ts",
       "source_location": "L12",
       "weight": 1.0,
@@ -12735,6 +14276,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_lib_mongo_toobjectid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/apifyProfile.worker.ts",
       "source_location": "L13",
       "weight": 1.0,
@@ -12772,6 +14324,28 @@
       "source_location": "L21",
       "weight": 1.0,
       "source": "src_routes_admin_categories_idparam",
+      "target": "src_lib_mongo_toobjectid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_lib_mongo_toobjectid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources_idparam",
       "target": "src_lib_mongo_toobjectid",
       "confidence_score": 1.0
     },
@@ -13984,6 +15558,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
+      "target": "src_models_jobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/integration/jobRun.test.ts",
       "source_location": "L4",
       "weight": 1.0,
@@ -14236,6 +15821,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_models_review",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "re_exports",
       "context": "export",
       "confidence": "EXTRACTED",
@@ -14292,11 +15888,44 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_models_reviewersource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/services/botDeps.ts",
       "source_location": "L8",
       "weight": 1.0,
       "source": "src_services_botdeps",
       "target": "src_models_reviewersource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_models_reviewersource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_models_reviewersource_reviewersourcedoc",
       "confidence_score": 1.0
     },
     {
@@ -14549,6 +16178,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_models_wishlist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/services/wishlist.ts",
       "source_location": "L2",
       "weight": 1.0,
@@ -14791,6 +16431,28 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
+      "target": "src_models_enums",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_models_enums",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/shops.ts",
       "source_location": "L8",
       "weight": 1.0,
@@ -14846,11 +16508,33 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_models_enums_reviewer_permissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/services/wishlist.ts",
       "source_location": "L3",
       "weight": 1.0,
       "source": "src_services_wishlist",
       "target": "src_models_enums_wishlistsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
+      "target": "src_models_enums_job_types",
       "confidence_score": 1.0
     },
     {
@@ -15081,7 +16765,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_jobdata",
@@ -15125,7 +16809,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_jobdata_postownerdata",
@@ -15169,7 +16853,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_jobdata_dmjobid",
@@ -15180,7 +16864,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker_finishdm",
       "target": "src_queues_jobdata_dmjobid",
@@ -15224,7 +16908,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_jobdata_isfinalattempt",
@@ -15236,7 +16920,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker_processpostowner",
       "target": "src_queues_jobdata_isfinalattempt"
@@ -15280,6 +16964,28 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_queues_schedulers",
+      "target": "src_queues_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_queues_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
       "target": "src_queues_names",
       "confidence_score": 1.0
     },
@@ -15332,9 +17038,20 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
+      "target": "src_queues_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
       "target": "src_queues_names",
       "confidence_score": 1.0
     },
@@ -15361,6 +17078,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_queues_names",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -15379,6 +17107,28 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_queues_schedulers",
+      "target": "src_queues_names_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_queues_names_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
       "target": "src_queues_names_queues",
       "confidence_score": 1.0
     },
@@ -15420,9 +17170,20 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
+      "target": "src_queues_names_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
       "target": "src_queues_names_queues",
       "confidence_score": 1.0
     },
@@ -15445,6 +17206,17 @@
       "source_location": "L7",
       "weight": 1.0,
       "source": "src_routes_webhooks",
+      "target": "src_queues_names_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
       "target": "src_queues_names_queues",
       "confidence_score": 1.0
     },
@@ -15568,9 +17340,20 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
+      "target": "src_queues_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
       "target": "src_queues_queues",
       "confidence_score": 1.0
     },
@@ -15604,6 +17387,17 @@
       "source_location": "L8",
       "weight": 1.0,
       "source": "src_routes_webhooks",
+      "target": "src_queues_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
       "target": "src_queues_queues",
       "confidence_score": 1.0
     },
@@ -15733,7 +17527,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_queues_getqueue",
@@ -15744,9 +17538,20 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker_finishdm",
+      "target": "src_queues_queues_getqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
       "target": "src_queues_queues_getqueue",
       "confidence_score": 1.0
     },
@@ -15782,6 +17587,28 @@
       "source": "src_routes_webhooks",
       "target": "src_queues_queues_getqueue",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_queues_queues_getqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_services_reviewersources_enqueuebackfill",
+      "target": "src_queues_queues_getqueue"
     },
     {
       "relation": "imports",
@@ -16046,6 +17873,156 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_queues_workers_apifybackfill_worker_apifybackfillworker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_queues_workers_apifybackfill_worker_backfilljobdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_queues_workers_apifydaily_worker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_queues_workers_apifydaily_worker_nopaidretry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_queues_workers_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyBackfill.worker.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifybackfill_worker",
+      "target": "src_queues_workers_index_workerdefinition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_queues_workers_apifybackfill_worker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_queues_workers_apifybackfill_worker_backfilljobdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_workers_index",
+      "target": "src_queues_workers_apifybackfill_worker_apifybackfillworker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
+      "target": "src_queues_workers_apifydaily_worker_apifydailyworker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
+      "target": "src_queues_workers_apifydaily_worker_nopaidretry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
+      "target": "src_queues_workers_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/apifyDaily.worker.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_queues_workers_apifydaily_worker",
+      "target": "src_queues_workers_index_workerdefinition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_queues_workers_index",
+      "target": "src_queues_workers_apifydaily_worker_apifydailyworker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/apifyProfile.worker.ts",
       "source_location": "L93",
       "weight": 1.0,
@@ -16230,7 +18207,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_queues_workers_index",
       "target": "src_queues_workers_apifyprofile_worker_apifyprofileworker",
@@ -16305,7 +18282,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_queues_workers_index",
       "target": "src_queues_workers_dminbound_worker_dminboundworker",
@@ -16388,7 +18365,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L7",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_queues_workers_index",
       "target": "src_queues_workers_dmsend_worker_dmsendworker",
@@ -16398,7 +18375,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L10",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_queues_workers_index",
       "target": "src_queues_workers_index_workerdefinition",
@@ -16408,7 +18385,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L17",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "src_queues_workers_index",
       "target": "src_queues_workers_index_workerdefinitions",
@@ -16419,7 +18396,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L8",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_queues_workers_index",
       "target": "src_queues_workers_postowner_worker",
@@ -16430,7 +18407,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/index.ts",
-      "source_location": "L8",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_queues_workers_index",
       "target": "src_queues_workers_postowner_worker_postownerworker",
@@ -16452,7 +18429,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_workers_index_workerdefinition",
@@ -16473,7 +18450,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_workers_postowner_worker_finishdm",
@@ -16483,7 +18460,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_workers_postowner_worker_postownerworker",
@@ -16493,7 +18470,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker",
       "target": "src_queues_workers_postowner_worker_processpostowner",
@@ -16504,7 +18481,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/workers/postOwner.worker.ts",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_queues_workers_postowner_worker_processpostowner",
       "target": "src_queues_workers_postowner_worker_finishdm",
@@ -16857,10 +18834,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/jobs.ts",
-      "source_location": "L4",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_routes_admin_jobs",
       "target": "src_routes_admin_jobs_jobsrouter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/jobs.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_routes_admin_jobs",
+      "target": "src_routes_admin_jobs_runsquery",
       "confidence_score": 1.0
     },
     {
@@ -16918,10 +18905,105 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/reviewerSources.ts",
-      "source_location": "L4",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_routes_admin_reviewersources_createbody",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_routes_admin_reviewersources_fields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_routes_admin_reviewersources_idparam",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_routes_admin_reviewersources",
       "target": "src_routes_admin_reviewersources_reviewersourcesrouter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_routes_admin_reviewersources_updatebody",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_services_reviewersources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_services_reviewersources_createsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_services_reviewersources_enqueuebackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_services_reviewersources_listsources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/reviewerSources.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_routes_admin_reviewersources",
+      "target": "src_services_reviewersources_updatesource",
       "confidence_score": 1.0
     },
     {
@@ -17455,6 +19537,269 @@
       "source": "tests_integration_shopsservices_test",
       "target": "src_services_categories_listcategories",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_services_reviewersources_createsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_services_reviewersources_enqueuebackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_services_reviewersources_listsources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_services_reviewersources_needsbackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_services_reviewersources_sourceinput",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "src_services_reviewersources",
+      "target": "src_services_reviewersources_updatesource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_services_reviewersources_createsource",
+      "target": "src_services_reviewersources_enqueuebackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "src_services_reviewersources_updatesource",
+      "target": "src_services_reviewersources_enqueuebackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_services_reviewersources_createsource",
+      "target": "src_services_reviewersources_needsbackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviewerSources.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "src_services_reviewersources_updatesource",
+      "target": "src_services_reviewersources_needsbackfill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_reviews_createonce",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_reviews_creatependingfrompost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_reviews_emptypostcounts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_reviews_postcounts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_reviews_reviewfields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_reviews_source",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_shops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_shops_findbyhandle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_wishlist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_services_reviews",
+      "target": "src_services_wishlist_addrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "src_services_reviews_creatependingfrompost",
+      "target": "src_services_reviews_emptypostcounts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "src_services_reviews_creatependingfrompost",
+      "target": "src_services_reviews_reviewfields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "src_services_reviews_creatependingfrompost",
+      "target": "src_services_reviews_createonce",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "src_services_reviews_creatependingfrompost",
+      "target": "src_services_shops_findbyhandle"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/services/reviews.ts",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "src_services_reviews_creatependingfrompost",
+      "target": "src_services_wishlist_addrequest"
     },
     {
       "relation": "contains",
@@ -18777,6 +21122,156 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_integration_reviewerposts_test_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_integration_reviewerposts_test_png",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_integration_reviewerposts_test_posts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_integration_reviewerposts_test_source",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_fakefetch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_fakefetch_apifyroutes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_fakefetch_fakefetch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_fakequeues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_fakequeues_fakequeuesmodule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_fakequeues_resetqueues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_fakequeues_take",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test",
+      "target": "tests_setup_mongo_usemongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/integration/reviewerPosts.test.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "tests_integration_reviewerposts_test_source",
+      "target": "tests_setup_fakequeues_take"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/integration/shopsRoutes.test.ts",
       "source_location": "L17",
       "weight": 1.0,
@@ -19422,7 +21917,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L170",
+      "source_location": "L172",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_critical_files",
@@ -19442,7 +21937,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L145",
+      "source_location": "L147",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_10_moderation_wishlist_admin_m3_prd_9_2",
@@ -19452,7 +21947,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L152",
+      "source_location": "L154",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_11_meta_compliance_landing_render_m4_prd_7_10",
@@ -19462,7 +21957,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L161",
+      "source_location": "L163",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_12_hardening",
@@ -19562,7 +22057,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L174",
+      "source_location": "L176",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_verification",
@@ -19620,5 +22115,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9175fbde5a754fb98c3f437abbf4d15baa6764c8"
+  "built_at_commit": "e128902dbc03dd39a2393288f86834a6aca883e0"
 }
