@@ -166,10 +166,12 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 12 — Hardening
 
-- [ ] 12.1 Logger redact review (`signed_request`, message text, tokens) + test that a logged payload is redacted.
-- [ ] 12.2 Security headers on public routes (no bot-blocking of `facebookexternalhit`), body size limits.
+*Done except the worker half of 12.3. Redaction now covers top-level and nested tokens, `signed_request`, message text, cookies and the CSRF header, plus secret query values in pino-http's `url` and `query` (the smoke run showed `hub.verify_token` in `req.query`, now masked). Security headers on every response; a same-origin CSP on the website and admin app (not on Bull Board, which needs inline scripts). Body limits: admin JSON 100 kB, Meta callbacks 10 kB, webhooks 1 MB, images 2 MB. **12.3 smoke run (2026-10-23):** `npm run build` passes; the built web process against a throwaway mongod served `/healthz`, the `/` redirect both ways, every fa/en page with the right lang/dir (404 page included), hashed assets with immutable caching, the admin app and its client routes, 401 on the admin API, webhook verify, and 403 on a bad signature. With no Redis a signed webhook gets a fast 500, so Meta retries. **Not run:** the worker process and `tests/integration/queues.redis.test.ts`, because there's no Redis here (Docker Desktop wasn't running). Run both once Redis is up: `REDIS_URL=redis://localhost:6379 npm test -w backend`, then `npm run dev:worker`.*
+
+- [x] 12.1 Logger redact review (`signed_request`, message text, tokens) + test that a logged payload is redacted.
+- [x] 12.2 Security headers on public routes (no bot-blocking of `facebookexternalhit`), body size limits.
 - [ ] 12.3 Full `npm run build` + start web and worker against local Mongo/Redis; smoke test.
-- [ ] 12.4 Update PRD with any decisions changed during build; `graphify update backend`.
+- [x] 12.4 Update PRD with any decisions changed during build; `graphify update backend`.
 
 ---
 

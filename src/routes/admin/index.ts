@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import express, { Router } from 'express';
 import { requireAdmin } from '../../auth/session.js';
 import { requireCsrf } from '../../auth/csrf.js';
+import { contentSecurityPolicy } from '../../lib/securityHeaders.js';
 import { authRouter } from './auth.js';
 import { reviewsRouter } from './reviews.js';
 import { wishlistRouter } from './wishlist.js';
@@ -38,6 +39,7 @@ adminRouter.use('/queues', requireAdminPage, requireSameOrigin, queuesBoard);
 
 // The built admin/ app (§9): hashed assets cached forever, index.html for every client route.
 export const ADMIN_DIST = fileURLToPath(new URL('../../../../admin/dist', import.meta.url));
+adminRouter.use(contentSecurityPolicy);
 adminRouter.use('/assets', express.static(path.join(ADMIN_DIST, 'assets'), { immutable: true, maxAge: '1y', index: false }));
 adminRouter.use(express.static(ADMIN_DIST, { index: false }));
 adminRouter.get(/.*/, (_req, res) => {

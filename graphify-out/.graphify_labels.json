@@ -21,10 +21,10 @@
   "19": "ReviewerSource.ts",
   "20": "PostOwner.ts",
   "21": "DeletionRequest.ts",
+  "22": "Shop.ts",
   "25": "index.ts",
   "35": "tsconfig.test.json",
   "36": "encryptField.ts",
   "43": "signedRequest.ts",
-  "45": "Admin.ts",
   "72": "vitest.config.ts"
 }

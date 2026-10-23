@@ -126,7 +126,8 @@ describe('landing render', () => {
     expect(res.status).toBe(200);
     expect(res.text).toContain('<html lang="en" dir="ltr">');
     expect(res.text).toContain('<title>T &amp; &lt;x&gt;</title>');
-    expect(res.text).toContain('<main>/en/privacy {}</main>');
+    expect(res.text).toContain('<main>/en/privacy {"contactEmail":"test@example.com"}</main>');
+    expect(res.headers['cache-control']).toBe('no-cache');
     expect((await request(a).get('/fa/terms')).text).toContain('dir="rtl"');
     expect((await request(a).get('/en/nope')).status).toBe(404);
   });
@@ -135,10 +136,10 @@ describe('landing render', () => {
     const { code } = await requestDeletion('999');
     const a = app(fakeWebDist());
     const res = await request(a).get(`/en/data-deletion/status?code=${code}`);
-    expect(res.text).toContain('{"deletionStatus":"done"}');
-    expect(res.text).toContain('<script id="ssr-data" type="application/json">{"deletionStatus":"done"}</script>');
+    expect(res.text).toContain('"deletionStatus":"done"');
+    expect(res.text).toContain('<script id="ssr-data" type="application/json">{"contactEmail":"test@example.com","deletionStatus":"done"}</script>');
     expect(res.headers['cache-control']).toBe('no-store');
-    expect((await request(a).get('/en/data-deletion/status?code=nope')).text).toContain('{"deletionStatus":null}');
+    expect((await request(a).get('/en/data-deletion/status?code=nope')).text).toContain('"deletionStatus":null');
   });
 
   it('serves hashed assets with long caching, and says clearly when the build is missing', async () => {

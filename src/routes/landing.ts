@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 import express, { Router, type Request } from 'express';
+import { env } from '../config/env.js';
 import { logger } from '../lib/logger.js';
 import { getDeletionStatus } from '../services/deletion.js';
 
@@ -26,12 +27,14 @@ export function fillTemplate(template: string, page: RenderResult, data: Record<
     .replace('<!--ssr-data-->', () => `<script id="ssr-data" type="application/json">${scriptJson(data)}</script>`);
 }
 
+// Every page gets the contact email (legal pages must show it, §7.3); the status page also gets the status.
 async function pageData(req: Request): Promise<Record<string, unknown>> {
+  const data: Record<string, unknown> = { contactEmail: env.CONTACT_EMAIL };
   if (/^\/(fa|en)\/data-deletion\/status\/?$/.test(req.path)) {
     const code = typeof req.query.code === 'string' ? req.query.code : '';
-    return { deletionStatus: code ? await getDeletionStatus(code) : null };
+    data.deletionStatus = code ? await getDeletionStatus(code) : null;
   }
-  return {};
+  return data;
 }
 
 export function createLandingRouter(webDist: string = DEFAULT_WEB_DIST) {
@@ -69,7 +72,7 @@ export function createLandingRouter(webDist: string = DEFAULT_WEB_DIST) {
     const page = web.server.render(req.originalUrl, data);
     res
       .status(page.status)
-      .set('Cache-Control', data.deletionStatus !== undefined ? 'no-store' : 'no-cache')
+      .set('Cache-Control', 'deletionStatus' in data ? 'no-store' : 'no-cache')
       .type('html')
       .send(fillTemplate(web.template, page, data));
   });
