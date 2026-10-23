@@ -80,7 +80,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 2,
+      "community": 6,
       "norm_label": "scripts"
     },
     {
@@ -90,7 +90,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_dev",
-      "community": 2,
+      "community": 6,
       "norm_label": "dev"
     },
     {
@@ -100,7 +100,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "package_scripts_dev_worker",
-      "community": 2,
+      "community": 6,
       "norm_label": "dev:worker"
     },
     {
@@ -110,7 +110,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 2,
+      "community": 6,
       "norm_label": "build"
     },
     {
@@ -120,7 +120,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "package_scripts_start",
-      "community": 2,
+      "community": 6,
       "norm_label": "start"
     },
     {
@@ -130,7 +130,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_scripts_worker",
-      "community": 2,
+      "community": 6,
       "norm_label": "worker"
     },
     {
@@ -140,7 +140,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "package_scripts_typecheck",
-      "community": 2,
+      "community": 6,
       "norm_label": "typecheck"
     },
     {
@@ -150,7 +150,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "package_scripts_test",
-      "community": 2,
+      "community": 6,
       "norm_label": "test"
     },
     {
@@ -160,7 +160,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "package_scripts_test_watch",
-      "community": 2,
+      "community": 6,
       "norm_label": "test:watch"
     },
     {
@@ -170,7 +170,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "package_scripts_admin_import",
-      "community": 2,
+      "community": 6,
       "norm_label": "admin:import"
     },
     {
@@ -180,7 +180,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "package_scripts_admin_create",
-      "community": 2,
+      "community": 6,
       "norm_label": "admin:create"
     },
     {
@@ -190,7 +190,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "package_scripts_spike_webhook",
-      "community": 2,
+      "community": 6,
       "norm_label": "spike:webhook"
     },
     {
@@ -400,7 +400,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_admin_create",
-      "community": 11,
+      "community": 3,
       "norm_label": "admin-create.ts"
     },
     {
@@ -410,8 +410,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_admin_import",
-      "community": 12,
+      "community": 36,
       "norm_label": "admin-import.ts"
+    },
+    {
+      "label": "username",
+      "file_type": "code",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "scripts_admin_import_username",
+      "community": 36,
+      "norm_label": "username"
     },
     {
       "label": "webhook-spike.ts",
@@ -507,10 +517,10 @@
       "label": "createApp()",
       "file_type": "code",
       "source_file": "backend/src/app.ts",
-      "source_location": "L13",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_createapp",
-      "community": 3,
+      "community": 36,
       "norm_label": "createapp()"
     },
     {
@@ -520,8 +530,78 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_auth_csrf",
-      "community": 21,
+      "community": 0,
       "norm_label": "csrf.ts"
+    },
+    {
+      "label": "SAFE_METHODS",
+      "file_type": "code",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_auth_csrf_safe_methods",
+      "community": 0,
+      "norm_label": "safe_methods"
+    },
+    {
+      "label": "csrfTokenFor()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_auth_csrf_csrftokenfor",
+      "community": 0,
+      "norm_label": "csrftokenfor()"
+    },
+    {
+      "label": "verifyCsrf()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_auth_csrf_verifycsrf",
+      "community": 0,
+      "norm_label": "verifycsrf()"
+    },
+    {
+      "label": "requireCsrf()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "src_auth_csrf_requirecsrf",
+      "community": 0,
+      "norm_label": "requirecsrf()"
+    },
+    {
+      "label": "importAdmin.ts",
+      "file_type": "code",
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_auth_importadmin",
+      "community": 36,
+      "norm_label": "importadmin.ts"
+    },
+    {
+      "label": "trustMeAdmin",
+      "file_type": "code",
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_auth_importadmin_trustmeadmin",
+      "community": 36,
+      "norm_label": "trustmeadmin"
+    },
+    {
+      "label": "importAdmin()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "src_auth_importadmin_importadmin",
+      "community": 36,
+      "norm_label": "importadmin()"
     },
     {
       "label": "login.ts",
@@ -530,8 +610,48 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_auth_login",
-      "community": 22,
+      "community": 36,
       "norm_label": "login.ts"
+    },
+    {
+      "label": "createAdminAccount()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "src_auth_login_createadminaccount",
+      "community": 36,
+      "norm_label": "createadminaccount()"
+    },
+    {
+      "label": "AuthResult",
+      "file_type": "code",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "src_auth_login_authresult",
+      "community": 36,
+      "norm_label": "authresult"
+    },
+    {
+      "label": "reserveAttempt()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "src_auth_login_reserveattempt",
+      "community": 36,
+      "norm_label": "reserveattempt()"
+    },
+    {
+      "label": "authenticateAdmin()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "src_auth_login_authenticateadmin",
+      "community": 36,
+      "norm_label": "authenticateadmin()"
     },
     {
       "label": "password.ts",
@@ -540,8 +660,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_auth_password",
-      "community": 23,
+      "community": 36,
       "norm_label": "password.ts"
+    },
+    {
+      "label": "derive()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/password.ts",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_auth_password_derive",
+      "community": 36,
+      "norm_label": "derive()"
+    },
+    {
+      "label": "hashPassword()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/password.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_auth_password_hashpassword",
+      "community": 36,
+      "norm_label": "hashpassword()"
+    },
+    {
+      "label": "verifyPassword()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/password.ts",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "src_auth_password_verifypassword",
+      "community": 36,
+      "norm_label": "verifypassword()"
     },
     {
       "label": "session.ts",
@@ -550,8 +700,138 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_auth_session",
-      "community": 24,
+      "community": 0,
       "norm_label": "session.ts"
+    },
+    {
+      "label": "AdminIdentity",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_auth_session_adminidentity",
+      "community": 0,
+      "norm_label": "adminidentity"
+    },
+    {
+      "label": "Express",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "src_auth_session_express",
+      "community": 0,
+      "norm_label": "express"
+    },
+    {
+      "label": "Request",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_auth_session_request",
+      "community": 0,
+      "norm_label": "request"
+    },
+    {
+      "label": "mac()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "src_auth_session_mac",
+      "community": 0,
+      "norm_label": "mac()"
+    },
+    {
+      "label": "signSession()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "src_auth_session_signsession",
+      "community": 0,
+      "norm_label": "signsession()"
+    },
+    {
+      "label": "verifySession()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "src_auth_session_verifysession",
+      "community": 0,
+      "norm_label": "verifysession()"
+    },
+    {
+      "label": "adminCookieOptions()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "src_auth_session_admincookieoptions",
+      "community": 0,
+      "norm_label": "admincookieoptions()"
+    },
+    {
+      "label": "sessionToken()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "src_auth_session_sessiontoken",
+      "community": 0,
+      "norm_label": "sessiontoken()"
+    },
+    {
+      "label": "startAdminSession()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "src_auth_session_startadminsession",
+      "community": 0,
+      "norm_label": "startadminsession()"
+    },
+    {
+      "label": "endAdminSession()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "src_auth_session_endadminsession",
+      "community": 0,
+      "norm_label": "endadminsession()"
+    },
+    {
+      "label": "getAdmin()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "src_auth_session_getadmin",
+      "community": 0,
+      "norm_label": "getadmin()"
+    },
+    {
+      "label": "findAdminIdentity()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "src_auth_session_findadminidentity",
+      "community": 0,
+      "norm_label": "findadminidentity()"
+    },
+    {
+      "label": "requireAdmin()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "src_auth_session_requireadmin",
+      "community": 0,
+      "norm_label": "requireadmin()"
     },
     {
       "label": "totp.ts",
@@ -560,8 +840,78 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_auth_totp",
-      "community": 10,
+      "community": 36,
       "norm_label": "totp.ts"
+    },
+    {
+      "label": "base32Encode()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_auth_totp_base32encode",
+      "community": 36,
+      "norm_label": "base32encode()"
+    },
+    {
+      "label": "base32Decode()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_auth_totp_base32decode",
+      "community": 36,
+      "norm_label": "base32decode()"
+    },
+    {
+      "label": "generateTotpSecret()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "src_auth_totp_generatetotpsecret",
+      "community": 36,
+      "norm_label": "generatetotpsecret()"
+    },
+    {
+      "label": "hotp()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "src_auth_totp_hotp",
+      "community": 36,
+      "norm_label": "hotp()"
+    },
+    {
+      "label": "totpCode()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "src_auth_totp_totpcode",
+      "community": 36,
+      "norm_label": "totpcode()"
+    },
+    {
+      "label": "verifyTotp()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "src_auth_totp_verifytotp",
+      "community": 36,
+      "norm_label": "verifytotp()"
+    },
+    {
+      "label": "otpauthUrl()",
+      "file_type": "code",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "src_auth_totp_otpauthurl",
+      "community": 36,
+      "norm_label": "otpauthurl()"
     },
     {
       "label": "RFC-6238",
@@ -570,8 +920,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docref_rfc_6238",
-      "community": 10,
+      "community": 36,
       "norm_label": "rfc-6238"
+    },
+    {
+      "label": "RFC-4648",
+      "file_type": "concept",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "docref_rfc_4648",
+      "community": 36,
+      "norm_label": "rfc-4648"
     },
     {
       "label": "index.ts",
@@ -657,7 +1017,7 @@
       "label": "Env",
       "file_type": "code",
       "source_file": "backend/src/config/env.ts",
-      "source_location": "L34",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "src_config_env_env",
       "community": 3,
@@ -702,6 +1062,26 @@
       "id": "src_jobs_jobrun",
       "community": 34,
       "norm_label": "jobrun.ts"
+    },
+    {
+      "label": "cookies.ts",
+      "file_type": "code",
+      "source_file": "backend/src/lib/cookies.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_cookies",
+      "community": 0,
+      "norm_label": "cookies.ts"
+    },
+    {
+      "label": "readCookie()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/cookies.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_lib_cookies_readcookie",
+      "community": 0,
+      "norm_label": "readcookie()"
     },
     {
       "label": "db.ts",
@@ -1030,7 +1410,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_admin",
-      "community": 45,
+      "community": 36,
       "norm_label": "admin.ts"
     },
     {
@@ -1040,7 +1420,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_models_admin_adminschema",
-      "community": 45,
+      "community": 36,
       "norm_label": "adminschema"
     },
     {
@@ -1050,7 +1430,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_models_admin_admindoc",
-      "community": 45,
+      "community": 36,
       "norm_label": "admindoc"
     },
     {
@@ -1090,7 +1470,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_deletionrequest",
-      "community": 45,
+      "community": 11,
       "norm_label": "deletionrequest.ts"
     },
     {
@@ -1100,7 +1480,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_deletionrequest_deletionrequestschema",
-      "community": 45,
+      "community": 11,
       "norm_label": "deletionrequestschema"
     },
     {
@@ -1110,7 +1490,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_models_deletionrequest_deletionrequestdoc",
-      "community": 45,
+      "community": 11,
       "norm_label": "deletionrequestdoc"
     },
     {
@@ -1120,7 +1500,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_dmevent",
-      "community": 5,
+      "community": 10,
       "norm_label": "dmevent.ts"
     },
     {
@@ -1130,7 +1510,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_models_dmevent_dmeventschema",
-      "community": 5,
+      "community": 10,
       "norm_label": "dmeventschema"
     },
     {
@@ -1140,7 +1520,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_models_dmevent_dmeventdoc",
-      "community": 5,
+      "community": 10,
       "norm_label": "dmeventdoc"
     },
     {
@@ -1150,7 +1530,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_jobrun",
-      "community": 45,
+      "community": 12,
       "norm_label": "jobrun.ts"
     },
     {
@@ -1160,7 +1540,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_jobrun_jobrunschema",
-      "community": 45,
+      "community": 12,
       "norm_label": "jobrunschema"
     },
     {
@@ -1170,7 +1550,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_models_jobrun_jobrundoc",
-      "community": 45,
+      "community": 12,
       "norm_label": "jobrundoc"
     },
     {
@@ -1180,7 +1560,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_loginattempt",
-      "community": 5,
+      "community": 22,
       "norm_label": "loginattempt.ts"
     },
     {
@@ -1190,7 +1570,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_models_loginattempt_loginattemptschema",
-      "community": 5,
+      "community": 22,
       "norm_label": "loginattemptschema"
     },
     {
@@ -1200,7 +1580,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_models_loginattempt_loginattemptdoc",
-      "community": 5,
+      "community": 22,
       "norm_label": "loginattemptdoc"
     },
     {
@@ -1240,7 +1620,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_postowner",
-      "community": 5,
+      "community": 23,
       "norm_label": "postowner.ts"
     },
     {
@@ -1250,7 +1630,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_postowner_postownerschema",
-      "community": 5,
+      "community": 23,
       "norm_label": "postownerschema"
     },
     {
@@ -1260,7 +1640,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_models_postowner_postownerdoc",
-      "community": 5,
+      "community": 23,
       "norm_label": "postownerdoc"
     },
     {
@@ -1310,7 +1690,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_reviewersource",
-      "community": 45,
+      "community": 21,
       "norm_label": "reviewersource.ts"
     },
     {
@@ -1320,7 +1700,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_reviewersource_reviewersourceschema",
-      "community": 45,
+      "community": 21,
       "norm_label": "reviewersourceschema"
     },
     {
@@ -1330,7 +1710,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_models_reviewersource_reviewersourcedoc",
-      "community": 45,
+      "community": 21,
       "norm_label": "reviewersourcedoc"
     },
     {
@@ -1340,7 +1720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_shop",
-      "community": 45,
+      "community": 2,
       "norm_label": "shop.ts"
     },
     {
@@ -1350,7 +1730,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_shop_handlefield",
-      "community": 45,
+      "community": 2,
       "norm_label": "handlefield"
     },
     {
@@ -1360,7 +1740,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_models_shop_shopschema",
-      "community": 45,
+      "community": 2,
       "norm_label": "shopschema"
     },
     {
@@ -1370,7 +1750,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_models_shop_shopdoc",
-      "community": 45,
+      "community": 2,
       "norm_label": "shopdoc"
     },
     {
@@ -1380,7 +1760,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_shopimage",
-      "community": 45,
+      "community": 2,
       "norm_label": "shopimage.ts"
     },
     {
@@ -1390,7 +1770,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_shopimage_shopimageschema",
-      "community": 45,
+      "community": 2,
       "norm_label": "shopimageschema"
     },
     {
@@ -1400,7 +1780,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_models_shopimage_shopimagedoc",
-      "community": 45,
+      "community": 2,
       "norm_label": "shopimagedoc"
     },
     {
@@ -1450,7 +1830,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_models_enums_shop_statuses",
-      "community": 45,
+      "community": 2,
       "norm_label": "shop_statuses"
     },
     {
@@ -1540,7 +1920,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_models_enums_reviewer_permissions",
-      "community": 45,
+      "community": 21,
       "norm_label": "reviewer_permissions"
     },
     {
@@ -1580,7 +1960,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_models_enums_dm_kinds",
-      "community": 5,
+      "community": 10,
       "norm_label": "dm_kinds"
     },
     {
@@ -1590,7 +1970,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_models_enums_dm_results",
-      "community": 5,
+      "community": 10,
       "norm_label": "dm_results"
     },
     {
@@ -1600,7 +1980,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_models_enums_job_types",
-      "community": 45,
+      "community": 12,
       "norm_label": "job_types"
     },
     {
@@ -1620,7 +2000,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_models_enums_deletion_statuses",
-      "community": 45,
+      "community": 11,
       "norm_label": "deletion_statuses"
     },
     {
@@ -1630,7 +2010,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_models_enums_admin_roles",
-      "community": 45,
+      "community": 36,
       "norm_label": "admin_roles"
     },
     {
@@ -1640,7 +2020,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_models_enums_image_mimes",
-      "community": 45,
+      "community": 2,
       "norm_label": "image_mimes"
     },
     {
@@ -1807,11 +2187,31 @@
       "label": "authRouter",
       "file_type": "code",
       "source_file": "backend/src/routes/admin/auth.ts",
-      "source_location": "L4",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "src_routes_admin_auth_authrouter",
       "community": 0,
       "norm_label": "authrouter"
+    },
+    {
+      "label": "loginBody",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_routes_admin_auth_loginbody",
+      "community": 0,
+      "norm_label": "loginbody"
+    },
+    {
+      "label": "LOGIN_FAILED",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "src_routes_admin_auth_login_failed",
+      "community": 0,
+      "norm_label": "login_failed"
     },
     {
       "label": "categories.ts",
@@ -1847,7 +2247,7 @@
       "label": "adminRouter",
       "file_type": "code",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L11",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "src_routes_admin_index_adminrouter",
       "community": 0,
@@ -2144,14 +2544,114 @@
       "norm_label": "todo: connect mongodb and redis, start every worker in src/queues/workers/,"
     },
     {
+      "label": "adminAuthRoutes.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_integration_adminauthroutes_test",
+      "community": 36,
+      "norm_label": "adminauthroutes.test.ts"
+    },
+    {
+      "label": "now()",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tests_integration_adminauthroutes_test_now",
+      "community": 36,
+      "norm_label": "now()"
+    },
+    {
+      "label": "loggedInAgent()",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "tests_integration_adminauthroutes_test_loggedinagent",
+      "community": 36,
+      "norm_label": "loggedinagent()"
+    },
+    {
       "label": "db.test.ts",
       "file_type": "code",
       "source_file": "backend/tests/integration/db.test.ts",
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_integration_db_test",
-      "community": 5,
+      "community": 36,
       "norm_label": "db.test.ts"
+    },
+    {
+      "label": "importAdmin.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_integration_importadmin_test",
+      "community": 36,
+      "norm_label": "importadmin.test.ts"
+    },
+    {
+      "label": "trustme()",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "tests_integration_importadmin_test_trustme",
+      "community": 36,
+      "norm_label": "trustme()"
+    },
+    {
+      "label": "seedTrustMe()",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "tests_integration_importadmin_test_seedtrustme",
+      "community": 36,
+      "norm_label": "seedtrustme()"
+    },
+    {
+      "label": "login.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_integration_login_test",
+      "community": 36,
+      "norm_label": "login.test.ts"
+    },
+    {
+      "label": "T0",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "tests_integration_login_test_t0",
+      "community": 36,
+      "norm_label": "t0"
+    },
+    {
+      "label": "code()",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "tests_integration_login_test_code",
+      "community": 36,
+      "norm_label": "code()"
+    },
+    {
+      "label": "plus()",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "tests_integration_login_test_plus",
+      "community": 36,
+      "norm_label": "plus()"
     },
     {
       "label": "models.test.ts",
@@ -2220,7 +2720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_setup_mongo",
-      "community": 5,
+      "community": 36,
       "norm_label": "mongo.ts"
     },
     {
@@ -2230,8 +2730,18 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tests_setup_mongo_usemongo",
-      "community": 5,
+      "community": 36,
       "norm_label": "usemongo()"
+    },
+    {
+      "label": "auth.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_unit_auth_test",
+      "community": 36,
+      "norm_label": "auth.test.ts"
     },
     {
       "label": "encryptField.test.ts",
@@ -2597,7 +3107,7 @@
       "label": "Phase 3 \u2014 Queues infrastructure (PRD \u00a75.1, \u00a711)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L66",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "backend_plan_phase_3_queues_infrastructure_prd_5_1_11",
       "community": 7,
@@ -2607,7 +3117,7 @@
       "label": "Phase 4 \u2014 Shops, categories, images (M1)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L74",
+      "source_location": "L76",
       "_origin": "ast",
       "id": "backend_plan_phase_4_shops_categories_images_m1",
       "community": 7,
@@ -2617,7 +3127,7 @@
       "label": "Phase 5 \u2014 Apify client + profile fetch (PRD \u00a75.6, \u00a76.2)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L83",
+      "source_location": "L85",
       "_origin": "ast",
       "id": "backend_plan_phase_5_apify_client_profile_fetch_prd_5_6_6_2",
       "community": 7,
@@ -2627,7 +3137,7 @@
       "label": "Phase 6 \u2014 Webhook spike + Meta plumbing (M0, PRD \u00a75.3, \u00a710)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L92",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "backend_plan_phase_6_webhook_spike_meta_plumbing_m0_prd_5_3_10",
       "community": 7,
@@ -2637,7 +3147,7 @@
       "label": "Phase 7 \u2014 DM bot core, pure (M2, PRD \u00a75.2\u2013\u00a75.4)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L101",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "backend_plan_phase_7_dm_bot_core_pure_m2_prd_5_2_5_4",
       "community": 7,
@@ -2647,7 +3157,7 @@
       "label": "Phase 8 \u2014 DM bot wiring (M2, PRD \u00a75.1, \u00a75.5)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L111",
+      "source_location": "L113",
       "_origin": "ast",
       "id": "backend_plan_phase_8_dm_bot_wiring_m2_prd_5_1_5_5",
       "community": 7,
@@ -2657,7 +3167,7 @@
       "label": "Phase 9 \u2014 Reviewer sources + daily check (M3, PRD \u00a76)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L120",
+      "source_location": "L122",
       "_origin": "ast",
       "id": "backend_plan_phase_9_reviewer_sources_daily_check_m3_prd_6",
       "community": 7,
@@ -2667,7 +3177,7 @@
       "label": "Phase 10 \u2014 Moderation + wishlist admin (M3, PRD \u00a79.2)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L131",
+      "source_location": "L133",
       "_origin": "ast",
       "id": "backend_plan_phase_10_moderation_wishlist_admin_m3_prd_9_2",
       "community": 7,
@@ -2677,7 +3187,7 @@
       "label": "Phase 11 \u2014 Meta compliance + landing render (M4, PRD \u00a77, \u00a710)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L138",
+      "source_location": "L140",
       "_origin": "ast",
       "id": "backend_plan_phase_11_meta_compliance_landing_render_m4_prd_7_10",
       "community": 7,
@@ -2687,7 +3197,7 @@
       "label": "Phase 12 \u2014 Hardening",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L147",
+      "source_location": "L149",
       "_origin": "ast",
       "id": "backend_plan_phase_12_hardening",
       "community": 7,
@@ -2697,7 +3207,7 @@
       "label": "Critical files",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L156",
+      "source_location": "L158",
       "_origin": "ast",
       "id": "backend_plan_critical_files",
       "community": 7,
@@ -2707,7 +3217,7 @@
       "label": "Verification",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L160",
+      "source_location": "L162",
       "_origin": "ast",
       "id": "backend_plan_verification",
       "community": 7,
@@ -3156,10 +3666,174 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-create.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "scripts_admin_create",
+      "target": "src_auth_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-create.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "scripts_admin_create",
+      "target": "src_auth_login_createadminaccount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-create.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "scripts_admin_create",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-create.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "scripts_admin_create",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-create.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "scripts_admin_create",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-create.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "scripts_admin_create",
+      "target": "src_lib_db_connectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-create.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "scripts_admin_create",
+      "target": "src_lib_db_disconnectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "scripts_admin_import",
+      "target": "scripts_admin_import_username",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "scripts_admin_import",
+      "target": "src_auth_importadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "scripts_admin_import",
+      "target": "src_auth_importadmin_importadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "scripts_admin_import",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "scripts_admin_import",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "scripts_admin_import",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "scripts_admin_import",
+      "target": "src_lib_db_connectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/scripts/admin-import.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "scripts_admin_import",
+      "target": "src_lib_db_disconnectdb",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_app_createapp",
@@ -3170,7 +3844,29 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L6",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_app",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_app",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_lib_db",
@@ -3181,7 +3877,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_lib_db_isdbconnected",
@@ -3192,7 +3888,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_lib_errorhandler",
@@ -3203,7 +3899,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_lib_errorhandler_errorhandler",
@@ -3214,7 +3910,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_lib_logger",
@@ -3225,7 +3921,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_lib_logger_logger",
@@ -3236,7 +3932,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_admin_index",
@@ -3247,7 +3943,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_admin_index_adminrouter",
@@ -3258,7 +3954,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_landing",
@@ -3269,7 +3965,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_landing_landingrouter",
@@ -3280,7 +3976,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_media",
@@ -3291,7 +3987,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_media_mediarouter",
@@ -3302,7 +3998,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_meta",
@@ -3313,7 +4009,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_meta_metarouter",
@@ -3324,7 +4020,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_webhooks",
@@ -3335,7 +4031,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_webhooks_webhooksrouter",
@@ -3356,6 +4052,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "src_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/integration/db.test.ts",
       "source_location": "L5",
       "weight": 1.0,
@@ -3369,7 +4076,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/src/app.ts",
-      "source_location": "L19",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "src_app_createapp",
       "target": "src_lib_db_isdbconnected"
@@ -3380,7 +4087,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/src/app.ts",
-      "source_location": "L30",
+      "source_location": "L32",
       "weight": 1.0,
       "source": "src_app_createapp",
       "target": "src_lib_errorhandler_errorhandler"
@@ -3400,11 +4107,1271 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "src_app_createapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test_loggedinagent",
+      "target": "src_app_createapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/integration/db.test.ts",
       "source_location": "L5",
       "weight": 1.0,
       "source": "tests_integration_db_test",
       "target": "src_app_createapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_auth_csrf",
+      "target": "src_auth_csrf_csrftokenfor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_auth_csrf",
+      "target": "src_auth_csrf_requirecsrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_auth_csrf",
+      "target": "src_auth_csrf_safe_methods",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_auth_csrf",
+      "target": "src_auth_csrf_verifycsrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_auth_csrf",
+      "target": "src_auth_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_auth_csrf",
+      "target": "src_auth_session_sessiontoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_csrf",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_csrf",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_csrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/index.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_routes_admin_index",
+      "target": "src_auth_csrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_csrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_auth_csrf_requirecsrf",
+      "target": "src_auth_csrf_safe_methods"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_auth_csrf_verifycsrf",
+      "target": "src_auth_csrf_csrftokenfor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_csrf_csrftokenfor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_csrf_csrftokenfor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_auth_csrf_requirecsrf",
+      "target": "src_auth_csrf_verifycsrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_csrf_verifycsrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/csrf.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_auth_csrf_requirecsrf",
+      "target": "src_auth_session_sessiontoken"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_csrf_requirecsrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/index.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_routes_admin_index",
+      "target": "src_auth_csrf_requirecsrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_auth_importadmin",
+      "target": "src_auth_importadmin_importadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_auth_importadmin",
+      "target": "src_auth_importadmin_trustmeadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_importadmin",
+      "target": "src_lib_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_importadmin",
+      "target": "src_lib_encryptfield_decryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_auth_importadmin",
+      "target": "src_models_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_auth_importadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/importAdmin.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_auth_importadmin_importadmin",
+      "target": "src_lib_encryptfield_decryptfield"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_auth_importadmin_importadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_login_authenticateadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_login_authresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_login_createadminaccount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_login_reserveattempt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_password",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_password_hashpassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_password_verifypassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_totp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_totp_generatetotpsecret",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_totp_otpauthurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_auth_totp_verifytotp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_lib_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_lib_encryptfield_decryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_lib_encryptfield_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_lib_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_lib_logger_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_models_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_auth_login",
+      "target": "src_models_loginattempt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "src_auth_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_auth_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_auth_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "src_auth_login_createadminaccount",
+      "target": "src_auth_password_hashpassword"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_auth_login_createadminaccount",
+      "target": "src_auth_totp_generatetotpsecret"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_auth_login_createadminaccount",
+      "target": "src_auth_totp_otpauthurl"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "src_auth_login_createadminaccount",
+      "target": "src_lib_encryptfield_encryptfield"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "src_auth_login_createadminaccount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test_loggedinagent",
+      "target": "src_auth_login_createadminaccount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_auth_login_createadminaccount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "src_auth_login_authenticateadmin",
+      "target": "src_auth_login_reserveattempt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "src_auth_login_authenticateadmin",
+      "target": "src_auth_password_verifypassword"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "src_auth_login_authenticateadmin",
+      "target": "src_auth_totp_verifytotp"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/login.ts",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "src_auth_login_authenticateadmin",
+      "target": "src_lib_encryptfield_decryptfield"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_login_authenticateadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_auth_login_authenticateadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_auth_login_authenticateadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/password.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_auth_password",
+      "target": "src_auth_password_derive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/password.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_auth_password",
+      "target": "src_auth_password_hashpassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/password.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_auth_password",
+      "target": "src_auth_password_verifypassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_auth_password",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_password",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/password.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_auth_password_hashpassword",
+      "target": "src_auth_password_derive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/password.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "src_auth_password_verifypassword",
+      "target": "src_auth_password_derive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_auth_password_hashpassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test_seedtrustme",
+      "target": "src_auth_password_hashpassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_password_hashpassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_password_verifypassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_admincookieoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_adminidentity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_endadminsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_express",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_findadminidentity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_getadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_mac",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_requireadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_sessiontoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_signsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_startadminsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_auth_session_verifysession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_lib_cookies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_lib_cookies_readcookie",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_auth_session",
+      "target": "src_models_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_routes_admin_index",
+      "target": "src_auth_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "src_auth_session_signsession",
+      "target": "src_auth_session_mac",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "src_auth_session_verifysession",
+      "target": "src_auth_session_mac",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "src_auth_session_startadminsession",
+      "target": "src_auth_session_signsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_session_signsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "src_auth_session_getadmin",
+      "target": "src_auth_session_verifysession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_session_verifysession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "src_auth_session_endadminsession",
+      "target": "src_auth_session_admincookieoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "src_auth_session_startadminsession",
+      "target": "src_auth_session_admincookieoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "src_auth_session_getadmin",
+      "target": "src_auth_session_sessiontoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "src_auth_session_sessiontoken",
+      "target": "src_lib_cookies_readcookie"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_session_sessiontoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_session_startadminsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_session_endadminsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "src_auth_session_getadmin",
+      "target": "src_auth_session_findadminidentity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/session.ts",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "src_auth_session_requireadmin",
+      "target": "src_auth_session_getadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_session_findadminidentity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_auth_session_requireadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_routes_admin_index",
+      "target": "src_auth_session_requireadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_auth_totp",
+      "target": "docref_rfc_4648",
       "confidence_score": 1.0
     },
     {
@@ -3420,8 +5387,298 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_auth_totp",
+      "target": "src_auth_totp_base32decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_auth_totp",
+      "target": "src_auth_totp_base32encode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "src_auth_totp",
+      "target": "src_auth_totp_generatetotpsecret",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "src_auth_totp",
+      "target": "src_auth_totp_hotp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "src_auth_totp",
+      "target": "src_auth_totp_otpauthurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "src_auth_totp",
+      "target": "src_auth_totp_totpcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "src_auth_totp",
+      "target": "src_auth_totp_verifytotp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "src_auth_totp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_auth_totp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_auth_totp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_totp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "src_auth_totp_generatetotpsecret",
+      "target": "src_auth_totp_base32encode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_totp_base32encode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "src_auth_totp_totpcode",
+      "target": "src_auth_totp_base32decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "src_auth_totp_verifytotp",
+      "target": "src_auth_totp_base32decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_totp_base32decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_totp_generatetotpsecret",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "src_auth_totp_totpcode",
+      "target": "src_auth_totp_hotp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/auth/totp.ts",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "src_auth_totp_verifytotp",
+      "target": "src_auth_totp_hotp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "src_auth_totp_totpcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test_loggedinagent",
+      "target": "src_auth_totp_totpcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_auth_totp_totpcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_auth_totp_totpcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_integration_login_test_code",
+      "target": "src_auth_totp_totpcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_totp_totpcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_totp_verifytotp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_auth_totp_otpauthurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/config/env.ts",
-      "source_location": "L36",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "src_config_env",
       "target": "src_config_env_env",
@@ -3550,6 +5807,38 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/cookies.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_cookies",
+      "target": "src_lib_cookies_readcookie",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_lib_cookies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/auth.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_unit_auth_test",
+      "target": "src_lib_cookies_readcookie",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/lib/db.ts",
       "source_location": "L6",
       "weight": 1.0,
@@ -3667,6 +5956,28 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_lib_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_lib_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/unit/encryptField.test.ts",
       "source_location": "L2",
       "weight": 1.0,
@@ -3678,11 +5989,44 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_lib_encryptfield_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test_seedtrustme",
+      "target": "src_lib_encryptfield_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/unit/encryptField.test.ts",
       "source_location": "L2",
       "weight": 1.0,
       "source": "tests_unit_encryptfield_test",
       "target": "src_lib_encryptfield_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_lib_encryptfield_decryptfield",
       "confidence_score": 1.0
     },
     {
@@ -4142,6 +6486,39 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "src_models_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "src_models_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_models_admin",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/models/Category.ts",
@@ -4382,6 +6759,17 @@
       "weight": 1.0,
       "source": "src_models_loginattempt",
       "target": "src_models_loginattempt_loginattemptschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "src_models_loginattempt",
       "confidence_score": 1.0
     },
     {
@@ -5096,10 +7484,30 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/auth.ts",
-      "source_location": "L4",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_routes_admin_auth",
       "target": "src_routes_admin_auth_authrouter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_routes_admin_auth_login_failed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/auth.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_routes_admin_auth",
+      "target": "src_routes_admin_auth_loginbody",
       "confidence_score": 1.0
     },
     {
@@ -5107,7 +7515,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_auth",
@@ -5118,7 +7526,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_auth_authrouter",
@@ -5139,7 +7547,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L7",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_categories",
@@ -5150,7 +7558,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L7",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_categories_categoriesrouter",
@@ -5160,7 +7568,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_index_adminrouter",
@@ -5171,7 +7579,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L9",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_jobs",
@@ -5182,7 +7590,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L9",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_jobs_jobsrouter",
@@ -5193,7 +7601,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L8",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_reviewersources",
@@ -5204,7 +7612,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L8",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_reviewersources_reviewersourcesrouter",
@@ -5215,7 +7623,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_reviews",
@@ -5226,7 +7634,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_reviews_reviewsrouter",
@@ -5237,7 +7645,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_shops",
@@ -5248,7 +7656,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_shops_shopsrouter",
@@ -5259,7 +7667,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_wishlist",
@@ -5270,7 +7678,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_wishlist_wishlistrouter",
@@ -5407,6 +7815,59 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "tests_integration_adminauthroutes_test_loggedinagent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "tests_integration_adminauthroutes_test_now",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "tests_setup_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test",
+      "target": "tests_setup_mongo_usemongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/adminAuthRoutes.test.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_integration_adminauthroutes_test_loggedinagent",
+      "target": "tests_integration_adminauthroutes_test_now",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -5425,6 +7886,111 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "tests_integration_db_test",
+      "target": "tests_setup_mongo_usemongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "tests_integration_importadmin_test_seedtrustme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "tests_integration_importadmin_test_trustme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "tests_setup_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test",
+      "target": "tests_setup_mongo_usemongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/importAdmin.test.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_integration_importadmin_test_seedtrustme",
+      "target": "tests_integration_importadmin_test_trustme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "tests_integration_login_test_code",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "tests_integration_login_test_plus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "tests_integration_login_test_t0",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
+      "target": "tests_setup_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/login.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_login_test",
       "target": "tests_setup_mongo_usemongo",
       "confidence_score": 1.0
     },
@@ -5797,7 +8363,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L156",
+      "source_location": "L158",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_critical_files",
@@ -5817,7 +8383,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L131",
+      "source_location": "L133",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_10_moderation_wishlist_admin_m3_prd_9_2",
@@ -5827,7 +8393,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L138",
+      "source_location": "L140",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_11_meta_compliance_landing_render_m4_prd_7_10",
@@ -5837,7 +8403,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L147",
+      "source_location": "L149",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_12_hardening",
@@ -5867,7 +8433,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L66",
+      "source_location": "L68",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_3_queues_infrastructure_prd_5_1_11",
@@ -5877,7 +8443,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L74",
+      "source_location": "L76",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_4_shops_categories_images_m1",
@@ -5887,7 +8453,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L83",
+      "source_location": "L85",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_5_apify_client_profile_fetch_prd_5_6_6_2",
@@ -5897,7 +8463,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L92",
+      "source_location": "L94",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_6_webhook_spike_meta_plumbing_m0_prd_5_3_10",
@@ -5907,7 +8473,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L101",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_7_dm_bot_core_pure_m2_prd_5_2_5_4",
@@ -5917,7 +8483,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L111",
+      "source_location": "L113",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_8_dm_bot_wiring_m2_prd_5_1_5_5",
@@ -5927,7 +8493,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L120",
+      "source_location": "L122",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_9_reviewer_sources_daily_check_m3_prd_6",
@@ -5937,7 +8503,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L160",
+      "source_location": "L162",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_verification",
@@ -5995,5 +8561,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0058ae22a4c20a8f0f077fd6e4ba3f4c9decd834"
+  "built_at_commit": "9a1e9670a3e2c34f6055478530ab883c8fda378f"
 }

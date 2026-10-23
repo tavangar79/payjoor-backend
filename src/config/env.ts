@@ -6,6 +6,8 @@ const schema = z.object({
   PORT: z.coerce.number().int().default(3000),
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']).default('info'),
   PUBLIC_BASE_URL: z.url(),
+  // True behind one trusted reverse proxy, so req.ip (login lockout key) is the real client IP.
+  TRUST_PROXY: z.stringbool().default(false),
   CONTACT_EMAIL: z.email(),
 
   MONGODB_URI: z.string().min(1),
@@ -29,6 +31,8 @@ const schema = z.object({
     .transform((v) => Buffer.from(v, 'base64'))
     .refine((b) => b.length === 32, 'DATA_ENCRYPTION_KEY must be base64 of exactly 32 bytes'),
   TRUSTME_MONGODB_URI: z.string().optional(),
+  // Only for `npm run admin:create`; never passed as an argument (§9.1).
+  ADMIN_PASSWORD: z.string().optional(),
 });
 
 export type Env = z.infer<typeof schema>;

@@ -23,7 +23,6 @@
   "21": "csrf.ts",
   "22": "login.ts",
   "23": "password.ts",
-  "24": "session.ts",
   "25": "index.ts",
   "26": "language.ts",
   "27": "lookup.ts",

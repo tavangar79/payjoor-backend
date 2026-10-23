@@ -1,6 +1,7 @@
 // Express app wiring.
 import express from 'express';
 import { pinoHttp } from 'pino-http';
+import { env } from './config/env.js';
 import { logger } from './lib/logger.js';
 import { errorHandler } from './lib/errorHandler.js';
 import { isDbConnected } from './lib/db.js';
@@ -13,6 +14,7 @@ import { landingRouter } from './routes/landing.js';
 export function createApp() {
   const app = express();
   app.disable('x-powered-by');
+  if (env.TRUST_PROXY) app.set('trust proxy', 1);
   app.use(pinoHttp({ logger }));
 
   app.get('/healthz', (_req, res) => {

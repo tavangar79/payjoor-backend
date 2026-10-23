@@ -53,15 +53,17 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 2 — Admin auth (PRD §9.1)
 
-- [ ] 2.1 `auth/password.ts` + test: copy trust-me scrypt (`scrypt$N$r$p$salt$hash`).
-- [ ] 2.2 `auth/totp.ts` + test: copy trust-me (SHA-1, 6 digits, ±1 step, constant-time, returns step).
-- [ ] 2.3 `auth/session.ts` + test: copy trust-me signed-cookie session; Express `requireAdmin` middleware sets `req.admin`.
-- [ ] 2.4 `auth/csrf.ts` + test: per-session token (HMAC of session id), `GET /admin/api/auth/csrf`, middleware checks `X-CSRF-Token` on non-GET.
-- [ ] 2.5 `auth/login.ts` + integration test: copy trust-me lockout (reserve attempt before check, 5/15min, same error message), atomic `lastTotpStep` update.
-- [ ] 2.6 `routes/admin/auth.ts`: `POST /login`, `POST /logout`, `GET /me`; supertest test.
-- [ ] 2.7 `routes/admin/index.ts`: mount `requireAdmin` + CSRF on all `/api/*` except login/csrf.
-- [ ] 2.8 `scripts/admin-create.ts`: reads `ADMIN_PASSWORD`, prints `otpauth://` (issuer `TrustMe`) once.
-- [ ] 2.9 `scripts/admin-import.ts`: read-only connect to `TRUSTME_MONGODB_URI`, copy `username, passwordHash, totpSecretEnc, role`.
+*Done. Differences from the task list: trust-me's `client-ip.ts` is replaced by Express `trust proxy` behind a new `TRUST_PROXY` env var (lockout keys on `req.ip`); there is no separate `/csrf` route, the CSRF token comes back from `POST /login` and `GET /me`; the import logic lives in `src/auth/importAdmin.ts` so it can be tested; logins are logged with pino instead of trust-me's audit collection. Session cookie is `ps_admin` (path `/admin`, httpOnly, sameSite strict, secure in production, 12 h). The admin API only accepts JSON.*
+
+- [x] 2.1 `auth/password.ts` + test: copy trust-me scrypt (`scrypt$N$r$p$salt$hash`).
+- [x] 2.2 `auth/totp.ts` + test: copy trust-me (SHA-1, 6 digits, ±1 step, constant-time, returns step).
+- [x] 2.3 `auth/session.ts` + test: copy trust-me signed-cookie session; Express `requireAdmin` middleware sets `req.admin`.
+- [x] 2.4 `auth/csrf.ts` + test: per-session token (HMAC of session id), `GET /admin/api/auth/csrf`, middleware checks `X-CSRF-Token` on non-GET.
+- [x] 2.5 `auth/login.ts` + integration test: copy trust-me lockout (reserve attempt before check, 5/15min, same error message), atomic `lastTotpStep` update.
+- [x] 2.6 `routes/admin/auth.ts`: `POST /login`, `POST /logout`, `GET /me`; supertest test.
+- [x] 2.7 `routes/admin/index.ts`: mount `requireAdmin` + CSRF on all `/api/*` except login/csrf.
+- [x] 2.8 `scripts/admin-create.ts`: reads `ADMIN_PASSWORD`, prints `otpauth://` (issuer `TrustMe`) once.
+- [x] 2.9 `scripts/admin-import.ts`: read-only connect to `TRUSTME_MONGODB_URI`, copy `username, passwordHash, totpSecretEnc, role`.
 
 ## Phase 3 — Queues infrastructure (PRD §5.1, §11)
 
