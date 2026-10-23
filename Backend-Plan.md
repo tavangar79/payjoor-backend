@@ -35,19 +35,21 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 1 — Models (PRD §8), one task each, with an integration test for indexes/validation
 
-- [ ] 1.1 `Category` (unique `nameNormalized`, `slug`).
-- [ ] 1.2 `ShopImage` (binary `data`, `mime`, unique `sha256`).
-- [ ] 1.3 `Shop` (unique `slug`, `handle`; index `previousHandles`; `status` enum; `profileImage` required; `contact`).
-- [ ] 1.4 `ReviewerSource`.
-- [ ] 1.5 `Wishlist` (unique `handle`, `sources` enum[], `status`).
-- [ ] 1.6 `Review` (exactly one of `shopId`/`wishlistId` validator; unique partial index on (`shopId`,`postShortcode`) and (`wishlistId`,`postShortcode`) where status ∈ pending|published; `OUTCOMES` enum).
-- [ ] 1.7 `PostOwner` (unique `shortcode`).
-- [ ] 1.8 `DmEvent` (unique `mid`, TTL 90 days on `receivedAt`).
-- [ ] 1.9 `JobRun`.
-- [ ] 1.10 `DeletionRequest` (unique `confirmationCode`, index `igsidHash`).
-- [ ] 1.11 `MetaToken` (singleton).
-- [ ] 1.12 `Admin` + `LoginAttempt` (match trust-me field names/formats).
-- [ ] 1.13 `models/index.ts` barrel + `syncIndexes()` call at startup in dev.
+*Done: shared enums in `models/enums.ts`; all model tests in `tests/integration/models.test.ts`. `jobRuns.type` gained `profile_fetch` (PRD §8 updated). `npm run typecheck` now also checks `tests/` and `scripts/` (`tsconfig.test.json`). `vitest.config.ts` pins `MONGOMS_DOWNLOAD_DIR` so tests reuse one mongod binary from the root or from `backend/`.*
+
+- [x] 1.1 `Category` (unique `nameNormalized`, `slug`).
+- [x] 1.2 `ShopImage` (binary `data`, `mime`, unique `sha256`).
+- [x] 1.3 `Shop` (unique `slug`, `handle`; index `previousHandles`; `status` enum; `profileImage` required; `contact`).
+- [x] 1.4 `ReviewerSource`.
+- [x] 1.5 `Wishlist` (unique `handle`, `sources` enum[], `status`).
+- [x] 1.6 `Review` (exactly one of `shopId`/`wishlistId` validator; unique partial index on (`shopId`,`postShortcode`) and (`wishlistId`,`postShortcode`) where status ∈ pending|published; `OUTCOMES` enum).
+- [x] 1.7 `PostOwner` (unique `shortcode`).
+- [x] 1.8 `DmEvent` (unique `mid`, TTL 90 days on `receivedAt`).
+- [x] 1.9 `JobRun`.
+- [x] 1.10 `DeletionRequest` (unique `confirmationCode`, index `igsidHash`).
+- [x] 1.11 `MetaToken` (singleton).
+- [x] 1.12 `Admin` + `LoginAttempt` (match trust-me field names/formats).
+- [x] 1.13 `models/index.ts` barrel + `syncIndexes()` call at startup in dev.
 
 ## Phase 2 — Admin auth (PRD §9.1)
 

@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
@@ -20,6 +21,8 @@ export default defineConfig({
       APIFY_TOKEN: 'test-apify-token',
       SESSION_SECRET: 's'.repeat(32),
       DATA_ENCRYPTION_KEY: Buffer.alloc(32, 1).toString('base64'),
+      // One mongod binary cache, whether tests run from the repo root or from backend/.
+      MONGOMS_DOWNLOAD_DIR: fileURLToPath(new URL('../node_modules/.cache/mongodb-memory-server', import.meta.url)),
     },
   },
 });

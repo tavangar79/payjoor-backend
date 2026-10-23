@@ -3,8 +3,10 @@ import { createApp } from './app.js';
 import { env } from './config/env.js';
 import { connectDb, disconnectDb } from './lib/db.js';
 import { logger } from './lib/logger.js';
+import { syncAllIndexes } from './models/index.js';
 
 await connectDb();
+if (env.NODE_ENV === 'development') await syncAllIndexes();
 
 const app = createApp();
 const server = app.listen(env.PORT, () => {
