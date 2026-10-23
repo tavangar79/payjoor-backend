@@ -1,0 +1,116 @@
+{
+  "_note": "Shapes from Meta's Instagram messaging webhook docs, not real captures. Replace with sanitised raw-*.json from `npm run spike:webhook` (plan task 6.4). IGSIDs are fake.",
+  "text_handle": {
+    "object": "instagram",
+    "entry": [
+      {
+        "time": 1761200000000,
+        "id": "17841400000000000",
+        "messaging": [
+          {
+            "sender": { "id": "1000000000000001" },
+            "recipient": { "id": "17841400000000000" },
+            "timestamp": 1761200000000,
+            "message": { "mid": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDAwMDAwMDAwMDA6MQ", "text": "این پیج چطوره؟ @MaashMamad" }
+          }
+        ]
+      }
+    ]
+  },
+  "profile_link": {
+    "object": "instagram",
+    "entry": [
+      {
+        "time": 1761200001000,
+        "id": "17841400000000000",
+        "messaging": [
+          {
+            "sender": { "id": "1000000000000002" },
+            "recipient": { "id": "17841400000000000" },
+            "timestamp": 1761200001000,
+            "message": { "mid": "mid-profile-link", "text": "https://www.instagram.com/maashmamad?igsh=MWQ1ZGUxMzBkMA==" }
+          }
+        ]
+      }
+    ]
+  },
+  "post_link": {
+    "object": "instagram",
+    "entry": [
+      {
+        "time": 1761200002000,
+        "id": "17841400000000000",
+        "messaging": [
+          {
+            "sender": { "id": "1000000000000003" },
+            "recipient": { "id": "17841400000000000" },
+            "timestamp": 1761200002000,
+            "message": { "mid": "mid-post-link", "text": "Is this legit? https://www.instagram.com/p/Deyc1w9hwTI/?utm_source=ig_web_copy_link" }
+          }
+        ]
+      }
+    ]
+  },
+  "share_attachment": {
+    "object": "instagram",
+    "entry": [
+      {
+        "time": 1761200003000,
+        "id": "17841400000000000",
+        "messaging": [
+          {
+            "sender": { "id": "1000000000000004" },
+            "recipient": { "id": "17841400000000000" },
+            "timestamp": 1761200003000,
+            "message": {
+              "mid": "mid-share",
+              "attachments": [{ "type": "share", "payload": { "url": "https://www.instagram.com/p/Deyc1w9hwTI/" } }]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "reel_attachment": {
+    "object": "instagram",
+    "entry": [
+      {
+        "time": 1761200004000,
+        "id": "17841400000000000",
+        "messaging": [
+          {
+            "sender": { "id": "1000000000000005" },
+            "recipient": { "id": "17841400000000000" },
+            "timestamp": 1761200004000,
+            "message": {
+              "mid": "mid-reel",
+              "attachments": [
+                {
+                  "type": "ig_reel",
+                  "payload": { "reel_video_id": "18000000000000000", "title": "Unboxing", "url": "https://lookaside.fbsbx.com/ig_messaging_cdn/?asset_id=18000000000000000" }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "echo": {
+    "object": "instagram",
+    "entry": [
+      {
+        "time": 1761200005000,
+        "id": "17841400000000000",
+        "messaging": [
+          {
+            "sender": { "id": "17841400000000000" },
+            "recipient": { "id": "1000000000000001" },
+            "timestamp": 1761200005000,
+            "message": { "mid": "mid-echo", "text": "our own reply", "is_echo": true }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -99,12 +99,14 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 6 — Webhook spike + Meta plumbing (M0, PRD §5.3, §10)
 
-- [ ] 6.1 `meta/signature.ts` + test: verify `X-Hub-Signature-256` with timing-safe compare.
-- [ ] 6.2 `routes/webhooks.ts` GET verify (`hub.mode`, `hub.verify_token`, echo challenge) + test.
-- [ ] 6.3 `scripts/webhook-spike.ts`: logs raw bodies to `tests/fixtures/webhooks/` (dev only).
+*Done except the 6.4 spike (needs the Meta dev app). Until then `tests/fixtures/webhooks/docs-samples.json` holds payloads in the shape Meta's docs give (text, profile and post links, `share` and `ig_reel` attachments, an echo), with fake IGSIDs; replace them with sanitised `raw-*.json` from `npm run spike:webhook`. The token is stored encrypted on first use (seeded from `IG_ACCESS_TOKEN`, assumed to last 60 days until the first refresh); a failed refresh keeps the old token. Send API errors are retryable for 5xx, 429, network errors and Graph codes 1, 2, 4, 17, 32, 341, 613.*
+
+- [x] 6.1 `meta/signature.ts` + test: verify `X-Hub-Signature-256` with timing-safe compare.
+- [x] 6.2 `routes/webhooks.ts` GET verify (`hub.mode`, `hub.verify_token`, echo challenge) + test.
+- [x] 6.3 `scripts/webhook-spike.ts`: logs raw bodies to `tests/fixtures/webhooks/` (dev only).
 - [ ] 6.4 **Spike (manual):** send profile, post, reel, plain link, text, from a tester account; commit sanitised fixtures (IGSIDs replaced).
-- [ ] 6.5 `meta/token.ts` + test: `getAccessToken()` (decrypt from `MetaToken`, seed from `IG_ACCESS_TOKEN`), `refreshToken()`.
-- [ ] 6.6 `meta/sendApi.ts` + test (mocked fetch): `sendText(igsid, text)` to pinned `GRAPH_API_VERSION`; classifies 5xx as retryable.
+- [x] 6.5 `meta/token.ts` + test: `getAccessToken()` (decrypt from `MetaToken`, seed from `IG_ACCESS_TOKEN`), `refreshToken()`.
+- [x] 6.6 `meta/sendApi.ts` + test (mocked fetch): `sendText(igsid, text)` to pinned `GRAPH_API_VERSION`; classifies 5xx as retryable.
 
 ## Phase 7 — DM bot core, pure (M2, PRD §5.2–§5.4)
 
