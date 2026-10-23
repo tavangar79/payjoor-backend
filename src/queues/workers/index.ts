@@ -3,6 +3,9 @@ import type { Job, WorkerOptions } from 'bullmq';
 import type { Logger } from 'pino';
 import type { QueueName } from '../names.js';
 import { apifyProfileWorker } from './apifyProfile.worker.js';
+import { dmInboundWorker } from './dmInbound.worker.js';
+import { dmSendWorker } from './dmSend.worker.js';
+import { postOwnerWorker } from './postOwner.worker.js';
 
 export type WorkerDefinition = {
   queue: QueueName;
@@ -11,4 +14,4 @@ export type WorkerDefinition = {
   options?: Pick<WorkerOptions, 'concurrency' | 'limiter'>;
 };
 
-export const workerDefinitions: WorkerDefinition[] = [apifyProfileWorker];
+export const workerDefinitions: WorkerDefinition[] = [dmInboundWorker, postOwnerWorker, dmSendWorker, apifyProfileWorker];

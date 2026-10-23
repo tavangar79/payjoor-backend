@@ -19,10 +19,13 @@ const schema = z.object({
   IG_ACCESS_TOKEN: z.string().optional(),
   IG_ACCOUNT_ID: z.string().min(1),
   GRAPH_API_VERSION: z.string().default('v23.0'),
+  // Store incoming message text in dmEvents.text (debugging only, §8).
+  DM_STORE_TEXT: z.stringbool().default(false),
 
   APIFY_TOKEN: z.string().min(1),
   APIFY_BUDGET_STOP_USD: z.coerce.number().default(4.5),
   APIFY_PROFILE_ACTOR: z.string().default('apify~instagram-profile-scraper'),
+  APIFY_POST_ACTOR: z.string().default('apify~instagram-post-scraper'),
   DAILY_CHECK_CRON: z.string().default('0 9 * * *'),
 
   SESSION_SECRET: z.string().min(32),

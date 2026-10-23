@@ -122,12 +122,14 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 8 — DM bot wiring (M2, PRD §5.1, §5.5)
 
-- [ ] 8.1 `POST /webhooks/instagram`: `express.raw()`, verify signature (403 on fail), skip `is_echo`/own account, enqueue `dm-inbound` with `jobId = mid`, 200 at once + supertest with fixture.
-- [ ] 8.2 `services/wishlist.ts` + test: `addRequest(handle, source)` upsert, increment `requestCount`, add to `sources`, timestamps.
-- [ ] 8.3 `dm-inbound` worker: create/upsert `DmEvent`, call `handleMessage`, wishlist on not-found, enqueue replies to `dm-send`; on `needsOwnerLookup` send "checking…" and enqueue `post-owner`.
-- [ ] 8.4 `apify/postOwner.ts` + `post-owner` worker (concurrency 2): Apify post scraper → `ownerUsername`, cache in `PostOwner`, `jobRuns`, re-enqueue DM job.
-- [ ] 8.5 `dm-send` worker: BullMQ limiter (global) + per-sender 10/min check in Redis; `sendText`; set `replySentAt`; on final failure write `dmEvents.error`.
-- [ ] 8.6 Integration test: fixture webhook → jobs → mocked Graph send produces expected reply; retried webhook does not double-reply.
+*Done. Job payloads are zod schemas in `queues/jobData.ts`. Job ids are derived from the `mid` (`:` replaced, as BullMQ forbids it): `<mid>` on dm-inbound, `<mid>-r<i>` per reply part and `<mid>-checking` on dm-send, `<mid>-lookup` on post-owner, `<mid>-owner` for the re-enqueued DM; so webhook and worker retries never queue a second reply. dm-inbound skips a `dmEvents` row that already has a `result`. A final post-owner failure (or budget stop) still re-enqueues the DM, which then answers "couldn't read this". dm-send: global limiter 10/s; per recipient 10 messages a minute in Redis (`dm-rate:<igsid>:<minute>`), over the limit the message is dropped and `dmEvents.error = rate_limited`. Message text goes into `dmEvents.text` only with `DM_STORE_TEXT=true` (new env), and into logs only at debug. New env `APIFY_POST_ACTOR`; the post-owner run uses `{ username: [postUrl], resultsLimit: 1 }` (input not yet tried against a real run). DB-backed bot dependencies live in `services/botDeps.ts`. The 8.6 test runs the whole flow on an in-memory queue stand-in (`tests/setup/fakeQueues.ts`), not Redis.*
+
+- [x] 8.1 `POST /webhooks/instagram`: `express.raw()`, verify signature (403 on fail), skip `is_echo`/own account, enqueue `dm-inbound` with `jobId = mid`, 200 at once + supertest with fixture.
+- [x] 8.2 `services/wishlist.ts` + test: `addRequest(handle, source)` upsert, increment `requestCount`, add to `sources`, timestamps.
+- [x] 8.3 `dm-inbound` worker: create/upsert `DmEvent`, call `handleMessage`, wishlist on not-found, enqueue replies to `dm-send`; on `needsOwnerLookup` send "checking…" and enqueue `post-owner`.
+- [x] 8.4 `apify/postOwner.ts` + `post-owner` worker (concurrency 2): Apify post scraper → `ownerUsername`, cache in `PostOwner`, `jobRuns`, re-enqueue DM job.
+- [x] 8.5 `dm-send` worker: BullMQ limiter (global) + per-sender 10/min check in Redis; `sendText`; set `replySentAt`; on final failure write `dmEvents.error`.
+- [x] 8.6 Integration test: fixture webhook → jobs → mocked Graph send produces expected reply; retried webhook does not double-reply.
 
 ## Phase 9 — Reviewer sources + daily check (M3, PRD §6)
 
