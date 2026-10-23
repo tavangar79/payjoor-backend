@@ -35,6 +35,7 @@ export const JOB_TYPES = ['daily_check', 'backfill', 'post_owner_lookup', 'profi
 export type JobType = (typeof JOB_TYPES)[number];
 
 export const DELETION_STATUSES = ['pending', 'done'] as const;
+export type DeletionStatus = (typeof DELETION_STATUSES)[number];
 
 export const ADMIN_ROLES = ['owner', 'moderator'] as const;
 

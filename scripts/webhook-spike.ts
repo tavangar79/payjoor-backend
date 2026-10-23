@@ -1,7 +1,8 @@
 // M0 spike (PRD §5.3, §14; plan task 6.3): `npm run spike:webhook`, development only.
-// Answers Meta's subscription check and writes every raw POST body to tests/fixtures/webhooks/raw-<time>.json,
+// Answers Meta's subscription check and writes every raw POST body to tests/fixtures/webhooks/raw-<time>.local.json
+// (git-ignored, since it holds real IGSIDs),
 // with whether its signature checked out. Expose it with a tunnel, subscribe the webhook, then DM the account
-// a shared profile, post, reel, plain link and text. Replace real IGSIDs before committing any fixture.
+// a shared profile, post, reel, plain link and text. Replace the IGSIDs, then save as a committed fixture.
 import { mkdir, writeFile } from 'node:fs/promises';
 import express from 'express';
 import { env } from '../src/config/env.js';
@@ -26,7 +27,7 @@ app.get('/webhooks/instagram', (req, res) => {
 app.post('/webhooks/instagram', express.raw({ type: () => true, limit: '1mb' }), async (req, res) => {
   const raw = Buffer.isBuffer(req.body) ? req.body : Buffer.alloc(0);
   const signatureOk = verifySignature(raw, req.get(SIGNATURE_HEADER));
-  const file = new URL(`raw-${Date.now()}.json`, dir);
+  const file = new URL(`raw-${Date.now()}.local.json`, dir);
   let body: unknown = raw.toString('utf8');
   try {
     body = JSON.parse(raw.toString('utf8'));

@@ -99,7 +99,7 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 6 — Webhook spike + Meta plumbing (M0, PRD §5.3, §10)
 
-*Done except the 6.4 spike (needs the Meta dev app). Until then `tests/fixtures/webhooks/docs-samples.json` holds payloads in the shape Meta's docs give (text, profile and post links, `share` and `ig_reel` attachments, an echo), with fake IGSIDs; replace them with sanitised `raw-*.json` from `npm run spike:webhook`. The token is stored encrypted on first use (seeded from `IG_ACCESS_TOKEN`, assumed to last 60 days until the first refresh); a failed refresh keeps the old token. Send API errors are retryable for 5xx, 429, network errors and Graph codes 1, 2, 4, 17, 32, 341, 613.*
+*Done except the 6.4 spike (needs the Meta dev app). Until then `tests/fixtures/webhooks/docs-samples.json` holds payloads in the shape Meta's docs give (text, profile and post links, `share` and `ig_reel` attachments, an echo), with fake IGSIDs; replace them with sanitised copies of the `raw-*.local.json` files (git-ignored) that `npm run spike:webhook` writes. The token is stored encrypted on first use (seeded from `IG_ACCESS_TOKEN`, assumed to last 60 days until the first refresh); a failed refresh keeps the old token. Send API errors are retryable for 5xx, 429, network errors and Graph codes 1, 2, 4, 17, 32, 341, 613.*
 
 - [x] 6.1 `meta/signature.ts` + test: verify `X-Hub-Signature-256` with timing-safe compare.
 - [x] 6.2 `routes/webhooks.ts` GET verify (`hub.mode`, `hub.verify_token`, echo challenge) + test.
@@ -155,12 +155,14 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 11 — Meta compliance + landing render (M4, PRD §7, §10)
 
-- [ ] 11.1 `meta/signedRequest.ts` + test: parse/verify `signed_request` (base64url, HMAC-SHA256, timing-safe).
-- [ ] 11.2 `services/deletion.ts` + test: hash IGSID, delete `dmEvents` for that sender, create `DeletionRequest` (code), mark `done`; `getStatus(code)`.
-- [ ] 11.3 `routes/meta.ts`: `POST /meta/data-deletion` (returns `{url, confirmation_code}`), `POST /meta/deauthorize` (200) + supertest.
-- [ ] 11.4 `token-refresh` worker: refresh, store encrypted, `jobRuns`, log error-level alert on failure.
-- [ ] 11.5 `routes/landing.ts`: `/` → redirect by `Accept-Language` (default `fa`); `/:lang(fa|en)/*` → `render(url, data)` from `../web/dist/server/entry-server.js` (deletion status data for `/data-deletion/status`), serve `web/dist/client` assets; 404 page; no redirects on legal pages. Tolerate missing build in dev with a clear error.
-- [ ] 11.6 `routes/admin/index.ts`: serve `../admin/dist` statically with `index.html` fallback.
+*Done. The confirmation code is 16 hex characters; `igsidHash` is an HMAC-SHA256 of the user id keyed with `DATA_ENCRYPTION_KEY`. Deletion removes `dmEvents` where `senderIgsid` equals the callback's `user_id`. **Open:** for Instagram Login the callback's `user_id` may not equal the messaging IGSID; check with a tester during the 6.4 spike. Completed DM jobs in Redis also hold message data for up to 7 days (`removeOnComplete` age) and aren't touched by a deletion request. Deauthorize only verifies and logs (hashed id). A failed token refresh, on its last attempt, logs at error with `alert: true`. Landing: `/` → 302 to `/fa` or `/en` (Vary: Accept-Language); every other GET renders `web/dist/server/entry-server.js` into `web/dist/client/index.html` (lang, dir, escaped title, app HTML, `<script id="ssr-data">` with `<` escaped), status from `render` (404 page included), `no-cache` (`no-store` on the status page). A missing build gives a 503 naming the build command. Admin: `admin/dist` at `/admin` with `index.html` for every client route (`noindex`). The webhook spike now writes `raw-*.local.json`, which `.gitignore` already skips, so real IGSIDs can't be committed by accident.*
+
+- [x] 11.1 `meta/signedRequest.ts` + test: parse/verify `signed_request` (base64url, HMAC-SHA256, timing-safe).
+- [x] 11.2 `services/deletion.ts` + test: hash IGSID, delete `dmEvents` for that sender, create `DeletionRequest` (code), mark `done`; `getStatus(code)`.
+- [x] 11.3 `routes/meta.ts`: `POST /meta/data-deletion` (returns `{url, confirmation_code}`), `POST /meta/deauthorize` (200) + supertest.
+- [x] 11.4 `token-refresh` worker: refresh, store encrypted, `jobRuns`, log error-level alert on failure.
+- [x] 11.5 `routes/landing.ts`: `/` → redirect by `Accept-Language` (default `fa`); `/:lang(fa|en)/*` → `render(url, data)` from `../web/dist/server/entry-server.js` (deletion status data for `/data-deletion/status`), serve `web/dist/client` assets; 404 page; no redirects on legal pages. Tolerate missing build in dev with a clear error.
+- [x] 11.6 `routes/admin/index.ts`: serve `../admin/dist` statically with `index.html` fallback.
 
 ## Phase 12 — Hardening
 
