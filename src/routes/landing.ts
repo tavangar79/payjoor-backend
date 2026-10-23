@@ -27,9 +27,12 @@ export function fillTemplate(template: string, page: RenderResult, data: Record<
     .replace('<!--ssr-data-->', () => `<script id="ssr-data" type="application/json">${scriptJson(data)}</script>`);
 }
 
-// Every page gets the contact email (legal pages must show it, §7.3); the status page also gets the status.
+// Every page gets the contact email (legal pages must show it, §7.3), plus the Instagram handle and company
+// name when set; the status page also gets the status.
 async function pageData(req: Request): Promise<Record<string, unknown>> {
   const data: Record<string, unknown> = { contactEmail: env.CONTACT_EMAIL };
+  if (env.SITE_INSTAGRAM_HANDLE) data.instagramHandle = env.SITE_INSTAGRAM_HANDLE;
+  if (env.COMPANY_NAME) data.companyName = env.COMPANY_NAME;
   if (/^\/(fa|en)\/data-deletion\/status\/?$/.test(req.path)) {
     const code = typeof req.query.code === 'string' ? req.query.code : '';
     data.deletionStatus = code ? await getDeletionStatus(code) : null;
