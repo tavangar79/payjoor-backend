@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "package",
-      "community": 7,
+      "community": 2,
       "norm_label": "package.json"
     },
     {
@@ -20,7 +20,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "package_name",
-      "community": 7,
+      "community": 2,
       "norm_label": "name"
     },
     {
@@ -30,7 +30,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "package_version",
-      "community": 7,
+      "community": 2,
       "norm_label": "version"
     },
     {
@@ -40,7 +40,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "package_private",
-      "community": 7,
+      "community": 2,
       "norm_label": "private"
     },
     {
@@ -50,7 +50,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "package_type",
-      "community": 7,
+      "community": 2,
       "norm_label": "type"
     },
     {
@@ -60,7 +60,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_engines",
-      "community": 7,
+      "community": 2,
       "norm_label": "engines"
     },
     {
@@ -70,7 +70,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_engines_node",
-      "community": 7,
+      "community": 2,
       "norm_label": "node"
     },
     {
@@ -324,10 +324,20 @@
       "norm_label": "@types/node"
     },
     {
-      "label": "mongodb-memory-server",
+      "label": "@types/supertest",
       "file_type": "code",
       "source_file": "backend/package.json",
       "source_location": "L36",
+      "_origin": "ast",
+      "id": "package_devdependencies_types_supertest",
+      "community": 6,
+      "norm_label": "@types/supertest"
+    },
+    {
+      "label": "mongodb-memory-server",
+      "file_type": "code",
+      "source_file": "backend/package.json",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "package_devdependencies_mongodb_memory_server",
       "community": 6,
@@ -337,17 +347,27 @@
       "label": "pino-pretty",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "package_devdependencies_pino_pretty",
       "community": 6,
       "norm_label": "pino-pretty"
     },
     {
+      "label": "supertest",
+      "file_type": "code",
+      "source_file": "backend/package.json",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "package_devdependencies_supertest",
+      "community": 6,
+      "norm_label": "supertest"
+    },
+    {
       "label": "tsx",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L38",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "package_devdependencies_tsx",
       "community": 6,
@@ -357,7 +377,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L39",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "package_devdependencies_typescript",
       "community": 6,
@@ -367,7 +387,7 @@
       "label": "vitest",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L40",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "package_devdependencies_vitest",
       "community": 6,
@@ -487,10 +507,10 @@
       "label": "createApp()",
       "file_type": "code",
       "source_file": "backend/src/app.ts",
-      "source_location": "L11",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_createapp",
-      "community": 3,
+      "community": 5,
       "norm_label": "createapp()"
     },
     {
@@ -637,7 +657,7 @@
       "label": "Env",
       "file_type": "code",
       "source_file": "backend/src/config/env.ts",
-      "source_location": "L30",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "src_config_env_env",
       "community": 3,
@@ -690,8 +710,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_db",
-      "community": 35,
+      "community": 3,
       "norm_label": "db.ts"
+    },
+    {
+      "label": "connectDb()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_lib_db_connectdb",
+      "community": 3,
+      "norm_label": "connectdb()"
+    },
+    {
+      "label": "disconnectDb()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_lib_db_disconnectdb",
+      "community": 3,
+      "norm_label": "disconnectdb()"
+    },
+    {
+      "label": "isDbConnected()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_lib_db_isdbconnected",
+      "community": 5,
+      "norm_label": "isdbconnected()"
     },
     {
       "label": "encryptField.ts",
@@ -704,6 +754,66 @@
       "norm_label": "encryptfield.ts"
     },
     {
+      "label": "encryptField()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/encryptField.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_lib_encryptfield_encryptfield",
+      "community": 36,
+      "norm_label": "encryptfield()"
+    },
+    {
+      "label": "decryptField()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/encryptField.ts",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "src_lib_encryptfield_decryptfield",
+      "community": 36,
+      "norm_label": "decryptfield()"
+    },
+    {
+      "label": "errorHandler.ts",
+      "file_type": "code",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_errorhandler",
+      "community": 3,
+      "norm_label": "errorhandler.ts"
+    },
+    {
+      "label": "HttpError",
+      "file_type": "code",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_lib_errorhandler_httperror",
+      "community": 3,
+      "norm_label": "httperror"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_lib_errorhandler_httperror_constructor",
+      "community": 3,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": "errorHandler()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "src_lib_errorhandler_errorhandler",
+      "community": 5,
+      "norm_label": "errorhandler()"
+    },
+    {
       "label": "handle.ts",
       "file_type": "code",
       "source_file": "backend/src/lib/handle.ts",
@@ -714,6 +824,16 @@
       "norm_label": "handle.ts"
     },
     {
+      "label": "normalizeHandle()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/handle.ts",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "src_lib_handle_normalizehandle",
+      "community": 37,
+      "norm_label": "normalizehandle()"
+    },
+    {
       "label": "imageCheck.ts",
       "file_type": "code",
       "source_file": "backend/src/lib/imageCheck.ts",
@@ -722,6 +842,46 @@
       "id": "src_lib_imagecheck",
       "community": 38,
       "norm_label": "imagecheck.ts"
+    },
+    {
+      "label": "ImageMime",
+      "file_type": "code",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_lib_imagecheck_imagemime",
+      "community": 38,
+      "norm_label": "imagemime"
+    },
+    {
+      "label": "ImageCheck",
+      "file_type": "code",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_lib_imagecheck_imagecheck",
+      "community": 38,
+      "norm_label": "imagecheck"
+    },
+    {
+      "label": "sniffImageMime()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_lib_imagecheck_sniffimagemime",
+      "community": 38,
+      "norm_label": "sniffimagemime()"
+    },
+    {
+      "label": "checkImage()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "src_lib_imagecheck_checkimage",
+      "community": 38,
+      "norm_label": "checkimage()"
     },
     {
       "label": "logger.ts",
@@ -764,14 +924,64 @@
       "norm_label": "normalizefa.ts"
     },
     {
+      "label": "LETTER_MAP",
+      "file_type": "code",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_lib_normalizefa_letter_map",
+      "community": 39,
+      "norm_label": "letter_map"
+    },
+    {
+      "label": "toLatinDigits()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "src_lib_normalizefa_tolatindigits",
+      "community": 39,
+      "norm_label": "tolatindigits()"
+    },
+    {
+      "label": "toPersianDigits()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "src_lib_normalizefa_topersiandigits",
+      "community": 39,
+      "norm_label": "topersiandigits()"
+    },
+    {
+      "label": "normalizeFa()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "src_lib_normalizefa_normalizefa",
+      "community": 39,
+      "norm_label": "normalizefa()"
+    },
+    {
       "label": "redis.ts",
       "file_type": "code",
       "source_file": "backend/src/lib/redis.ts",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_redis",
-      "community": 40,
+      "community": 3,
       "norm_label": "redis.ts"
+    },
+    {
+      "label": "createRedis()",
+      "file_type": "code",
+      "source_file": "backend/src/lib/redis.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_lib_redis_createredis",
+      "community": 3,
+      "norm_label": "createredis()"
     },
     {
       "label": "sendApi.ts",
@@ -1120,7 +1330,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_routes_admin_index_adminrouter",
-      "community": 5,
+      "community": 0,
       "norm_label": "adminrouter"
     },
     {
@@ -1317,11 +1527,31 @@
       "label": "app",
       "file_type": "code",
       "source_file": "backend/src/server.ts",
-      "source_location": "L6",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "src_server_app",
       "community": 3,
       "norm_label": "app"
+    },
+    {
+      "label": "server",
+      "file_type": "code",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_server_server",
+      "community": 3,
+      "norm_label": "server"
+    },
+    {
+      "label": "shutdown()",
+      "file_type": "code",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_server_shutdown",
+      "community": 3,
+      "norm_label": "shutdown()"
     },
     {
       "label": "categories.ts",
@@ -1392,6 +1622,116 @@
       "id": "src_worker_rationale_4",
       "community": 3,
       "norm_label": "todo: connect mongodb and redis, start every worker in src/queues/workers/,"
+    },
+    {
+      "label": "db.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/db.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_integration_db_test",
+      "community": 5,
+      "norm_label": "db.test.ts"
+    },
+    {
+      "label": "mongo.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/setup/mongo.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_setup_mongo",
+      "community": 5,
+      "norm_label": "mongo.ts"
+    },
+    {
+      "label": "useMongo()",
+      "file_type": "code",
+      "source_file": "backend/tests/setup/mongo.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "tests_setup_mongo_usemongo",
+      "community": 5,
+      "norm_label": "usemongo()"
+    },
+    {
+      "label": "encryptField.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/encryptField.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_unit_encryptfield_test",
+      "community": 36,
+      "norm_label": "encryptfield.test.ts"
+    },
+    {
+      "label": "key",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/encryptField.test.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "tests_unit_encryptfield_test_key",
+      "community": 36,
+      "norm_label": "key"
+    },
+    {
+      "label": "handle.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/handle.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_unit_handle_test",
+      "community": 37,
+      "norm_label": "handle.test.ts"
+    },
+    {
+      "label": "imageCheck.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_unit_imagecheck_test",
+      "community": 38,
+      "norm_label": "imagecheck.test.ts"
+    },
+    {
+      "label": "jpeg",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "tests_unit_imagecheck_test_jpeg",
+      "community": 38,
+      "norm_label": "jpeg"
+    },
+    {
+      "label": "png",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "tests_unit_imagecheck_test_png",
+      "community": 38,
+      "norm_label": "png"
+    },
+    {
+      "label": "webp",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "tests_unit_imagecheck_test_webp",
+      "community": 38,
+      "norm_label": "webp"
+    },
+    {
+      "label": "normalizeFa.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/normalizeFa.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_unit_normalizefa_test",
+      "community": 39,
+      "norm_label": "normalizefa.test.ts"
     },
     {
       "label": "tsconfig.json",
@@ -1542,6 +1882,196 @@
       "id": "vitest_config",
       "community": 72,
       "norm_label": "vitest.config.ts"
+    },
+    {
+      "label": "Backend-Plan.md",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_plan",
+      "community": 7,
+      "norm_label": "backend-plan.md"
+    },
+    {
+      "label": "Backend build plan (pagesanj) \u2014 micro-task todo list",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "community": 7,
+      "norm_label": "backend build plan (pagesanj) \u2014 micro-task todo list"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "backend_plan_context",
+      "community": 7,
+      "norm_label": "context"
+    },
+    {
+      "label": "Conventions for every task",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "backend_plan_conventions_for_every_task",
+      "community": 7,
+      "norm_label": "conventions for every task"
+    },
+    {
+      "label": "Phase 0 \u2014 Foundations",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "backend_plan_phase_0_foundations",
+      "community": 7,
+      "norm_label": "phase 0 \u2014 foundations"
+    },
+    {
+      "label": "Phase 1 \u2014 Models (PRD \u00a78), one task each, with an integration test for indexes/validation",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "backend_plan_phase_1_models_prd_8_one_task_each_with_an_integration_test_for_indexes_validation",
+      "community": 7,
+      "norm_label": "phase 1 \u2014 models (prd \u00a78), one task each, with an integration test for indexes/validation"
+    },
+    {
+      "label": "Phase 2 \u2014 Admin auth (PRD \u00a79.1)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "backend_plan_phase_2_admin_auth_prd_9_1",
+      "community": 7,
+      "norm_label": "phase 2 \u2014 admin auth (prd \u00a79.1)"
+    },
+    {
+      "label": "Phase 3 \u2014 Queues infrastructure (PRD \u00a75.1, \u00a711)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "backend_plan_phase_3_queues_infrastructure_prd_5_1_11",
+      "community": 7,
+      "norm_label": "phase 3 \u2014 queues infrastructure (prd \u00a75.1, \u00a711)"
+    },
+    {
+      "label": "Phase 4 \u2014 Shops, categories, images (M1)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "backend_plan_phase_4_shops_categories_images_m1",
+      "community": 7,
+      "norm_label": "phase 4 \u2014 shops, categories, images (m1)"
+    },
+    {
+      "label": "Phase 5 \u2014 Apify client + profile fetch (PRD \u00a75.6, \u00a76.2)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "backend_plan_phase_5_apify_client_profile_fetch_prd_5_6_6_2",
+      "community": 7,
+      "norm_label": "phase 5 \u2014 apify client + profile fetch (prd \u00a75.6, \u00a76.2)"
+    },
+    {
+      "label": "Phase 6 \u2014 Webhook spike + Meta plumbing (M0, PRD \u00a75.3, \u00a710)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L90",
+      "_origin": "ast",
+      "id": "backend_plan_phase_6_webhook_spike_meta_plumbing_m0_prd_5_3_10",
+      "community": 7,
+      "norm_label": "phase 6 \u2014 webhook spike + meta plumbing (m0, prd \u00a75.3, \u00a710)"
+    },
+    {
+      "label": "Phase 7 \u2014 DM bot core, pure (M2, PRD \u00a75.2\u2013\u00a75.4)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "backend_plan_phase_7_dm_bot_core_pure_m2_prd_5_2_5_4",
+      "community": 7,
+      "norm_label": "phase 7 \u2014 dm bot core, pure (m2, prd \u00a75.2\u2013\u00a75.4)"
+    },
+    {
+      "label": "Phase 8 \u2014 DM bot wiring (M2, PRD \u00a75.1, \u00a75.5)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L109",
+      "_origin": "ast",
+      "id": "backend_plan_phase_8_dm_bot_wiring_m2_prd_5_1_5_5",
+      "community": 7,
+      "norm_label": "phase 8 \u2014 dm bot wiring (m2, prd \u00a75.1, \u00a75.5)"
+    },
+    {
+      "label": "Phase 9 \u2014 Reviewer sources + daily check (M3, PRD \u00a76)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "backend_plan_phase_9_reviewer_sources_daily_check_m3_prd_6",
+      "community": 7,
+      "norm_label": "phase 9 \u2014 reviewer sources + daily check (m3, prd \u00a76)"
+    },
+    {
+      "label": "Phase 10 \u2014 Moderation + wishlist admin (M3, PRD \u00a79.2)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L129",
+      "_origin": "ast",
+      "id": "backend_plan_phase_10_moderation_wishlist_admin_m3_prd_9_2",
+      "community": 7,
+      "norm_label": "phase 10 \u2014 moderation + wishlist admin (m3, prd \u00a79.2)"
+    },
+    {
+      "label": "Phase 11 \u2014 Meta compliance + landing render (M4, PRD \u00a77, \u00a710)",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L136",
+      "_origin": "ast",
+      "id": "backend_plan_phase_11_meta_compliance_landing_render_m4_prd_7_10",
+      "community": 7,
+      "norm_label": "phase 11 \u2014 meta compliance + landing render (m4, prd \u00a77, \u00a710)"
+    },
+    {
+      "label": "Phase 12 \u2014 Hardening",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L145",
+      "_origin": "ast",
+      "id": "backend_plan_phase_12_hardening",
+      "community": 7,
+      "norm_label": "phase 12 \u2014 hardening"
+    },
+    {
+      "label": "Critical files",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L154",
+      "_origin": "ast",
+      "id": "backend_plan_critical_files",
+      "community": 7,
+      "norm_label": "critical files"
+    },
+    {
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L158",
+      "_origin": "ast",
+      "id": "backend_plan_verification",
+      "community": 7,
+      "norm_label": "verification"
     },
     {
       "label": "CLAUDE.md",
@@ -1899,7 +2429,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/package.json",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "package_devdependencies",
       "target": "package_devdependencies_mongodb_memory_server",
@@ -1909,7 +2439,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0,
       "source": "package_devdependencies",
       "target": "package_devdependencies_pino_pretty",
@@ -1919,7 +2449,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/package.json",
-      "source_location": "L38",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_supertest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "package_devdependencies",
       "target": "package_devdependencies_tsx",
@@ -1949,7 +2489,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/package.json",
-      "source_location": "L39",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_types_supertest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L41",
       "weight": 1.0,
       "source": "package_devdependencies",
       "target": "package_devdependencies_typescript",
@@ -1959,7 +2509,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/package.json",
-      "source_location": "L40",
+      "source_location": "L42",
       "weight": 1.0,
       "source": "package_devdependencies",
       "target": "package_devdependencies_vitest",
@@ -1969,10 +2519,54 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_app_createapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app",
+      "target": "src_lib_db_isdbconnected",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_app",
+      "target": "src_lib_errorhandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/app.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_app",
+      "target": "src_lib_errorhandler_errorhandler",
       "confidence_score": 1.0
     },
     {
@@ -2002,7 +2596,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L8",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_admin_index",
@@ -2013,7 +2607,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L8",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_admin_index_adminrouter",
@@ -2024,7 +2618,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L9",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_landing",
@@ -2035,7 +2629,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L9",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_landing_landingrouter",
@@ -2046,7 +2640,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L7",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_media",
@@ -2057,7 +2651,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L7",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_media_mediarouter",
@@ -2068,7 +2662,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_meta",
@@ -2079,7 +2673,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L6",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_meta_metarouter",
@@ -2090,7 +2684,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_webhooks",
@@ -2101,7 +2695,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/app.ts",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_app",
       "target": "src_routes_webhooks_webhooksrouter",
@@ -2119,6 +2713,39 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/db.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_db_test",
+      "target": "src_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/app.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_app_createapp",
+      "target": "src_lib_db_isdbconnected"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/src/app.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_app_createapp",
+      "target": "src_lib_errorhandler_errorhandler"
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -2126,6 +2753,17 @@
       "source_location": "L2",
       "weight": 1.0,
       "source": "src_server",
+      "target": "src_app_createapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/db.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_db_test",
       "target": "src_app_createapp",
       "confidence_score": 1.0
     },
@@ -2143,7 +2781,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/config/env.ts",
-      "source_location": "L32",
+      "source_location": "L36",
       "weight": 1.0,
       "source": "src_config_env",
       "target": "src_config_env_env",
@@ -2163,10 +2801,43 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_lib_db",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/encryptField.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_encryptfield",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/lib/logger.ts",
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_lib_logger",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/redis.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_redis",
       "target": "src_config_env",
       "confidence_score": 1.0
     },
@@ -2185,10 +2856,43 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_lib_db",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/encryptField.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_encryptfield",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/lib/logger.ts",
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_lib_logger",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/redis.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_redis",
       "target": "src_config_env_env",
       "confidence_score": 1.0
     },
@@ -2201,6 +2905,312 @@
       "weight": 1.0,
       "source": "src_server",
       "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_lib_db",
+      "target": "src_lib_db_connectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_lib_db",
+      "target": "src_lib_db_disconnectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_lib_db",
+      "target": "src_lib_db_isdbconnected",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_db",
+      "target": "src_lib_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/db.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_db",
+      "target": "src_lib_logger_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_server",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_server",
+      "target": "src_lib_db_connectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_server",
+      "target": "src_lib_db_disconnectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_server_shutdown",
+      "target": "src_lib_db_disconnectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/encryptField.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_lib_encryptfield",
+      "target": "src_lib_encryptfield_decryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/encryptField.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_lib_encryptfield",
+      "target": "src_lib_encryptfield_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/encryptField.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_encryptfield_test",
+      "target": "src_lib_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/encryptField.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_encryptfield_test",
+      "target": "src_lib_encryptfield_encryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/encryptField.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_encryptfield_test",
+      "target": "src_lib_encryptfield_decryptfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_lib_errorhandler",
+      "target": "src_lib_errorhandler_errorhandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_lib_errorhandler",
+      "target": "src_lib_errorhandler_httperror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_errorhandler",
+      "target": "src_lib_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_lib_errorhandler",
+      "target": "src_lib_logger_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/errorHandler.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_lib_errorhandler_httperror",
+      "target": "src_lib_errorhandler_httperror_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/handle.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_lib_handle",
+      "target": "src_lib_handle_normalizehandle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/handle.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_handle_test",
+      "target": "src_lib_handle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/handle.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_handle_test",
+      "target": "src_lib_handle_normalizehandle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_lib_imagecheck",
+      "target": "src_lib_imagecheck_checkimage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_lib_imagecheck",
+      "target": "src_lib_imagecheck_imagecheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_lib_imagecheck",
+      "target": "src_lib_imagecheck_imagemime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_lib_imagecheck",
+      "target": "src_lib_imagecheck_sniffimagemime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_imagecheck_test",
+      "target": "src_lib_imagecheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/imageCheck.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_lib_imagecheck_checkimage",
+      "target": "src_lib_imagecheck_sniffimagemime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_imagecheck_test",
+      "target": "src_lib_imagecheck_checkimage",
       "confidence_score": 1.0
     },
     {
@@ -2227,8 +3237,19 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/redis.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_lib_redis",
+      "target": "src_lib_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/server.ts",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_server",
       "target": "src_lib_logger",
@@ -2249,8 +3270,19 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/redis.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_lib_redis",
+      "target": "src_lib_logger_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/server.ts",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_server",
       "target": "src_lib_logger_logger",
@@ -2265,6 +3297,111 @@
       "weight": 1.0,
       "source": "src_worker",
       "target": "src_lib_logger_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_lib_normalizefa",
+      "target": "src_lib_normalizefa_letter_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "src_lib_normalizefa",
+      "target": "src_lib_normalizefa_normalizefa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_lib_normalizefa",
+      "target": "src_lib_normalizefa_tolatindigits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_lib_normalizefa",
+      "target": "src_lib_normalizefa_topersiandigits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/normalizeFa.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_normalizefa_test",
+      "target": "src_lib_normalizefa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/normalizeFa.ts",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "src_lib_normalizefa_normalizefa",
+      "target": "src_lib_normalizefa_tolatindigits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/normalizeFa.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_normalizefa_test",
+      "target": "src_lib_normalizefa_tolatindigits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/normalizeFa.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_normalizefa_test",
+      "target": "src_lib_normalizefa_topersiandigits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/normalizeFa.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_unit_normalizefa_test",
+      "target": "src_lib_normalizefa_normalizefa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/lib/redis.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_lib_redis",
+      "target": "src_lib_redis_createredis",
       "confidence_score": 1.0
     },
     {
@@ -2565,10 +3702,30 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/server.ts",
-      "source_location": "L6",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_server",
       "target": "src_server_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_server",
+      "target": "src_server_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/server.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_server",
+      "target": "src_server_shutdown",
       "confidence_score": 1.0
     },
     {
@@ -2579,6 +3736,78 @@
       "weight": 1.0,
       "source": "src_worker_rationale_4",
       "target": "src_worker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/db.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_db_test",
+      "target": "tests_setup_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/db.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_db_test",
+      "target": "tests_setup_mongo_usemongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/setup/mongo.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_setup_mongo",
+      "target": "tests_setup_mongo_usemongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/encryptField.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_unit_encryptfield_test",
+      "target": "tests_unit_encryptfield_test_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_unit_imagecheck_test",
+      "target": "tests_unit_imagecheck_test_jpeg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_unit_imagecheck_test",
+      "target": "tests_unit_imagecheck_test_png",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/imageCheck.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_unit_imagecheck_test",
+      "target": "tests_unit_imagecheck_test_webp",
       "confidence_score": 1.0
     },
     {
@@ -2714,6 +3943,186 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "backend_plan",
+      "target": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_conventions_for_every_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_critical_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_0_foundations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_10_moderation_wishlist_admin_m3_prd_9_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_11_meta_compliance_landing_render_m4_prd_7_10",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_12_hardening",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_1_models_prd_8_one_task_each_with_an_integration_test_for_indexes_validation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_2_admin_auth_prd_9_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_3_queues_infrastructure_prd_5_1_11",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_4_shops_categories_images_m1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_5_apify_client_profile_fetch_prd_5_6_6_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_6_webhook_spike_meta_plumbing_m0_prd_5_3_10",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_7_dm_bot_core_pure_m2_prd_5_2_5_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_8_dm_bot_wiring_m2_prd_5_1_5_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_phase_9_reviewer_sources_daily_check_m3_prd_6",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/Backend-Plan.md",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
+      "target": "backend_plan_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/CLAUDE.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -2762,5 +4171,6 @@
       "confidence_score": 1.0
     }
   ],
-  "hyperedges": []
+  "hyperedges": [],
+  "built_at_commit": "c4b4914fcdbeb7dec9f8b2f42773f22a77f5582c"
 }

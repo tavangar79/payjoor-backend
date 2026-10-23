@@ -23,7 +23,11 @@ const schema = z.object({
   DAILY_CHECK_CRON: z.string().default('0 9 * * *'),
 
   SESSION_SECRET: z.string().min(32),
-  DATA_ENCRYPTION_KEY: z.string().min(1),
+  // Same value as trust-me's: base64 of exactly 32 bytes (PRD §9.1).
+  DATA_ENCRYPTION_KEY: z
+    .string()
+    .transform((v) => Buffer.from(v, 'base64'))
+    .refine((b) => b.length === 32, 'DATA_ENCRYPTION_KEY must be base64 of exactly 32 bytes'),
   TRUSTME_MONGODB_URI: z.string().optional(),
 });
 
