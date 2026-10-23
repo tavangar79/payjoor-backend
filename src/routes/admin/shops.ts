@@ -19,7 +19,7 @@ const objectId = z
   .transform((s) => toObjectId(s)!);
 const contactField = z.string().trim().max(300).nullish();
 
-const shopBody = z.object({
+export const shopBody = z.object({
   handle: z.string().trim().min(1).max(64),
   displayName: z.string().trim().min(1).max(120),
   previousHandles: z.array(z.string().trim().min(1).max(64)).max(20).optional(),
@@ -32,6 +32,8 @@ const shopBody = z.object({
 });
 // profileFetchedAt comes from the profile-preview draft the form was filled from.
 const createBody = shopBody.extend({ profileFetchedAt: z.coerce.date().optional() }).strict();
+// Promoting a wishlist entry (§9.2.2): the handle is the entry's.
+export const promoteBody = createBody.omit({ handle: true });
 const updateBody = shopBody.partial().strict();
 
 const listQuery = z.object({

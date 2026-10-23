@@ -146,10 +146,12 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 10 — Moderation + wishlist admin (M3, PRD §9.2)
 
-- [ ] 10.1 Reviews service: `approve(id, {outcome, direction, summary})` (both required, sets `publishedAt`), `reject(id, reason)`.
-- [ ] 10.2 `routes/admin/reviews.ts`: list pending (with target shop/wishlist populated), approve, reject + supertest.
-- [ ] 10.3 Wishlist service: `promote(id, shopInput)` (create shop, move pending reviews `wishlistId → shopId`, status `promoted`) in a transaction-safe order; `linkToShop(id, shopId)` (add handle to `previousHandles`, move reviews); `dismiss(id)`.
-- [ ] 10.4 `routes/admin/wishlist.ts`: list sorted by `requestCount`, promote, link, dismiss + supertest.
+*Done. Approving needs `outcome` and `direction` (summary optional), only from `pending`, and only for a review on a shop (`review_not_on_shop` otherwise: promote or link the wishlist entry first). Reject works on pending and published reviews (a published one is taken down). The list excludes `raw`; `GET /reviews/:id` includes it. Promote creates the shop from the entry's handle (body = shop fields without `handle`), then moves the reviews, then marks the entry promoted. Link adds the entry's handle to the shop's `previousHandles`; a review the shop already has for the same post is rejected as `duplicate` instead of moved. Dismiss leaves the entry's pending reviews where they are. No MongoDB transactions (mongodb-memory-server and Atlas free tier both work without a replica-set dependency); the order of steps keeps a crash recoverable.*
+
+- [x] 10.1 Reviews service: `approve(id, {outcome, direction, summary})` (both required, sets `publishedAt`), `reject(id, reason)`.
+- [x] 10.2 `routes/admin/reviews.ts`: list pending (with target shop/wishlist populated), approve, reject + supertest.
+- [x] 10.3 Wishlist service: `promote(id, shopInput)` (create shop, move pending reviews `wishlistId → shopId`, status `promoted`) in a transaction-safe order; `linkToShop(id, shopId)` (add handle to `previousHandles`, move reviews); `dismiss(id)`.
+- [x] 10.4 `routes/admin/wishlist.ts`: list sorted by `requestCount`, promote, link, dismiss + supertest.
 
 ## Phase 11 — Meta compliance + landing render (M4, PRD §7, §10)
 
