@@ -1,16 +1,16 @@
 # Graph Report - backend  (2026-10-23)
 
 ## Corpus Check
-- 115 files · ~18,575 words
+- 122 files · ~22,435 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 415 nodes · 798 edges · 51 communities (50 shown, 1 thin omitted)
+- 467 nodes · 956 edges · 48 communities (46 shown, 2 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.75)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `bce61ca4`
+- Built from commit: `f6e9158e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,6 +28,7 @@
 - [[_COMMUNITY_DmEvent.ts|DmEvent.ts]]
 - [[_COMMUNITY_Wishlist.ts|Wishlist.ts]]
 - [[_COMMUNITY_admin-import.ts|admin-import.ts]]
+- [[_COMMUNITY_budget.ts|budget.ts]]
 - [[_COMMUNITY_DeletionRequest.ts|DeletionRequest.ts]]
 - [[_COMMUNITY_ReviewerSource.ts|ReviewerSource.ts]]
 - [[_COMMUNITY_tsconfig.test.json|tsconfig.test.json]]
@@ -37,48 +38,44 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `Backend build plan (pagesanj) — micro-task todo list` - 18 edges
-2. `createShop()` - 13 edges
-3. `scripts` - 12 edges
-4. `createAdminAccount()` - 12 edges
-5. `totpCode()` - 12 edges
-6. `Env` - 12 edges
-7. `compilerOptions` - 12 edges
-8. `createApp()` - 10 edges
-9. `logger` - 10 edges
-10. `updateShop()` - 10 edges
+2. `Env` - 16 edges
+3. `createShop()` - 14 edges
+4. `scripts` - 13 edges
+5. `createAdminAccount()` - 12 edges
+6. `totpCode()` - 12 edges
+7. `logger` - 12 edges
+8. `updateShop()` - 12 edges
+9. `useMongo()` - 12 edges
+10. `compilerOptions` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `startWorkers()` --references--> `worker`  [EXTRACTED]
   backend/src/queues/startWorkers.ts → backend/package.json
-- `rejects()` --indirect_call--> `HttpError`  [INFERRED]
-  backend/tests/integration/shopsServices.test.ts → backend/src/lib/errorHandler.ts
 - `createApp()` --indirect_call--> `errorHandler()`  [INFERRED]
   backend/src/app.ts → backend/src/lib/errorHandler.ts
-- `loggedInAgent()` --calls--> `createApp()`  [EXTRACTED]
-  backend/tests/integration/adminAuthRoutes.test.ts → backend/src/app.ts
-- `admin()` --calls--> `createApp()`  [EXTRACTED]
-  backend/tests/integration/shopsRoutes.test.ts → backend/src/app.ts
+- `rejects()` --indirect_call--> `HttpError`  [INFERRED]
+  backend/tests/integration/shopsServices.test.ts → backend/src/lib/errorHandler.ts
+- `fetchProfile()` --calls--> `mapProfile()`  [EXTRACTED]
+  backend/src/queues/workers/apifyProfile.worker.ts → backend/src/apify/profile.ts
+- `createApp()` --calls--> `isDbConnected()`  [EXTRACTED]
+  backend/src/app.ts → backend/src/lib/db.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (51 total, 1 thin omitted)
+## Communities (48 total, 2 thin omitted)
 
 ### Community 0 - "index.ts"
 Cohesion: 0.10
-Nodes (31): csrfTokenFor(), requireCsrf(), SAFE_METHODS, verifyCsrf(), adminCookieOptions(), AdminIdentity, endAdminSession(), Express (+23 more)
+Nodes (32): csrfTokenFor(), requireCsrf(), SAFE_METHODS, verifyCsrf(), adminCookieOptions(), AdminIdentity, endAdminSession(), Express (+24 more)
 
 ### Community 1 - "compilerOptions"
 Cohesion: 0.14
 Nodes (13): compilerOptions, esModuleInterop, module, moduleResolution, noUncheckedIndexedAccess, outDir, resolveJsonModule, rootDir (+5 more)
 
 ### Community 3 - "logger.ts"
-Cohesion: 0.10
-Nodes (33): username, createApp(), Env, schema, connectDb(), disconnectDb(), isDbConnected(), errorHandler() (+25 more)
-
-### Community 4 - "index.ts"
-Cohesion: 0.20
-Nodes (7): syncAllIndexes(), MetaTokenDoc, metaTokenSchema, PostOwnerDoc, postOwnerSchema, admin(), PNG
+Cohesion: 0.09
+Nodes (34): username, Env, schema, connectDb(), disconnectDb(), isDbConnected(), errorHandler(), jobLogger() (+26 more)
 
 ### Community 5 - "Shop.ts"
 Cohesion: 0.22
@@ -86,7 +83,7 @@ Nodes (7): IMAGE_MIMES, SHOP_STATUSES, handleField, ShopDoc, shopSchema, ShopIma
 
 ### Community 6 - "devDependencies"
 Cohesion: 0.05
-Nodes (38): dependencies, @bull-board/api, @bull-board/express, bullmq, express, ioredis, mongoose, pino (+30 more)
+Nodes (39): dependencies, @bull-board/api, @bull-board/express, bullmq, express, ioredis, mongoose, pino (+31 more)
 
 ### Community 7 - "package.json"
 Cohesion: 0.11
@@ -97,20 +94,24 @@ Cohesion: 0.33
 Nodes (5): backend/, Commands, graphify, Rules, Structure
 
 ### Community 9 - "names.ts"
-Cohesion: 0.43
-Nodes (6): allModels, DUP, oid(), reviewInput(), sha(), shopInput()
+Cohesion: 0.24
+Nodes (9): allModels, syncAllIndexes(), MetaTokenDoc, metaTokenSchema, DUP, oid(), reviewInput(), sha() (+1 more)
 
 ### Community 10 - "DmEvent.ts"
 Cohesion: 0.40
 Nodes (4): DmEventDoc, dmEventSchema, DM_KINDS, DM_RESULTS
 
 ### Community 11 - "Wishlist.ts"
-Cohesion: 0.40
-Nodes (4): WISHLIST_SOURCES, WISHLIST_STATUSES, WishlistDoc, wishlistSchema
+Cohesion: 0.28
+Nodes (7): checkImage(), ImageCheck, ImageMime, sniffImageMime(), jpeg, png, webp
 
 ### Community 12 - "admin-import.ts"
 Cohesion: 0.26
 Nodes (9): finishJobRun(), JobRunContext, JobRunResult, startJobRun(), withJobRun(), JOB_TYPES, JobType, JobRunDoc (+1 more)
+
+### Community 15 - "budget.ts"
+Cohesion: 0.06
+Nodes (43): handle, out, BudgetCheck, canRun(), RunKind, ApifyClientOptions, ApifyError, ApifyRun (+35 more)
 
 ### Community 21 - "DeletionRequest.ts"
 Cohesion: 0.50
@@ -125,36 +126,36 @@ Cohesion: 0.33
 Nodes (5): compilerOptions, noEmit, rootDir, extends, include
 
 ### Community 36 - "encryptField.ts"
-Cohesion: 0.11
-Nodes (33): RFC-4648, RFC-6238, importAdmin(), trustMeAdmin, authenticateAdmin(), AuthResult, createAdminAccount(), reserveAttempt() (+25 more)
+Cohesion: 0.09
+Nodes (38): RFC-4648, RFC-6238, createApp(), importAdmin(), trustMeAdmin, authenticateAdmin(), AuthResult, createAdminAccount() (+30 more)
 
 ### Community 38 - "imageCheck.ts"
-Cohesion: 0.06
-Nodes (65): normalizeEmail(), normalizePhone(), normalizeWebsite(), HttpError, normalizeHandle(), checkImage(), ImageCheck, ImageMime (+57 more)
+Cohesion: 0.08
+Nodes (49): first(), mapProfile(), phone(), ScrapedProfile, website(), normalizeEmail(), normalizePhone(), normalizeWebsite() (+41 more)
 
 ### Community 45 - "Admin.ts"
-Cohesion: 0.19
-Nodes (12): Direction, DIRECTIONS, Outcome, OUTCOMES, REVIEW_SOURCE_TYPES, REVIEW_STATUSES, ReviewStatus, ShopStatus (+4 more)
+Cohesion: 0.13
+Nodes (17): ADMIN_ROLES, Direction, DIRECTIONS, Outcome, OUTCOMES, REVIEW_SOURCE_TYPES, REVIEW_STATUSES, ReviewStatus (+9 more)
 
 ## Knowledge Gaps
-- **146 isolated node(s):** `name`, `version`, `private`, `type`, `node` (+141 more)
+- **162 isolated node(s):** `name`, `version`, `private`, `type`, `node` (+157 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `startWorkers()` connect `logger.ts` to `devDependencies`?**
-  _High betweenness centrality (0.135) - this node is a cross-community bridge._
+  _High betweenness centrality (0.129) - this node is a cross-community bridge._
 - **Why does `worker` connect `devDependencies` to `logger.ts`?**
-  _High betweenness centrality (0.132) - this node is a cross-community bridge._
+  _High betweenness centrality (0.126) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `private` to the rest of the system?**
-  _146 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _162 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.09878048780487805 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
 - **Should `logger.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.0965166908563135 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09154437456324249 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05 - nodes in this community are weakly interconnected._

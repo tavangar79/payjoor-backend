@@ -22,6 +22,7 @@ const schema = z.object({
 
   APIFY_TOKEN: z.string().min(1),
   APIFY_BUDGET_STOP_USD: z.coerce.number().default(4.5),
+  APIFY_PROFILE_ACTOR: z.string().default('apify~instagram-profile-scraper'),
   DAILY_CHECK_CRON: z.string().default('0 9 * * *'),
 
   SESSION_SECRET: z.string().min(32),

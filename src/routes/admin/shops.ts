@@ -1,11 +1,15 @@
-// Shops CRUD and profile image upload (PRD §9.2.3). Refresh profile comes with the Apify profile fetch (§5.6).
+// Shops CRUD, profile image upload, and profile fetch from Instagram via the apify-profile queue (PRD §5.6, §9.2.3).
 import express, { Router } from 'express';
 import { z } from 'zod';
 import { HttpError } from '../../lib/errorHandler.js';
 import { MAX_IMAGE_BYTES } from '../../lib/imageCheck.js';
+import { normalizeHandle } from '../../lib/handle.js';
 import { toObjectId } from '../../lib/mongo.js';
 import { SHOP_STATUSES } from '../../models/enums.js';
 import { createShop, getShop, listShops, saveShopImage, updateShop } from '../../services/shops.js';
+import { QUEUES } from '../../queues/names.js';
+import { getQueue } from '../../queues/queues.js';
+import type { ProfileJobData } from '../../queues/workers/apifyProfile.worker.js';
 
 export const shopsRouter = Router();
 
@@ -26,7 +30,8 @@ const shopBody = z.object({
   profileImageId: objectId,
   contact: z.object({ email: contactField, website: contactField, phone: contactField }).strict().optional(),
 });
-const createBody = shopBody.strict();
+// profileFetchedAt comes from the profile-preview draft the form was filled from.
+const createBody = shopBody.extend({ profileFetchedAt: z.coerce.date().optional() }).strict();
 const updateBody = shopBody.partial().strict();
 
 const listQuery = z.object({
@@ -59,6 +64,35 @@ shopsRouter.post(
     res.status(201).json({ ...image, url: `/media/shop/${image.sha256}` });
   },
 );
+
+// Profile fetch (§5.6): the job runs in the worker; the admin app polls GET /profile-jobs/:jobId.
+async function enqueueProfile(data: ProfileJobData) {
+  const job = await getQueue(QUEUES.apifyProfile).add('profile', data);
+  return { jobId: job.id };
+}
+
+shopsRouter.post('/profile-preview', async (req, res) => {
+  const { handle } = z.object({ handle: z.string().trim().min(1).max(64) }).parse(req.body);
+  const normalized = normalizeHandle(handle);
+  if (!normalized) throw new HttpError(400, 'invalid_handle');
+  res.status(202).json(await enqueueProfile({ handle: normalized }));
+});
+
+shopsRouter.get('/profile-jobs/:jobId', async (req, res) => {
+  const job = await getQueue(QUEUES.apifyProfile).getJob(req.params.jobId);
+  if (!job) throw new HttpError(404, 'not_found');
+  const state = await job.getState();
+  res.json({
+    state,
+    ...(state === 'completed' && { result: job.returnvalue }),
+    ...(state === 'failed' && { error: job.failedReason }),
+  });
+});
+
+shopsRouter.post('/:id/refresh-profile', async (req, res) => {
+  const shop = await getShop(idParam(req.params.id));
+  res.status(202).json(await enqueueProfile({ handle: shop.handle, shopId: String(shop._id) }));
+});
 
 shopsRouter.get('/:id', async (req, res) => {
   res.json(await getShop(idParam(req.params.id)));

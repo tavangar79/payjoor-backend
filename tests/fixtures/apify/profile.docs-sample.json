@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1234567890",
+    "username": "maashmamad",
+    "url": "https://www.instagram.com/maashmamad",
+    "inputUrl": "https://www.instagram.com/maashmamad",
+    "fullName": "Maash Mamad | ماش ممد",
+    "biography": "Handmade bags. Order: 0912 123 4567",
+    "externalUrl": "http://maash.ir/shop",
+    "externalUrlShimmed": "https://l.instagram.com/?u=http%3A%2F%2Fmaash.ir%2Fshop",
+    "externalUrls": [{ "title": "", "url": "http://maash.ir/shop", "lynx_url": "https://l.instagram.com/?u=x", "link_type": "external" }],
+    "followersCount": 12000,
+    "followsCount": 300,
+    "postsCount": 410,
+    "isBusinessAccount": true,
+    "businessCategoryName": "Shopping & retail",
+    "businessEmail": "Hello@Maash.IR",
+    "businessPhoneNumber": "09121234567",
+    "private": false,
+    "verified": false,
+    "profilePicUrl": "https://scontent-lga3-2.cdninstagram.com/v/t51.2885-19/small.jpg",
+    "profilePicUrlHD": "https://scontent-lga3-2.cdninstagram.com/v/t51.2885-19/hd.jpg",
+    "latestPosts": []
+  }
+]

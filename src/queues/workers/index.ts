@@ -2,6 +2,7 @@
 import type { Job, WorkerOptions } from 'bullmq';
 import type { Logger } from 'pino';
 import type { QueueName } from '../names.js';
+import { apifyProfileWorker } from './apifyProfile.worker.js';
 
 export type WorkerDefinition = {
   queue: QueueName;
@@ -10,4 +11,4 @@ export type WorkerDefinition = {
   options?: Pick<WorkerOptions, 'concurrency' | 'limiter'>;
 };
 
-export const workerDefinitions: WorkerDefinition[] = [];
+export const workerDefinitions: WorkerDefinition[] = [apifyProfileWorker];

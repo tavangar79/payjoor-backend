@@ -88,12 +88,14 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 5 — Apify client + profile fetch (PRD §5.6, §6.2)
 
-- [ ] 5.1 `apify/client.ts` + test (mocked fetch): `startRun(actor, input)`, `waitForRun(runId)` polling, `getDatasetItems(datasetId)`, `getUsage()` (`/v2/users/me/limits`); token from env, never logged.
-- [ ] 5.2 `apify/budget.ts` + test: `canRun(kind)` — backfill blocked above `APIFY_BUDGET_STOP_USD`, daily allowed.
-- [ ] 5.3 **Spike (manual):** one real profile-scraper run, save output to `tests/fixtures/apify/profile.json`; confirm field names; record price in PRD §6.2 / §15.4.
-- [ ] 5.4 `apify/profile.ts` + test from fixture: map output → `{ imageUrl, email?, website?, phone? }`.
-- [ ] 5.5 `apify-profile` worker: run profile, download image, `imageCheck`, store, return draft profile (for "new shop") or apply to shop (refresh, clearing missing fields, `profileFetchedAt`); writes `jobRuns`.
-- [ ] 5.6 Admin endpoints: `POST /shops/profile-preview` (handle → enqueue + wait/poll job) and `POST /shops/:id/refresh-profile`.
+*Done except the 5.3 spike (no `backend/.env` / Apify token here). `apify/profile.ts` is built from the actor's documented output (`tests/fixtures/apify/profile.docs-sample.json`): `usernames` input, `profilePicUrlHD`/`profilePicUrl`, `externalUrl`/`externalUrls`, `fullName`. The docs don't name the email/phone fields, so the mapper reads `businessEmail`/`publicEmail`/`public_email`/`business_email` and `businessPhoneNumber`/`publicPhoneNumber`/`contactPhoneNumber`/`public_phone_number` — **check these against the real run.** The client long-polls `GET /actor-runs/:id?waitForFinish=60`; the token is only in the `Authorization` header. Budget guard reads `data.current.monthlyUsageUsd` and `data.limits.maxMonthlyUsageUsd`; profile fetches, like daily checks, run until the hard limit. Image downloads are limited to https `*.cdninstagram.com` / `*.fbcdn.net`, 20 s, 2 MB. Non-retryable Apify errors (4xx, failed run, missing profile, budget) become `UnrecoverableError`, so a paid run isn't repeated. Profile endpoints answer `202 { jobId }`; the admin app polls `GET /admin/api/shops/profile-jobs/:jobId` → `{ state, result? , error? }`. `POST /shops` accepts `profileFetchedAt` from the draft. A preview whose shop is never saved leaves an unused `shopImages` row (harmless; clean up later if needed). New env `APIFY_PROFILE_ACTOR`.*
+
+- [x] 5.1 `apify/client.ts` + test (mocked fetch): `startRun(actor, input)`, `waitForRun(runId)` polling, `getDatasetItems(datasetId)`, `getUsage()` (`/v2/users/me/limits`); token from env, never logged.
+- [x] 5.2 `apify/budget.ts` + test: `canRun(kind)` — backfill blocked above `APIFY_BUDGET_STOP_USD`, daily allowed.
+- [ ] 5.3 **Spike (manual, open):** run `npm run spike:apify-profile -- <handle>` (needs `APIFY_TOKEN` in `backend/.env`); it writes the fixture and prints the cost and keys. Then point the 5.4 tests at `profile.json`, fix any field names in `apify/profile.ts`. Original task: one real profile-scraper run, save output to `tests/fixtures/apify/profile.json`; confirm field names; record price in PRD §6.2 / §15.4.
+- [x] 5.4 `apify/profile.ts` + test from fixture: map output → `{ imageUrl, email?, website?, phone? }`.
+- [x] 5.5 `apify-profile` worker: run profile, download image, `imageCheck`, store, return draft profile (for "new shop") or apply to shop (refresh, clearing missing fields, `profileFetchedAt`); writes `jobRuns`.
+- [x] 5.6 Admin endpoints: `POST /shops/profile-preview` (handle → enqueue + wait/poll job) and `POST /shops/:id/refresh-profile`.
 
 ## Phase 6 — Webhook spike + Meta plumbing (M0, PRD §5.3, §10)
 

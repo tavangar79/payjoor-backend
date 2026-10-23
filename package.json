@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "admin:import": "tsx --env-file=.env scripts/admin-import.ts",
     "admin:create": "tsx --env-file=.env scripts/admin-create.ts",
-    "spike:webhook": "tsx --env-file=.env scripts/webhook-spike.ts"
+    "spike:webhook": "tsx --env-file=.env scripts/webhook-spike.ts",
+    "spike:apify-profile": "tsx --env-file=.env scripts/apify-profile-spike.ts"
   },
   "dependencies": {
     "@bull-board/api": "^6.10.1",
