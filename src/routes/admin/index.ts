@@ -9,6 +9,7 @@ import { shopsRouter } from './shops.js';
 import { categoriesRouter } from './categories.js';
 import { reviewerSourcesRouter } from './reviewerSources.js';
 import { jobsRouter } from './jobs.js';
+import { queuesBoard, requireAdminPage, requireSameOrigin } from './queuesBoard.js';
 
 export const adminRouter = Router();
 
@@ -30,5 +31,7 @@ adminRouter.use('/api', (_req, res) => {
   res.status(404).json({ error: 'not_found' });
 });
 
-// TODO mount Bull Board at /queues behind the admin login.
+// Bull Board, behind the admin login (§11).
+adminRouter.use('/queues', requireAdminPage, requireSameOrigin, queuesBoard);
+
 // TODO serve ../admin/dist statically, falling back to index.html for client routes.

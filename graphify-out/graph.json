@@ -130,7 +130,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_scripts_worker",
-      "community": 6,
+      "community": 9,
       "norm_label": "worker"
     },
     {
@@ -200,7 +200,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "package_dependencies",
-      "community": 4,
+      "community": 6,
       "norm_label": "dependencies"
     },
     {
@@ -210,7 +210,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "package_dependencies_bull_board_api",
-      "community": 4,
+      "community": 6,
       "norm_label": "@bull-board/api"
     },
     {
@@ -220,7 +220,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "package_dependencies_bull_board_express",
-      "community": 4,
+      "community": 6,
       "norm_label": "@bull-board/express"
     },
     {
@@ -230,7 +230,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "package_dependencies_bullmq",
-      "community": 4,
+      "community": 6,
       "norm_label": "bullmq"
     },
     {
@@ -240,7 +240,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "package_dependencies_express",
-      "community": 4,
+      "community": 6,
       "norm_label": "express"
     },
     {
@@ -250,7 +250,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "package_dependencies_ioredis",
-      "community": 4,
+      "community": 6,
       "norm_label": "ioredis"
     },
     {
@@ -260,7 +260,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "package_dependencies_mongoose",
-      "community": 4,
+      "community": 6,
       "norm_label": "mongoose"
     },
     {
@@ -270,7 +270,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "package_dependencies_pino",
-      "community": 4,
+      "community": 6,
       "norm_label": "pino"
     },
     {
@@ -280,7 +280,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "package_dependencies_pino_http",
-      "community": 4,
+      "community": 6,
       "norm_label": "pino-http"
     },
     {
@@ -290,7 +290,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "package_dependencies_zod",
-      "community": 4,
+      "community": 6,
       "norm_label": "zod"
     },
     {
@@ -410,7 +410,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_admin_import",
-      "community": 36,
+      "community": 3,
       "norm_label": "admin-import.ts"
     },
     {
@@ -420,7 +420,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "scripts_admin_import_username",
-      "community": 36,
+      "community": 3,
       "norm_label": "username"
     },
     {
@@ -520,7 +520,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_createapp",
-      "community": 36,
+      "community": 3,
       "norm_label": "createapp()"
     },
     {
@@ -1060,8 +1060,58 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_jobs_jobrun",
-      "community": 34,
+      "community": 12,
       "norm_label": "jobrun.ts"
+    },
+    {
+      "label": "JobRunResult",
+      "file_type": "code",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_jobs_jobrun_jobrunresult",
+      "community": 12,
+      "norm_label": "jobrunresult"
+    },
+    {
+      "label": "startJobRun()",
+      "file_type": "code",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_jobs_jobrun_startjobrun",
+      "community": 12,
+      "norm_label": "startjobrun()"
+    },
+    {
+      "label": "finishJobRun()",
+      "file_type": "code",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "src_jobs_jobrun_finishjobrun",
+      "community": 12,
+      "norm_label": "finishjobrun()"
+    },
+    {
+      "label": "JobRunContext",
+      "file_type": "code",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "src_jobs_jobrun_jobruncontext",
+      "community": 12,
+      "norm_label": "jobruncontext"
+    },
+    {
+      "label": "withJobRun()",
+      "file_type": "code",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "src_jobs_jobrun_withjobrun",
+      "community": 12,
+      "norm_label": "withjobrun()"
     },
     {
       "label": "cookies.ts",
@@ -1290,7 +1340,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_lib_logger_joblogger",
-      "community": 3,
+      "community": 9,
       "norm_label": "joblogger()"
     },
     {
@@ -1360,7 +1410,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_lib_redis_createredis",
-      "community": 3,
+      "community": 9,
       "norm_label": "createredis()"
     },
     {
@@ -1470,7 +1520,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_deletionrequest",
-      "community": 11,
+      "community": 45,
       "norm_label": "deletionrequest.ts"
     },
     {
@@ -1480,7 +1530,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_deletionrequest_deletionrequestschema",
-      "community": 11,
+      "community": 45,
       "norm_label": "deletionrequestschema"
     },
     {
@@ -1490,7 +1540,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_models_deletionrequest_deletionrequestdoc",
-      "community": 11,
+      "community": 45,
       "norm_label": "deletionrequestdoc"
     },
     {
@@ -1500,7 +1550,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_dmevent",
-      "community": 10,
+      "community": 45,
       "norm_label": "dmevent.ts"
     },
     {
@@ -1510,7 +1560,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_models_dmevent_dmeventschema",
-      "community": 10,
+      "community": 45,
       "norm_label": "dmeventschema"
     },
     {
@@ -1520,7 +1570,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_models_dmevent_dmeventdoc",
-      "community": 10,
+      "community": 45,
       "norm_label": "dmeventdoc"
     },
     {
@@ -1560,7 +1610,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_loginattempt",
-      "community": 22,
+      "community": 36,
       "norm_label": "loginattempt.ts"
     },
     {
@@ -1570,7 +1620,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_models_loginattempt_loginattemptschema",
-      "community": 22,
+      "community": 36,
       "norm_label": "loginattemptschema"
     },
     {
@@ -1580,7 +1630,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_models_loginattempt_loginattemptdoc",
-      "community": 22,
+      "community": 36,
       "norm_label": "loginattemptdoc"
     },
     {
@@ -1590,7 +1640,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_metatoken",
-      "community": 5,
+      "community": 45,
       "norm_label": "metatoken.ts"
     },
     {
@@ -1600,7 +1650,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_models_metatoken_metatokenschema",
-      "community": 5,
+      "community": 45,
       "norm_label": "metatokenschema"
     },
     {
@@ -1610,7 +1660,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_models_metatoken_metatokendoc",
-      "community": 5,
+      "community": 45,
       "norm_label": "metatokendoc"
     },
     {
@@ -1620,7 +1670,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_postowner",
-      "community": 23,
+      "community": 45,
       "norm_label": "postowner.ts"
     },
     {
@@ -1630,7 +1680,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_postowner_postownerschema",
-      "community": 23,
+      "community": 45,
       "norm_label": "postownerschema"
     },
     {
@@ -1640,7 +1690,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_models_postowner_postownerdoc",
-      "community": 23,
+      "community": 45,
       "norm_label": "postownerdoc"
     },
     {
@@ -1690,7 +1740,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_reviewersource",
-      "community": 21,
+      "community": 45,
       "norm_label": "reviewersource.ts"
     },
     {
@@ -1700,7 +1750,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_reviewersource_reviewersourceschema",
-      "community": 21,
+      "community": 45,
       "norm_label": "reviewersourceschema"
     },
     {
@@ -1710,7 +1760,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_models_reviewersource_reviewersourcedoc",
-      "community": 21,
+      "community": 45,
       "norm_label": "reviewersourcedoc"
     },
     {
@@ -1720,7 +1770,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_shop",
-      "community": 2,
+      "community": 45,
       "norm_label": "shop.ts"
     },
     {
@@ -1730,7 +1780,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_shop_handlefield",
-      "community": 2,
+      "community": 45,
       "norm_label": "handlefield"
     },
     {
@@ -1740,7 +1790,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_models_shop_shopschema",
-      "community": 2,
+      "community": 45,
       "norm_label": "shopschema"
     },
     {
@@ -1750,7 +1800,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_models_shop_shopdoc",
-      "community": 2,
+      "community": 45,
       "norm_label": "shopdoc"
     },
     {
@@ -1760,7 +1810,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_shopimage",
-      "community": 2,
+      "community": 45,
       "norm_label": "shopimage.ts"
     },
     {
@@ -1770,7 +1820,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_models_shopimage_shopimageschema",
-      "community": 2,
+      "community": 45,
       "norm_label": "shopimageschema"
     },
     {
@@ -1780,7 +1830,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_models_shopimage_shopimagedoc",
-      "community": 2,
+      "community": 45,
       "norm_label": "shopimagedoc"
     },
     {
@@ -1830,7 +1880,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_models_enums_shop_statuses",
-      "community": 2,
+      "community": 45,
       "norm_label": "shop_statuses"
     },
     {
@@ -1920,7 +1970,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_models_enums_reviewer_permissions",
-      "community": 21,
+      "community": 45,
       "norm_label": "reviewer_permissions"
     },
     {
@@ -1960,7 +2010,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_models_enums_dm_kinds",
-      "community": 10,
+      "community": 45,
       "norm_label": "dm_kinds"
     },
     {
@@ -1970,7 +2020,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_models_enums_dm_results",
-      "community": 10,
+      "community": 45,
       "norm_label": "dm_results"
     },
     {
@@ -1990,7 +2040,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_models_enums_jobtype",
-      "community": 45,
+      "community": 12,
       "norm_label": "jobtype"
     },
     {
@@ -2000,7 +2050,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_models_enums_deletion_statuses",
-      "community": 11,
+      "community": 45,
       "norm_label": "deletion_statuses"
     },
     {
@@ -2020,7 +2070,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_models_enums_image_mimes",
-      "community": 2,
+      "community": 45,
       "norm_label": "image_mimes"
     },
     {
@@ -2030,7 +2080,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_models_index",
-      "community": 5,
+      "community": 45,
       "norm_label": "index.ts"
     },
     {
@@ -2040,7 +2090,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_models_index_allmodels",
-      "community": 5,
+      "community": 45,
       "norm_label": "allmodels"
     },
     {
@@ -2050,7 +2100,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_models_index_syncallindexes",
-      "community": 5,
+      "community": 45,
       "norm_label": "syncallindexes()"
     },
     {
@@ -2090,8 +2140,68 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_queues",
-      "community": 58,
+      "community": 9,
       "norm_label": "queues.ts"
+    },
+    {
+      "label": "defaultJobOptions",
+      "file_type": "code",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_queues_queues_defaultjoboptions",
+      "community": 9,
+      "norm_label": "defaultjoboptions"
+    },
+    {
+      "label": "queues",
+      "file_type": "code",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_queues_queues_queues",
+      "community": 9,
+      "norm_label": "queues"
+    },
+    {
+      "label": "queueConnection()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "src_queues_queues_queueconnection",
+      "community": 9,
+      "norm_label": "queueconnection()"
+    },
+    {
+      "label": "getQueue()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "src_queues_queues_getqueue",
+      "community": 9,
+      "norm_label": "getqueue()"
+    },
+    {
+      "label": "allQueues()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "src_queues_queues_allqueues",
+      "community": 0,
+      "norm_label": "allqueues()"
+    },
+    {
+      "label": "closeQueues()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "src_queues_queues_closequeues",
+      "community": 9,
+      "norm_label": "closequeues()"
     },
     {
       "label": "schedulers.ts",
@@ -2100,8 +2210,58 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_queues_schedulers",
-      "community": 59,
+      "community": 9,
       "norm_label": "schedulers.ts"
+    },
+    {
+      "label": "SCHEDULERS",
+      "file_type": "code",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_queues_schedulers_schedulers",
+      "community": 9,
+      "norm_label": "schedulers"
+    },
+    {
+      "label": "registerSchedulers()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_queues_schedulers_registerschedulers",
+      "community": 9,
+      "norm_label": "registerschedulers()"
+    },
+    {
+      "label": "startWorkers.ts",
+      "file_type": "code",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_queues_startworkers",
+      "community": 9,
+      "norm_label": "startworkers.ts"
+    },
+    {
+      "label": "startWorkers()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_queues_startworkers_startworkers",
+      "community": 9,
+      "norm_label": "startworkers()"
+    },
+    {
+      "label": "closeWorkers()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_queues_startworkers_closeworkers",
+      "community": 9,
+      "norm_label": "closeworkers()"
     },
     {
       "label": "apifyBackfill.worker.ts",
@@ -2152,6 +2312,36 @@
       "id": "src_queues_workers_dmsend_worker",
       "community": 64,
       "norm_label": "dmsend.worker.ts"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_queues_workers_index",
+      "community": 9,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "WorkerDefinition",
+      "file_type": "code",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_queues_workers_index_workerdefinition",
+      "community": 9,
+      "norm_label": "workerdefinition"
+    },
+    {
+      "label": "workerDefinitions",
+      "file_type": "code",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_queues_workers_index_workerdefinitions",
+      "community": 9,
+      "norm_label": "workerdefinitions"
     },
     {
       "label": "postOwner.worker.ts",
@@ -2247,7 +2437,7 @@
       "label": "adminRouter",
       "file_type": "code",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L13",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "src_routes_admin_index_adminrouter",
       "community": 0,
@@ -2272,6 +2462,56 @@
       "id": "src_routes_admin_jobs_jobsrouter",
       "community": 0,
       "norm_label": "jobsrouter"
+    },
+    {
+      "label": "queuesBoard.ts",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_routes_admin_queuesboard",
+      "community": 0,
+      "norm_label": "queuesboard.ts"
+    },
+    {
+      "label": "requireAdminPage()",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_routes_admin_queuesboard_requireadminpage",
+      "community": 0,
+      "norm_label": "requireadminpage()"
+    },
+    {
+      "label": "requireSameOrigin()",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "src_routes_admin_queuesboard_requiresameorigin",
+      "community": 0,
+      "norm_label": "requiresameorigin()"
+    },
+    {
+      "label": "originHost()",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "src_routes_admin_queuesboard_originhost",
+      "community": 0,
+      "norm_label": "originhost()"
+    },
+    {
+      "label": "queuesBoard()",
+      "file_type": "code",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "src_routes_admin_queuesboard_queuesboard",
+      "community": 0,
+      "norm_label": "queuesboard()"
     },
     {
       "label": "reviewerSources.ts",
@@ -2530,18 +2770,28 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_worker",
-      "community": 3,
+      "community": 9,
       "norm_label": "worker.ts"
     },
     {
-      "label": "TODO: connect MongoDB and Redis, start every worker in src/queues/workers/,",
-      "file_type": "rationale",
+      "label": "workers",
+      "file_type": "code",
       "source_file": "backend/src/worker.ts",
-      "source_location": "L4",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "src_worker_rationale_4",
-      "community": 3,
-      "norm_label": "todo: connect mongodb and redis, start every worker in src/queues/workers/,"
+      "id": "src_worker_workers",
+      "community": 9,
+      "norm_label": "workers"
+    },
+    {
+      "label": "shutdown()",
+      "file_type": "code",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_worker_shutdown",
+      "community": 9,
+      "norm_label": "shutdown()"
     },
     {
       "label": "adminAuthRoutes.test.ts",
@@ -2614,6 +2864,16 @@
       "norm_label": "seedtrustme()"
     },
     {
+      "label": "jobRun.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/jobRun.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_integration_jobrun_test",
+      "community": 12,
+      "norm_label": "jobrun.test.ts"
+    },
+    {
       "label": "login.test.ts",
       "file_type": "code",
       "source_file": "backend/tests/integration/login.test.ts",
@@ -2660,7 +2920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_integration_models_test",
-      "community": 5,
+      "community": 45,
       "norm_label": "models.test.ts"
     },
     {
@@ -2670,7 +2930,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "tests_integration_models_test_oid",
-      "community": 5,
+      "community": 45,
       "norm_label": "oid()"
     },
     {
@@ -2680,7 +2940,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "tests_integration_models_test_sha",
-      "community": 5,
+      "community": 45,
       "norm_label": "sha()"
     },
     {
@@ -2690,7 +2950,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "tests_integration_models_test_dup",
-      "community": 5,
+      "community": 45,
       "norm_label": "dup"
     },
     {
@@ -2700,7 +2960,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_integration_models_test_shopinput",
-      "community": 5,
+      "community": 45,
       "norm_label": "shopinput()"
     },
     {
@@ -2710,8 +2970,28 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "tests_integration_models_test_reviewinput",
-      "community": 5,
+      "community": 45,
       "norm_label": "reviewinput()"
+    },
+    {
+      "label": "queues.redis.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_integration_queues_redis_test",
+      "community": 9,
+      "norm_label": "queues.redis.test.ts"
+    },
+    {
+      "label": "queuesBoard.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_integration_queuesboard_test",
+      "community": 36,
+      "norm_label": "queuesboard.test.ts"
     },
     {
       "label": "mongo.ts",
@@ -2822,6 +3102,36 @@
       "id": "tests_unit_normalizefa_test",
       "community": 39,
       "norm_label": "normalizefa.test.ts"
+    },
+    {
+      "label": "schedulers.test.ts",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/schedulers.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_unit_schedulers_test",
+      "community": 2,
+      "norm_label": "schedulers.test.ts"
+    },
+    {
+      "label": "upsertJobScheduler",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/schedulers.test.ts",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "tests_unit_schedulers_test_upsertjobscheduler",
+      "community": 2,
+      "norm_label": "upsertjobscheduler"
+    },
+    {
+      "label": "getQueue",
+      "file_type": "code",
+      "source_file": "backend/tests/unit/schedulers.test.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "tests_unit_schedulers_test_getqueue",
+      "community": 2,
+      "norm_label": "getqueue"
     },
     {
       "label": "tsconfig.json",
@@ -3117,7 +3427,7 @@
       "label": "Phase 4 \u2014 Shops, categories, images (M1)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L76",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "backend_plan_phase_4_shops_categories_images_m1",
       "community": 7,
@@ -3127,7 +3437,7 @@
       "label": "Phase 5 \u2014 Apify client + profile fetch (PRD \u00a75.6, \u00a76.2)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L85",
+      "source_location": "L87",
       "_origin": "ast",
       "id": "backend_plan_phase_5_apify_client_profile_fetch_prd_5_6_6_2",
       "community": 7,
@@ -3137,7 +3447,7 @@
       "label": "Phase 6 \u2014 Webhook spike + Meta plumbing (M0, PRD \u00a75.3, \u00a710)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L94",
+      "source_location": "L96",
       "_origin": "ast",
       "id": "backend_plan_phase_6_webhook_spike_meta_plumbing_m0_prd_5_3_10",
       "community": 7,
@@ -3147,7 +3457,7 @@
       "label": "Phase 7 \u2014 DM bot core, pure (M2, PRD \u00a75.2\u2013\u00a75.4)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L103",
+      "source_location": "L105",
       "_origin": "ast",
       "id": "backend_plan_phase_7_dm_bot_core_pure_m2_prd_5_2_5_4",
       "community": 7,
@@ -3157,7 +3467,7 @@
       "label": "Phase 8 \u2014 DM bot wiring (M2, PRD \u00a75.1, \u00a75.5)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L113",
+      "source_location": "L115",
       "_origin": "ast",
       "id": "backend_plan_phase_8_dm_bot_wiring_m2_prd_5_1_5_5",
       "community": 7,
@@ -3167,7 +3477,7 @@
       "label": "Phase 9 \u2014 Reviewer sources + daily check (M3, PRD \u00a76)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L122",
+      "source_location": "L124",
       "_origin": "ast",
       "id": "backend_plan_phase_9_reviewer_sources_daily_check_m3_prd_6",
       "community": 7,
@@ -3177,7 +3487,7 @@
       "label": "Phase 10 \u2014 Moderation + wishlist admin (M3, PRD \u00a79.2)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L133",
+      "source_location": "L135",
       "_origin": "ast",
       "id": "backend_plan_phase_10_moderation_wishlist_admin_m3_prd_9_2",
       "community": 7,
@@ -3187,7 +3497,7 @@
       "label": "Phase 11 \u2014 Meta compliance + landing render (M4, PRD \u00a77, \u00a710)",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L140",
+      "source_location": "L142",
       "_origin": "ast",
       "id": "backend_plan_phase_11_meta_compliance_landing_render_m4_prd_7_10",
       "community": 7,
@@ -3197,7 +3507,7 @@
       "label": "Phase 12 \u2014 Hardening",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L149",
+      "source_location": "L151",
       "_origin": "ast",
       "id": "backend_plan_phase_12_hardening",
       "community": 7,
@@ -3207,7 +3517,7 @@
       "label": "Critical files",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L158",
+      "source_location": "L160",
       "_origin": "ast",
       "id": "backend_plan_critical_files",
       "community": 7,
@@ -3217,7 +3527,7 @@
       "label": "Verification",
       "file_type": "document",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L162",
+      "source_location": "L164",
       "_origin": "ast",
       "id": "backend_plan_verification",
       "community": 7,
@@ -3484,6 +3794,17 @@
       "source": "package_scripts",
       "target": "package_scripts_worker",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_queues_startworkers_startworkers",
+      "target": "package_scripts_worker"
     },
     {
       "relation": "contains",
@@ -4071,6 +4392,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
+      "target": "src_app",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -4133,6 +4465,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "tests_integration_db_test",
+      "target": "src_app_createapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
       "target": "src_app_createapp",
       "confidence_score": 1.0
     },
@@ -4677,6 +5020,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
+      "target": "src_auth_login",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -4750,6 +5104,17 @@
       "source_location": "L6",
       "weight": 1.0,
       "source": "tests_integration_login_test",
+      "target": "src_auth_login_createadminaccount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
       "target": "src_auth_login_createadminaccount",
       "confidence_score": 1.0
     },
@@ -5159,6 +5524,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard",
+      "target": "src_auth_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/unit/auth.test.ts",
       "source_location": "L6",
       "weight": 1.0,
@@ -5335,6 +5711,28 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard",
+      "target": "src_auth_session_getadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard_requireadminpage",
+      "target": "src_auth_session_getadmin"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/auth.ts",
       "source_location": "L6",
       "weight": 1.0,
@@ -5484,6 +5882,17 @@
       "source_location": "L7",
       "weight": 1.0,
       "source": "tests_integration_login_test",
+      "target": "src_auth_totp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
       "target": "src_auth_totp",
       "confidence_score": 1.0
     },
@@ -5645,6 +6054,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
+      "target": "src_auth_totp_totpcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/unit/auth.test.ts",
       "source_location": "L5",
       "weight": 1.0,
@@ -5742,6 +6162,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_queues_schedulers",
+      "target": "src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/server.ts",
       "source_location": "L3",
       "weight": 1.0,
@@ -5797,11 +6228,171 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_queues_schedulers",
+      "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/server.ts",
       "source_location": "L3",
       "weight": 1.0,
       "source": "src_server",
       "target": "src_config_env_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun",
+      "target": "src_jobs_jobrun_finishjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun",
+      "target": "src_jobs_jobrun_jobruncontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun",
+      "target": "src_jobs_jobrun_jobrunresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun",
+      "target": "src_jobs_jobrun_startjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun",
+      "target": "src_jobs_jobrun_withjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun",
+      "target": "src_models_enums",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun",
+      "target": "src_models_enums_jobtype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun",
+      "target": "src_models_jobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/jobRun.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_jobrun_test",
+      "target": "src_jobs_jobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun_withjobrun",
+      "target": "src_jobs_jobrun_startjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/jobRun.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_jobrun_test",
+      "target": "src_jobs_jobrun_startjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/jobs/jobRun.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "src_jobs_jobrun_withjobrun",
+      "target": "src_jobs_jobrun_finishjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/jobRun.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_jobrun_test",
+      "target": "src_jobs_jobrun_finishjobrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/jobRun.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_jobrun_test",
+      "target": "src_jobs_jobrun_withjobrun",
       "confidence_score": 1.0
     },
     {
@@ -5900,6 +6491,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_lib_db",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -5907,6 +6509,17 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_server",
+      "target": "src_lib_db_connectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_worker",
       "target": "src_lib_db_connectdb",
       "confidence_score": 1.0
     },
@@ -5929,6 +6542,28 @@
       "source_location": "L19",
       "weight": 1.0,
       "source": "src_server_shutdown",
+      "target": "src_lib_db_disconnectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_lib_db_disconnectdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_worker_shutdown",
       "target": "src_lib_db_disconnectdb",
       "confidence_score": 1.0
     },
@@ -6243,6 +6878,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_lib_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/server.ts",
       "source_location": "L5",
       "weight": 1.0,
@@ -6255,7 +6901,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/worker.ts",
-      "source_location": "L2",
+      "source_location": "L3",
       "weight": 1.0,
       "source": "src_worker",
       "target": "src_lib_logger",
@@ -6287,6 +6933,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_lib_logger_logger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/server.ts",
       "source_location": "L5",
       "weight": 1.0,
@@ -6299,11 +6956,33 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/worker.ts",
-      "source_location": "L2",
+      "source_location": "L3",
       "weight": 1.0,
       "source": "src_worker",
       "target": "src_lib_logger_logger",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_lib_logger_joblogger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_queues_startworkers_startworkers",
+      "target": "src_lib_logger_joblogger"
     },
     {
       "relation": "contains",
@@ -6431,6 +7110,72 @@
       "source": "src_lib_redis",
       "target": "src_lib_redis_createredis",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_lib_redis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_lib_redis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_lib_redis_createredis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_queues_queues_queueconnection",
+      "target": "src_lib_redis_createredis"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_lib_redis_createredis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_queues_startworkers_startworkers",
+      "target": "src_lib_redis_createredis"
     },
     {
       "relation": "contains",
@@ -6728,6 +7473,17 @@
       "weight": 1.0,
       "source": "src_models_jobrun",
       "target": "src_models_jobrun_jobrunschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/jobRun.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_integration_jobrun_test",
+      "target": "src_models_jobrun",
       "confidence_score": 1.0
     },
     {
@@ -7481,6 +8237,544 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_schedulers",
+      "target": "src_queues_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_workers_index",
+      "target": "src_queues_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_names_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_schedulers",
+      "target": "src_queues_names_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_names_queuename",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_queues_workers_index",
+      "target": "src_queues_names_queuename",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_queues_allqueues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_queues_closequeues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_queues_defaultjoboptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_queues_getqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_queues_queueconnection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_queues_queues",
+      "target": "src_queues_queues_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_schedulers",
+      "target": "src_queues_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard",
+      "target": "src_queues_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_queues_redis_test",
+      "target": "src_queues_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
+      "target": "src_queues_queues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_queues_queues_getqueue",
+      "target": "src_queues_queues_queueconnection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/queues/queues.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_queues_queues_allqueues",
+      "target": "src_queues_queues_getqueue",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_schedulers",
+      "target": "src_queues_queues_getqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_queues_schedulers_registerschedulers",
+      "target": "src_queues_queues_getqueue"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_queues_redis_test",
+      "target": "src_queues_queues_getqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard",
+      "target": "src_queues_queues_allqueues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard_queuesboard",
+      "target": "src_queues_queues_allqueues"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_queues_closequeues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_worker_shutdown",
+      "target": "src_queues_queues_closequeues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_integration_queues_redis_test",
+      "target": "src_queues_queues_closequeues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
+      "target": "src_queues_queues_closequeues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_queues_schedulers",
+      "target": "src_queues_schedulers_registerschedulers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/schedulers.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_queues_schedulers",
+      "target": "src_queues_schedulers_schedulers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_schedulers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_queues_redis_test",
+      "target": "src_queues_schedulers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_schedulers_registerschedulers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_integration_queues_redis_test",
+      "target": "src_queues_schedulers_registerschedulers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_queues_startworkers_closeworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_queues_startworkers_startworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_queues_workers_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/startWorkers.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_queues_startworkers",
+      "target": "src_queues_workers_index_workerdefinition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_startworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_integration_queues_redis_test",
+      "target": "src_queues_startworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_startworkers_startworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_integration_queues_redis_test",
+      "target": "src_queues_startworkers_startworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_startworkers_closeworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_worker_shutdown",
+      "target": "src_queues_startworkers_closeworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queues.redis.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_integration_queues_redis_test",
+      "target": "src_queues_startworkers_closeworkers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_queues_workers_index",
+      "target": "src_queues_workers_index_workerdefinition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/workers/index.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_queues_workers_index",
+      "target": "src_queues_workers_index_workerdefinitions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_workers_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_queues_workers_index_workerdefinitions",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/auth.ts",
@@ -7568,7 +8862,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/routes/admin/index.ts",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_index_adminrouter",
@@ -7594,6 +8888,50 @@
       "weight": 1.0,
       "source": "src_routes_admin_index",
       "target": "src_routes_admin_jobs_jobsrouter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/index.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_routes_admin_index",
+      "target": "src_routes_admin_queuesboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/index.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_routes_admin_index",
+      "target": "src_routes_admin_queuesboard_queuesboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/index.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_routes_admin_index",
+      "target": "src_routes_admin_queuesboard_requireadminpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/index.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_routes_admin_index",
+      "target": "src_routes_admin_queuesboard_requiresameorigin",
       "confidence_score": 1.0
     },
     {
@@ -7692,6 +9030,57 @@
       "weight": 1.0,
       "source": "src_routes_admin_jobs",
       "target": "src_routes_admin_jobs_jobsrouter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard",
+      "target": "src_routes_admin_queuesboard_originhost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard",
+      "target": "src_routes_admin_queuesboard_queuesboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard",
+      "target": "src_routes_admin_queuesboard_requireadminpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard",
+      "target": "src_routes_admin_queuesboard_requiresameorigin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/routes/admin/queuesBoard.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "src_routes_admin_queuesboard_requiresameorigin",
+      "target": "src_routes_admin_queuesboard_originhost",
       "confidence_score": 1.0
     },
     {
@@ -7805,13 +9194,23 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "rationale_for",
+      "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/worker.ts",
-      "source_location": "L4",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "src_worker_rationale_4",
-      "target": "src_worker",
+      "source": "src_worker",
+      "target": "src_worker_shutdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/worker.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_worker",
+      "target": "src_worker_workers",
       "confidence_score": 1.0
     },
     {
@@ -7940,6 +9339,28 @@
       "weight": 1.0,
       "source": "tests_integration_importadmin_test_seedtrustme",
       "target": "tests_integration_importadmin_test_trustme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/jobRun.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_integration_jobrun_test",
+      "target": "tests_setup_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/jobRun.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_integration_jobrun_test",
+      "target": "tests_setup_mongo_usemongo",
       "confidence_score": 1.0
     },
     {
@@ -8100,6 +9521,28 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
+      "target": "tests_setup_mongo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/integration/queuesBoard.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_integration_queuesboard_test",
+      "target": "tests_setup_mongo_usemongo",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/setup/mongo.ts",
@@ -8147,6 +9590,26 @@
       "weight": 1.0,
       "source": "tests_unit_imagecheck_test",
       "target": "tests_unit_imagecheck_test_webp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/schedulers.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_unit_schedulers_test",
+      "target": "tests_unit_schedulers_test_getqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/unit/schedulers.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_unit_schedulers_test",
+      "target": "tests_unit_schedulers_test_upsertjobscheduler",
       "confidence_score": 1.0
     },
     {
@@ -8363,7 +9826,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L158",
+      "source_location": "L160",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_critical_files",
@@ -8383,7 +9846,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L133",
+      "source_location": "L135",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_10_moderation_wishlist_admin_m3_prd_9_2",
@@ -8393,7 +9856,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L140",
+      "source_location": "L142",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_11_meta_compliance_landing_render_m4_prd_7_10",
@@ -8403,7 +9866,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L149",
+      "source_location": "L151",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_12_hardening",
@@ -8443,7 +9906,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L76",
+      "source_location": "L78",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_4_shops_categories_images_m1",
@@ -8453,7 +9916,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L85",
+      "source_location": "L87",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_5_apify_client_profile_fetch_prd_5_6_6_2",
@@ -8463,7 +9926,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L94",
+      "source_location": "L96",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_6_webhook_spike_meta_plumbing_m0_prd_5_3_10",
@@ -8473,7 +9936,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L103",
+      "source_location": "L105",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_7_dm_bot_core_pure_m2_prd_5_2_5_4",
@@ -8483,7 +9946,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L113",
+      "source_location": "L115",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_8_dm_bot_wiring_m2_prd_5_1_5_5",
@@ -8493,7 +9956,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L122",
+      "source_location": "L124",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_phase_9_reviewer_sources_daily_check_m3_prd_6",
@@ -8503,7 +9966,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/Backend-Plan.md",
-      "source_location": "L162",
+      "source_location": "L164",
       "weight": 1.0,
       "source": "backend_plan_backend_build_plan_pagesanj_micro_task_todo_list",
       "target": "backend_plan_verification",
@@ -8561,5 +10024,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9a1e9670a3e2c34f6055478530ab883c8fda378f"
+  "built_at_commit": "d832a64569cabc3cc0c6f19c10b45863c476bae4"
 }

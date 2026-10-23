@@ -67,11 +67,13 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 3 — Queues infrastructure (PRD §5.1, §11)
 
-- [ ] 3.1 `queues/queues.ts`: one `Queue` per name with default job opts (3 attempts, exponential backoff, removeOnComplete limits).
-- [ ] 3.2 `jobs/jobRun.ts` + test: `startJobRun(type)` / `finishJobRun(id, {counts, costUsd, apifyRunId, error})`.
-- [ ] 3.3 `worker.ts`: connect DB + Redis, start workers from a registry, graceful close.
-- [ ] 3.4 `queues/schedulers.ts`: `upsertJobScheduler` for `apify-daily` (`DAILY_CHECK_CRON`, `Asia/Tehran`) and weekly `token-refresh`.
-- [ ] 3.5 Bull Board at `/admin/queues` behind `requireAdmin`.
+*Done. Queues are created lazily (`getQueue(name)`) on one shared lazy-connecting Redis connection, so the web app and tests don't touch Redis until a queue is used. Workers register in `queues/workers/index.ts` (empty until their phases) and start via `queues/startWorkers.ts`. `withJobRun(type, fn)` wraps a job and always writes its `jobRuns` record. Token refresh runs Mondays 04:00 Tehran (`TOKEN_REFRESH_CRON`). Bull Board redirects signed-out browsers to `/admin/login` and blocks cross-origin writes (it can't send our CSRF header). **Open:** `tests/integration/queues.redis.test.ts` (jobId dedupe, worker run, schedulers) skips without a Redis at `REDIS_URL`; it has not run yet.*
+
+- [x] 3.1 `queues/queues.ts`: one `Queue` per name with default job opts (3 attempts, exponential backoff, removeOnComplete limits).
+- [x] 3.2 `jobs/jobRun.ts` + test: `startJobRun(type)` / `finishJobRun(id, {counts, costUsd, apifyRunId, error})`.
+- [x] 3.3 `worker.ts`: connect DB + Redis, start workers from a registry, graceful close.
+- [x] 3.4 `queues/schedulers.ts`: `upsertJobScheduler` for `apify-daily` (`DAILY_CHECK_CRON`, `Asia/Tehran`) and weekly `token-refresh`.
+- [x] 3.5 Bull Board at `/admin/queues` behind `requireAdmin`.
 
 ## Phase 4 — Shops, categories, images (M1)
 
