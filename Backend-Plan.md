@@ -77,12 +77,14 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 4 — Shops, categories, images (M1)
 
-- [ ] 4.1 `services/categories.ts` + test: create (normalise, slug), rename, delete-if-unused, list with shop counts.
-- [ ] 4.2 `routes/admin/categories.ts` (zod) + supertest.
-- [ ] 4.3 `services/shops.ts` + test: create/update (normalise handles, slug, category ids exist, image required), `findByHandle` (handle or previousHandles), contact normalisation (email lower, `https://` URL, `+98` phone).
-- [ ] 4.4 Image upload: `POST /admin/api/shops/images` (raw body ≤2 MB → `imageCheck` → upsert `ShopImage` by sha256).
-- [ ] 4.5 `routes/media.ts`: `GET /media/shop/:sha256` with `nosniff`, immutable cache headers.
-- [ ] 4.6 `routes/admin/shops.ts`: list/search, get, create, update + supertest.
+*Done. Helpers in `lib/slug.ts` (slugs keep Persian letters, normalised; `-2`, `-3` on clash; set once and never changed on rename), `lib/contact.ts` (email, website, phone) and `lib/mongo.ts`. A `website` given as `http://` or with no scheme is stored as `https://`; phones: Iranian `09…`, `0…`, `9…` and `0098…` become `+98…`, others must be `+` and 8–15 digits. Renaming a shop's handle moves the old one to `previousHandles` unless the patch sets `previousHandles` itself; no handle may be used by two shops, as current or previous. `saveShopImage(bytes)` in `services/shops.ts` is shared with the Phase 5 profile fetch. Upload takes raw bytes of any content type (checked from the bytes); >2 MB → 413. Shops are created with `profileImageId` from the upload. Refresh profile (`POST /shops/:id/refresh-profile`) is in 5.6.*
+
+- [x] 4.1 `services/categories.ts` + test: create (normalise, slug), rename, delete-if-unused, list with shop counts.
+- [x] 4.2 `routes/admin/categories.ts` (zod) + supertest.
+- [x] 4.3 `services/shops.ts` + test: create/update (normalise handles, slug, category ids exist, image required), `findByHandle` (handle or previousHandles), contact normalisation (email lower, `https://` URL, `+98` phone).
+- [x] 4.4 Image upload: `POST /admin/api/shops/images` (raw body ≤2 MB → `imageCheck` → upsert `ShopImage` by sha256).
+- [x] 4.5 `routes/media.ts`: `GET /media/shop/:sha256` with `nosniff`, immutable cache headers.
+- [x] 4.6 `routes/admin/shops.ts`: list/search, get, create, update + supertest.
 
 ## Phase 5 — Apify client + profile fetch (PRD §5.6, §6.2)
 
