@@ -27,7 +27,9 @@ export type WishlistSource = (typeof WISHLIST_SOURCES)[number];
 export const WISHLIST_STATUSES = ['open', 'promoted', 'dismissed'] as const;
 
 export const DM_KINDS = ['profile', 'post', 'text', 'unknown'] as const;
+export type DmKind = (typeof DM_KINDS)[number];
 export const DM_RESULTS = ['found', 'wishlisted', 'unresolved', 'help'] as const;
+export type DmResult = (typeof DM_RESULTS)[number];
 
 export const JOB_TYPES = ['daily_check', 'backfill', 'post_owner_lookup', 'profile_fetch', 'token_refresh'] as const;
 export type JobType = (typeof JOB_TYPES)[number];

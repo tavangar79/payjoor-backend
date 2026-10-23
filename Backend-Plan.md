@@ -110,13 +110,15 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 7 — DM bot core, pure (M2, PRD §5.2–§5.4)
 
-- [ ] 7.1 `bot/parse.ts` + tests from webhook fixtures: message → `{ kind: profile|post|text|unknown, handle?, shortcode? }` (URLs, `@handle`, attachments; post → shortcode, never tagged accounts).
-- [ ] 7.2 `bot/language.ts` + test: Latin-majority → `en`, else `fa`.
-- [ ] 7.3 `i18n/fa.ts`, `i18n/en.ts`, `i18n/index.ts`: reply strings, status labels, help, unresolved, not-found (trust-me copy), "checking…", "+N more".
-- [ ] 7.4 `bot/resolve.ts` + test: shortcode → owner via injected deps (reviews cache → `postOwners` cache → "needs lookup").
-- [ ] 7.5 `bot/lookup.ts` + test: handle → `found(shop, reviews, total)` | `not_found`, via injected repo fns (published reviews, newest first, limit 5).
-- [ ] 7.6 `bot/reply.ts` + tests: build plain-text reply (name, handle, categories in lang, contact lines only if set, status + tags, reviews, "+N more", optional `link` param unused); split if too long; "on our list, not reviewed yet" when no published reviews.
-- [ ] 7.7 `bot/index.ts` + test: `handleMessage(msg, deps)` orchestration returning `{ result, replies[], needsOwnerLookup? }` — transport-agnostic (PRD §10.8).
+*Done. The parser is built from the docs-shaped samples (6.4 still open): attachments' `payload.url` first, then instagram.com URLs in the text (`/p/`, `/reel/`, `/reels/`, `/tv/`, `/<handle>/p/<code>`, `/stories/<handle>/`, profile links), then the first `@handle`; a reel attachment carrying only a CDN link gives `unknown` (help). Language: English when the message's own words (URLs and @handles removed) have at least 3 Latin letters and more Latin than Arabic-script letters. `handleMessage` takes `addWishlistRequest` as a dependency, so any transport (and 8.3) gets the wishlist step for free. Replies are split under 950 characters (Instagram's limit is 1,000). Dates are Tehran time, Jalali for Persian.*
+
+- [x] 7.1 `bot/parse.ts` + tests from webhook fixtures: message → `{ kind: profile|post|text|unknown, handle?, shortcode? }` (URLs, `@handle`, attachments; post → shortcode, never tagged accounts).
+- [x] 7.2 `bot/language.ts` + test: Latin-majority → `en`, else `fa`.
+- [x] 7.3 `i18n/fa.ts`, `i18n/en.ts`, `i18n/index.ts`: reply strings, status labels, help, unresolved, not-found (trust-me copy), "checking…", "+N more".
+- [x] 7.4 `bot/resolve.ts` + test: shortcode → owner via injected deps (reviews cache → `postOwners` cache → "needs lookup").
+- [x] 7.5 `bot/lookup.ts` + test: handle → `found(shop, reviews, total)` | `not_found`, via injected repo fns (published reviews, newest first, limit 5).
+- [x] 7.6 `bot/reply.ts` + tests: build plain-text reply (name, handle, categories in lang, contact lines only if set, status + tags, reviews, "+N more", optional `link` param unused); split if too long; "on our list, not reviewed yet" when no published reviews.
+- [x] 7.7 `bot/index.ts` + test: `handleMessage(msg, deps)` orchestration returning `{ result, replies[], needsOwnerLookup? }` — transport-agnostic (PRD §10.8).
 
 ## Phase 8 — DM bot wiring (M2, PRD §5.1, §5.5)
 
