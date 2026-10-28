@@ -1,7 +1,8 @@
-// Instagram webhooks (PRD §5.1, §5.5, §10.3).
+// Instagram webhooks (PRD §5.1, §5.5, §10.3): BoxAPI DM forwarding, plus the direct Meta route.
 import express, { Router } from 'express';
 import { env } from '../config/env.js';
 import { logger } from '../lib/logger.js';
+import { BOXAPI_SIGNATURE_HEADER, BOXAPI_TIMESTAMP_HEADER, verifyBoxApiSignature } from '../boxapi/signature.js';
 import { SIGNATURE_HEADER, verifySignature } from '../meta/signature.js';
 import { dmInboundData, dmJobId, type DmInboundData } from '../queues/jobData.js';
 import { QUEUES } from '../queues/names.js';
@@ -32,20 +33,33 @@ type MessagingEvent = {
 export function messagesFrom(body: unknown): DmInboundData[] {
   const payload = body as { object?: string; entry?: { messaging?: MessagingEvent[] }[] };
   if (payload?.object !== 'instagram' || !Array.isArray(payload.entry)) return [];
+  return fromEvents(payload.entry.flatMap((entry) => entry?.messaging ?? []));
+}
+
+/**
+ * BoxAPI envelope: `{ event_id, event_type, account_id, data }`. Only `messaging` events carry DMs.
+ * The docs show `data.messaging[]` on one page and a single event in `data` on another, so accept both.
+ */
+export function boxApiMessagesFrom(body: unknown): DmInboundData[] {
+  const payload = body as { event_type?: string; data?: { messaging?: MessagingEvent[] } & MessagingEvent };
+  if (payload?.event_type !== 'messaging' || !payload.data || typeof payload.data !== 'object') return [];
+  const data = payload.data;
+  return fromEvents(Array.isArray(data.messaging) ? data.messaging : [data]);
+}
+
+function fromEvents(events: MessagingEvent[]): DmInboundData[] {
   const out: DmInboundData[] = [];
-  for (const entry of payload.entry) {
-    for (const event of entry?.messaging ?? []) {
-      const msg = event?.message;
-      const sender = event?.sender?.id;
-      if (!msg?.mid || !sender || msg.is_echo || msg.is_deleted || sender === env.IG_ACCOUNT_ID) continue;
-      const parsed = dmInboundData.safeParse({
-        mid: msg.mid,
-        senderIgsid: sender,
-        receivedAt: new Date(event.timestamp ?? Date.now()).toISOString(),
-        message: { text: msg.text, attachments: msg.attachments },
-      });
-      if (parsed.success) out.push(parsed.data);
-    }
+  for (const event of events) {
+    const msg = event?.message;
+    const sender = event?.sender?.id;
+    if (!msg?.mid || !sender || msg.is_echo || msg.is_deleted || sender === env.IG_ACCOUNT_ID) continue;
+    const parsed = dmInboundData.safeParse({
+      mid: msg.mid,
+      senderIgsid: sender,
+      receivedAt: new Date(event.timestamp ?? Date.now()).toISOString(),
+      message: { text: msg.text, attachments: msg.attachments },
+    });
+    if (parsed.success) out.push(parsed.data);
   }
   return out;
 }
@@ -71,4 +85,29 @@ webhooksRouter.post('/instagram', express.raw({ type: () => true, limit: '1mb' }
     messages.map((m) => getQueue(QUEUES.dmInbound).add('dm', m, { jobId: dmJobId(m.mid) })),
   );
   res.status(200).send('EVENT_RECEIVED');
+});
+
+// BoxAPI forwards every DM here (PRD §5.1). Signed with the webhook secret from the BoxAPI panel;
+// with no secret set we refuse everything rather than accept unsigned requests.
+webhooksRouter.post('/boxapi', express.raw({ type: () => true, limit: '1mb' }), async (req, res) => {
+  const raw = Buffer.isBuffer(req.body) ? req.body : Buffer.alloc(0);
+  const secret = env.BoxApiWebhookSecret ?? '';
+  if (!verifyBoxApiSignature(raw, req.get(BOXAPI_SIGNATURE_HEADER), req.get(BOXAPI_TIMESTAMP_HEADER), secret)) {
+    logger.warn({ secretSet: Boolean(secret) }, 'boxapi webhook signature check failed');
+    res.sendStatus(401);
+    return;
+  }
+  let body: unknown;
+  try {
+    body = JSON.parse(raw.toString('utf8'));
+  } catch {
+    res.sendStatus(400);
+    return;
+  }
+  const messages = boxApiMessagesFrom(body);
+  // jobId = mid, so BoxAPI's retries (3 × 60 s) don't create a second job (§5.5).
+  await Promise.all(
+    messages.map((m) => getQueue(QUEUES.dmInbound).add('dm', m, { jobId: dmJobId(m.mid) })),
+  );
+  res.status(200).json({ ok: true });
 });

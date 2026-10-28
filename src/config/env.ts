@@ -25,6 +25,13 @@ const schema = z.object({
   // Store incoming message text in dmEvents.text (debugging only, §8).
   DM_STORE_TEXT: z.stringbool().default(false),
 
+  // BoxAPI (boxapi.ir): DM & Comment API (X-Api-Key), Instagram Data API and AI API (Bearer tokens).
+  BoxApiInstagramDMToken: z.string().optional(),
+  BoxApiInstagramToken: z.string().optional(),
+  BoxApiAIToken: z.string().optional(),
+  // Webhook secret generated in the BoxAPI panel; POST /webhooks/boxapi rejects everything until it's set.
+  BoxApiWebhookSecret: z.string().optional(),
+
   APIFY_TOKEN: z.string().min(1),
   APIFY_BUDGET_STOP_USD: z.coerce.number().default(4.5),
   APIFY_PROFILE_ACTOR: z.string().default('apify~instagram-profile-scraper'),
