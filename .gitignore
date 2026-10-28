@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+*.log
+coverage/
+
+# graphify: keep the report and graph, skip caches
+graphify-out/cache/
+graphify-out/memory/
+graphify-out/20*/
+tests/fixtures/webhooks/*.local.json
