@@ -1,16 +1,16 @@
-# Graph Report - backend  (2026-10-23)
+# Graph Report - backend  (2026-10-28)
 
 ## Corpus Check
-- 139 files · ~38,380 words
+- 141 files · ~39,207 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 655 nodes · 1715 edges · 28 communities (27 shown, 1 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 12 edges (avg confidence: 0.75)
+- 664 nodes · 1732 edges · 21 communities (20 shown, 1 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.75)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7d6ea73d`
+- Built from commit: `eaaae8f2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,18 +25,11 @@
 - [[_COMMUNITY_package.json|package.json]]
 - [[_COMMUNITY_backend|backend/]]
 - [[_COMMUNITY_wishlist.ts|wishlist.ts]]
-- [[_COMMUNITY_shopsServices.test.ts|shopsServices.test.ts]]
 - [[_COMMUNITY_shops.ts|shops.ts]]
-- [[_COMMUNITY_reviewerSources.ts|reviewerSources.ts]]
 - [[_COMMUNITY_webhook-spike.ts|webhook-spike.ts]]
-- [[_COMMUNITY_categories.ts|categories.ts]]
 - [[_COMMUNITY_budget.ts|budget.ts]]
-- [[_COMMUNITY_imageCheck.ts|imageCheck.ts]]
 - [[_COMMUNITY_Shop.ts|Shop.ts]]
 - [[_COMMUNITY_extractTagged.ts|extractTagged.ts]]
-- [[_COMMUNITY_ReviewerSource.ts|ReviewerSource.ts]]
-- [[_COMMUNITY_PostOwner.ts|PostOwner.ts]]
-- [[_COMMUNITY_DeletionRequest.ts|DeletionRequest.ts]]
 - [[_COMMUNITY_Shop.ts|Shop.ts]]
 - [[_COMMUNITY_index.ts|index.ts]]
 - [[_COMMUNITY_tsconfig.test.json|tsconfig.test.json]]
@@ -56,41 +49,41 @@
 10. `createAdminAccount()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `rejects()` --indirect_call--> `HttpError`  [INFERRED]
-  backend/tests/integration/shopsServices.test.ts → backend/src/lib/errorHandler.ts
+- `ingestPosts()` --indirect_call--> `post()`  [INFERRED]
+  backend/src/apify/ingest.ts → backend/tests/unit/boxapi.test.ts
 - `startWorkers()` --references--> `worker`  [EXTRACTED]
   backend/src/queues/startWorkers.ts → backend/package.json
 - `runBackfill()` --indirect_call--> `source()`  [INFERRED]
   backend/src/apify/backfill.ts → backend/tests/integration/reviewerPosts.test.ts
 - `runDailyCheck()` --indirect_call--> `source()`  [INFERRED]
   backend/src/apify/dailyCheck.ts → backend/tests/integration/reviewerPosts.test.ts
-- `createApp()` --indirect_call--> `serializeReq()`  [INFERRED]
-  backend/src/app.ts → backend/src/lib/logger.ts
+- `createApp()` --indirect_call--> `errorHandler()`  [INFERRED]
+  backend/src/app.ts → backend/src/lib/errorHandler.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (28 total, 1 thin omitted)
+## Communities (21 total, 1 thin omitted)
 
 ### Community 0 - "index.ts"
-Cohesion: 0.11
-Nodes (32): csrfTokenFor(), requireCsrf(), SAFE_METHODS, verifyCsrf(), adminCookieOptions(), AdminIdentity, endAdminSession(), Express (+24 more)
+Cohesion: 0.14
+Nodes (26): csrfTokenFor(), requireCsrf(), SAFE_METHODS, verifyCsrf(), adminCookieOptions(), AdminIdentity, endAdminSession(), Express (+18 more)
 
 ### Community 1 - "compilerOptions"
 Cohesion: 0.14
 Nodes (13): compilerOptions, esModuleInterop, module, moduleResolution, noUncheckedIndexedAccess, outDir, resolveJsonModule, rootDir (+5 more)
 
 ### Community 3 - "logger.ts"
-Cohesion: 0.07
-Nodes (53): lookupPostOwner(), jobLogger(), createRedis(), DmInboundData, dmJobId(), dmMessage, DmSendData, isFinalAttempt() (+45 more)
+Cohesion: 0.08
+Nodes (45): signBoxApiBody(), verifyBoxApiSignature(), jobLogger(), logger, createRedis(), sendText(), DmInboundData, dmMessage (+37 more)
 
 ### Community 4 - "shops.ts"
-Cohesion: 0.19
-Nodes (21): escapeRegex(), deleteCategory(), listCategories(), assertCategoriesExist(), assertHandlesFree(), ContactInput, createShop(), findByHandle() (+13 more)
+Cohesion: 0.20
+Nodes (14): REVIEWER_PERMISSIONS, ReviewerSourceDoc, reviewerSourceSchema, BackfillJobData, createBody, fields, reviewerSourcesRouter, updateBody (+6 more)
 
 ### Community 5 - "reviews.ts"
-Cohesion: 0.25
-Nodes (7): DIRECTIONS, OUTCOMES, REVIEW_SOURCE_TYPES, REVIEW_STATUSES, LIVE, ReviewDoc, reviewSchema
+Cohesion: 0.13
+Nodes (15): DIRECTIONS, OUTCOMES, REVIEW_SOURCE_TYPES, REVIEW_STATUSES, LIVE, ReviewDoc, reviewSchema, approveBody (+7 more)
 
 ### Community 6 - "devDependencies"
 Cohesion: 0.05
@@ -106,62 +99,34 @@ Nodes (5): backend/, Commands, graphify, Rules, Structure
 
 ### Community 9 - "wishlist.ts"
 Cohesion: 0.33
-Nodes (9): getShop(), ShopInput, dismiss(), entryOrThrow(), linkToShop(), listWishlist(), moveReviews(), promote() (+1 more)
-
-### Community 10 - "shopsServices.test.ts"
-Cohesion: 0.31
-Nodes (10): first(), mapProfile(), phone(), ScrapedProfile, website(), normalizeEmail(), normalizePhone(), normalizeWebsite() (+2 more)
+Nodes (5): JOB_TYPES, JobRunDoc, jobRunSchema, jobsRouter, runsQuery
 
 ### Community 11 - "shops.ts"
-Cohesion: 0.10
-Nodes (23): HttpError, toObjectId(), fetchProfile(), ProfileJobData, categoriesRouter, createBody, idParam(), name (+15 more)
-
-### Community 12 - "reviewerSources.ts"
-Cohesion: 0.33
-Nodes (5): handle, out, extractTagged(), normalizeHandle(), addRequest()
+Cohesion: 0.05
+Nodes (80): normalizeEmail(), normalizePhone(), normalizeWebsite(), HttpError, checkImage(), ImageCheck, ImageMime, sniffImageMime() (+72 more)
 
 ### Community 13 - "webhook-spike.ts"
-Cohesion: 0.13
-Nodes (18): fixture, allow(), drainSends(), PNG, samples, PNG, posts, source() (+10 more)
-
-### Community 14 - "categories.ts"
-Cohesion: 0.24
-Nodes (14): isDuplicateKey(), LETTER_MAP, normalizeFa(), toLatinDigits(), toPersianDigits(), slugify(), uniqueSlug(), CategoryDoc (+6 more)
+Cohesion: 0.12
+Nodes (19): fixture, allow(), drainSends(), PNG, samples, PNG, posts, source() (+11 more)
 
 ### Community 15 - "budget.ts"
-Cohesion: 0.09
-Nodes (39): runBackfill(), BudgetCheck, BudgetError, canRun(), RunKind, ApifyClientOptions, ApifyError, ApifyRun (+31 more)
-
-### Community 16 - "imageCheck.ts"
-Cohesion: 0.28
-Nodes (7): checkImage(), ImageCheck, ImageMime, sniffImageMime(), jpeg, png, webp
+Cohesion: 0.08
+Nodes (42): handle, out, runBackfill(), BudgetCheck, BudgetError, canRun(), RunKind, ApifyClientOptions (+34 more)
 
 ### Community 17 - "Shop.ts"
-Cohesion: 0.14
-Nodes (14): DmEventDoc, dmEventSchema, ADMIN_ROLES, DeletionStatus, Direction, DM_KINDS, DM_RESULTS, DmKind (+6 more)
+Cohesion: 0.11
+Nodes (18): DeletionRequestDoc, deletionRequestSchema, DmEventDoc, dmEventSchema, ADMIN_ROLES, DELETION_STATUSES, DM_KINDS, DM_RESULTS (+10 more)
 
 ### Community 18 - "extractTagged.ts"
-Cohesion: 0.15
-Nodes (15): postUrl(), Outcome, approveBody, listQuery, rejectBody, ApproveInput, approveReview(), createOnce() (+7 more)
-
-### Community 19 - "ReviewerSource.ts"
-Cohesion: 0.40
-Nodes (4): WISHLIST_SOURCES, WISHLIST_STATUSES, WishlistDoc, wishlistSchema
-
-### Community 20 - "PostOwner.ts"
-Cohesion: 0.24
-Nodes (9): allModels, syncAllIndexes(), PostOwnerDoc, postOwnerSchema, DUP, oid(), reviewInput(), sha() (+1 more)
-
-### Community 21 - "DeletionRequest.ts"
-Cohesion: 0.50
-Nodes (3): DeletionRequestDoc, deletionRequestSchema, DELETION_STATUSES
+Cohesion: 0.19
+Nodes (18): extractTagged(), IngestCounts, ingestPosts(), ApifyPost, postTime(), postUrl(), Direction, Outcome (+10 more)
 
 ### Community 22 - "Shop.ts"
 Cohesion: 0.22
 Nodes (7): IMAGE_MIMES, SHOP_STATUSES, handleField, ShopDoc, shopSchema, ShopImageDoc, shopImageSchema
 
 ### Community 25 - "index.ts"
-Cohesion: 0.10
+Cohesion: 0.09
 Nodes (36): BotDeps, BotOutcome, handleMessage(), detectLang(), Lang, LookupDeps, lookupHandle(), LookupResult (+28 more)
 
 ### Community 35 - "tsconfig.test.json"
@@ -170,11 +135,11 @@ Nodes (5): compilerOptions, noEmit, rootDir, extends, include
 
 ### Community 36 - "encryptField.ts"
 Cohesion: 0.07
-Nodes (46): RFC-4648, RFC-6238, createApp(), importAdmin(), pagesanjAdmin, authenticateAdmin(), AuthResult, createAdminAccount() (+38 more)
+Nodes (52): RFC-4648, RFC-6238, createApp(), importAdmin(), pagesanjAdmin, authenticateAdmin(), AuthResult, createAdminAccount() (+44 more)
 
 ### Community 43 - "signedRequest.ts"
 Cohesion: 0.06
-Nodes (49): username, app, dir, Env, schema, connectDb(), disconnectDb(), isDbConnected() (+41 more)
+Nodes (50): username, app, dir, Request, Env, schema, connectDb(), disconnectDb() (+42 more)
 
 ## Knowledge Gaps
 - **201 isolated node(s):** `name`, `version`, `private`, `type`, `node` (+196 more)
@@ -185,16 +150,16 @@ Nodes (49): username, app, dir, Env, schema, connectDb(), disconnectDb(), isDbCo
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `startWorkers()` connect `logger.ts` to `devDependencies`?**
-  _High betweenness centrality (0.106) - this node is a cross-community bridge._
+  _High betweenness centrality (0.105) - this node is a cross-community bridge._
 - **Why does `worker` connect `devDependencies` to `logger.ts`?**
-  _High betweenness centrality (0.103) - this node is a cross-community bridge._
+  _High betweenness centrality (0.102) - this node is a cross-community bridge._
 - **Are the 4 inferred relationships involving `createApp()` (e.g. with `errorHandler()` and `serializeReq()`) actually correct?**
   _`createApp()` has 4 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `version`, `private` to the rest of the system?**
   _201 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.13709677419354838 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
 - **Should `logger.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06807511737089202 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07759562841530054 - nodes in this community are weakly interconnected._
