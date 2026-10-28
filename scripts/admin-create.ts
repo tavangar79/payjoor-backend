@@ -1,5 +1,5 @@
-// npm run admin:create -- <username>: password from ADMIN_PASSWORD, prints otpauth URL once, issuer TrustMe (PRD §9.1).
-// For a bot-only admin. To reuse a trust-me admin (same authenticator entry), use admin:import instead.
+// npm run admin:create -- <username>: password from ADMIN_PASSWORD, prints otpauth URL once, issuer Pagesanj (PRD §9.1).
+// For a bot-only admin. To reuse a pagesanj admin (same authenticator entry), use admin:import instead.
 import { env } from '../src/config/env.js';
 import { connectDb, disconnectDb } from '../src/lib/db.js';
 import { createAdminAccount, MIN_PASSWORD_LENGTH } from '../src/auth/login.js';

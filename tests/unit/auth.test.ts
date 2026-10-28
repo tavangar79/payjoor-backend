@@ -8,7 +8,7 @@ import { csrfTokenFor, verifyCsrf } from '../../src/auth/csrf.js';
 import { readCookie } from '../../src/lib/cookies.js';
 
 describe('password', () => {
-  it('hashes in trust-me format and verifies', async () => {
+  it('hashes in pagesanj format and verifies', async () => {
     const h = await hashPassword('a-long-enough-password');
     expect(h).toMatch(/^scrypt\$16384\$8\$1\$[A-Za-z0-9+/=]+\$[A-Za-z0-9+/=]+$/);
     expect(await verifyPassword('a-long-enough-password', h)).toBe(true);
@@ -22,7 +22,7 @@ describe('password', () => {
   });
 });
 
-describe('totp (trust-me vectors)', () => {
+describe('totp (pagesanj vectors)', () => {
   const S = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ';
 
   it('matches RFC 6238 SHA-1 vectors', () => {
@@ -39,14 +39,14 @@ describe('totp (trust-me vectors)', () => {
     expect(verifyTotp(S, 'abcdef', 59)).toBeNull();
   });
 
-  it('round-trips base32 and builds a TrustMe otpauth url', () => {
+  it('round-trips base32 and builds a Pagesanj otpauth url', () => {
     for (let n = 1; n < 40; n++) {
       const b = randomBytes(n);
       expect(base32Decode(base32Encode(b)).equals(b)).toBe(true);
     }
     const s = generateTotpSecret();
     expect(base32Decode(s).length).toBe(20);
-    expect(otpauthUrl(s, 'founder')).toBe(`otpauth://totp/TrustMe:founder?secret=${s}&issuer=TrustMe`);
+    expect(otpauthUrl(s, 'founder')).toBe(`otpauth://totp/Pagesanj:founder?secret=${s}&issuer=Pagesanj`);
   });
 });
 

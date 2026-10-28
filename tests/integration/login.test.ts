@@ -1,4 +1,4 @@
-// Ported from trust-me src/server/auth/login.test.ts (audit-log assertions dropped).
+// Ported from pagesanj src/server/auth/login.test.ts (audit-log assertions dropped).
 import { describe, expect, it } from 'vitest';
 import { useMongo } from '../setup/mongo.js';
 import { Admin, TOTP_AAD } from '../../src/models/Admin.js';

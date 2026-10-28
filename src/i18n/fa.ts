@@ -1,4 +1,4 @@
-// Persian bot reply strings (PRD §5.4). Status labels and the "not reviewed" guidance follow trust-me's copy.
+// Persian bot reply strings (PRD §5.4). Status labels and the "not reviewed" guidance follow pagesanj's copy.
 import { toPersianDigits } from '../lib/normalizeFa.js';
 import type { BotStrings } from './index.js';
 

@@ -1,5 +1,5 @@
-// Admin password hashing, copied from trust-me src/server/auth/password.ts (PRD §8 admins, §9.1).
-// Keep the format byte-compatible so imported trust-me hashes verify: `scrypt$N$r$p$<salt b64>$<hash b64>`.
+// Admin password hashing, copied from pagesanj src/server/auth/password.ts (PRD §8 admins, §9.1).
+// Keep the format byte-compatible so imported pagesanj hashes verify: `scrypt$N$r$p$<salt b64>$<hash b64>`.
 import { randomBytes, scrypt, timingSafeEqual } from 'node:crypto';
 
 const N = 16384;

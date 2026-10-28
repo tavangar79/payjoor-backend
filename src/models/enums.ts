@@ -1,4 +1,4 @@
-// Enum values shared by models, services and the admin API (PRD §8). Same values as trust-me where they overlap.
+// Enum values shared by models, services and the admin API (PRD §8). Same values as pagesanj where they overlap.
 export const SHOP_STATUSES = ['serious_warning', 'warning', 'mixed', 'recommended', 'no_known_issues'] as const;
 export type ShopStatus = (typeof SHOP_STATUSES)[number];
 

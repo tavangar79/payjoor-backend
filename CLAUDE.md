@@ -8,7 +8,7 @@ Express web process (`src/server.ts`) and BullMQ worker process (`src/worker.ts`
 - `src/meta/`, `src/apify/`: external integrations. `src/services/`: domain logic shared by routes and workers.
 - `src/models/`: one Mongoose model per collection in PRD §8. `src/queues/`: queue names, instances, schedulers, `workers/`.
 - `src/routes/`: webhooks, meta callbacks, media, landing (renders `../web/dist`), `admin/` JSON API (serves `../admin/dist`).
-- `src/auth/`, `src/lib/encryptField.ts`: copied from trust-me; keep formats byte-compatible (PRD §9.1).
+- `src/auth/`, `src/lib/encryptField.ts`: copied from pagesanj; keep formats byte-compatible (PRD §9.1).
 
 ## Rules
 

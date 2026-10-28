@@ -1,5 +1,5 @@
 // admins: people who can log in to the admin panel (PRD §8, §9.1).
-// Same fields and formats as trust-me's AdminAccount, so `admin:import` copies a record as is.
+// Same fields and formats as pagesanj's AdminAccount, so `admin:import` copies a record as is.
 import mongoose, { Schema, type InferSchemaType } from 'mongoose';
 import { ADMIN_ROLES } from './enums.js';
 

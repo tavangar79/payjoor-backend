@@ -1,4 +1,4 @@
-// AES-256-GCM field encryption, copied from trust-me src/server/crypto.ts (PRD §9.1).
+// AES-256-GCM field encryption, copied from pagesanj src/server/crypto.ts (PRD §9.1).
 // Keep byte-compatible: `v1:<iv b64>:<tag b64>:<ciphertext b64>`, AAD per use (`admin:totp`, `meta:token`).
 import { createCipheriv, createDecipheriv, randomBytes } from 'node:crypto';
 import { env } from '../config/env.js';

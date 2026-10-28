@@ -1,4 +1,4 @@
-// Persian/Arabic text normalisation, copied from trust-me src/domain/normalize.ts (PRD §8 categories).
+// Persian/Arabic text normalisation, copied from pagesanj src/domain/normalize.ts (PRD §8 categories).
 // Keep the logic identical so category names normalise the same way in both apps.
 const PERSIAN_DIGITS = '۰۱۲۳۴۵۶۷۸۹';
 const ARABIC_INDIC_DIGITS = '٠١٢٣٤٥٦٧٨٩';

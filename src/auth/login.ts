@@ -1,5 +1,5 @@
-// Admin login with lockout, copied from trust-me src/server/auth/login.ts (PRD §9.1).
-// Changes from trust-me: no audit log collection (pino logs instead) and the bot's Admin model.
+// Admin login with lockout, copied from pagesanj src/server/auth/login.ts (PRD §9.1).
+// Changes from pagesanj: no audit log collection (pino logs instead) and the bot's Admin model.
 import type { Types } from 'mongoose';
 import { Admin, TOTP_AAD } from '../models/Admin.js';
 import { LoginAttempt } from '../models/LoginAttempt.js';

@@ -11,10 +11,10 @@ describe('encryptField', () => {
     expect(decryptField(t, key, 'admin:totp')).toBe('secret');
   });
 
-  it('decrypts a token produced by trust-me', () => {
-    // Generated with trust-me's src/server/crypto.ts, key = 32 bytes of 0x07.
-    const fromTrustMe = 'v1:0wzVUZs1WUQGbjVM:mYmcaK+W8QNj4e5iZ2BCDw==:KAT6TUSbKcyyz1dHl3xUEQ==';
-    expect(decryptField(fromTrustMe, Buffer.alloc(32, 7), 'admin:totp')).toBe('JBSWY3DPEHPK3PXP');
+  it('decrypts a token produced by pagesanj', () => {
+    // Generated with pagesanj's src/server/crypto.ts, key = 32 bytes of 0x07.
+    const fromPagesanj = 'v1:0wzVUZs1WUQGbjVM:mYmcaK+W8QNj4e5iZ2BCDw==:KAT6TUSbKcyyz1dHl3xUEQ==';
+    expect(decryptField(fromPagesanj, Buffer.alloc(32, 7), 'admin:totp')).toBe('JBSWY3DPEHPK3PXP');
   });
 
   it('rejects the wrong AAD, wrong key, tampering and bad versions', () => {

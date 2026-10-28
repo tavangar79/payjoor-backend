@@ -4,12 +4,12 @@
 
 The repo has a skeleton only: every file under `backend/src/` is a 2–10 line stub (header comment + `export {}` or TODOs). Only `config/env.ts`, `lib/logger.ts`, `app.ts`, `server.ts` and `queues/names.ts` contain real code. The goal is to build the whole backend first (PRD §5–§12), before the admin and web UIs, in small verifiable steps that follow the PRD milestones (M0–M4).
 
-Reuse source: the trust-me repo is at `E:\Projects\trust-me`. Copy byte-compatible from it:
+Reuse source: the pagesanj repo is at `E:\Projects\pagesanj`. Copy byte-compatible from it:
 - `src/server/crypto.ts` (+ test) → `backend/src/lib/encryptField.ts`
 - `src/server/auth/{totp,password,login,session,cookie,client-ip}.ts` (+ tests) → `backend/src/auth/`
 - `src/domain/normalize.ts` → `backend/src/lib/normalizeFa.ts`
 - `OUTCOMES` enum from `src/domain/types.ts`
-trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions) and adapt to Express; keep formats identical.
+pagesanj is Next.js, so strip Next-specific bits (cookies() API, server actions) and adapt to Express; keep formats identical.
 
 ## Conventions for every task
 
@@ -22,15 +22,15 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 0 — Foundations
 
-- [x] 0.1 Add deps: `ioredis` (have), `cookie-parser` or own cookie helper, `zod` (have), dev: `supertest`, `@types/supertest`. Decide `nanoid`/`crypto.randomUUID` for codes (prefer `node:crypto`). *Done: added supertest + @types/supertest; no cookie-parser (cookie helper comes from trust-me in 2.3); codes use `node:crypto`.*
+- [x] 0.1 Add deps: `ioredis` (have), `cookie-parser` or own cookie helper, `zod` (have), dev: `supertest`, `@types/supertest`. Decide `nanoid`/`crypto.randomUUID` for codes (prefer `node:crypto`). *Done: added supertest + @types/supertest; no cookie-parser (cookie helper comes from pagesanj in 2.3); codes use `node:crypto`.*
 - [x] 0.2 `tests/setup/mongo.ts`: mongodb-memory-server helper (start, connect mongoose, clear collections, stop); wire as vitest `globalSetup`/helper. Test env vars via `vitest.config.ts` `env` so `config/env.ts` parses in tests.
 - [x] 0.3 `lib/db.ts`: `connectDb()` / `disconnectDb()` with mongoose, logs host only.
 - [x] 0.4 `lib/redis.ts`: `createRedis()` ioredis connection with `maxRetriesPerRequest: null` (BullMQ requirement).
 - [x] 0.5 `server.ts`: connect DB before listen; graceful shutdown on SIGTERM/SIGINT.
 - [x] 0.6 `app.ts` + `lib/errorHandler.ts` (with `HttpError`): error handler middleware (zod error → 400, unknown → 500, no stack in prod); `/healthz` checks mongo state.
 - [x] 0.7 `lib/handle.ts` + test: `normalizeHandle()` (lowercase, strip `@`, trailing `/`, query string, validate `[a-z0-9._]{1,30}`).
-- [x] 0.8 `lib/normalizeFa.ts` + test: copy from trust-me.
-- [x] 0.9 `lib/encryptField.ts` + test: copy trust-me `crypto.ts` (AES-256-GCM, `v1:<iv>:<tag>:<ct>`, AAD). Add test that decrypts a fixture produced by trust-me. *Also: `DATA_ENCRYPTION_KEY` in `env.ts` now parses to a 32-byte Buffer, as in trust-me.*
+- [x] 0.8 `lib/normalizeFa.ts` + test: copy from pagesanj.
+- [x] 0.9 `lib/encryptField.ts` + test: copy pagesanj `crypto.ts` (AES-256-GCM, `v1:<iv>:<tag>:<ct>`, AAD). Add test that decrypts a fixture produced by pagesanj. *Also: `DATA_ENCRYPTION_KEY` in `env.ts` now parses to a 32-byte Buffer, as in pagesanj.*
 - [x] 0.10 `lib/imageCheck.ts` + test: sniff JPEG/PNG/WebP magic bytes, enforce ≤2 MB, return `{ mime, sha256 }`.
 
 ## Phase 1 — Models (PRD §8), one task each, with an integration test for indexes/validation
@@ -48,22 +48,22 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 - [x] 1.9 `JobRun`.
 - [x] 1.10 `DeletionRequest` (unique `confirmationCode`, index `igsidHash`).
 - [x] 1.11 `MetaToken` (singleton).
-- [x] 1.12 `Admin` + `LoginAttempt` (match trust-me field names/formats).
+- [x] 1.12 `Admin` + `LoginAttempt` (match pagesanj field names/formats).
 - [x] 1.13 `models/index.ts` barrel + `syncIndexes()` call at startup in dev.
 
 ## Phase 2 — Admin auth (PRD §9.1)
 
-*Done. Differences from the task list: trust-me's `client-ip.ts` is replaced by Express `trust proxy` behind a new `TRUST_PROXY` env var (lockout keys on `req.ip`); there is no separate `/csrf` route, the CSRF token comes back from `POST /login` and `GET /me`; the import logic lives in `src/auth/importAdmin.ts` so it can be tested; logins are logged with pino instead of trust-me's audit collection. Session cookie is `ps_admin` (path `/admin`, httpOnly, sameSite strict, secure in production, 12 h). The admin API only accepts JSON.*
+*Done. Differences from the task list: pagesanj's `client-ip.ts` is replaced by Express `trust proxy` behind a new `TRUST_PROXY` env var (lockout keys on `req.ip`); there is no separate `/csrf` route, the CSRF token comes back from `POST /login` and `GET /me`; the import logic lives in `src/auth/importAdmin.ts` so it can be tested; logins are logged with pino instead of pagesanj's audit collection. Session cookie is `ps_admin` (path `/admin`, httpOnly, sameSite strict, secure in production, 12 h). The admin API only accepts JSON.*
 
-- [x] 2.1 `auth/password.ts` + test: copy trust-me scrypt (`scrypt$N$r$p$salt$hash`).
-- [x] 2.2 `auth/totp.ts` + test: copy trust-me (SHA-1, 6 digits, ±1 step, constant-time, returns step).
-- [x] 2.3 `auth/session.ts` + test: copy trust-me signed-cookie session; Express `requireAdmin` middleware sets `req.admin`.
+- [x] 2.1 `auth/password.ts` + test: copy pagesanj scrypt (`scrypt$N$r$p$salt$hash`).
+- [x] 2.2 `auth/totp.ts` + test: copy pagesanj (SHA-1, 6 digits, ±1 step, constant-time, returns step).
+- [x] 2.3 `auth/session.ts` + test: copy pagesanj signed-cookie session; Express `requireAdmin` middleware sets `req.admin`.
 - [x] 2.4 `auth/csrf.ts` + test: per-session token (HMAC of session id), `GET /admin/api/auth/csrf`, middleware checks `X-CSRF-Token` on non-GET.
-- [x] 2.5 `auth/login.ts` + integration test: copy trust-me lockout (reserve attempt before check, 5/15min, same error message), atomic `lastTotpStep` update.
+- [x] 2.5 `auth/login.ts` + integration test: copy pagesanj lockout (reserve attempt before check, 5/15min, same error message), atomic `lastTotpStep` update.
 - [x] 2.6 `routes/admin/auth.ts`: `POST /login`, `POST /logout`, `GET /me`; supertest test.
 - [x] 2.7 `routes/admin/index.ts`: mount `requireAdmin` + CSRF on all `/api/*` except login/csrf.
-- [x] 2.8 `scripts/admin-create.ts`: reads `ADMIN_PASSWORD`, prints `otpauth://` (issuer `TrustMe`) once.
-- [x] 2.9 `scripts/admin-import.ts`: read-only connect to `TRUSTME_MONGODB_URI`, copy `username, passwordHash, totpSecretEnc, role`.
+- [x] 2.8 `scripts/admin-create.ts`: reads `ADMIN_PASSWORD`, prints `otpauth://` (issuer `Pagesanj`) once.
+- [x] 2.9 `scripts/admin-import.ts`: read-only connect to `PAGESANJ_MONGODB_URI`, copy `username, passwordHash, totpSecretEnc, role`.
 
 ## Phase 3 — Queues infrastructure (PRD §5.1, §11)
 
@@ -114,7 +114,7 @@ trust-me is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 - [x] 7.1 `bot/parse.ts` + tests from webhook fixtures: message → `{ kind: profile|post|text|unknown, handle?, shortcode? }` (URLs, `@handle`, attachments; post → shortcode, never tagged accounts).
 - [x] 7.2 `bot/language.ts` + test: Latin-majority → `en`, else `fa`.
-- [x] 7.3 `i18n/fa.ts`, `i18n/en.ts`, `i18n/index.ts`: reply strings, status labels, help, unresolved, not-found (trust-me copy), "checking…", "+N more".
+- [x] 7.3 `i18n/fa.ts`, `i18n/en.ts`, `i18n/index.ts`: reply strings, status labels, help, unresolved, not-found (pagesanj copy), "checking…", "+N more".
 - [x] 7.4 `bot/resolve.ts` + test: shortcode → owner via injected deps (reviews cache → `postOwners` cache → "needs lookup").
 - [x] 7.5 `bot/lookup.ts` + test: handle → `found(shop, reviews, total)` | `not_found`, via injected repo fns (published reviews, newest first, limit 5).
 - [x] 7.6 `bot/reply.ts` + tests: build plain-text reply (name, handle, categories in lang, contact lines only if set, status + tags, reviews, "+N more", optional `link` param unused); split if too long; "on our list, not reviewed yet" when no published reviews.

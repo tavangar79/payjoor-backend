@@ -1,4 +1,4 @@
-// Admin session: signed cookie as in trust-me src/server/auth/session.ts + admin.ts, adapted to Express (PRD §9.1).
+// Admin session: signed cookie as in pagesanj src/server/auth/session.ts + admin.ts, adapted to Express (PRD §9.1).
 // Token: `base64url(json).base64url(HMAC-SHA256)` with `{ aid, exp }`; `exp` is unix seconds.
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import type { Request, RequestHandler, Response } from 'express';

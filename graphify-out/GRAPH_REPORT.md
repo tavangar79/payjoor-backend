@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7de1093b`
+- Built from commit: `7d6ea73d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -170,7 +170,7 @@ Nodes (5): compilerOptions, noEmit, rootDir, extends, include
 
 ### Community 36 - "encryptField.ts"
 Cohesion: 0.07
-Nodes (46): RFC-4648, RFC-6238, createApp(), importAdmin(), trustMeAdmin, authenticateAdmin(), AuthResult, createAdminAccount() (+38 more)
+Nodes (46): RFC-4648, RFC-6238, createApp(), importAdmin(), pagesanjAdmin, authenticateAdmin(), AuthResult, createAdminAccount() (+38 more)
 
 ### Community 43 - "signedRequest.ts"
 Cohesion: 0.06

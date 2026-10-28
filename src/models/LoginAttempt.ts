@@ -1,4 +1,4 @@
-// loginAttempts: failed-login lockout, as in trust-me (PRD §8, §9.1).
+// loginAttempts: failed-login lockout, as in pagesanj (PRD §8, §9.1).
 import mongoose, { Schema, type InferSchemaType } from 'mongoose';
 
 const loginAttemptSchema = new Schema(

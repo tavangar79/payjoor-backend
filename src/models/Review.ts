@@ -42,7 +42,7 @@ reviewSchema.pre('validate', function () {
   }
 });
 
-// Only one live (pending or published) review per (target, postShortcode), as in trust-me.
+// Only one live (pending or published) review per (target, postShortcode), as in pagesanj.
 reviewSchema.index(
   { shopId: 1, postShortcode: 1 },
   { unique: true, partialFilterExpression: { shopId: { $exists: true }, status: LIVE } },

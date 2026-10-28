@@ -208,7 +208,7 @@ describe('models', () => {
   });
 
   describe('Admin and LoginAttempt', () => {
-    it('stores trust-me compatible admin records', async () => {
+    it('stores pagesanj compatible admin records', async () => {
       const a = await Admin.create({ username: 'Mohamad', passwordHash: 'scrypt$16384$8$1$s$h', totpSecretEnc: 'v1:a:b:c' });
       expect(a).toMatchObject({ username: 'mohamad', role: 'owner' });
       await expect(

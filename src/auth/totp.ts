@@ -1,5 +1,5 @@
-// TOTP (RFC 6238, SHA-1, 6 digits, 30 s), copied from trust-me src/server/auth/totp.ts (PRD §9.1).
-// Same secrets as trust-me, so the admin's existing "TrustMe" authenticator entry works here too.
+// TOTP (RFC 6238, SHA-1, 6 digits, 30 s), copied from pagesanj src/server/auth/totp.ts (PRD §9.1).
+// Same secrets as pagesanj, so the admin's existing "Pagesanj" authenticator entry works here too.
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
@@ -74,6 +74,6 @@ export function verifyTotp(secret: string, code: string, unixSeconds: number): n
   return matched;
 }
 
-export function otpauthUrl(secret: string, account: string, issuer = 'TrustMe'): string {
+export function otpauthUrl(secret: string, account: string, issuer = 'Pagesanj'): string {
   return `otpauth://totp/${encodeURIComponent(issuer)}:${encodeURIComponent(account)}?secret=${secret}&issuer=${encodeURIComponent(issuer)}`;
 }
