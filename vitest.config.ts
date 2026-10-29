@@ -11,7 +11,6 @@ export default defineConfig({
       NODE_ENV: 'test',
       LOG_LEVEL: 'fatal',
       PUBLIC_BASE_URL: 'http://localhost:3000',
-      CONTACT_EMAIL: 'test@example.com',
       MONGODB_URI: 'mongodb://localhost:27017/pagesanj-test',
       REDIS_URL: 'redis://localhost:6379',
       BOXAPI_INSTAGRAM_TOKEN: 'test-boxapi-token',

@@ -5,13 +5,10 @@ const schema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   PORT: z.coerce.number().int().default(3000),
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']).default('info'),
+  // The website's public URL (web/), used for the data-deletion status link.
   PUBLIC_BASE_URL: z.url(),
   // True behind one trusted reverse proxy, so req.ip (login lockout key) is the real client IP.
   TRUST_PROXY: z.stringbool().default(false),
-  CONTACT_EMAIL: z.email(),
-  // Shown on the website (PRD §7.2, §7.3): the bot's Instagram handle and the company that runs the app.
-  SITE_INSTAGRAM_HANDLE: z.string().trim().transform((v) => v.replace(/^@/, '')).optional(),
-  COMPANY_NAME: z.string().trim().min(1).optional(),
 
   MONGODB_URI: z.string().min(1),
   REDIS_URL: z.string().min(1),

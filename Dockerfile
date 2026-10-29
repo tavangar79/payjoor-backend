@@ -1,7 +1,6 @@
-# Backend image: Express web process and BullMQ worker process (PRD §11). Build context is the repo root.
-# It needs the admin and web builds as named contexts, which docker-compose.yml passes in; by hand:
-#   docker build -f backend/Dockerfile --build-context admin=docker-image://pagesanj/admin \
-#     --build-context web=docker-image://pagesanj/web .
+# Backend image (PRD §11): the API (webhooks, media, admin JSON API, Bull Board) and the BullMQ worker.
+# Build context is the repo root, so the root package-lock.json and the npm workspaces resolve:
+#   docker build -f backend/Dockerfile .
 # Default command runs the web process; the worker runs `node dist/worker.js` from the same image.
 
 FROM node:22-alpine AS build
@@ -15,7 +14,6 @@ RUN npm ci -w backend --include-workspace-root=false
 COPY backend/ backend/
 RUN npm run build -w backend
 
-# Production deps: the backend's, plus web's react/react-dom, which the SSR bundle imports at runtime.
 FROM node:22-alpine AS deps
 WORKDIR /app
 ENV MONGOMS_DISABLE_POSTINSTALL=1
@@ -23,7 +21,7 @@ COPY package.json package-lock.json ./
 COPY admin/package.json admin/
 COPY web/package.json web/
 COPY backend/package.json backend/
-RUN npm ci --omit=dev -w backend -w web --include-workspace-root=false
+RUN npm ci --omit=dev -w backend --include-workspace-root=false
 
 FROM node:22-alpine
 ENV NODE_ENV=production
@@ -33,9 +31,6 @@ COPY package.json ./
 COPY backend/package.json backend/
 COPY --from=build /app/backend/dist backend/dist
 COPY backend/scripts backend/scripts
-# The backend resolves ../web/dist and ../admin/dist relative to backend/dist (routes/landing.ts, routes/admin).
-COPY --from=web /dist web/dist
-COPY --from=admin /dist admin/dist
 WORKDIR /app/backend
 USER node
 EXPOSE 3000

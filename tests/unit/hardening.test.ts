@@ -52,7 +52,7 @@ describe('log redaction', () => {
 });
 
 describe('security headers', () => {
-  it('sets them on every response, with a CSP on our HTML only', async () => {
+  it('sets them on every response', async () => {
     const app = createApp();
     const health = await request(app).get('/healthz');
     expect(health.headers).toMatchObject({
@@ -61,10 +61,6 @@ describe('security headers', () => {
       'referrer-policy': 'strict-origin-when-cross-origin',
     });
     expect(health.headers['x-powered-by']).toBeUndefined();
-    expect(health.headers['content-security-policy']).toBeUndefined();
-    const page = await request(app).get('/').set('User-Agent', 'facebookexternalhit/1.1');
-    expect(page.status).toBe(302);
-    expect(page.headers['content-security-policy']).toContain("frame-ancestors 'none'");
   });
 
   it('caps body sizes', async () => {
