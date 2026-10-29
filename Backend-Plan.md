@@ -70,9 +70,9 @@ pagesanj is Next.js, so strip Next-specific bits (cookies() API, server actions)
 *Done. Queues are created lazily (`getQueue(name)`) on one shared lazy-connecting Redis connection, so the web app and tests don't touch Redis until a queue is used. Workers register in `queues/workers/index.ts` (empty until their phases) and start via `queues/startWorkers.ts`. `withJobRun(type, fn)` wraps a job and always writes its `jobRuns` record. Token refresh runs Mondays 04:00 Tehran (`TOKEN_REFRESH_CRON`). Bull Board redirects signed-out browsers to `/admin/login` and blocks cross-origin writes (it can't send our CSRF header). **Open:** `tests/integration/queues.redis.test.ts` (jobId dedupe, worker run, schedulers) skips without a Redis at `REDIS_URL`; it has not run yet.*
 
 - [x] 3.1 `queues/queues.ts`: one `Queue` per name with default job opts (3 attempts, exponential backoff, removeOnComplete limits).
-- [x] 3.2 `jobs/jobRun.ts` + test: `startJobRun(type)` / `finishJobRun(id, {counts, costUsd, apifyRunId, error})`.
+- [x] 3.2 `jobs/jobRun.ts` + test: `startJobRun(type)` / `finishJobRun(id, {counts, error})`.
 - [x] 3.3 `worker.ts`: connect DB + Redis, start workers from a registry, graceful close.
-- [x] 3.4 `queues/schedulers.ts`: `upsertJobScheduler` for `apify-daily` (`DAILY_CHECK_CRON`, `Asia/Tehran`) and weekly `token-refresh`.
+- [x] 3.4 `queues/schedulers.ts`: `upsertJobScheduler` for `reviewer-daily` (`DAILY_CHECK_CRON`, `Asia/Tehran`).
 - [x] 3.5 Bull Board at `/admin/queues` behind `requireAdmin`.
 
 ## Phase 4 — Shops, categories, images (M1)
@@ -86,15 +86,15 @@ pagesanj is Next.js, so strip Next-specific bits (cookies() API, server actions)
 - [x] 4.5 `routes/media.ts`: `GET /media/shop/:sha256` with `nosniff`, immutable cache headers.
 - [x] 4.6 `routes/admin/shops.ts`: list/search, get, create, update + supertest.
 
-## Phase 5 — Apify client + profile fetch (PRD §5.6, §6.2)
+## Phase 5 — BoxAPI Data API client + profile fetch (PRD §5.6, §6.2)
 
-*Done except the 5.3 spike (no `backend/.env` / Apify token here). `apify/profile.ts` is built from the actor's documented output (`tests/fixtures/apify/profile.docs-sample.json`): `usernames` input, `profilePicUrlHD`/`profilePicUrl`, `externalUrl`/`externalUrls`, `fullName`. The docs don't name the email/phone fields, so the mapper reads `businessEmail`/`publicEmail`/`public_email`/`business_email` and `businessPhoneNumber`/`publicPhoneNumber`/`contactPhoneNumber`/`public_phone_number` — **check these against the real run.** The client long-polls `GET /actor-runs/:id?waitForFinish=60`; the token is only in the `Authorization` header. Budget guard reads `data.current.monthlyUsageUsd` and `data.limits.maxMonthlyUsageUsd`; profile fetches, like daily checks, run until the hard limit. Image downloads are limited to https `*.cdninstagram.com` / `*.fbcdn.net`, 20 s, 2 MB. Non-retryable Apify errors (4xx, failed run, missing profile, budget) become `UnrecoverableError`, so a paid run isn't repeated. Profile endpoints answer `202 { jobId }`; the admin app polls `GET /admin/api/shops/profile-jobs/:jobId` → `{ state, result? , error? }`. `POST /shops` accepts `profileFetchedAt` from the draft. A preview whose shop is never saved leaves an unused `shopImages` row (harmless; clean up later if needed). New env `APIFY_PROFILE_ACTOR`.*
+*Done. `boxapi/data.ts` wraps the Data API (`POST {BOXAPI_INSTAGRAM_BASE_URL}/api/instagram/...`, Bearer `BOXAPI_INSTAGRAM_TOKEN`, answer unwrapped from `response.body`; a non-2xx `response.status_code` becomes a `BoxApiError`). `boxapi/profile.ts` maps a real `user/get_info_by_username` answer (`tests/fixtures/boxapi/user-info.maashmamad.json`): `body.user.hd_profile_pic_url_info.url` (else `profile_pic_url`), `external_url` / `bio_links[].url`, `public_email`, `contact_phone_number` (else country code + `public_phone_number`), `full_name`. The token in `.env` was rejected by `instagram.boxpi.ir` and accepted by `boxapi.ir`, hence the `BOXAPI_INSTAGRAM_BASE_URL` override. Image downloads are limited to https `*.cdninstagram.com` / `*.fbcdn.net`, 20 s, 2 MB. Non-retryable BoxAPI errors (4xx, missing profile) become `UnrecoverableError`, so a request isn't spent twice. Profile endpoints answer `202 { jobId }`; the admin app polls `GET /admin/api/shops/profile-jobs/:jobId` → `{ state, result? , error? }`. `POST /shops` accepts `profileFetchedAt` from the draft. A preview whose shop is never saved leaves an unused `shopImages` row (harmless; clean up later if needed).*
 
-- [x] 5.1 `apify/client.ts` + test (mocked fetch): `startRun(actor, input)`, `waitForRun(runId)` polling, `getDatasetItems(datasetId)`, `getUsage()` (`/v2/users/me/limits`); token from env, never logged.
-- [x] 5.2 `apify/budget.ts` + test: `canRun(kind)` — backfill blocked above `APIFY_BUDGET_STOP_USD`, daily allowed.
-- [ ] 5.3 **Spike (manual, open):** run `npm run spike:apify-profile -- <handle>` (needs `APIFY_TOKEN` in `backend/.env`); it writes the fixture and prints the cost and keys. Then point the 5.4 tests at `profile.json`, fix any field names in `apify/profile.ts`. Original task: one real profile-scraper run, save output to `tests/fixtures/apify/profile.json`; confirm field names; record price in PRD §6.2 / §15.4.
-- [x] 5.4 `apify/profile.ts` + test from fixture: map output → `{ imageUrl, email?, website?, phone? }`.
-- [x] 5.5 `apify-profile` worker: run profile, download image, `imageCheck`, store, return draft profile (for "new shop") or apply to shop (refresh, clearing missing fields, `profileFetchedAt`); writes `jobRuns`.
+- [x] 5.1 `boxapi/data.ts` + test (mocked fetch): `getMediaByShortcode`, `getUserMedia(username, { maxId })`, `getUserInfo`, `getQuota()` (`GET /api/my`); token from env, never logged.
+- [x] 5.2 ~~budget guard~~ dropped: no cost or budget tracking (PRD §16, 2026-10-28).
+- [x] 5.3 Spike: real `user/get_info_by_username`, `user/get_media_by_username` and `media/get_info_by_shortcode` answers saved in `tests/fixtures/boxapi/` (2026-10-29).
+- [x] 5.4 `boxapi/profile.ts` + test from the real fixture: map output → `{ imageUrl, email?, website?, phone? }`.
+- [x] 5.5 `shop-profile` worker: fetch profile, download image, `imageCheck`, store, return draft profile (for "new shop") or apply to shop (refresh, clearing missing fields, `profileFetchedAt`); writes `jobRuns`.
 - [x] 5.6 Admin endpoints: `POST /shops/profile-preview` (handle → enqueue + wait/poll job) and `POST /shops/:id/refresh-profile`.
 
 ## Phase 6 — Webhook spike + Meta plumbing (M0, PRD §5.3, §10)
@@ -122,27 +122,27 @@ pagesanj is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Phase 8 — DM bot wiring (M2, PRD §5.1, §5.5)
 
-*Done. Job payloads are zod schemas in `queues/jobData.ts`. Job ids are derived from the `mid` (`:` replaced, as BullMQ forbids it): `<mid>` on dm-inbound, `<mid>-r<i>` per reply part and `<mid>-checking` on dm-send, `<mid>-lookup` on post-owner, `<mid>-owner` for the re-enqueued DM; so webhook and worker retries never queue a second reply. dm-inbound skips a `dmEvents` row that already has a `result`. A final post-owner failure (or budget stop) still re-enqueues the DM, which then answers "couldn't read this". dm-send: global limiter 10/s; per recipient 10 messages a minute in Redis (`dm-rate:<igsid>:<minute>`), over the limit the message is dropped and `dmEvents.error = rate_limited`. Message text goes into `dmEvents.text` only with `DM_STORE_TEXT=true` (new env), and into logs only at debug. New env `APIFY_POST_ACTOR`; the post-owner run uses `{ username: [postUrl], resultsLimit: 1 }` (input not yet tried against a real run). DB-backed bot dependencies live in `services/botDeps.ts`. The 8.6 test runs the whole flow on an in-memory queue stand-in (`tests/setup/fakeQueues.ts`), not Redis.*
+*Done. Job payloads are zod schemas in `queues/jobData.ts`. Job ids are derived from the `mid` (`:` replaced, as BullMQ forbids it): `<mid>` on dm-inbound, `<mid>-r<i>` per reply part and `<mid>-checking` on dm-send, `<mid>-lookup` on post-owner, `<mid>-owner` for the re-enqueued DM; so webhook and worker retries never queue a second reply. dm-inbound skips a `dmEvents` row that already has a `result`. A final post-owner failure still re-enqueues the DM, which then answers "couldn't read this". dm-send: global limiter 10/s; per recipient 10 messages a minute in Redis (`dm-rate:<igsid>:<minute>`), over the limit the message is dropped and `dmEvents.error = rate_limited`. Message text goes into `dmEvents.text` only with `DM_STORE_TEXT=true` (new env), and into logs only at debug. The post-owner lookup is one Data API `media/get_info_by_shortcode` call reading `items[0].user.username`; Instagram 400/404 counts as "not found". DB-backed bot dependencies live in `services/botDeps.ts`. The 8.6 test runs the whole flow on an in-memory queue stand-in (`tests/setup/fakeQueues.ts`), not Redis.*
 
 - [x] 8.1 `POST /webhooks/instagram`: `express.raw()`, verify signature (403 on fail), skip `is_echo`/own account, enqueue `dm-inbound` with `jobId = mid`, 200 at once + supertest with fixture.
 - [x] 8.2 `services/wishlist.ts` + test: `addRequest(handle, source)` upsert, increment `requestCount`, add to `sources`, timestamps.
 - [x] 8.3 `dm-inbound` worker: create/upsert `DmEvent`, call `handleMessage`, wishlist on not-found, enqueue replies to `dm-send`; on `needsOwnerLookup` send "checking…" and enqueue `post-owner`.
-- [x] 8.4 `apify/postOwner.ts` + `post-owner` worker (concurrency 2): Apify post scraper → `ownerUsername`, cache in `PostOwner`, `jobRuns`, re-enqueue DM job.
+- [x] 8.4 `services/postOwners.ts` + `post-owner` worker (concurrency 2): Data API `media/get_info_by_shortcode` → `user.username`, cache in `PostOwner`, `jobRuns`, re-enqueue DM job.
 - [x] 8.5 `dm-send` worker: BullMQ limiter (global) + per-sender 10/min check in Redis; `sendText`; set `replySentAt`; on final failure write `dmEvents.error`.
 - [x] 8.6 Integration test: fixture webhook → jobs → mocked Graph send produces expected reply; retried webhook does not double-reply.
 
 ## Phase 9 — Reviewer sources + daily check (M3, PRD §6)
 
-*Done except 9.1: no real post-scraper output is in the repo, so `tests/fixtures/apify/posts.docs-sample.json` is built from the fields PRD §6.2 verified (pinned post, a post tagging a shop by its previous handle plus a sponsor, a reel tagging two unknown pages, a post with no tags). Save a real run over it when convenient. `taggedUsers` is read as objects with `username` or as plain strings. New env `APIFY_IGNORE_HANDLES` (comma-separated). Posts with no tagged business are counted as `skipped` in `jobRuns` and logged; there's no collection for them. Pinned posts are still ingested (they just never set "newest"). The daily check matches items to sources by `ownerUsername`, skips posts not newer than `lastSeenPostAt`, and posts already stored for that source. A wishlist entry isn't counted twice for the same post. Backfill above the budget stop is skipped (`counts.skippedBudget`) and not marked done; "run backfill now" forces a re-run. A source's handle can't be edited (posts match by handle). Budget stops, Apify 4xx and failed runs are not retried (`noPaidRetry`). Admin API: `/admin/api/reviewer-sources` (GET, POST, PATCH /:id, POST /:id/backfill) and `/admin/api/jobs` (GET /runs, GET /usage, POST /daily-check).*
+*Done. `boxapi/posts.ts` reads real `user/get_media_by_username` items (`tests/fixtures/boxapi/user-media.sadegh.delicious.json`): `code`, `taken_at`, `caption.text` (caption `@mentions` are parsed from it, bidi marks and trailing dots stripped), `usertags` (also on `carousel_media`), `is_paid_partnership`, `timeline_pinned_user_ids` (pinned when it holds `user.pk`). New env `REVIEW_IGNORE_HANDLES` (comma-separated). Posts with no tagged business are counted as `skipped` in `jobRuns` and logged; there's no collection for them. Pinned posts are still ingested (they just never set "newest"). The daily check makes one call per followed source, pages back with `max_id` (at most 3 pages) only while every non-pinned post is newer than `lastSeenPostAt`, skips posts not newer than that and posts already stored for that source; a failing source is counted in `sourceErrors`, and the job fails only if every source failed. Backfill pages until `backfillLimit` or `more_available` is false. A wishlist entry isn't counted twice for the same post. "Run backfill now" forces a re-run. A source's handle can't be edited (posts match by handle). BoxAPI 4xx errors are not retried (`noFinalRetry`). Admin API: `/admin/api/reviewer-sources` (GET, POST, PATCH /:id, POST /:id/backfill) and `/admin/api/jobs` (GET /runs, GET /quota, POST /daily-check).*
 
-- [ ] 9.1 Save a real post-scraper fixture (`tests/fixtures/apify/posts.json`, from discovery run).
-- [x] 9.2 `apify/extractTagged.ts` + test: union of `mentions` + `taggedUsers`, minus reviewer, minus ignore list (env `APIFY_IGNORE_HANDLES`, add to env + `.env.example`).
+- [x] 9.1 Save a real reviewer-posts fixture (`tests/fixtures/boxapi/user-media.sadegh.delicious.json`).
+- [x] 9.2 `extractTagged` in `boxapi/posts.ts` + test: caption mentions ∪ usertags, minus reviewer, minus ignore list (env `REVIEW_IGNORE_HANDLES`).
 - [x] 9.3 `services/reviews.ts` + test: `createPendingFromPost(post, source)` → per tagged handle: shop found → pending review on shop, else wishlist (`reviewer_post`) + review on wishlist; duplicate-key = skip; `skipped` audit for no tags.
-- [x] 9.4 `apify/dailyCheck.ts` + test: one combined run for followed sources (`resultsLimit` 10), dedupe by shortcode, update `lastSeenShortcode/At` ignoring `isPinned`, counts.
-- [x] 9.5 `apify/backfill.ts` + test: per source, budget guard, `backfillLimit`, mark `backfillDone`.
-- [x] 9.6 `apify-daily` and `apify-backfill` workers; enqueue backfill when a source is created with `follow: true`.
+- [x] 9.4 `runDailyCheck` in `services/reviewerPosts.ts` + test: one page per followed source (more while all new), dedupe by shortcode, update `lastSeenShortcode/At` ignoring pinned posts, counts.
+- [x] 9.5 `runBackfill` in `services/reviewerPosts.ts` + test: per source, `backfillLimit`, mark `backfillDone`.
+- [x] 9.6 `reviewer-daily` and `reviewer-backfill` workers; enqueue backfill when a source is created with `follow: true`.
 - [x] 9.7 `routes/admin/reviewerSources.ts`: CRUD, toggle follow, "run backfill now".
-- [x] 9.8 `routes/admin/jobs.ts`: recent `jobRuns`, Apify usage this month, "run daily check now".
+- [x] 9.8 `routes/admin/jobs.ts`: recent `jobRuns`, Data API request quota, "run daily check now".
 
 ## Phase 10 — Moderation + wishlist admin (M3, PRD §9.2)
 
@@ -177,10 +177,10 @@ pagesanj is Next.js, so strip Next-specific bits (cookies() API, server actions)
 
 ## Critical files
 
-`backend/src/{config/env.ts, app.ts, server.ts, worker.ts}`, `backend/src/models/*`, `backend/src/bot/*`, `backend/src/queues/*`, `backend/src/routes/**`, `backend/src/apify/*`, `backend/src/meta/*`, `backend/src/auth/*`, `backend/.env.example`, `backend/vitest.config.ts`, `PRD.md`.
+`backend/src/{config/env.ts, app.ts, server.ts, worker.ts}`, `backend/src/models/*`, `backend/src/bot/*`, `backend/src/queues/*`, `backend/src/routes/**`, `backend/src/boxapi/*`, `backend/src/services/*`, `backend/src/meta/*`, `backend/src/auth/*`, `backend/.env.example`, `backend/vitest.config.ts`, `PRD.md`.
 
 ## Verification
 
 - Per task: `npm run typecheck` and `npm test` from the repo root.
-- Per phase: run `npm run dev` + `npm run dev:worker` against local Mongo/Redis; hit `/healthz`; for Phase 2 log in via curl with a TOTP from `admin:create`; for Phase 8 replay a fixture webhook with a valid signature via curl and watch the Bull Board at `/admin/queues`; for Phase 9 trigger "run daily check now" with a real `APIFY_TOKEN` (small `resultsLimit`); for Phase 11 POST a self-signed `signed_request` to `/meta/data-deletion` and open the returned status URL.
-- Manual spikes (5.3, 6.4) need the owner's Apify account and the Meta dev app; they block 5.4 and 7.1 respectively, so other phases can proceed in parallel.
+- Per phase: run `npm run dev` + `npm run dev:worker` against local Mongo/Redis; hit `/healthz`; for Phase 2 log in via curl with a TOTP from `admin:create`; for Phase 8 replay a fixture webhook with a valid signature via curl and watch the Bull Board at `/admin/queues`; for Phase 9 trigger "run daily check now" with a real `BOXAPI_INSTAGRAM_TOKEN` (mind the plan's request quota); for Phase 11 POST a self-signed `signed_request` to `/meta/data-deletion` and open the returned status URL.
+- Manual spikes (5.3, 6.4) need the owner's BoxAPI account and the Meta dev app; they block 5.4 and 7.1 respectively, so other phases can proceed in parallel.

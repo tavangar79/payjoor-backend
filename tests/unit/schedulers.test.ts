@@ -10,7 +10,7 @@ describe('registerSchedulers', () => {
   it('upserts the daily check in Tehran time', async () => {
     await registerSchedulers();
     expect(SCHEDULER_TZ).toBe('Asia/Tehran');
-    expect(getQueue).toHaveBeenCalledWith('apify-daily');
+    expect(getQueue).toHaveBeenCalledWith('reviewer-daily');
     expect(upsertJobScheduler).toHaveBeenCalledWith(
       'daily-check',
       { pattern: '0 9 * * *', tz: 'Asia/Tehran' },

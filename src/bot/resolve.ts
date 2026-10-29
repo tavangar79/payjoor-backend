@@ -1,5 +1,5 @@
 // Resolve a target to the handle we look up (PRD §5.3). A post resolves to its author: first from posts we
-// already store (free), then the postOwners cache, else it needs an Apify lookup. Pure; lookups are injected.
+// already store (free), then the postOwners cache, else it needs a Data API lookup. Pure; lookups are injected.
 import type { Target } from './parse.js';
 
 export type ResolveDeps = {
@@ -11,7 +11,7 @@ export type ResolveDeps = {
 
 export type Resolved = { handle: string } | { needsLookup: string } | { unresolved: true } | { none: true };
 
-/** `ownerLookupDone`: the Apify lookup already ran for this message, so a cache miss means unresolved. */
+/** `ownerLookupDone`: the post-owner lookup already ran for this message, so a cache miss means unresolved. */
 export async function resolveTarget(
   target: Target,
   deps: ResolveDeps,

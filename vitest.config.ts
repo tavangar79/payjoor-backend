@@ -14,7 +14,7 @@ export default defineConfig({
       CONTACT_EMAIL: 'test@example.com',
       MONGODB_URI: 'mongodb://localhost:27017/pagesanj-test',
       REDIS_URL: 'redis://localhost:6379',
-      APIFY_TOKEN: 'test-apify-token',
+      BOXAPI_INSTAGRAM_TOKEN: 'test-boxapi-token',
       SESSION_SECRET: 's'.repeat(32),
       DATA_ENCRYPTION_KEY: Buffer.alloc(32, 1).toString('base64'),
       // One mongod binary cache, whether tests run from the repo root or from backend/.

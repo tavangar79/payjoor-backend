@@ -2,8 +2,7 @@
 // know it (by handle or previousHandles), else on a wishlist entry (`reviewer_post`); a live review already
 // stored for that target and post is skipped (unique partial index). Then moderation: approve or reject.
 import type { Types } from 'mongoose';
-import { extractTagged } from '../apify/extractTagged.js';
-import { postTime, postUrl, type ApifyPost } from '../apify/posts.js';
+import { captionText, extractTagged, mediaUrls, postTime, postUrl, type BoxApiPost } from '../boxapi/posts.js';
 import { HttpError } from '../lib/errorHandler.js';
 import { isDuplicateKey } from '../lib/mongo.js';
 import { logger } from '../lib/logger.js';
@@ -18,16 +17,16 @@ export const emptyPostCounts = (): PostCounts => ({ reviewsCreated: 0, wishliste
 
 type Source = { _id: Types.ObjectId; handle: string };
 
-function reviewFields(post: ApifyPost, source: Source, shortcode: string, occurredAt: Date) {
+function reviewFields(post: BoxApiPost, source: Source, shortcode: string, occurredAt: Date) {
   return {
     sourceType: 'reviewer_post' as const,
     reviewerSourceId: source._id,
     postShortcode: shortcode,
     postUrl: postUrl(shortcode),
     occurredAt,
-    caption: post.caption ?? '',
-    media: { displayUrl: post.displayUrl, videoUrl: post.videoUrl },
-    paidPartnership: Boolean(post.paidPartnership),
+    caption: captionText(post),
+    media: mediaUrls(post),
+    paidPartnership: Boolean(post.is_paid_partnership),
     raw: post,
     status: 'pending' as const,
   };
@@ -43,9 +42,9 @@ async function createOnce(doc: Record<string, unknown>): Promise<boolean> {
   }
 }
 
-export async function createPendingFromPost(post: ApifyPost, source: Source): Promise<PostCounts> {
+export async function createPendingFromPost(post: BoxApiPost, source: Source): Promise<PostCounts> {
   const counts = emptyPostCounts();
-  const shortcode = post.shortCode;
+  const shortcode = post.code;
   const occurredAt = postTime(post);
   if (!shortcode || !occurredAt) {
     counts.skipped++;

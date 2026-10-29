@@ -1,11 +1,11 @@
 // post-owner (PRD §5.1, §5.3): find a shared post's author, then re-enqueue the DM job to finish the reply.
-// Low concurrency, so slow Apify runs don't hold up other lookups. When the lookup finally fails, the DM is
+// Low concurrency, so slow Data API calls don't hold up other lookups. When the lookup finally fails, the DM is
 // still re-enqueued so the user gets "couldn't read this".
 import { UnrecoverableError, type Job } from 'bullmq';
 import type { Logger } from 'pino';
-import { ApifyError, type ApifyClientOptions } from '../../apify/client.js';
-import { BudgetError } from '../../apify/budget.js';
-import { lookupPostOwner } from '../../apify/postOwner.js';
+import { BoxApiError } from '../../boxapi/dm.js';
+import type { DataOptions } from '../../boxapi/data.js';
+import { lookupPostOwner } from '../../services/postOwners.js';
 import { dmJobId, isFinalAttempt, postOwnerData, type PostOwnerData } from '../jobData.js';
 import { QUEUES } from '../names.js';
 import { getQueue } from '../queues.js';
@@ -19,7 +19,7 @@ export async function processPostOwner(
   job: Pick<Job, 'attemptsMade' | 'opts'>,
   data: PostOwnerData,
   log: Logger,
-  opts: ApifyClientOptions = {},
+  opts: DataOptions = {},
 ) {
   try {
     const owner = await lookupPostOwner(data.shortcode, opts);
@@ -27,8 +27,8 @@ export async function processPostOwner(
     await finishDm(data);
     return { owner };
   } catch (err) {
-    // A budget stop, a 4xx or a failed run won't fix itself; each retry is another paid run.
-    const unrecoverable = err instanceof BudgetError || (err instanceof ApifyError && !err.retryable);
+    // A 4xx (e.g. a bad token) won't fix itself; each retry spends another Data API request.
+    const unrecoverable = err instanceof BoxApiError && !err.retryable;
     const final = unrecoverable ? new UnrecoverableError(err instanceof Error ? err.message : String(err)) : err;
     if (isFinalAttempt(job, final)) await finishDm(data);
     throw final;

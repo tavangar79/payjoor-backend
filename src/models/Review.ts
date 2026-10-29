@@ -20,7 +20,7 @@ const reviewSchema = new Schema(
       videoUrl: String,
     },
     paidPartnership: { type: Boolean, required: true, default: false },
-    // The full Apify item, so we can re-parse later without paying again.
+    // The full BoxAPI Data API item, so we can re-parse later without fetching it again.
     raw: { type: Schema.Types.Mixed },
     status: { type: String, enum: REVIEW_STATUSES, required: true, default: 'pending' },
     // Set by the admin; both required to publish (§6.3).

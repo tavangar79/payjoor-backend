@@ -4,7 +4,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import request from 'supertest';
 import { UnrecoverableError } from 'bullmq';
 import { useMongo } from '../setup/mongo.js';
-import { apifyRoutes, fakeFetch, json } from '../setup/fakeFetch.js';
+import { boxapiBody, dataRoute, fakeFetch, json } from '../setup/fakeFetch.js';
 import { fakeQueuesModule, resetQueues, take } from '../setup/fakeQueues.js';
 
 vi.mock('../../src/queues/queues.js', () => fakeQueuesModule());
@@ -74,7 +74,7 @@ function postWebhook(sample: { entry: { messaging: unknown[] }[] }, secret = SEC
 }
 
 async function drainSends() {
-  const box = fakeFetch([[/boxapi\.ir\/service\/actions\/send_message$/, () => json({ ok: true })]]);
+  const box = fakeFetch([[/^https:\/\/api\.sendbox\.chat\/api\/v1\/service\/actions\/send_message$/, () => json({ ok: true })]]);
   for (const job of take('dm-send')) await processDmSend(job.data, logger, { limiter: allow, fetch: box });
   return box.mock.calls.map(([, init]) => {
     expect((init?.headers as Record<string, string>)['X-Api-Key']).toBe('box-dm-test');
@@ -125,10 +125,13 @@ describe('DM flow', () => {
     expect((await models.DmEvent.findOne().lean())?.replySentAt).toBeUndefined();
 
     const [lookup] = take('post-owner');
-    const apify = fakeFetch(apifyRoutes([{ shortCode: 'Deyc1w9hwTI', ownerUsername: 'MaashMamad' }]));
-    await processPostOwner(lookup!, lookup!.data, logger, { fetch: apify });
+    const boxapi = fakeFetch([
+      dataRoute('media/get_info_by_shortcode', () => boxapiBody({ items: [{ code: 'Deyc1w9hwTI', user: { username: 'MaashMamad' } }] })),
+    ]);
+    await processPostOwner(lookup!, lookup!.data, logger, { fetch: boxapi });
+    expect(JSON.parse(String(boxapi.mock.calls[0]![1]!.body))).toEqual({ shortcode: 'Deyc1w9hwTI' });
     expect((await models.PostOwner.findOne().lean())?.ownerUsername).toBe('maashmamad');
-    expect(await models.JobRun.findOne({ type: 'post_owner_lookup' }).lean()).toMatchObject({ apifyRunId: 'run1', counts: { found: 1 } });
+    expect(await models.JobRun.findOne({ type: 'post_owner_lookup' }).lean()).toMatchObject({ counts: { found: 1 } });
 
     const [again] = take('dm-inbound');
     expect(again!.data.ownerLookupDone).toBe(true);
@@ -143,7 +146,7 @@ describe('DM flow', () => {
     await processDmInbound(take('dm-inbound')[0]!.data, logger);
     take('dm-send');
     const [lookup] = take('post-owner');
-    const broke = fakeFetch(apifyRoutes([], { usageUsd: 5, maxUsd: 5 }));
+    const broke = fakeFetch([[/\/api\/instagram\//, () => json({ success: false, data: { message: 'Invalid username or password.' } }, 401)]]);
     await expect(processPostOwner(lookup!, lookup!.data, logger, { fetch: broke })).rejects.toBeInstanceOf(UnrecoverableError);
     await processDmInbound(take('dm-inbound')[0]!.data, logger);
     const [reply] = await drainSends();

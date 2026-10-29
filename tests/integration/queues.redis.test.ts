@@ -53,8 +53,8 @@ describe.skipIf(!redisUp)('queues on Redis', () => {
 
   it('registers the daily scheduler in Asia/Tehran', async () => {
     await registerSchedulers();
-    const daily = await getQueue('apify-daily').getJobScheduler('daily-check');
+    const daily = await getQueue('reviewer-daily').getJobScheduler('daily-check');
     expect(daily).toMatchObject({ pattern: '0 9 * * *', tz: 'Asia/Tehran' });
-    await getQueue('apify-daily').removeJobScheduler('daily-check');
+    await getQueue('reviewer-daily').removeJobScheduler('daily-check');
   });
 });

@@ -7,7 +7,7 @@ import { getQueue } from './queues.js';
 export const SCHEDULER_TZ = 'Asia/Tehran';
 
 export const SCHEDULERS = [
-  { queue: QUEUES.apifyDaily, id: 'daily-check', pattern: env.DAILY_CHECK_CRON, jobName: 'daily-check' },
+  { queue: QUEUES.reviewerDaily, id: 'daily-check', pattern: env.DAILY_CHECK_CRON, jobName: 'daily-check' },
 ] as const;
 
 export async function registerSchedulers() {

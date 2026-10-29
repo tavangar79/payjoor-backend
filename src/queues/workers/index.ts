@@ -2,12 +2,12 @@
 import type { Job, WorkerOptions } from 'bullmq';
 import type { Logger } from 'pino';
 import type { QueueName } from '../names.js';
-import { apifyBackfillWorker } from './apifyBackfill.worker.js';
-import { apifyDailyWorker } from './apifyDaily.worker.js';
-import { apifyProfileWorker } from './apifyProfile.worker.js';
 import { dmInboundWorker } from './dmInbound.worker.js';
 import { dmSendWorker } from './dmSend.worker.js';
 import { postOwnerWorker } from './postOwner.worker.js';
+import { reviewerBackfillWorker } from './reviewerBackfill.worker.js';
+import { reviewerDailyWorker } from './reviewerDaily.worker.js';
+import { shopProfileWorker } from './shopProfile.worker.js';
 
 export type WorkerDefinition = {
   queue: QueueName;
@@ -20,7 +20,7 @@ export const workerDefinitions: WorkerDefinition[] = [
   dmInboundWorker,
   postOwnerWorker,
   dmSendWorker,
-  apifyDailyWorker,
-  apifyBackfillWorker,
-  apifyProfileWorker,
+  reviewerDailyWorker,
+  reviewerBackfillWorker,
+  shopProfileWorker,
 ];

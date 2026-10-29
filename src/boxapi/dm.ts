@@ -2,7 +2,7 @@
 // The result also arrives later as an `action.send_message` webhook; we only check the HTTP answer here.
 import { env } from '../config/env.js';
 
-export const BOXAPI_SEND_URL = 'https://boxapi.ir/service/actions/send_message';
+export const sendUrl = () => `${env.BOXAPI_DM_BASE_URL}/service/actions/send_message`;
 
 export class BoxApiError extends Error {
   readonly retryable: boolean;
@@ -24,7 +24,7 @@ export async function sendMessage(accountId: string, recipientId: string, text: 
   if (!token) throw new BoxApiError('no_boxapi_dm_token: set BOXAPI_INSTAGRAM_DM_TOKEN', 401);
   let res: Response;
   try {
-    res = await fetchImpl(BOXAPI_SEND_URL, {
+    res = await fetchImpl(sendUrl(), {
       method: 'POST',
       headers: { 'X-Api-Key': token, 'Content-Type': 'application/json' },
       body: JSON.stringify({ account_id: accountId, recipient_id: recipientId, message: text }),

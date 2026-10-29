@@ -7,7 +7,7 @@ import { isDuplicateKey } from '../lib/mongo.js';
 import { ReviewerSource, type ReviewerSourceDoc } from '../models/ReviewerSource.js';
 import { QUEUES } from '../queues/names.js';
 import { getQueue } from '../queues/queues.js';
-import type { BackfillJobData } from '../queues/workers/apifyBackfill.worker.js';
+import type { BackfillJobData } from '../queues/workers/reviewerBackfill.worker.js';
 
 export type SourceInput = {
   handle: string;
@@ -19,7 +19,7 @@ export type SourceInput = {
 
 export async function enqueueBackfill(sourceId: Types.ObjectId, force = false) {
   const data: BackfillJobData = { sourceId: String(sourceId), force };
-  const job = await getQueue(QUEUES.apifyBackfill).add('backfill', data);
+  const job = await getQueue(QUEUES.reviewerBackfill).add('backfill', data);
   return { jobId: job.id };
 }
 

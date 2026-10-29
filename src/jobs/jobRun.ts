@@ -5,8 +5,6 @@ import type { JobType } from '../models/enums.js';
 
 export type JobRunResult = {
   counts?: Record<string, number>;
-  costUsd?: number;
-  apifyRunId?: string;
   error?: string;
 };
 
@@ -18,8 +16,6 @@ export async function startJobRun(type: JobType): Promise<Types.ObjectId> {
 export async function finishJobRun(id: Types.ObjectId, result: JobRunResult = {}) {
   const set: Record<string, unknown> = { finishedAt: new Date() };
   if (result.counts) set.counts = result.counts;
-  if (result.costUsd !== undefined) set.costUsd = result.costUsd;
-  if (result.apifyRunId) set.apifyRunId = result.apifyRunId;
   if (result.error) set.error = result.error.slice(0, 2_000);
   await JobRun.updateOne({ _id: id }, { $set: set });
 }
@@ -28,8 +24,6 @@ export async function finishJobRun(id: Types.ObjectId, result: JobRunResult = {}
 export type JobRunContext = {
   runId: Types.ObjectId;
   counts: Record<string, number>;
-  costUsd?: number;
-  apifyRunId?: string;
 };
 
 export async function withJobRun<T>(type: JobType, fn: (ctx: JobRunContext) => Promise<T>): Promise<T> {

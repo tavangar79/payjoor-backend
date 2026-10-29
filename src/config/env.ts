@@ -25,13 +25,19 @@ const schema = z.object({
   BOXAPI_AI_TOKEN: z.string().optional(),
   // Webhook secret generated in the BoxAPI panel; POST /webhooks/boxapi rejects everything until it's set.
   BOXAPI_WEBHOOK_SECRET: z.string().optional(),
+  // DM & Comment API base (send_message, accounts): SendBox's host for servers outside Iran.
+  BOXAPI_DM_BASE_URL: z
+    .url()
+    .default('https://api.sendbox.chat/api/v1')
+    .transform((v) => v.replace(/\/+$/, '')),
+  // Data API host: instagram.boxpi.ir outside Iran, boxapi.ir inside (§10). Some tokens only work on boxapi.ir.
+  BOXAPI_INSTAGRAM_BASE_URL: z
+    .url()
+    .default('https://instagram.boxpi.ir')
+    .transform((v) => v.replace(/\/+$/, '')),
 
-  APIFY_TOKEN: z.string().min(1),
-  APIFY_BUDGET_STOP_USD: z.coerce.number().default(4.5),
-  APIFY_PROFILE_ACTOR: z.string().default('apify~instagram-profile-scraper'),
-  APIFY_POST_ACTOR: z.string().default('apify~instagram-post-scraper'),
   // Comma-separated handles tagged in reviewer posts that aren't shops, e.g. sponsors (§6.1).
-  APIFY_IGNORE_HANDLES: z
+  REVIEW_IGNORE_HANDLES: z
     .string()
     .default('')
     .transform((v) => v.split(',').map((h) => h.trim().replace(/^@/, '').toLowerCase()).filter(Boolean)),

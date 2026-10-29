@@ -1,4 +1,4 @@
-// A fetch stand-in for Apify and CDN calls: the first route whose pattern matches the URL answers.
+// A fetch stand-in for BoxAPI and CDN calls: the first route whose pattern matches the URL answers.
 import { vi } from 'vitest';
 
 export type Route = [pattern: RegExp, reply: (url: string, init?: RequestInit) => Response | Promise<Response>];
@@ -15,13 +15,13 @@ export function fakeFetch(routes: Route[]) {
   }) as unknown as typeof fetch & ReturnType<typeof vi.fn>;
 }
 
-/** Routes for one successful actor run that returns `items`. */
-export function apifyRoutes(items: unknown[], opts: { usageUsd?: number; maxUsd?: number; costUsd?: number } = {}): Route[] {
-  const run = { id: 'run1', status: 'SUCCEEDED', defaultDatasetId: 'ds1', usageTotalUsd: opts.costUsd ?? 0.0026 };
-  return [
-    [/\/users\/me\/limits$/, () => json({ data: { current: { monthlyUsageUsd: opts.usageUsd ?? 1 }, limits: { maxMonthlyUsageUsd: opts.maxUsd ?? 5 } } })],
-    [/\/acts\/[^/]+\/runs$/, () => json({ data: { ...run, status: 'READY' } }, 201)],
-    [/\/actor-runs\/run1/, () => json({ data: run })],
-    [/\/datasets\/ds1\/items/, () => json(items)],
-  ];
-}
+/** A Data API answer, wrapped the way BoxAPI wraps Instagram's response. */
+export const boxapiBody = (body: unknown, statusCode = 200) =>
+  json({ status: 'done', response: { status_code: statusCode, content_type: 'application/json', body } });
+
+/** A route for one Data API endpoint, e.g. `dataRoute('user/get_info_by_username', ...)`. */
+export const dataRoute = (endpoint: string, reply: Route[1]): Route => [new RegExp(`/api/instagram/${endpoint}$`), reply];
+
+/** The JSON body of each Data API call `f` made, in order. */
+export const dataCalls = (f: ReturnType<typeof fakeFetch>) =>
+  f.mock.calls.filter(([u]) => String(u).includes('/api/instagram/')).map(([, init]) => JSON.parse(String((init as RequestInit).body)));

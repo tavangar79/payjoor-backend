@@ -1,12 +1,11 @@
-// apify-profile worker (PRD §5.6): one profile run per handle. Without a shopId it returns a draft for the
-// "new shop" form; with one it applies the result to that shop (refresh). Always writes a jobRuns record.
+// shop-profile worker (PRD §5.6): one Data API profile call per handle. Without a shopId it returns a draft for
+// the "new shop" form; with one it applies the result to that shop (refresh). Always writes a jobRuns record.
 import { UnrecoverableError, type Job } from 'bullmq';
 import type { Logger } from 'pino';
 import { z } from 'zod';
-import { env } from '../../config/env.js';
-import { canRun } from '../../apify/budget.js';
-import { ApifyError, runActor, type ApifyClientOptions } from '../../apify/client.js';
-import { mapProfile, type ProfileItem } from '../../apify/profile.js';
+import { BoxApiError } from '../../boxapi/dm.js';
+import { getUserInfo, type DataOptions } from '../../boxapi/data.js';
+import { mapProfile } from '../../boxapi/profile.js';
 import { withJobRun } from '../../jobs/jobRun.js';
 import { downloadImage } from '../../lib/download.js';
 import { normalizeHandle } from '../../lib/handle.js';
@@ -31,27 +30,19 @@ export type ProfileDraft = {
   fetchedAt: string;
 };
 
-export type ProfileDeps = ApifyClientOptions & { download?: typeof downloadImage };
+export type ProfileDeps = DataOptions & { download?: typeof downloadImage };
 
 export async function fetchProfile(data: ProfileJobData, log: Logger, deps: ProfileDeps = {}): Promise<ProfileDraft> {
   const handle = normalizeHandle(data.handle);
   if (!handle) throw new UnrecoverableError('invalid_handle');
+  const { download = downloadImage, ...dataOpts } = deps;
 
   return withJobRun('profile_fetch', async (ctx) => {
-    const budget = await canRun('profile', deps);
-    if (!budget.ok) {
-      log.warn({ usageUsd: budget.usageUsd, reason: budget.reason }, 'apify budget: profile fetch skipped');
-      throw new UnrecoverableError(`apify_${budget.reason}`);
-    }
-
-    const { run, items } = await runActor<ProfileItem>(env.APIFY_PROFILE_ACTOR, { usernames: [handle] }, {
-      ...deps,
-      onStart: (r) => (ctx.apifyRunId = r.id),
+    const user = await getUserInfo(handle, dataOpts).catch((err) => {
+      if (err instanceof BoxApiError && (err.status === 400 || err.status === 404)) return null;
+      throw err;
     });
-    ctx.costUsd = run.usageTotalUsd;
-    ctx.counts.items = items.length;
-
-    const profile = mapProfile(items, handle);
+    const profile = mapProfile(user, handle);
     if (!profile) throw new UnrecoverableError('profile_not_found');
 
     let image: StoredImage | null = null;
@@ -59,7 +50,7 @@ export async function fetchProfile(data: ProfileJobData, log: Logger, deps: Prof
     if (!profile.imageUrl) imageError = 'no_image_url';
     else {
       try {
-        image = await saveShopImage(await (deps.download ?? downloadImage)(profile.imageUrl, deps.fetch));
+        image = await saveShopImage(await download(profile.imageUrl, deps.fetch));
       } catch (err) {
         imageError = err instanceof Error ? err.message : String(err);
         log.warn({ handle, imageError }, 'profile image not stored');
@@ -90,12 +81,12 @@ export async function fetchProfile(data: ProfileJobData, log: Logger, deps: Prof
   });
 }
 
-export const apifyProfileWorker: WorkerDefinition = {
-  queue: QUEUES.apifyProfile,
-  // A 4xx or a failed run won't fix itself, and every retry is another paid run.
+export const shopProfileWorker: WorkerDefinition = {
+  queue: QUEUES.shopProfile,
+  // A 4xx won't fix itself, and every retry spends a Data API request.
   processor: (job: Job, log) =>
     fetchProfile(profileJobData.parse(job.data), log).catch((err) => {
-      if (err instanceof ApifyError && !err.retryable) throw new UnrecoverableError(err.message);
+      if (err instanceof BoxApiError && !err.retryable) throw new UnrecoverableError(err.message);
       throw err;
     }),
   options: { concurrency: 2 },

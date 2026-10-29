@@ -1,4 +1,4 @@
-// Web process entry: Express (webhooks, website, admin, Meta callbacks).
+// Web process entry: Express (webhooks, website, admin).
 import { createApp } from './app.js';
 import { env } from './config/env.js';
 import { connectDb, disconnectDb } from './lib/db.js';

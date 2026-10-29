@@ -3,9 +3,9 @@ export const QUEUES = {
   dmInbound: 'dm-inbound',
   postOwner: 'post-owner',
   dmSend: 'dm-send',
-  apifyDaily: 'apify-daily',
-  apifyBackfill: 'apify-backfill',
-  apifyProfile: 'apify-profile',
+  reviewerDaily: 'reviewer-daily',
+  reviewerBackfill: 'reviewer-backfill',
+  shopProfile: 'shop-profile',
 } as const;
 
 export type QueueName = (typeof QUEUES)[keyof typeof QUEUES];

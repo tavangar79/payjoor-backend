@@ -5,7 +5,7 @@ Express web process (`src/server.ts`) and BullMQ worker process (`src/worker.ts`
 ## Structure
 
 - `src/bot/`: parse, resolve, lookup, reply. **Pure and transport-agnostic**: no Express, BullMQ or Graph API imports here (PRD §10.8).
-- `src/boxapi/`: **the** Instagram and AI integration (BoxAPI: DM, Data and AI APIs, webhook signature). Use the `boxapi` skill. `src/apify/` is legacy and gets replaced by BoxAPI (PRD §14 M5); don't extend it. `src/services/`: domain logic shared by routes and workers.
+- `src/boxapi/`: **the** Instagram and AI integration (BoxAPI: DM, Data and AI APIs, webhook signature). Use the `boxapi` skill. `src/services/`: domain logic shared by routes and workers (e.g. `reviewerPosts.ts` for the backfill and daily check, `postOwners.ts`).
 - `src/models/`: one Mongoose model per collection in PRD §8. `src/queues/`: queue names, instances, schedulers, `workers/`.
 - `src/routes/`: webhooks, media, landing (renders `../web/dist`), `admin/` JSON API (serves `../admin/dist`).
 - `src/auth/`, `src/lib/encryptField.ts`: copied from pagesanj; keep formats byte-compatible (PRD §9.1).
@@ -17,7 +17,7 @@ Express web process (`src/server.ts`) and BullMQ worker process (`src/worker.ts`
 - Log with `logger` / `jobLogger` from `src/lib/logger.ts`. Never log tokens or message text at info; message bodies go under `debugText` at debug.
 - Webhook routes read the raw body for HMAC checks; don't put a JSON parser in front of them. BoxAPI DMs arrive on `POST /webhooks/boxapi` (`X-BoxApi-Signature`, `BOXAPI_WEBHOOK_SECRET`).
 - No cost or budget tracking for external APIs.
-- Tests: vitest in `tests/` (`unit/`, `integration/` with mongodb-memory-server). Build parsers from real payloads in `tests/fixtures/`.
+- Tests: vitest in `tests/` (`unit/`, `integration/` with mongodb-memory-server). Build parsers from real payloads in `tests/fixtures/` (`boxapi/` holds real Data API responses).
 
 ## Commands
 

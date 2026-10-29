@@ -16,8 +16,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "admin:import": "tsx --env-file=.env scripts/admin-import.ts",
-    "admin:create": "tsx --env-file=.env scripts/admin-create.ts",
-    "spike:apify-profile": "tsx --env-file=.env scripts/apify-profile-spike.ts"
+    "admin:create": "tsx --env-file=.env scripts/admin-create.ts"
   },
   "dependencies": {
     "@bull-board/api": "^6.10.1",

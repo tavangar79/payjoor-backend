@@ -1,4 +1,4 @@
-// Shops CRUD, profile image upload, and profile fetch from Instagram via the apify-profile queue (PRD §5.6, §9.2.3).
+// Shops CRUD, profile image upload, and profile fetch from Instagram via the shop-profile queue (PRD §5.6, §9.2.3).
 import express, { Router } from 'express';
 import { z } from 'zod';
 import { HttpError } from '../../lib/errorHandler.js';
@@ -9,7 +9,7 @@ import { SHOP_STATUSES } from '../../models/enums.js';
 import { createShop, getShop, listShops, saveShopImage, updateShop } from '../../services/shops.js';
 import { QUEUES } from '../../queues/names.js';
 import { getQueue } from '../../queues/queues.js';
-import type { ProfileJobData } from '../../queues/workers/apifyProfile.worker.js';
+import type { ProfileJobData } from '../../queues/workers/shopProfile.worker.js';
 
 export const shopsRouter = Router();
 
@@ -69,7 +69,7 @@ shopsRouter.post(
 
 // Profile fetch (§5.6): the job runs in the worker; the admin app polls GET /profile-jobs/:jobId.
 async function enqueueProfile(data: ProfileJobData) {
-  const job = await getQueue(QUEUES.apifyProfile).add('profile', data);
+  const job = await getQueue(QUEUES.shopProfile).add('profile', data);
   return { jobId: job.id };
 }
 
@@ -81,7 +81,7 @@ shopsRouter.post('/profile-preview', async (req, res) => {
 });
 
 shopsRouter.get('/profile-jobs/:jobId', async (req, res) => {
-  const job = await getQueue(QUEUES.apifyProfile).getJob(req.params.jobId);
+  const job = await getQueue(QUEUES.shopProfile).getJob(req.params.jobId);
   if (!job) throw new HttpError(404, 'not_found');
   const state = await job.getState();
   res.json({
