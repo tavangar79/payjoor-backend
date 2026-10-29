@@ -51,13 +51,10 @@ describe.skipIf(!redisUp)('queues on Redis', () => {
     await q.obliterate({ force: true });
   });
 
-  it('registers both schedulers in Asia/Tehran', async () => {
+  it('registers the daily scheduler in Asia/Tehran', async () => {
     await registerSchedulers();
     const daily = await getQueue('apify-daily').getJobScheduler('daily-check');
-    const token = await getQueue('token-refresh').getJobScheduler('token-refresh');
     expect(daily).toMatchObject({ pattern: '0 9 * * *', tz: 'Asia/Tehran' });
-    expect(token).toMatchObject({ tz: 'Asia/Tehran' });
     await getQueue('apify-daily').removeJobScheduler('daily-check');
-    await getQueue('token-refresh').removeJobScheduler('token-refresh');
   });
 });

@@ -56,8 +56,10 @@ describe('BoxAPI webhook signature', () => {
 
 describe('boxApiMessagesFrom', () => {
   it('reads data.messaging[] and a single event in data', () => {
-    expect(boxApiMessagesFrom(dmEvent('m1'))).toMatchObject([{ mid: 'm1', senderIgsid: '1111111111111111' }]);
-    const single = { event_type: 'messaging', data: dmEvent('m2').data.messaging[0] };
+    expect(boxApiMessagesFrom(dmEvent('m1'))).toMatchObject([
+      { mid: 'm1', accountId: '00000000-0000-0000-0000-000000000001', senderIgsid: '1111111111111111' },
+    ]);
+    const single = { event_type: 'messaging', account_id: 'acc', data: dmEvent('m2').data.messaging[0] };
     expect(boxApiMessagesFrom(single)).toMatchObject([{ mid: 'm2' }]);
   });
 
@@ -72,10 +74,10 @@ describe('boxApiMessagesFrom', () => {
 describe('POST /webhooks/boxapi', () => {
   beforeEach(() => {
     resetQueues();
-    env.BoxApiWebhookSecret = SECRET;
+    env.BOXAPI_WEBHOOK_SECRET = SECRET;
   });
   afterEach(() => {
-    env.BoxApiWebhookSecret = undefined;
+    env.BOXAPI_WEBHOOK_SECRET = undefined;
   });
 
   function post(body: unknown, { ts = nowSec(), secret = SECRET } = {}) {
@@ -98,7 +100,7 @@ describe('POST /webhooks/boxapi', () => {
 
   it('returns 401 on a bad signature or when no secret is configured', async () => {
     expect((await post(dmEvent('mid.2'), { secret: 'wrong' })).status).toBe(401);
-    env.BoxApiWebhookSecret = undefined;
+    env.BOXAPI_WEBHOOK_SECRET = undefined;
     expect((await post(dmEvent('mid.3'))).status).toBe(401);
     expect(take('dm-inbound')).toHaveLength(0);
   });

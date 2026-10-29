@@ -1,9 +1,8 @@
-// dm-send (PRD §5.1, §5.5): rate-limited sends through the Instagram Send API. A global BullMQ limiter keeps
-// us under Meta's limits, and each recipient gets at most SENDS_PER_MINUTE messages a minute (abuse guard).
+// dm-send (PRD §5.1, §5.5): rate-limited sends through BoxAPI's send_message. A global BullMQ limiter keeps
+// us well under BoxAPI's limits, and each recipient gets at most SENDS_PER_MINUTE messages a minute (abuse guard).
 import { UnrecoverableError, type Job } from 'bullmq';
 import type { Logger } from 'pino';
-import { getAccessToken } from '../../meta/token.js';
-import { GraphError, sendText } from '../../meta/sendApi.js';
+import { BoxApiError, sendMessage } from '../../boxapi/dm.js';
 import { DmEvent } from '../../models/DmEvent.js';
 import { dmSendData, isFinalAttempt, type DmSendData } from '../jobData.js';
 import { QUEUES } from '../names.js';
@@ -31,9 +30,9 @@ export async function processDmSend(data: DmSendData, log: Logger, deps: DmSendD
     return { dropped: 'rate_limited' };
   }
   try {
-    await sendText(data.recipient, data.text, { token: await getAccessToken(), fetch: deps.fetch });
+    await sendMessage(data.accountId, data.recipient, data.text, { fetch: deps.fetch });
   } catch (err) {
-    if (err instanceof GraphError && !err.retryable) throw new UnrecoverableError(err.message);
+    if (err instanceof BoxApiError && !err.retryable) throw new UnrecoverableError(err.message);
     throw err;
   }
   if (data.last) await DmEvent.updateOne({ mid: data.mid }, { $set: { replySentAt: new Date() } });

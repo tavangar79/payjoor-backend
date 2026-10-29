@@ -69,8 +69,6 @@ describe('security headers', () => {
 
   it('caps body sizes', async () => {
     const app = createApp();
-    const big = await request(app).post('/meta/data-deletion').type('form').send({ signed_request: 'x'.repeat(20_000) });
-    expect(big.status).toBe(413);
     const json = await request(app).post('/admin/api/auth/login').send({ username: 'x'.repeat(200_000) });
     expect(json.status).toBe(413);
   });

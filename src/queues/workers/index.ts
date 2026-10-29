@@ -8,7 +8,6 @@ import { apifyProfileWorker } from './apifyProfile.worker.js';
 import { dmInboundWorker } from './dmInbound.worker.js';
 import { dmSendWorker } from './dmSend.worker.js';
 import { postOwnerWorker } from './postOwner.worker.js';
-import { tokenRefreshWorker } from './tokenRefresh.worker.js';
 
 export type WorkerDefinition = {
   queue: QueueName;
@@ -24,5 +23,4 @@ export const workerDefinitions: WorkerDefinition[] = [
   apifyDailyWorker,
   apifyBackfillWorker,
   apifyProfileWorker,
-  tokenRefreshWorker,
 ];

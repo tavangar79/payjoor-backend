@@ -16,21 +16,15 @@ const schema = z.object({
   MONGODB_URI: z.string().min(1),
   REDIS_URL: z.string().min(1),
 
-  META_APP_ID: z.string().min(1),
-  META_APP_SECRET: z.string().min(1),
-  META_VERIFY_TOKEN: z.string().min(1),
-  IG_ACCESS_TOKEN: z.string().optional(),
-  IG_ACCOUNT_ID: z.string().min(1),
-  GRAPH_API_VERSION: z.string().default('v23.0'),
   // Store incoming message text in dmEvents.text (debugging only, §8).
   DM_STORE_TEXT: z.stringbool().default(false),
 
   // BoxAPI (boxapi.ir): DM & Comment API (X-Api-Key), Instagram Data API and AI API (Bearer tokens).
-  BoxApiInstagramDMToken: z.string().optional(),
-  BoxApiInstagramToken: z.string().optional(),
-  BoxApiAIToken: z.string().optional(),
+  BOXAPI_INSTAGRAM_DM_TOKEN: z.string().optional(),
+  BOXAPI_INSTAGRAM_TOKEN: z.string().optional(),
+  BOXAPI_AI_TOKEN: z.string().optional(),
   // Webhook secret generated in the BoxAPI panel; POST /webhooks/boxapi rejects everything until it's set.
-  BoxApiWebhookSecret: z.string().optional(),
+  BOXAPI_WEBHOOK_SECRET: z.string().optional(),
 
   APIFY_TOKEN: z.string().min(1),
   APIFY_BUDGET_STOP_USD: z.coerce.number().default(4.5),

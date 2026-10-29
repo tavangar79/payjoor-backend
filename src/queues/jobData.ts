@@ -13,6 +13,8 @@ export const dmMessage = z.object({
 
 export const dmInboundData = z.object({
   mid: z.string().min(1),
+  // The connected page's BoxAPI account id (webhook `account_id`), needed to send the reply.
+  accountId: z.string().min(1),
   senderIgsid: z.string().min(1),
   receivedAt: z.string(),
   message: dmMessage,
@@ -26,6 +28,7 @@ export type PostOwnerData = z.infer<typeof postOwnerData>;
 
 export const dmSendData = z.object({
   mid: z.string().min(1),
+  accountId: z.string().min(1),
   recipient: z.string().min(1),
   text: z.string().min(1),
   // The last part of the reply: sets dmEvents.replySentAt.
@@ -33,7 +36,7 @@ export const dmSendData = z.object({
 });
 export type DmSendData = z.infer<typeof dmSendData>;
 
-/** BullMQ job ids can't contain `:`; Meta mids are base64 but play safe. Deterministic, so retries dedupe. */
+/** BullMQ job ids can't contain `:`; Instagram mids are base64 but play safe. Deterministic, so retries dedupe. */
 export function dmJobId(mid: string, suffix?: string): string {
   const id = mid.replaceAll(':', '_');
   return suffix ? `${id}-${suffix}` : id;

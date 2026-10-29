@@ -7,7 +7,6 @@ import { errorHandler } from './lib/errorHandler.js';
 import { contentSecurityPolicy, securityHeaders } from './lib/securityHeaders.js';
 import { isDbConnected } from './lib/db.js';
 import { webhooksRouter } from './routes/webhooks.js';
-import { metaRouter } from './routes/meta.js';
 import { mediaRouter } from './routes/media.js';
 import { adminRouter } from './routes/admin/index.js';
 import { landingRouter } from './routes/landing.js';
@@ -26,7 +25,6 @@ export function createApp() {
 
   // Webhooks need the raw body for the HMAC check, so they mount before any JSON parser.
   app.use('/webhooks', webhooksRouter);
-  app.use('/meta', metaRouter);
   app.use('/media', mediaRouter);
   app.use('/admin', adminRouter);
   app.use('/', contentSecurityPolicy, landingRouter);

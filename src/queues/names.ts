@@ -6,7 +6,6 @@ export const QUEUES = {
   apifyDaily: 'apify-daily',
   apifyBackfill: 'apify-backfill',
   apifyProfile: 'apify-profile',
-  tokenRefresh: 'token-refresh',
 } as const;
 
 export type QueueName = (typeof QUEUES)[keyof typeof QUEUES];

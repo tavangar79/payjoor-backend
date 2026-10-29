@@ -5,32 +5,11 @@ import { describe, expect, it } from 'vitest';
 import express from 'express';
 import request from 'supertest';
 import { useMongo } from '../setup/mongo.js';
-import { createApp } from '../../src/app.js';
-import { parseSignedRequest, signRequest } from '../../src/meta/signedRequest.js';
-import { DeletionRequest, DmEvent, JobRun, MetaToken } from '../../src/models/index.js';
+import { DeletionRequest, DmEvent } from '../../src/models/index.js';
 import { getDeletionStatus, hashIgsid, requestDeletion } from '../../src/services/deletion.js';
 import { createLandingRouter, fillTemplate } from '../../src/routes/landing.js';
-import { tokenRefreshWorker } from '../../src/queues/workers/tokenRefresh.worker.js';
-import { env } from '../../src/config/env.js';
-import { logger } from '../../src/lib/logger.js';
 
 useMongo();
-
-describe('signed_request', () => {
-  it('verifies the HMAC and the algorithm', () => {
-    const sr = signRequest({ algorithm: 'HMAC-SHA256', user_id: '1000000000000001', issued_at: 1761200000 }, 'secret');
-    expect(parseSignedRequest(sr, 'secret')).toMatchObject({ user_id: '1000000000000001', issued_at: 1761200000 });
-    expect(parseSignedRequest(sr, 'other')).toBeNull();
-    const [sig, body] = sr.split('.');
-    const tampered = Buffer.from(JSON.stringify({ algorithm: 'HMAC-SHA256', user_id: '2' })).toString('base64url');
-    expect(parseSignedRequest(`${sig}.${tampered}`, 'secret')).toBeNull();
-    expect(parseSignedRequest(signRequest({ algorithm: 'none', user_id: '1' }, 'secret'), 'secret')).toBeNull();
-    expect(parseSignedRequest(signRequest({ algorithm: 'HMAC-SHA256' }, 'secret'), 'secret')).toBeNull();
-    expect(parseSignedRequest(`${sig}`, 'secret')).toBeNull();
-    expect(parseSignedRequest(undefined, 'secret')).toBeNull();
-    expect(body).toBeTruthy();
-  });
-});
 
 describe('data deletion', () => {
   const dm = (mid: string, senderIgsid: string) => DmEvent.create({ mid, senderIgsid, kind: 'text', result: 'found' });
@@ -48,40 +27,6 @@ describe('data deletion', () => {
     expect(await getDeletionStatus(code)).toBe('done');
     expect(await getDeletionStatus('0'.repeat(16))).toBeNull();
     expect(await getDeletionStatus('not-a-code')).toBeNull();
-  });
-
-  it('POST /meta/data-deletion returns the status url and code; bad requests get 400', async () => {
-    await dm('a', '111');
-    const app = createApp();
-    const res = await request(app)
-      .post('/meta/data-deletion')
-      .type('form')
-      .send({ signed_request: signRequest({ algorithm: 'HMAC-SHA256', user_id: '111' }) });
-    expect(res.status).toBe(200);
-    expect(res.body.confirmation_code).toMatch(/^[0-9a-f]{16}$/);
-    expect(res.body.url).toBe(`http://localhost:3000/en/data-deletion/status?code=${res.body.confirmation_code}`);
-    expect(await DmEvent.countDocuments()).toBe(0);
-
-    const bad = await request(app).post('/meta/data-deletion').type('form').send({ signed_request: signRequest({ algorithm: 'HMAC-SHA256', user_id: '1' }, 'wrong') });
-    expect(bad.status).toBe(400);
-    expect((await request(app).post('/meta/data-deletion').type('form').send({})).status).toBe(400);
-  });
-
-  it('POST /meta/deauthorize answers 200 for a valid request only', async () => {
-    const app = createApp();
-    const ok = await request(app).post('/meta/deauthorize').type('form').send({ signed_request: signRequest({ algorithm: 'HMAC-SHA256', user_id: '1' }) });
-    expect(ok.status).toBe(200);
-    expect((await request(app).post('/meta/deauthorize').type('form').send({ signed_request: 'x.y' })).status).toBe(400);
-  });
-});
-
-describe('token-refresh worker', () => {
-  it('records the refresh and fails loudly when it can\'t refresh', async () => {
-    const job = { attemptsMade: 2, opts: { attempts: 3 } } as never;
-    await expect(tokenRefreshWorker.processor(job, logger)).rejects.toThrow('no_meta_token');
-    expect(await JobRun.findOne({ type: 'token_refresh' }).lean()).toMatchObject({ error: expect.stringContaining('no_meta_token') });
-    expect(await MetaToken.countDocuments()).toBe(0);
-    expect(env.IG_ACCESS_TOKEN).toBeUndefined();
   });
 });
 

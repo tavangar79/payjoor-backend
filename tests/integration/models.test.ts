@@ -8,7 +8,6 @@ import {
   DmEvent,
   JobRun,
   LoginAttempt,
-  MetaToken,
   PostOwner,
   Review,
   ReviewerSource,
@@ -60,7 +59,6 @@ describe('models', () => {
         'dmEvents',
         'jobRuns',
         'loginAttempts',
-        'metaToken',
         'postOwners',
         'reviewerSources',
         'reviews',
@@ -196,14 +194,6 @@ describe('models', () => {
       const d = await DeletionRequest.create({ confirmationCode: 'c1', igsidHash: 'h' });
       expect(d.status).toBe('pending');
       await expect(DeletionRequest.create({ confirmationCode: 'c1', igsidHash: 'h2' })).rejects.toMatchObject(DUP);
-    });
-  });
-
-  describe('MetaToken', () => {
-    it('allows only one document', async () => {
-      const t = { accessTokenEnc: 'v1:a:b:c', expiresAt: new Date(), refreshedAt: new Date() };
-      await MetaToken.create(t);
-      await expect(MetaToken.create(t)).rejects.toMatchObject(DUP);
     });
   });
 

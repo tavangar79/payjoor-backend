@@ -34,7 +34,7 @@ export async function processDmInbound(data: DmInboundData, log: Logger, deps: B
   if (outcome.needsOwnerLookup) {
     await sendQueue.add(
       'reply',
-      { mid: data.mid, recipient: data.senderIgsid, text: outcome.replies[0]!, last: false },
+      { mid: data.mid, accountId: data.accountId, recipient: data.senderIgsid, text: outcome.replies[0]!, last: false },
       { jobId: dmJobId(data.mid, 'checking') },
     );
     await getQueue(QUEUES.postOwner).add(
@@ -52,7 +52,7 @@ export async function processDmInbound(data: DmInboundData, log: Logger, deps: B
     outcome.replies.map((text, i) =>
       sendQueue.add(
         'reply',
-        { mid: data.mid, recipient: data.senderIgsid, text, last: i === outcome.replies.length - 1 },
+        { mid: data.mid, accountId: data.accountId, recipient: data.senderIgsid, text, last: i === outcome.replies.length - 1 },
         { jobId: dmJobId(data.mid, `r${i}`) },
       ),
     ),

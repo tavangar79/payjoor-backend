@@ -1,4 +1,4 @@
-// End to end without Redis (plan 8.6): signed webhook -> dm-inbound -> (post-owner) -> dm-send -> Graph.
+// End to end without Redis (plan 8.6): signed BoxAPI webhook -> dm-inbound -> (post-owner) -> dm-send -> BoxAPI send_message.
 import { readFileSync } from 'node:fs';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import request from 'supertest';
@@ -12,7 +12,7 @@ vi.mock('../../src/queues/queues.js', () => fakeQueuesModule());
 const { createApp } = await import('../../src/app.js');
 const { env } = await import('../../src/config/env.js');
 const { logger } = await import('../../src/lib/logger.js');
-const { signBody } = await import('../../src/meta/signature.js');
+const { signBoxApiBody } = await import('../../src/boxapi/signature.js');
 const models = await import('../../src/models/index.js');
 const { createShop, saveShopImage } = await import('../../src/services/shops.js');
 const { createCategory } = await import('../../src/services/categories.js');
@@ -25,6 +25,8 @@ useMongo();
 const samples = JSON.parse(readFileSync(new URL('../fixtures/webhooks/docs-samples.json', import.meta.url), 'utf8'));
 const PNG = Buffer.concat([Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]), Buffer.from('x')]);
 const allow = async () => true;
+const SECRET = 'boxapi-secret';
+const ACCOUNT = '00000000-0000-0000-0000-000000000001';
 
 beforeAll(async () => {
   await models.syncAllIndexes();
@@ -32,7 +34,8 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   resetQueues();
-  env.IG_ACCESS_TOKEN = 'IGAAtest';
+  env.BOXAPI_INSTAGRAM_DM_TOKEN = 'box-dm-test';
+  env.BOXAPI_WEBHOOK_SECRET = SECRET;
   const image = await saveShopImage(PNG);
   const cat = await createCategory({ name: 'کیف', nameEn: 'Bags' });
   const shop = await createShop({ handle: 'maashmamad', displayName: 'Maash Mamad', profileImageId: image.imageId, categoryIds: [cat._id], status: 'recommended' });
@@ -52,27 +55,37 @@ beforeEach(async () => {
 });
 
 afterEach(() => {
-  env.IG_ACCESS_TOKEN = undefined;
+  env.BOXAPI_INSTAGRAM_DM_TOKEN = undefined;
+  env.BOXAPI_WEBHOOK_SECRET = undefined;
 });
 
-function postWebhook(body: unknown, signature?: string) {
+/** Wraps a Meta-shaped docs sample in BoxAPI's envelope and posts it signed. */
+function postWebhook(sample: { entry: { messaging: unknown[] }[] }, secret = SECRET) {
+  const body = { event_id: 'evt', event_type: 'messaging', account_id: ACCOUNT, data: { messaging: sample.entry[0]!.messaging } };
   // Sent as a string: superagent would JSON-encode a Buffer.
   const raw = JSON.stringify(body);
+  const ts = String(Math.floor(Date.now() / 1000));
   return request(createApp())
-    .post('/webhooks/instagram')
+    .post('/webhooks/boxapi')
     .set('Content-Type', 'application/json')
-    .set('X-Hub-Signature-256', signature ?? signBody(Buffer.from(raw)))
+    .set('X-BoxApi-Signature', signBoxApiBody(Buffer.from(raw), ts, secret))
+    .set('X-BoxApi-Timestamp', ts)
     .send(raw);
 }
 
 async function drainSends() {
-  const graph = fakeFetch([[/graph\.instagram\.com/, () => json({ message_id: 'out' })]]);
-  for (const job of take('dm-send')) await processDmSend(job.data, logger, { limiter: allow, fetch: graph });
-  return graph.mock.calls.map(([, init]) => JSON.parse(String(init?.body)) as { recipient: { id: string }; message: { text: string } });
+  const box = fakeFetch([[/boxapi\.ir\/service\/actions\/send_message$/, () => json({ ok: true })]]);
+  for (const job of take('dm-send')) await processDmSend(job.data, logger, { limiter: allow, fetch: box });
+  return box.mock.calls.map(([, init]) => {
+    expect((init?.headers as Record<string, string>)['X-Api-Key']).toBe('box-dm-test');
+    const b = JSON.parse(String(init?.body)) as { account_id: string; recipient_id: string; message: string };
+    expect(b.account_id).toBe(ACCOUNT);
+    return { recipient: { id: b.recipient_id }, message: { text: b.message } };
+  });
 }
 
 describe('DM flow', () => {
-  it('answers a found shop once, even when Meta retries the webhook', async () => {
+  it('answers a found shop once, even when BoxAPI retries the webhook', async () => {
     expect((await postWebhook(samples.text_handle)).status).toBe(200);
     expect((await postWebhook(samples.text_handle)).status).toBe(200);
     const inbound = take('dm-inbound');
@@ -98,7 +111,7 @@ describe('DM flow', () => {
   });
 
   it('rejects a bad signature and skips echoes', async () => {
-    expect((await postWebhook(samples.text_handle, `sha256=${'0'.repeat(64)}`)).status).toBe(403);
+    expect((await postWebhook(samples.text_handle, 'wrong-secret')).status).toBe(401);
     expect((await postWebhook(samples.echo)).status).toBe(200);
     expect(take('dm-inbound')).toEqual([]);
   });
@@ -140,6 +153,7 @@ describe('DM flow', () => {
   it('wishlists an unknown page and counts repeat requests', async () => {
     const dm = (mid: string) => ({
       mid,
+      accountId: ACCOUNT,
       senderIgsid: '1000000000000009',
       receivedAt: new Date().toISOString(),
       message: { text: 'این پیج؟ @New.Shop' },
@@ -151,13 +165,13 @@ describe('DM flow', () => {
     expect(first!.message.text).toContain('این پیج را هنوز بررسی نکرده‌ایم');
   });
 
-  it('drops replies over the per-sender limit and stops on a permanent Graph error', async () => {
-    await processDmInbound({ mid: 'm3', senderIgsid: '42', receivedAt: new Date().toISOString(), message: { text: 'hello there' } }, logger);
+  it('drops replies over the per-sender limit and stops on a permanent BoxAPI error', async () => {
+    await processDmInbound({ mid: 'm3', accountId: ACCOUNT, senderIgsid: '42', receivedAt: new Date().toISOString(), message: { text: 'hello there' } }, logger);
     const [job] = take('dm-send');
     expect(await processDmSend(job!.data, logger, { limiter: async () => false })).toEqual({ dropped: 'rate_limited' });
     expect((await models.DmEvent.findOne({ mid: 'm3' }).lean())?.error).toBe('rate_limited');
 
-    const bad = fakeFetch([[/./, () => json({ error: { message: 'No matching user', code: 100 } }, 400)]]);
+    const bad = fakeFetch([[/./, () => json({ error: 'recipient not found' }, 400)]]);
     await expect(processDmSend(job!.data, logger, { limiter: allow, fetch: bad })).rejects.toBeInstanceOf(UnrecoverableError);
   });
 });
