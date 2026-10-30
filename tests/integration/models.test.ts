@@ -57,6 +57,7 @@ describe('models', () => {
         'categories',
         'deletionRequests',
         'dmEvents',
+        'ignoredHandles',
         'jobRuns',
         'loginAttempts',
         'postChecks',

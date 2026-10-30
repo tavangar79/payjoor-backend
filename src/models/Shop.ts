@@ -33,6 +33,10 @@ const shopSchema = new Schema(
       website: { type: String, trim: true },
       phone: { type: String, trim: true },
     },
+    // Created by the publish gate rather than by an admin.
+    autoCreated: { type: Boolean, required: true, default: false },
+    // An admin set the status by hand; syncShopStatus leaves it alone unless the shop has the scammer tag.
+    statusManual: { type: Boolean, required: true, default: false },
     profileFetchedAt: Date,
   },
   { timestamps: true, collection: 'shops' },

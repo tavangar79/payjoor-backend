@@ -10,6 +10,7 @@ import type { Direction, Outcome } from '../models/enums.js';
 import { Review } from '../models/Review.js';
 import { Wishlist } from '../models/Wishlist.js';
 import { findByHandle } from './shops.js';
+import { syncShopStatus } from './shopStatus.js';
 import { addRequest } from './wishlist.js';
 
 export type PostCounts = { reviewsCreated: number; wishlisted: number; duplicates: number; skipped: number };
@@ -126,6 +127,7 @@ export async function approveReview(id: Types.ObjectId, input: ApproveInput) {
   doc.publishedAt = new Date();
   doc.rejectReason = undefined;
   await doc.save();
+  await syncShopStatus(doc.shopId);
   return doc.toObject();
 }
 
@@ -138,5 +140,6 @@ export async function rejectReview(id: Types.ObjectId, reason: string) {
   doc.rejectReason = reason.trim();
   doc.publishedAt = undefined;
   await doc.save();
+  if (doc.shopId) await syncShopStatus(doc.shopId);
   return doc.toObject();
 }

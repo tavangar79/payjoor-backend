@@ -8,6 +8,7 @@ export const OUTCOMES = [
   'not_delivered',
   'return_refused',
   'other_problem',
+  'scam_reported',
 ] as const;
 export type Outcome = (typeof OUTCOMES)[number];
 

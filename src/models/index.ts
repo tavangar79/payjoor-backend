@@ -5,6 +5,7 @@ import { Admin } from './Admin.js';
 import { Category } from './Category.js';
 import { DeletionRequest } from './DeletionRequest.js';
 import { DmEvent } from './DmEvent.js';
+import { IgnoredHandle } from './IgnoredHandle.js';
 import { JobRun } from './JobRun.js';
 import { LoginAttempt } from './LoginAttempt.js';
 import { PostCheck } from './PostCheck.js';
@@ -20,6 +21,7 @@ export {
   Category,
   DeletionRequest,
   DmEvent,
+  IgnoredHandle,
   JobRun,
   LoginAttempt,
   PostCheck,
@@ -36,6 +38,7 @@ export const allModels: Model<any>[] = [
   Category,
   DeletionRequest,
   DmEvent,
+  IgnoredHandle,
   JobRun,
   LoginAttempt,
   PostCheck,

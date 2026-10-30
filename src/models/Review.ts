@@ -27,6 +27,7 @@ const reviewSchema = new Schema(
     outcome: { type: String, enum: OUTCOMES },
     direction: { type: String, enum: DIRECTIONS },
     summary: { type: String, trim: true },
+    autoPublished: { type: Boolean, required: true, default: false },
     rejectReason: { type: String, trim: true },
     publishedAt: Date,
   },

@@ -163,7 +163,11 @@ export async function updateShop(id: Types.ObjectId, patch: ShopPatch): Promise<
   doc.previousHandles = previousHandles;
 
   if (patch.displayName !== undefined) doc.displayName = patch.displayName;
-  if (patch.status !== undefined) doc.status = patch.status;
+  if (patch.status !== undefined) {
+    // A hand-picked status sticks (§6.3); setting the value it already has is not a decision.
+    if (patch.status !== doc.status) doc.statusManual = true;
+    doc.status = patch.status;
+  }
   if (patch.tags !== undefined) doc.tags = normalizeTags(patch.tags);
   if (patch.categoryIds !== undefined) {
     await assertCategoriesExist(patch.categoryIds);
