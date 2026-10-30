@@ -6,7 +6,7 @@ import { MAX_IMAGE_BYTES } from '../../lib/imageCheck.js';
 import { normalizeHandle } from '../../lib/handle.js';
 import { toObjectId } from '../../lib/mongo.js';
 import { SHOP_STATUSES } from '../../models/enums.js';
-import { createShop, getShop, listShops, saveShopImage, updateShop } from '../../services/shops.js';
+import { createShop, getShop, listShops, markNotAShop, saveShopImage, updateShop } from '../../services/shops.js';
 import { QUEUES } from '../../queues/names.js';
 import { getQueue } from '../../queues/queues.js';
 import type { ProfileJobData } from '../../queues/workers/shopProfile.worker.js';
@@ -98,6 +98,11 @@ shopsRouter.post('/:id/refresh-profile', async (req, res) => {
 
 shopsRouter.get('/:id', async (req, res) => {
   res.json(await getShop(idParam(req.params.id)));
+});
+
+// Not a business (§6.3): removes an auto-created shop and ignores its handle.
+shopsRouter.post('/:id/not-a-shop', async (req, res) => {
+  res.json(await markNotAShop(idParam(req.params.id)));
 });
 
 shopsRouter.post('/', async (req, res) => {

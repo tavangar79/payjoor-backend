@@ -4,6 +4,9 @@ import type { Types } from 'mongoose';
 import { Shop, type ShopDoc } from '../models/Shop.js';
 import { ShopImage } from '../models/ShopImage.js';
 import { Category } from '../models/Category.js';
+import { IgnoredHandle } from '../models/IgnoredHandle.js';
+import { Review } from '../models/Review.js';
+import { Wishlist } from '../models/Wishlist.js';
 import type { ShopStatus } from '../models/enums.js';
 import { HttpError } from '../lib/errorHandler.js';
 import { normalizeHandle } from '../lib/handle.js';
@@ -229,4 +232,24 @@ export async function listShops(query: ShopListQuery): Promise<{ items: ShopDoc[
     Shop.countDocuments(filter),
   ]);
   return { items, total };
+}
+
+/**
+ * The page isn't a business (PRD §6.3): an auto-created shop is removed with its auto-published and pending reviews
+ * (rejected as `not_a_shop`) and its handle is ignored from now on. Every step can run again after a crash.
+ */
+export async function markNotAShop(id: Types.ObjectId): Promise<{ handle: string }> {
+  const shop = await getShop(id);
+  if (!shop.autoCreated) throw new HttpError(409, 'not_auto_created');
+  if (await Review.exists({ shopId: id, status: 'published', autoPublished: false })) throw new HttpError(409, 'shop_has_reviews');
+
+  await IgnoredHandle.updateOne({ handle: shop.handle }, { $setOnInsert: { handle: shop.handle } }, { upsert: true });
+  await Review.updateMany(
+    { shopId: id, status: { $in: ['pending', 'published'] } },
+    { $set: { status: 'rejected', rejectReason: 'not_a_shop' }, $unset: { publishedAt: '' } },
+  );
+  // The handle must not stay promoted to a shop that is gone.
+  await Wishlist.updateMany({ promotedShopId: id }, { $set: { status: 'dismissed' }, $unset: { promotedShopId: '' } });
+  await Shop.deleteOne({ _id: id });
+  return { handle: shop.handle };
 }

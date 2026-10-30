@@ -13,6 +13,16 @@ const reviewerSourceSchema = new Schema(
     lastSeenPostAt: Date,
     // Posts of a trusted source go to the AI queue instead of becoming pending reviews.
     trusted: { type: Boolean, required: true, default: false },
+    // The page's profile when it was added (image hash, counts), as shown in the admin form.
+    profile: {
+      sha256: String,
+      displayName: String,
+      biography: String,
+      postCount: Number,
+      followerCount: Number,
+      isPrivate: Boolean,
+      fetchedAt: Date,
+    },
     permission: { type: String, enum: REVIEWER_PERMISSIONS, required: true, default: 'link_only' },
   },
   { timestamps: true, collection: 'reviewerSources' },

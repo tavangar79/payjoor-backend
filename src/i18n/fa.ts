@@ -26,6 +26,7 @@ export const fa: BotStrings = {
   notFound:
     'این پیج را هنوز بررسی نکرده‌ایم و به فهرست بررسی اضافه‌اش کردیم.\nاگر تجربه‌ای از خرید از این پیج دارید یا می‌خواهید بررسی شود، همین‌جا به ما خبر دهید.',
   notReviewedYet: 'این پیج در فهرست ماست، اما هنوز نقدی برایش منتشر نکرده‌ایم.',
+  disclaimer: 'این پاسخ فقط برای اطلاع‌رسانی است و مسئولیت خرید با خود شماست.',
   checking: 'در حال بررسی… چند لحظه صبر کنید.',
   more: (n) => `+${toPersianDigits(n)} نقد دیگر`,
   date: (d) => new Intl.DateTimeFormat('fa-IR', { dateStyle: 'medium', timeZone: 'Asia/Tehran' }).format(d),

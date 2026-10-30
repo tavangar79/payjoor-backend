@@ -14,10 +14,23 @@ const fields = {
   follow: z.boolean(),
   backfillLimit: z.number().int().min(0).max(500),
   permission: z.enum(REVIEWER_PERMISSIONS),
+  trusted: z.boolean(),
 };
+const profileBody = z
+  .object({
+    sha256: z.string().trim().min(1).max(128),
+    displayName: z.string().trim().max(200).nullish(),
+    biography: z.string().trim().max(2000).nullish(),
+    postCount: z.number().int().min(0),
+    followerCount: z.number().int().min(0),
+    isPrivate: z.boolean(),
+    fetchedAt: z.coerce.date(),
+  })
+  .strict();
 const createBody = z
   .object({ handle: z.string().trim().min(1).max(64), ...fields })
-  .partial({ follow: true, backfillLimit: true, permission: true })
+  .extend({ profile: profileBody.optional() })
+  .partial({ follow: true, backfillLimit: true, permission: true, trusted: true })
   .strict();
 const updateBody = z.object(fields).partial().strict();
 

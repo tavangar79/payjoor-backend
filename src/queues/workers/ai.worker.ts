@@ -9,9 +9,9 @@ import { toObjectId } from '../../lib/mongo.js';
 import { Category } from '../../models/Category.js';
 import { PostCheck } from '../../models/PostCheck.js';
 import { classifyPost } from '../../services/postClassify.js';
+import { enqueuePublish } from '../../services/postChecks.js';
 import { aiJobData, type AiJobData } from '../jobData.js';
 import { QUEUES } from '../names.js';
-import { getQueue } from '../queues.js';
 import type { WorkerDefinition } from './index.js';
 
 const MAX_CATEGORIES = 100;
@@ -35,11 +35,7 @@ export async function processClassify(data: Extract<AiJobData, { task: 'classify
         { $set: { analysis, status: 'classified' }, $unset: { lastError: '' } },
       );
       if (!matchedCount) return { skipped: true };
-      await getQueue(QUEUES.postPublish).add(
-        'post_publish',
-        { postCheckId: String(check._id) },
-        { jobId: `publish-${check._id}`, attempts: 8, backoff: { type: 'exponential', delay: 60_000 } },
-      );
+      await enqueuePublish(check._id);
       ctx.counts.classified = 1;
       log.info({ postCheckId: String(check._id), confidence: analysis.confidence }, 'post classified');
       return { classified: true };

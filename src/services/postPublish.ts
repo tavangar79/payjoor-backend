@@ -60,12 +60,14 @@ export async function publishReview(check: StoredPost, input: PublishInput): Pro
   }
   if (!id && !(await publishedReviewId(shopId, check.postShortcode))) return null;
 
-  if (scamClaim) {
-    const shop = await getShop(shopId);
-    if (!shop.tags.includes(SCAMMER_TAG)) await updateShop(shopId, { tags: [...shop.tags, SCAMMER_TAG] });
-  }
+  if (scamClaim) await tagScammer(shopId);
   await syncShopStatus(shopId);
   return id;
+}
+
+export async function tagScammer(shopId: Types.ObjectId): Promise<void> {
+  const shop = await getShop(shopId);
+  if (!shop.tags.includes(SCAMMER_TAG)) await updateShop(shopId, { tags: [...shop.tags, SCAMMER_TAG] });
 }
 
 async function ignoredHandles(sourceHandle?: string): Promise<Set<string>> {

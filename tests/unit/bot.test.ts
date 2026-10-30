@@ -176,3 +176,30 @@ describe('handleMessage', () => {
     expect(out.replies[0]).toContain('@maashmamad');
   });
 });
+
+describe('reply disclaimer', () => {
+  const disclaimer = {
+    fa: 'این پاسخ فقط برای اطلاع‌رسانی است و مسئولیت خرید با خود شماست.',
+    en: 'This is for information only. Buying is your own responsibility.',
+  };
+
+  it('reply with reviews ends with the disclaimer, in the user language', () => {
+    for (const lang of ['fa', 'en'] as const) {
+      const parts = buildShopReply({ shop, reviews: [review(1)], total: 1, categoryNames: [], link: 'https://example.com/x' }, lang);
+      expect(parts.at(-1)!.endsWith(disclaimer[lang])).toBe(true);
+    }
+  });
+
+  it('reply with no reviews has no disclaimer', () => {
+    const [text] = buildShopReply({ shop, reviews: [], total: 0, categoryNames: [] }, 'en');
+    expect(text).not.toContain(disclaimer.en);
+  });
+
+  it('a long reply splits and the disclaimer stays in the last part', () => {
+    const long = Array.from({ length: 12 }, (_, i) => ({ ...review(i), summary: 'x'.repeat(200) }));
+    const parts = buildShopReply({ shop, reviews: long, total: 12, categoryNames: [] }, 'en');
+    expect(parts.length).toBeGreaterThan(1);
+    expect(parts.at(-1)!.endsWith(disclaimer.en)).toBe(true);
+    expect(parts.slice(0, -1).some((p) => p.includes(disclaimer.en))).toBe(false);
+  });
+});

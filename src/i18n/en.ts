@@ -24,6 +24,7 @@ export const en: BotStrings = {
   notFound:
     "We haven't reviewed this page yet. We've added it to our review list.\nIf you've bought from this page or want it reviewed, tell us here.",
   notReviewedYet: "This page is on our list, but we haven't published a review of it yet.",
+  disclaimer: 'This is for information only. Buying is your own responsibility.',
   checking: 'Checking… one moment.',
   more: (n) => `+${n} more`,
   date: (d) => new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium', timeZone: 'Asia/Tehran' }).format(d),

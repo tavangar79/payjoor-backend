@@ -8,6 +8,7 @@ import { wishlistRouter } from './wishlist.js';
 import { shopsRouter } from './shops.js';
 import { categoriesRouter } from './categories.js';
 import { reviewerSourcesRouter } from './reviewerSources.js';
+import { postChecksRouter } from './postChecks.js';
 import { jobsRouter } from './jobs.js';
 import { queuesBoard, requireAdminPage, requireSameOrigin } from './queuesBoard.js';
 
@@ -26,6 +27,7 @@ adminRouter.use('/api/wishlist', wishlistRouter);
 adminRouter.use('/api/shops', shopsRouter);
 adminRouter.use('/api/categories', categoriesRouter);
 adminRouter.use('/api/reviewer-sources', reviewerSourcesRouter);
+adminRouter.use('/api/post-checks', postChecksRouter);
 adminRouter.use('/api/jobs', jobsRouter);
 adminRouter.use('/api', (_req, res) => {
   res.status(404).json({ error: 'not_found' });

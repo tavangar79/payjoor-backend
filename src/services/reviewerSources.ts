@@ -15,6 +15,8 @@ export type SourceInput = {
   follow?: boolean;
   backfillLimit?: number;
   permission?: ReviewerSourceDoc['permission'];
+  trusted?: boolean;
+  profile?: ReviewerSourceDoc['profile'];
 };
 
 export async function enqueueBackfill(sourceId: Types.ObjectId, force = false) {

@@ -42,6 +42,8 @@ export function buildShopReply(input: ShopReplyInput, lang: Lang): string[] {
     if (total > reviews.length) blocks.push(t.more(total - reviews.length));
   }
   if (link) blocks.push(link);
+  // Last block, so a split reply keeps it in the final part.
+  if (reviews.length > 0) blocks.push(t.disclaimer);
   return splitMessage(blocks.join('\n\n'));
 }
 
