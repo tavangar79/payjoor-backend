@@ -6,6 +6,7 @@ import { aiWorker } from './ai.worker.js';
 import { dmInboundWorker } from './dmInbound.worker.js';
 import { dmSendWorker } from './dmSend.worker.js';
 import { postOwnerWorker } from './postOwner.worker.js';
+import { postPublishWorker } from './postPublish.worker.js';
 import { reviewerBackfillWorker } from './reviewerBackfill.worker.js';
 import { reviewerDailyWorker } from './reviewerDaily.worker.js';
 import { shopProfileWorker } from './shopProfile.worker.js';
@@ -25,4 +26,5 @@ export const workerDefinitions: WorkerDefinition[] = [
   reviewerBackfillWorker,
   shopProfileWorker,
   aiWorker,
+  postPublishWorker,
 ];

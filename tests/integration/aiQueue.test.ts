@@ -148,7 +148,7 @@ describe('classify job', () => {
     expect(check?.analysis).toMatchObject({ confidence: expect.any(Number), model: expect.any(String) });
     const publish = take('post-publish');
     expect(publish).toHaveLength(1);
-    expect(publish[0]!.id).toBe(`publish-${id}`);
+    expect(publish[0]).toMatchObject({ id: `publish-${id}`, opts: { attempts: 8, backoff: { type: 'exponential', delay: 60_000 } } });
     expect(await models.JobRun.findOne({ type: 'ai_classify' }).lean()).toMatchObject({ counts: { classified: 1 } });
   });
 

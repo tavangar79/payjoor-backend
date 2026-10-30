@@ -28,7 +28,11 @@ export async function processClassify(data: Extract<AiJobData, { task: 'classify
       const categories = (await Category.find({}, { name: 1 }).limit(MAX_CATEGORIES).lean()).map((c) => c.name);
       const analysis = await classifyPost({ caption: check.caption ?? '', tagged: check.tagged, categories }, opts);
       await PostCheck.updateOne({ _id: check._id }, { $set: { analysis, status: 'classified' }, $unset: { lastError: '' } });
-      await getQueue(QUEUES.postPublish).add('post_publish', { postCheckId: String(check._id) }, { jobId: `publish-${check._id}` });
+      await getQueue(QUEUES.postPublish).add(
+        'post_publish',
+        { postCheckId: String(check._id) },
+        { jobId: `publish-${check._id}`, attempts: 8, backoff: { type: 'exponential', delay: 60_000 } },
+      );
       ctx.counts.classified = 1;
       log.info({ postCheckId: String(check._id), confidence: analysis.confidence }, 'post classified');
       return { classified: true };

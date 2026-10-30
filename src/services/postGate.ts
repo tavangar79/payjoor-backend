@@ -31,6 +31,11 @@ export type GateInput = {
 
 export type GateResult = { publish: boolean; handle: string | null; outcome: Outcome | null; reasons: GateReason[] };
 
+/** A handle written only as plain text in the caption is fine; it must still appear in the post. */
+export function handleInPost(handle: string, caption: string, tagged: string[]): boolean {
+  return caption.toLowerCase().includes(handle) || tagged.some((t) => t.toLowerCase() === handle);
+}
+
 export function evaluateGate(input: GateInput): GateResult {
   const { analysis, caption, tagged, ignored } = input;
   const reasons: GateReason[] = [];
@@ -48,9 +53,7 @@ export function evaluateGate(input: GateInput): GateResult {
     handle = normalizeHandle([...distinct][0]!);
     if (!handle) reasons.push('invalid_handle');
     else {
-      // A handle written only as plain text in the caption is fine; it must still appear in the post.
-      const inPost = caption.toLowerCase().includes(handle) || tagged.some((t) => t.toLowerCase() === handle);
-      if (!inPost) reasons.push('handle_not_in_post');
+      if (!handleInPost(handle, caption, tagged)) reasons.push('handle_not_in_post');
       if (ignored.has(handle)) reasons.push('ignored_handle');
     }
   }

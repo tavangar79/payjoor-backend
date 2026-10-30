@@ -7,6 +7,7 @@ import { HttpError } from '../lib/errorHandler.js';
 import { isDuplicateKey } from '../lib/mongo.js';
 import { logger } from '../lib/logger.js';
 import type { Direction, Outcome } from '../models/enums.js';
+import type { PostCheckDoc } from '../models/PostCheck.js';
 import { Review } from '../models/Review.js';
 import { Wishlist } from '../models/Wishlist.js';
 import { findByHandle } from './shops.js';
@@ -18,17 +19,23 @@ export const emptyPostCounts = (): PostCounts => ({ reviewsCreated: 0, wishliste
 
 type Source = { _id: Types.ObjectId; handle: string };
 
-function reviewFields(post: BoxApiPost, source: Source, shortcode: string, occurredAt: Date) {
+export type StoredPost = Pick<
+  PostCheckDoc,
+  'reviewerSourceId' | 'postShortcode' | 'postUrl' | 'occurredAt' | 'caption' | 'media' | 'paidPartnership' | 'raw'
+>;
+
+/** The review's copy of a stored post, pending until someone or the gate publishes it. */
+export function reviewFields(post: StoredPost) {
   return {
     sourceType: 'reviewer_post' as const,
-    reviewerSourceId: source._id,
-    postShortcode: shortcode,
-    postUrl: postUrl(shortcode),
-    occurredAt,
-    caption: captionText(post),
-    media: mediaUrls(post),
-    paidPartnership: Boolean(post.is_paid_partnership),
-    raw: post,
+    reviewerSourceId: post.reviewerSourceId,
+    postShortcode: post.postShortcode,
+    postUrl: post.postUrl,
+    occurredAt: post.occurredAt,
+    caption: post.caption,
+    media: post.media,
+    paidPartnership: post.paidPartnership,
+    raw: post.raw,
     status: 'pending' as const,
   };
 }
@@ -60,7 +67,16 @@ export async function createPendingFromPost(post: BoxApiPost, source: Source): P
   }
 
   for (const handle of handles) {
-    const fields = reviewFields(post, source, shortcode, occurredAt);
+    const fields = reviewFields({
+      reviewerSourceId: source._id,
+      postShortcode: shortcode,
+      postUrl: postUrl(shortcode),
+      occurredAt,
+      caption: captionText(post),
+      media: mediaUrls(post),
+      paidPartnership: Boolean(post.is_paid_partnership),
+      raw: post,
+    });
     const shop = await findByHandle(handle);
     if (shop) {
       if (await createOnce({ ...fields, shopId: shop._id })) counts.reviewsCreated++;
