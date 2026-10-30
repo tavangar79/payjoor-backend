@@ -12,6 +12,9 @@ const { processClassify } = await import('../../src/queues/workers/ai.worker.js'
 const { aiJobData } = await import('../../src/queues/jobData.js');
 const { logger } = await import('../../src/lib/logger.js');
 const models = await import('../../src/models/index.js');
+const { getQueue } = await import('../../src/queues/queues.js');
+const { enqueueClassify } = await import('../../src/services/postChecks.js');
+const { Types } = await import('mongoose');
 
 useMongo();
 
@@ -25,7 +28,10 @@ const ai = (reply: () => Response) => ({ token: 't', fetch: fakeFetch([[/chat\/c
 beforeAll(async () => {
   await models.syncAllIndexes();
 });
-beforeEach(() => resetQueues());
+beforeEach(() => {
+  resetQueues();
+  vi.restoreAllMocks();
+});
 
 async function source(trusted: boolean) {
   const s = await models.ReviewerSource.create({ handle: 'nulbox', name: 'Nulbox', trusted });
@@ -78,6 +84,51 @@ describe('trusted intake', () => {
     await ingestPosts(s, [bare], { onlyNewer: false });
     expect(await models.PostCheck.findOne({ postShortcode: 'BARE1' }).lean()).toMatchObject({ tagged: [], status: 'queued' });
     expect(take('ai')).toHaveLength(1);
+  });
+
+  it('a stranded queued post is queued again by the next ingest', async () => {
+    const s = await source(true);
+    vi.spyOn(getQueue('ai'), 'add').mockRejectedValueOnce(new Error('redis down'));
+    await expect(ingestPosts(s, [post], { onlyNewer: false })).rejects.toThrow('redis down');
+    expect(take('ai')).toHaveLength(0);
+    const counts = await ingestPosts(s, [post], { onlyNewer: false });
+    expect(counts).toMatchObject({ postsQueued: 0, duplicates: 1 });
+    expect(await models.PostCheck.countDocuments()).toBe(1);
+    expect(take('ai')).toHaveLength(1);
+  });
+
+  it.each(['classified', 'published'] as const)('a duplicate in %s does not requeue', async (status) => {
+    const s = await source(true);
+    await ingestPosts(s, [post], { onlyNewer: false });
+    take('ai');
+    await models.PostCheck.updateOne({ postShortcode: post.code }, { $set: { status } });
+    await ingestPosts(s, [post], { onlyNewer: false });
+    expect(take('ai')).toHaveLength(0);
+  });
+
+  it('a post with no time is counted like the non-trusted path: postsNew and skipped, nothing stored', async () => {
+    const noTime = { code: 'NOTIME1', caption: { text: 'hi @shop.one' } };
+    const trusted = await ingestPosts(await source(true), [noTime], { onlyNewer: false });
+    await models.ReviewerSource.deleteMany({});
+    const plain = await ingestPosts(await source(false), [noTime], { onlyNewer: false });
+    expect(trusted).toEqual(plain);
+    expect(trusted).toMatchObject({ postsNew: 1, skipped: 1, postsQueued: 0 });
+    expect(await models.PostCheck.countDocuments()).toBe(0);
+    expect(take('ai')).toHaveLength(0);
+  });
+});
+
+describe('enqueueClassify', () => {
+  it('uses 8 attempts, a 60 s exponential backoff and a rerun gets its own jobId', async () => {
+    const id = new Types.ObjectId();
+    await enqueueClassify(id);
+    await enqueueClassify(id);
+    await enqueueClassify(id, { rerun: true });
+    const jobs = take('ai');
+    expect(jobs).toHaveLength(2);
+    expect(jobs[0]).toMatchObject({ id: `classify-${id}`, opts: { attempts: 8, backoff: { type: 'exponential', delay: 60_000 } } });
+    expect(jobs[1]!.id).toMatch(new RegExp(`^classify-${id}-\\d+$`));
+    expect(jobs[1]!.id).not.toBe(jobs[0]!.id);
   });
 });
 

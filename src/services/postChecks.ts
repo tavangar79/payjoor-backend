@@ -18,7 +18,7 @@ export async function enqueueClassify(id: Types.ObjectId, opts: { rerun?: boolea
 
 /**
  * Stores a trusted source's post (also one with no tags, so nothing disappears silently) and queues it.
- * Returns false when the post is already stored.
+ * Returns false when the post is already stored (a still-`queued` one is queued again).
  */
 export async function intakeTrustedPost(
   post: BoxApiPost,
@@ -41,8 +41,11 @@ export async function intakeTrustedPost(
       status: 'queued',
     });
   } catch (err) {
-    if (isDuplicateKey(err)) return false;
-    throw err;
+    if (!isDuplicateKey(err)) throw err;
+    // Stored earlier but maybe never queued (Redis down right after the insert); the jobId drops a true duplicate.
+    const existing = await PostCheck.findOne({ reviewerSourceId: source._id, postShortcode: shortcode }, { status: 1 }).lean();
+    if (existing?.status === 'queued') await enqueueClassify(existing._id);
+    return false;
   }
   await enqueueClassify(created._id);
   return true;

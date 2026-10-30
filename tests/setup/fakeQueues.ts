@@ -1,6 +1,6 @@
 // In-memory stand-in for BullMQ queues: `add` keeps one job per jobId, as BullMQ does.
 // Use with: vi.mock('../../src/queues/queues.js', () => fakeQueuesModule()).
-type FakeJob = { id: string; name: string; data: any; opts: { attempts: number }; attemptsMade: number };
+type FakeJob = { id: string; name: string; data: any; opts: { attempts: number; [k: string]: unknown }; attemptsMade: number };
 
 export const queued = new Map<string, FakeJob[]>();
 let counter = 0;
@@ -8,13 +8,13 @@ let counter = 0;
 export function fakeQueue(name: string) {
   return {
     name,
-    add: async (jobName: string, data: unknown, opts: { jobId?: string } = {}) => {
+    add: async (jobName: string, data: unknown, opts: { jobId?: string; attempts?: number; [k: string]: unknown } = {}) => {
       const jobs = queued.get(name) ?? [];
       queued.set(name, jobs);
       const id = opts.jobId ?? `auto-${++counter}`;
       const existing = jobs.find((j) => j.id === id);
       if (existing) return existing;
-      const job = { id, name: jobName, data: structuredClone(data), opts: { attempts: 3 }, attemptsMade: 0 };
+      const job = { id, name: jobName, data: structuredClone(data), opts: { attempts: 3, ...opts }, attemptsMade: 0 };
       jobs.push(job);
       return job;
     },
