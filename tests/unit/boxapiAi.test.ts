@@ -141,11 +141,46 @@ describe('classifyPost', () => {
     expect(schema.required.sort()).toEqual(Object.keys(schema.properties).sort());
   });
 
-  it('every recorded Luna reply in the fixture is accepted', async () => {
+  it('every recorded Luna reply passes validation and maps to real fields', async () => {
     for (const p of posts) {
-      const f = fakeFetch([[/chat\/completions$/, () => completion(JSON.stringify(p.luna_reply))]]);
-      const a = await classifyPost({ caption: p.caption.text, tagged: [], categories: [] }, { token: 't', fetch: f });
-      expect(a.summary).toBe(p.luna_reply.summary);
+      const r = p.luna_reply as Record<string, any>;
+      const f = fakeFetch([[/chat\/completions$/, () => completion(JSON.stringify(r))]]);
+      const tagged = p.usertags?.in.map((t) => t.user.username) ?? [];
+      const a = await classifyPost({ caption: p.caption.text, tagged, categories: [] }, { token: 't', fetch: f });
+      expect(a).toMatchObject({
+        isReview: r.is_review,
+        shops: r.shops,
+        direction: r.direction,
+        outcome: r.outcome,
+        summary: r.summary,
+        category: r.category,
+        scamClaim: r.scam_claim,
+        hasEvidence: r.has_evidence,
+        confidence: r.confidence,
+      });
+      expect(sent(f).messages[1].content).toContain(p.caption.text);
+      for (const t of tagged) expect(sent(f).messages[1].content).toContain(t);
     }
+  });
+
+  describe('rejects an invalid reply with a retryable BoxApiError', () => {
+    const good = posts[0]!.luna_reply;
+    const { shops: _shops, ...noShops } = good;
+    const cases: [string, unknown][] = [
+      ['null', null],
+      ['a number', 5],
+      ['an array', []],
+      ['a missing shops', noShops],
+      ['confidence 7', { ...good, confidence: 7 }],
+      ['an unknown direction', { ...good, direction: 'great' }],
+      ['an unknown outcome', { ...good, outcome: 'lost' }],
+      ['an unknown shop role', { ...good, shops: [{ handle: 'a', role: 'boss' }] }],
+    ];
+    it.each(cases)('%s', async (_name, reply) => {
+      const f = fakeFetch([[/chat\/completions$/, () => completion(JSON.stringify(reply))]]);
+      const err = await classifyPost({ caption: 'x', tagged: [], categories: [] }, { token: 't', fetch: f }).catch((e) => e);
+      expect(err).toBeInstanceOf(BoxApiError);
+      expect(err.retryable).toBe(true);
+    });
   });
 });

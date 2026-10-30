@@ -1,6 +1,8 @@
 // Classifies one trusted reviewer post with the AI API (PRD §6): is it a shop review, of whom, and how it went.
 // The caption is untrusted data: it only ever appears in the user message, never in the system prompt.
+import { z } from 'zod';
 import { chatJson, type AiOptions } from '../boxapi/ai.js';
+import { BoxApiError } from '../boxapi/dm.js';
 import { env } from '../config/env.js';
 import { DIRECTIONS, OUTCOMES, type Outcome } from '../models/enums.js';
 
@@ -21,6 +23,23 @@ export type ClassifyInput = { caption: string; tagged: string[]; categories: str
 
 const MAX_TOKENS = 1500;
 
+const SHOP_ROLES = ['reviewed_shop', 'other'] as const;
+const ANALYSIS_DIRECTIONS = [...DIRECTIONS, 'none'] as const;
+const ANALYSIS_OUTCOMES = [...OUTCOMES, 'none'] as const;
+
+// Runtime check of the model's reply: the strict schema is a request, not a guarantee.
+const RawSchema = z.object({
+  is_review: z.boolean(),
+  shops: z.array(z.object({ handle: z.string(), role: z.enum(SHOP_ROLES) })),
+  direction: z.enum(ANALYSIS_DIRECTIONS),
+  outcome: z.enum(ANALYSIS_OUTCOMES),
+  summary: z.string(),
+  category: z.string(),
+  scam_claim: z.boolean(),
+  has_evidence: z.boolean(),
+  confidence: z.number().min(0).max(1),
+});
+
 // Strict mode: every property required, no extra ones, and no null in an enum (the "none" value stands in).
 const SCHEMA = {
   type: 'object',
@@ -34,11 +53,11 @@ const SCHEMA = {
         type: 'object',
         additionalProperties: false,
         required: ['handle', 'role'],
-        properties: { handle: { type: 'string' }, role: { type: 'string', enum: ['reviewed_shop', 'other'] } },
+        properties: { handle: { type: 'string' }, role: { type: 'string', enum: [...SHOP_ROLES] } },
       },
     },
-    direction: { type: 'string', enum: [...DIRECTIONS, 'none'] },
-    outcome: { type: 'string', enum: [...OUTCOMES, 'none'] },
+    direction: { type: 'string', enum: [...ANALYSIS_DIRECTIONS] },
+    outcome: { type: 'string', enum: [...ANALYSIS_OUTCOMES] },
     summary: { type: 'string' },
     category: { type: 'string' },
     scam_claim: { type: 'boolean' },
@@ -61,18 +80,6 @@ Fields:
 - has_evidence: true only when the caption makes a concrete statement about the product, the delivery or the service.
 - confidence: 0 to 1, how sure you are of this whole analysis.`;
 
-type Raw = {
-  is_review: boolean;
-  shops: PostAnalysis['shops'];
-  direction: PostAnalysis['direction'];
-  outcome: PostAnalysis['outcome'];
-  summary: string;
-  category: string;
-  scam_claim: boolean;
-  has_evidence: boolean;
-  confidence: number;
-};
-
 export async function classifyPost(input: ClassifyInput, opts: AiOptions = {}): Promise<PostAnalysis> {
   const model = env.AI_REVIEW_MODEL;
   const user = [
@@ -81,10 +88,17 @@ export async function classifyPost(input: ClassifyInput, opts: AiOptions = {}): 
     'Caption:',
     input.caption,
   ].join('\n');
-  const { value: r } = await chatJson<Raw>(
+  const { value } = await chatJson<unknown>(
     { model, system: SYSTEM, user, schemaName: 'post_analysis', schema: SCHEMA, maxTokens: MAX_TOKENS },
     opts,
   );
+  const parsed = RawSchema.safeParse(value);
+  // An invalid reply is retried by the job and never reaches the publish gate.
+  if (!parsed.success) {
+    const fields = [...new Set(parsed.error.issues.map((i) => i.path.join('.') || '(root)'))].join(', ');
+    throw new BoxApiError(`ai api reply failed validation: ${fields}`, undefined, true);
+  }
+  const r = parsed.data;
   return {
     isReview: r.is_review,
     shops: r.shops,
