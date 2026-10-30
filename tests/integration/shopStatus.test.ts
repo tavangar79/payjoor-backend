@@ -62,7 +62,6 @@ describe('syncShopStatus', () => {
 
   it('skips a shop with statusManual, unless it has the scammer tag', async () => {
     const shop = await newShop({ status: 'warning' });
-    await Shop.updateOne({ _id: shop._id }, { statusManual: true });
     await review(shop._id, 'positive');
     await syncShopStatus(shop._id);
     expect((await Shop.findById(shop._id))!.status).toBe('warning');
@@ -77,12 +76,31 @@ describe('syncShopStatus', () => {
     await approveReview(r._id, { outcome: 'not_delivered', direction: 'negative' });
     expect((await Shop.findById(shop._id))!.status).toBe('warning');
     await rejectReview(r._id, 'wrong');
-    expect((await Shop.findById(shop._id))!.status).toBe('warning');
+    expect((await Shop.findById(shop._id))!.status).toBe('no_known_issues');
 
     const scam = await newShop({ handle: 'vebo.ir', tags: ['scammer'], status: 'serious_warning' });
     const sr = await review(scam._id, 'negative', 'published');
     await rejectReview(sr._id, 'no');
     expect(await Shop.findById(scam._id)).toMatchObject({ status: 'serious_warning', tags: ['scammer'] });
+  });
+});
+
+describe('createShop statusManual', () => {
+  it('marks a hand-picked status manual, and approve/reject leave it alone', async () => {
+    const shop = await newShop({ status: 'recommended' });
+    expect((await Shop.findById(shop._id))!.statusManual).toBe(true);
+    const r = await review(shop._id, 'negative', 'pending');
+    await approveReview(r._id, { outcome: 'not_delivered', direction: 'negative' });
+    expect((await Shop.findById(shop._id))!.status).toBe('recommended');
+    await rejectReview(r._id, 'x');
+    expect((await Shop.findById(shop._id))!.status).toBe('recommended');
+  });
+
+  it('does not mark the default status manual', async () => {
+    const a = await newShop({ status: 'no_known_issues' });
+    expect((await Shop.findById(a._id))!.statusManual).toBe(false);
+    const b = await newShop({ handle: 'other.shop' });
+    expect((await Shop.findById(b._id))!.statusManual).toBe(false);
   });
 });
 

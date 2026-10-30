@@ -130,6 +130,8 @@ export async function createShop(input: ShopInput): Promise<ShopDoc> {
     handle,
     previousHandles,
     status: input.status,
+    // A status picked by hand sticks (§6.3); the default is not a decision.
+    statusManual: input.status !== undefined && input.status !== 'no_known_issues',
     tags: normalizeTags(input.tags ?? []),
     categoryIds: input.categoryIds ?? [],
     bio: input.bio || undefined,

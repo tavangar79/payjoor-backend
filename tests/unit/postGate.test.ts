@@ -135,8 +135,19 @@ describe('evaluateGate', () => {
     );
   });
 
+  it('holds a scam claim that is not negative: scam_contradiction', () => {
+    expect(gate({ scamClaim: true, direction: 'positive' }).reasons).toContain('scam_contradiction');
+    expect(gate({ scamClaim: true, direction: 'mixed' }).publish).toBe(false);
+    expect(gate({ scamClaim: true, direction: 'negative' }).reasons).not.toContain('scam_contradiction');
+  });
+
+  it('counts one shop written two ways as one', () => {
+    const r = gate({ shops: [...clear.shops, { handle: '@Ananas__Collection', role: 'reviewed_shop' }] });
+    expect(r.reasons).not.toContain('several_shops');
+  });
+
   it('exports the reason list for the admin', () => {
-    expect(GATE_REASONS).toHaveLength(11);
+    expect(GATE_REASONS).toHaveLength(12);
     expect(GATE_REASONS).toContain('ignored_handle');
   });
 });

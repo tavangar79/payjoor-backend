@@ -16,6 +16,7 @@ export const GATE_REASONS = [
   'invalid_handle',
   'handle_not_in_post',
   'ignored_handle',
+  'scam_contradiction',
 ] as const;
 export type GateReason = (typeof GATE_REASONS)[number];
 
@@ -38,7 +39,8 @@ export function evaluateGate(input: GateInput): GateResult {
 
   // Role "other" (police, sponsors, friends) never counts as a shop.
   const reviewed = analysis.shops.filter((s) => s.role === 'reviewed_shop');
-  const distinct = new Set(reviewed.map((s) => s.handle.trim().replace(/^@/, '').toLowerCase()));
+  // One rule decides what a handle is; an invalid one stays distinct under its raw text.
+  const distinct = new Set(reviewed.map((s) => normalizeHandle(s.handle) ?? s.handle.trim()));
   let handle: string | null = null;
   if (distinct.size === 0) reasons.push('no_shop');
   else if (distinct.size > 1) reasons.push('several_shops');
@@ -57,6 +59,7 @@ export function evaluateGate(input: GateInput): GateResult {
   if (!analysis.hasEvidence) reasons.push('no_evidence');
   if (input.paidPartnership) reasons.push('paid_partnership');
   if (analysis.direction === 'none') reasons.push('direction_none');
+  if (analysis.scamClaim && analysis.direction !== 'negative') reasons.push('scam_contradiction');
 
   let outcome: Outcome | null = null;
   if (analysis.outcome !== 'none') outcome = analysis.outcome;

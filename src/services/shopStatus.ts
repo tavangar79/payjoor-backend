@@ -24,6 +24,7 @@ export async function syncShopStatus(shopId: Types.ObjectId): Promise<void> {
   if (shop.statusManual && !scammer) return;
   const reviews = await Review.find({ shopId, status: 'published' }, { direction: 1 }).lean();
   const directions = reviews.flatMap((r) => (r.direction ? [r.direction] : []));
-  const next = deriveShopStatus(directions, shop.tags);
-  if (next && next !== shop.status) await Shop.updateOne({ _id: shopId }, { status: next });
+  // No published review and no scammer tag: back to the default, so a takedown leaves no stale status.
+  const next = deriveShopStatus(directions, shop.tags) ?? 'no_known_issues';
+  if (next !== shop.status) await Shop.updateOne({ _id: shopId }, { status: next });
 }
