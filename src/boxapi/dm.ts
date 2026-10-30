@@ -9,11 +9,12 @@ export class BoxApiError extends Error {
   constructor(
     message: string,
     readonly status?: number,
+    retryable?: boolean,
   ) {
     super(message);
     this.name = 'BoxApiError';
-    // Network errors, 5xx and 429 are temporary; other 4xx are final.
-    this.retryable = status === undefined || status >= 500 || status === 429;
+    // Network errors, 5xx and 429 are temporary; other 4xx are final. A caller can override (AI 402: credit ran out).
+    this.retryable = retryable ?? (status === undefined || status >= 500 || status === 429);
   }
 }
 

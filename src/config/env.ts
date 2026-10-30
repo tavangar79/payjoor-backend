@@ -32,6 +32,14 @@ const schema = z.object({
     .url()
     .default('https://instagram.boxpi.ir')
     .transform((v) => v.replace(/\/+$/, '')),
+  // AI API host (ai.boxapi.ir; ai.boxpi.ir rejects the token) and the model that classifies trusted reviewers' posts (§6).
+  BOXAPI_AI_BASE_URL: z
+    .url()
+    .default('https://ai.boxapi.ir/ai/v1')
+    .transform((v) => v.replace(/\/+$/, '')),
+  AI_REVIEW_MODEL: z.string().min(1).default('openai/gpt-6-luna'),
+  // Minimum AI confidence for auto-publishing a classified review (§6).
+  AI_PUBLISH_MIN_CONFIDENCE: z.coerce.number().min(0).max(1).default(0.8),
 
   // Comma-separated handles tagged in reviewer posts that aren't shops, e.g. sponsors (§6.1).
   REVIEW_IGNORE_HANDLES: z
