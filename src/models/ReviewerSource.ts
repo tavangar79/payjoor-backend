@@ -11,6 +11,8 @@ const reviewerSourceSchema = new Schema(
     backfillDone: { type: Boolean, required: true, default: false },
     lastSeenShortcode: String,
     lastSeenPostAt: Date,
+    // Posts of a trusted source go to the AI queue instead of becoming pending reviews.
+    trusted: { type: Boolean, required: true, default: false },
     permission: { type: String, enum: REVIEWER_PERMISSIONS, required: true, default: 'link_only' },
   },
   { timestamps: true, collection: 'reviewerSources' },

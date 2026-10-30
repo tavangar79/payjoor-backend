@@ -7,6 +7,7 @@ import { DeletionRequest } from './DeletionRequest.js';
 import { DmEvent } from './DmEvent.js';
 import { JobRun } from './JobRun.js';
 import { LoginAttempt } from './LoginAttempt.js';
+import { PostCheck } from './PostCheck.js';
 import { PostOwner } from './PostOwner.js';
 import { Review } from './Review.js';
 import { ReviewerSource } from './ReviewerSource.js';
@@ -21,6 +22,7 @@ export {
   DmEvent,
   JobRun,
   LoginAttempt,
+  PostCheck,
   PostOwner,
   Review,
   ReviewerSource,
@@ -36,6 +38,7 @@ export const allModels: Model<any>[] = [
   DmEvent,
   JobRun,
   LoginAttempt,
+  PostCheck,
   PostOwner,
   Review,
   ReviewerSource,

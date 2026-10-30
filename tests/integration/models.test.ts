@@ -59,6 +59,7 @@ describe('models', () => {
         'dmEvents',
         'jobRuns',
         'loginAttempts',
+        'postChecks',
         'postOwners',
         'reviewerSources',
         'reviews',

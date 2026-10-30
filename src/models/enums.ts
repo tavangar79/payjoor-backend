@@ -31,8 +31,12 @@ export type DmKind = (typeof DM_KINDS)[number];
 export const DM_RESULTS = ['found', 'wishlisted', 'unresolved', 'help'] as const;
 export type DmResult = (typeof DM_RESULTS)[number];
 
-export const JOB_TYPES = ['daily_check', 'backfill', 'post_owner_lookup', 'profile_fetch', 'token_refresh'] as const;
+export const JOB_TYPES = ['daily_check', 'backfill', 'post_owner_lookup', 'profile_fetch', 'token_refresh', 'ai_classify', 'post_publish'] as const;
 export type JobType = (typeof JOB_TYPES)[number];
+
+// Trusted-reviewer posts: queued for AI, classified, then published by the gate or left for a person.
+export const POST_CHECK_STATUSES = ['queued', 'classified', 'needs_person', 'published', 'dismissed'] as const;
+export type PostCheckStatus = (typeof POST_CHECK_STATUSES)[number];
 
 export const DELETION_STATUSES = ['pending', 'done'] as const;
 export type DeletionStatus = (typeof DELETION_STATUSES)[number];

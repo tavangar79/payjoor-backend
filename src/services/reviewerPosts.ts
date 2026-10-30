@@ -8,19 +8,20 @@ import { withJobRun } from '../jobs/jobRun.js';
 import { logger } from '../lib/logger.js';
 import { ReviewerSource, type ReviewerSourceDoc } from '../models/ReviewerSource.js';
 import { Review } from '../models/Review.js';
+import { intakeTrustedPost } from './postChecks.js';
 import { createPendingFromPost, emptyPostCounts, type PostCounts } from './reviews.js';
 
 export const PAGE_SIZE = 12;
 // The daily check pages back only while a whole page is new; this caps it if a source posted a lot.
 export const MAX_DAILY_PAGES = 3;
 
-type Source = Pick<ReviewerSourceDoc, '_id' | 'handle' | 'lastSeenPostAt'>;
+type Source = Pick<ReviewerSourceDoc, '_id' | 'handle' | 'lastSeenPostAt'> & { trusted?: boolean };
 
-export type IngestCounts = PostCounts & { postsFetched: number; postsNew: number };
+export type IngestCounts = PostCounts & { postsFetched: number; postsNew: number; postsQueued: number };
 
 /** `onlyNewer`: skip posts not newer than the source's lastSeenPostAt (the daily check). */
 export async function ingestPosts(source: Source, posts: BoxApiPost[], opts: { onlyNewer: boolean }): Promise<IngestCounts> {
-  const counts: IngestCounts = { ...emptyPostCounts(), postsFetched: posts.length, postsNew: 0 };
+  const counts: IngestCounts = { ...emptyPostCounts(), postsFetched: posts.length, postsNew: 0, postsQueued: 0 };
   const byCode = new Map<string, BoxApiPost>();
   for (const p of posts) if (p.code && !byCode.has(p.code)) byCode.set(p.code, p);
 
@@ -32,6 +33,13 @@ export async function ingestPosts(source: Source, posts: BoxApiPost[], opts: { o
     if (opts.onlyNewer && source.lastSeenPostAt && at && at <= source.lastSeenPostAt) continue;
     if (await Review.exists({ reviewerSourceId: source._id, postShortcode: shortcode })) continue;
     counts.postsNew++;
+    if (source.trusted) {
+      // Trusted sources skip the pending queue: the AI reads the post first (§6).
+      if (!at) counts.skipped++;
+      else if (await intakeTrustedPost(post, source, shortcode, at)) counts.postsQueued++;
+      else counts.duplicates++;
+      continue;
+    }
     const c = await createPendingFromPost(post, source);
     counts.reviewsCreated += c.reviewsCreated;
     counts.wishlisted += c.wishlisted;

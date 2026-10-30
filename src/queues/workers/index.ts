@@ -2,6 +2,7 @@
 import type { Job, WorkerOptions } from 'bullmq';
 import type { Logger } from 'pino';
 import type { QueueName } from '../names.js';
+import { aiWorker } from './ai.worker.js';
 import { dmInboundWorker } from './dmInbound.worker.js';
 import { dmSendWorker } from './dmSend.worker.js';
 import { postOwnerWorker } from './postOwner.worker.js';
@@ -23,4 +24,5 @@ export const workerDefinitions: WorkerDefinition[] = [
   reviewerDailyWorker,
   reviewerBackfillWorker,
   shopProfileWorker,
+  aiWorker,
 ];

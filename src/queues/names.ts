@@ -6,6 +6,8 @@ export const QUEUES = {
   reviewerDaily: 'reviewer-daily',
   reviewerBackfill: 'reviewer-backfill',
   shopProfile: 'shop-profile',
+  ai: 'ai',
+  postPublish: 'post-publish',
 } as const;
 
 export type QueueName = (typeof QUEUES)[keyof typeof QUEUES];

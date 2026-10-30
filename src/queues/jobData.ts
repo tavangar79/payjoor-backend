@@ -46,3 +46,9 @@ export function dmJobId(mid: string, suffix?: string): string {
 export function isFinalAttempt(job: Pick<Job, 'attemptsMade' | 'opts'>, err: unknown): boolean {
   return err instanceof UnrecoverableError || job.attemptsMade + 1 >= (job.opts.attempts ?? 1);
 }
+
+// AI jobs (PRD §6): one queue with a `task` field, so later AI work adds a task and not a queue.
+export const aiJobData = z.discriminatedUnion('task', [
+  z.object({ task: z.literal('classify_post'), postCheckId: z.string().regex(/^[0-9a-f]{24}$/i) }),
+]);
+export type AiJobData = z.infer<typeof aiJobData>;
