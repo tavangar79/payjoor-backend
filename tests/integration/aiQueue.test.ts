@@ -23,7 +23,7 @@ const posts = JSON.parse(readFileSync(new URL('../fixtures/boxapi/trusted-posts.
 const post = posts.find((p) => p.caption.text.includes('@'))!;
 
 const completion = (content: unknown) => json({ choices: [{ message: { content }, finish_reason: 'stop' }] });
-const ai = (reply: () => Response) => ({ token: 't', fetch: fakeFetch([[/chat\/completions$/, reply]]) });
+const ai = (reply: () => Response | Promise<Response>) => ({ token: 't', fetch: fakeFetch([[/chat\/completions$/, reply]]) });
 
 beforeAll(async () => {
   await models.syncAllIndexes();
@@ -150,6 +150,39 @@ describe('classify job', () => {
     expect(publish).toHaveLength(1);
     expect(publish[0]).toMatchObject({ id: `publish-${id}`, opts: { attempts: 8, backoff: { type: 'exponential', delay: 60_000 } } });
     expect(await models.JobRun.findOne({ type: 'ai_classify' }).lean()).toMatchObject({ counts: { classified: 1 } });
+  });
+
+  it.each(['published', 'dismissed', 'needs_person'] as const)('a re-run job leaves a %s post alone, with no AI call', async (status) => {
+    const { job, id } = await queued();
+    await models.PostCheck.updateOne({ _id: id }, { $set: { status } });
+    const reply = vi.fn(() => completion(JSON.stringify(post.luna_reply)));
+    await expect(processClassify(job, logger, ai(reply))).resolves.toEqual({ skipped: true });
+    expect(reply).not.toHaveBeenCalled();
+    expect((await models.PostCheck.findById(id).lean())?.status).toBe(status);
+    expect(take('post-publish')).toHaveLength(0);
+  });
+
+  it.each(['published', 'dismissed', 'needs_person'] as const)('a post that becomes %s during the AI call keeps that status', async (status) => {
+    const { job, id } = await queued();
+    const during = ai(async () => {
+      await models.PostCheck.updateOne({ _id: id }, { $set: { status } });
+      return completion(JSON.stringify(post.luna_reply));
+    });
+    await expect(processClassify(job, logger, during)).resolves.toEqual({ skipped: true });
+    const check = await models.PostCheck.findById(id).lean();
+    expect(check?.status).toBe(status);
+    expect(check?.analysis).toBeUndefined();
+    expect(take('post-publish')).toHaveLength(0);
+  });
+
+  it('a retry of a classified post queues the publish job the first attempt could not', async () => {
+    const { job, id } = await queued();
+    const good = ai(() => completion(JSON.stringify(post.luna_reply)));
+    vi.spyOn(getQueue('post-publish'), 'add').mockRejectedValueOnce(new Error('redis down'));
+    await expect(processClassify(job, logger, good)).rejects.toThrow('redis down');
+    expect((await models.PostCheck.findById(id).lean())?.status).toBe('classified');
+    await processClassify(job, logger, good);
+    expect(take('post-publish')).toHaveLength(1);
   });
 
   it('a final BoxApiError keeps status queued and saves lastError', async () => {

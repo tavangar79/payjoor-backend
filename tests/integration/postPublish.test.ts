@@ -15,6 +15,7 @@ const { postPublishWorker } = await import('../../src/queues/workers/postPublish
 const { workerDefinitions } = await import('../../src/queues/workers/index.js');
 const { createShop, saveShopImage } = await import('../../src/services/shops.js');
 const { addRequest } = await import('../../src/services/wishlist.js');
+const { rejectReview } = await import('../../src/services/reviews.js');
 const { aiJobData } = await import('../../src/queues/jobData.js');
 const { logger } = await import('../../src/lib/logger.js');
 const { env } = await import('../../src/config/env.js');
@@ -252,6 +253,20 @@ describe('publishPostCheck', () => {
     await publishPostCheck(id);
     expect(await shopNamed('vebo.ir')).toMatchObject({ status: 'serious_warning', tags: ['scammer'] });
     expect((await PostCheck.findById(id).lean())?.status).toBe('published');
+  });
+
+  it('a takedown sticks: a retry after an admin rejected the review does not republish it or tag the shop', async () => {
+    useFetch([found, cdn]);
+    const id = await classified(vebo, await source());
+    vi.spyOn(Shop, 'findById').mockImplementationOnce((() => ({ lean: () => Promise.reject(new Error('crash')) })) as never);
+    await expect(publishPostCheck(id)).rejects.toThrow('crash');
+    const review = await Review.findOne().lean();
+    await rejectReview(review!._id, 'not a scam');
+
+    await publishPostCheck(id);
+    expect(await PostCheck.findById(id).lean()).toMatchObject({ status: 'needs_person', reasons: ['review_rejected'] });
+    expect(await Review.find().lean()).toMatchObject([{ status: 'rejected' }]);
+    expect(await shopNamed('vebo.ir')).toMatchObject({ tags: [], status: 'no_known_issues' });
   });
 
   it('a temporary Data API error leaves status classified and rethrows', async () => {

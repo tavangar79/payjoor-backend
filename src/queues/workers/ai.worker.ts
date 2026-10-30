@@ -15,19 +15,26 @@ import { getQueue } from '../queues.js';
 import type { WorkerDefinition } from './index.js';
 
 const MAX_CATEGORIES = 100;
+// The only statuses this job may act on or overwrite; anything else was decided by the gate or a person.
+const UNDECIDED = ['queued', 'classified'];
 
 export async function processClassify(data: Extract<AiJobData, { task: 'classify_post' }>, log: Logger, opts: AiOptions = {}) {
   const id = toObjectId(data.postCheckId);
   const check = id && (await PostCheck.findById(id).lean());
   if (!check) throw new UnrecoverableError('post_check_not_found');
-  // Already decided by the gate or a person: a stale job must not undo that.
-  if (check.status === 'published' || check.status === 'dismissed') return { skipped: true };
+  // A stale job must not undo a decision.
+  if (!UNDECIDED.includes(check.status)) return { skipped: true };
 
   return withJobRun('ai_classify', async (ctx) => {
     try {
       const categories = (await Category.find({}, { name: 1 }).limit(MAX_CATEGORIES).lean()).map((c) => c.name);
       const analysis = await classifyPost({ caption: check.caption ?? '', tagged: check.tagged, categories }, opts);
-      await PostCheck.updateOne({ _id: check._id }, { $set: { analysis, status: 'classified' }, $unset: { lastError: '' } });
+      // Filtered too: the post can be decided while the AI call runs.
+      const { matchedCount } = await PostCheck.updateOne(
+        { _id: check._id, status: { $in: UNDECIDED } },
+        { $set: { analysis, status: 'classified' }, $unset: { lastError: '' } },
+      );
+      if (!matchedCount) return { skipped: true };
       await getQueue(QUEUES.postPublish).add(
         'post_publish',
         { postCheckId: String(check._id) },

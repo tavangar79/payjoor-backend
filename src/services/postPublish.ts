@@ -111,6 +111,9 @@ async function runGate(check: PostCheckDoc, log: Logger): Promise<boolean> {
   if ('held' in ensured) return held([ensured.held]);
   const shopId = ensured.shop._id;
 
+  // A takedown sticks: the unique index doesn't see rejected reviews, so a retry would publish this post again.
+  if (await Review.exists({ shopId, postShortcode: check.postShortcode, status: 'rejected' })) return held(['review_rejected']);
+
   const created = await publishReview(check, {
     shopId,
     outcome: gate.outcome!,
