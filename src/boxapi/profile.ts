@@ -1,10 +1,12 @@
 // Shop profile (PRD §5.6): image and contact details from a Data API `user/get_info_by_username` user, checked
 // against a real response (tests/fixtures/boxapi/user-info.maashmamad.json). Only what the page itself shows.
 import { normalizeEmail, normalizePhone, normalizeWebsite } from '../lib/contact.js';
+import { toLatinDigits } from '../lib/normalizeFa.js';
 
 export type BoxApiProfile = {
   username?: string;
   full_name?: string;
+  biography?: string;
   hd_profile_pic_url_info?: { url?: string };
   profile_pic_url_hd?: string;
   profile_pic_url?: string;
@@ -45,6 +47,19 @@ function phone(user: BoxApiProfile): string | undefined {
   return normalizePhone(code && !raw.startsWith('+') && !raw.startsWith('0') ? `+${code}${raw}` : raw) ?? undefined;
 }
 
+// A whole number only: `+…`, or 11 digits from a leading 0. Postal codes, prices and local 8-digit numbers don't match.
+const BIO_PHONE = /(?<!\d)(?:\+\d(?:[ .-]?\d){7,14}|0\d(?:[ .-]?\d){9}(?!\d))/g;
+
+/** The first phone written in the bio (§5.6), for pages without a contact button. */
+function bioPhone(user: BoxApiProfile): string | undefined {
+  const bio = toLatinDigits(str(user.biography) ?? '');
+  for (const [match] of bio.matchAll(BIO_PHONE)) {
+    const normalized = normalizePhone(match);
+    if (normalized) return normalized;
+  }
+  return undefined;
+}
+
 /** Maps the user for `handle`, or null if the answer is for someone else. Invalid contact values are dropped. */
 export function mapProfile(user: BoxApiProfile | null, handle: string): ScrapedProfile | null {
   if (!user || str(user.username)?.toLowerCase() !== handle) return null;
@@ -55,6 +70,6 @@ export function mapProfile(user: BoxApiProfile | null, handle: string): ScrapedP
     imageUrl: str(user.hd_profile_pic_url_info?.url) ?? str(user.profile_pic_url_hd) ?? str(user.profile_pic_url),
     email: email ? (normalizeEmail(email) ?? undefined) : undefined,
     website: website(user),
-    phone: phone(user),
+    phone: phone(user) ?? bioPhone(user),
   };
 }

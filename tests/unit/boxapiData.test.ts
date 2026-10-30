@@ -95,6 +95,27 @@ describe('mapProfile', () => {
     expect(p).toEqual({ username: 'shop', website: 'https://shop.ir/', phone: '+989121234567' });
   });
 
+  it('reads the phone from the bio when the contact fields have none', () => {
+    const phoneIn = (biography: string, extra = {}) => mapProfile({ username: 'shop', biography, ...extra }, 'shop')?.phone;
+    expect(phoneIn('سفارش در دایرکت\n☎️ ۰۹۱۲ ۳۴۵ ۶۷۸۹')).toBe('+989123456789');
+    expect(phoneIn('📞 +98 912 345 6789')).toBe('+989123456789');
+    // The first of several numbers, however they are separated.
+    expect(phoneIn('☎️ ۰۷۱۳۶۳۱۱۰۰۲  -  ۰۹۱۷۰۵۴۱۰۰۲')).toBe('+987136311002');
+    expect(phoneIn('۰۹۱۲۳۴۵۶۷۸۹ ۰۹۱۷۰۵۴۱۰۰۲')).toBe('+989123456789');
+    expect(phoneIn('۰۷۱۳۶۲۷۳۰۰۷-۸')).toBe('+987136273007');
+    // The page's contact button wins over the bio.
+    expect(phoneIn('۰۹۱۲۳۴۵۶۷۸۹', { contact_phone_number: '+987136311002' })).toBe('+987136311002');
+  });
+
+  it('does not take other numbers in the bio for a phone', () => {
+    const phoneIn = (biography: string) => mapProfile({ username: 'shop', biography }, 'shop')?.phone;
+    expect(phoneIn('کدپستی ۷۱۳۴۶۸۵۹۱۲')).toBeUndefined();
+    expect(phoneIn('از سال ۱۴۰۰ | ارسال ۳۵۰۰۰۰ تومان')).toBeUndefined();
+    expect(phoneIn('تلفن ۳۶۳۱۱۰۰۲')).toBeUndefined();
+    expect(phoneIn('شناسه ۱۲۳۰۹۱۲۳۴۵۶۷۸۹۰')).toBeUndefined();
+    expect(mapProfile({ username: 'shop' }, 'shop')?.phone).toBeUndefined();
+  });
+
   it('returns null when there is no user or it is someone else', () => {
     expect(mapProfile(null, 'maashmamad')).toBeNull();
     expect(mapProfile(info.response.body.user, 'someone.else')).toBeNull();
