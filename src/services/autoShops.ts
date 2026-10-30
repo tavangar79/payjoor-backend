@@ -16,6 +16,9 @@ export type EnsureShopResult =
   | { shop: ShopDoc }
   | { held: 'profile_not_found' | 'profile_private' | 'no_image' | 'dismissed_handle' };
 
+// Reasons the picture can't be had, as opposed to a network or server hiccup that a retry may fix.
+const PERMANENT_IMAGE_ERROR = /^(no_image_url|image_\w+|host_not_allowed|bad_url|too_large|http_4\d\d)$/;
+
 /** A shop with no category yet gets this one; one that has categories is left alone. */
 async function withCategory(shop: ShopDoc, category: string): Promise<ShopDoc> {
   if (shop.categoryIds.length) return shop;
@@ -23,12 +26,18 @@ async function withCategory(shop: ShopDoc, category: string): Promise<ShopDoc> {
   return categoryId ? updateShop(shop._id, { categoryIds: [categoryId] }) : shop;
 }
 
+/** Reuses a shop; also finishes a wishlist move that an earlier, interrupted attempt left open (a no-op otherwise). */
+async function adopt(shop: ShopDoc, category: string): Promise<ShopDoc> {
+  await absorbWishlist(shop.handle, shop._id);
+  return withCategory(shop, category);
+}
+
 export async function ensureShop(handleInput: string, category: string, log: Logger = logger): Promise<EnsureShopResult> {
   const handle = normalizeHandle(handleInput);
   if (!handle) throw new UnrecoverableError('invalid_handle');
 
   const existing = await findByHandle(handle);
-  if (existing) return { shop: await withCategory(existing, category) };
+  if (existing) return { shop: await adopt(existing, category) };
 
   // An admin dismissed this page: don't spend a Data API call or recreate it.
   if (await Wishlist.exists({ handle, status: 'dismissed' })) return { held: 'dismissed_handle' };
@@ -41,7 +50,11 @@ export async function ensureShop(handleInput: string, category: string, log: Log
     throw err;
   }
   if (draft.isPrivate) return { held: 'profile_private' };
-  if (!draft.image) return { held: 'no_image' };
+  if (!draft.image) {
+    // Only a picture we can't get holds; a network or 5xx failure is retried by the queue.
+    if (draft.imageError && !PERMANENT_IMAGE_ERROR.test(draft.imageError)) throw new Error(`profile_image_unavailable: ${draft.imageError}`);
+    return { held: 'no_image' };
+  }
 
   const categoryId = await findOrCreateCategory(category);
   let shop: ShopDoc;
@@ -59,7 +72,7 @@ export async function ensureShop(handleInput: string, category: string, log: Log
     // Another job created it between our lookup and insert.
     if (err instanceof HttpError && err.message === 'handle_in_use') {
       const winner = await findByHandle(handle);
-      if (winner) return { shop: await withCategory(winner, category) };
+      if (winner) return { shop: await adopt(winner, category) };
     }
     throw err;
   }

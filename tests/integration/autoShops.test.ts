@@ -115,6 +115,27 @@ describe('ensureShop', () => {
     expect(await Shop.countDocuments()).toBe(0);
   });
 
+  it('a temporary image failure is rethrown, not held', async () => {
+    const cdn503 = [/cdninstagram\.com/, () => new Response('', { status: 503 })] as const;
+    useFetch(fakeFetch([info(), [...cdn503]]));
+    await expect(ensureShop('maashmamad', 'رستوران')).rejects.toThrow(/http_503/);
+    useFetch(fakeFetch([info(), [/cdninstagram\.com/, () => Promise.reject(new Error('socket hang up'))]]));
+    await expect(ensureShop('maashmamad', 'رستوران')).rejects.toThrow(/fetch_failed/);
+    expect(await Shop.countDocuments()).toBe(0);
+  });
+
+  it('an existing shop still absorbs an open wishlist entry left by an interrupted attempt', async () => {
+    const img = await saveShopImage(png('x'));
+    const shop = await createShop({ handle: 'maashmamad', displayName: 'Maash', profileImageId: img.imageId });
+    const entry = await addRequest('maashmamad', 'dm');
+    await reviewFor({ wishlistId: entry._id }, 'BBB');
+    useFetch(fakeFetch([]));
+    await ensureShop('maashmamad', 'رستوران');
+    expect(await Review.countDocuments({ shopId: shop._id, status: 'pending' })).toBe(1);
+    expect((await Wishlist.findById(entry._id).lean())?.status).toBe('promoted');
+    await expect(ensureShop('maashmamad', 'رستوران')).resolves.toHaveProperty('shop');
+  });
+
   it('a dismissed wishlist handle holds with no Data API call', async () => {
     const entry = await addRequest('maashmamad', 'dm');
     await dismiss(entry._id);
