@@ -78,6 +78,13 @@ async function moveReviews(wishlistId: Types.ObjectId, shopId: Types.ObjectId) {
   return { moved, duplicates };
 }
 
+/** Moves the entry's reviews to the shop and marks the entry promoted. */
+async function moveAndMark(entryId: Types.ObjectId, shopId: Types.ObjectId) {
+  const reviews = await moveReviews(entryId, shopId);
+  await Wishlist.updateOne({ _id: entryId }, { $set: { status: 'promoted', promotedShopId: shopId } });
+  return reviews;
+}
+
 /**
  * Creates the shop from the entry's handle, then moves its reviews, then marks the entry promoted.
  * In that order, a crash leaves at worst a shop the admin can link the entry to.
@@ -85,8 +92,7 @@ async function moveReviews(wishlistId: Types.ObjectId, shopId: Types.ObjectId) {
 export async function promote(id: Types.ObjectId, shopInput: Omit<ShopInput, 'handle'>) {
   const entry = await entryOrThrow(id);
   const shop = await createShop({ ...shopInput, handle: entry.handle });
-  const reviews = await moveReviews(entry._id, shop._id);
-  await Wishlist.updateOne({ _id: entry._id }, { $set: { status: 'promoted', promotedShopId: shop._id } });
+  const reviews = await moveAndMark(entry._id, shop._id);
   return { shop, reviews };
 }
 
@@ -97,8 +103,7 @@ export async function linkToShop(id: Types.ObjectId, shopId: Types.ObjectId) {
   if (shop.handle !== entry.handle && !shop.previousHandles.includes(entry.handle)) {
     await updateShop(shopId, { previousHandles: [...shop.previousHandles, entry.handle] });
   }
-  const reviews = await moveReviews(entry._id, shop._id);
-  await Wishlist.updateOne({ _id: entry._id }, { $set: { status: 'promoted', promotedShopId: shop._id } });
+  const reviews = await moveAndMark(entry._id, shop._id);
   return { shop: await getShop(shopId), reviews };
 }
 
@@ -106,4 +111,10 @@ export async function dismiss(id: Types.ObjectId) {
   const entry = await entryOrThrow(id);
   await Wishlist.updateOne({ _id: entry._id }, { $set: { status: 'dismissed' } });
   return { ...entry, status: 'dismissed' as const };
+}
+
+/** A shop was created for `handle` outside the admin flow: an open entry's reviews move to it (still pending) and the entry is promoted. */
+export async function absorbWishlist(handle: string, shopId: Types.ObjectId): Promise<void> {
+  const entry = await Wishlist.findOne({ handle, status: 'open' }, { _id: 1 }).lean();
+  if (entry) await moveAndMark(entry._id, shopId);
 }

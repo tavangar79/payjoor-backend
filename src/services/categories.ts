@@ -30,6 +30,25 @@ export async function createCategory(input: CategoryInput): Promise<CategoryDoc>
   }
 }
 
+/** The category with this name (matched on the normalised name), created if missing; `''` gives null. */
+export async function findOrCreateCategory(name: string): Promise<Types.ObjectId | null> {
+  const trimmed = name.trim();
+  if (!trimmed) return null;
+  const find = () => Category.findOne({ nameNormalized: normalizeFa(trimmed) }, { _id: 1 }).lean();
+  const existing = await find();
+  if (existing) return existing._id;
+  try {
+    return (await createCategory({ name: trimmed }))._id;
+  } catch (err) {
+    // Lost a race with another create of the same name: read the winner.
+    if (err instanceof HttpError && err.message === 'category_exists') {
+      const winner = await find();
+      if (winner) return winner._id;
+    }
+    throw err;
+  }
+}
+
 /** Renames a category; `nameEn: null` clears the English name. The slug stays. */
 export async function updateCategory(
   id: Types.ObjectId,

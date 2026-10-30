@@ -27,6 +27,10 @@ export type ProfileDraft = {
   // Why there is no image: the admin must upload one before saving (§5.6).
   imageError?: string;
   contact: { email: string | null; website: string | null; phone: string | null };
+  biography?: string;
+  postCount?: number;
+  followerCount?: number;
+  isPrivate: boolean;
   fetchedAt: string;
 };
 
@@ -76,6 +80,10 @@ export async function fetchProfile(data: ProfileJobData, log: Logger, deps: Prof
       image: image && { ...image, url: `/media/shop/${image.sha256}` },
       imageError,
       contact,
+      biography: profile.biography,
+      postCount: profile.postCount,
+      followerCount: profile.followerCount,
+      isPrivate: profile.isPrivate,
       fetchedAt: fetchedAt.toISOString(),
     };
   });

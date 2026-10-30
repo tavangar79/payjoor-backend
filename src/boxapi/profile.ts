@@ -18,6 +18,9 @@ export type BoxApiProfile = {
   public_phone_number?: string;
   public_phone_country_code?: string;
   business_phone_number?: string;
+  media_count?: number;
+  follower_count?: number;
+  is_private?: boolean;
   [key: string]: unknown;
 };
 
@@ -28,7 +31,13 @@ export type ScrapedProfile = {
   email?: string;
   website?: string;
   phone?: string;
+  biography?: string;
+  postCount?: number;
+  followerCount?: number;
+  isPrivate: boolean;
 };
+
+const count = (v: unknown): number | undefined => (typeof v === 'number' && Number.isFinite(v) && v >= 0 ? v : undefined);
 
 const str = (v: unknown): string | undefined => (typeof v === 'string' && v.trim() ? v.trim() : undefined);
 
@@ -71,5 +80,9 @@ export function mapProfile(user: BoxApiProfile | null, handle: string): ScrapedP
     email: email ? (normalizeEmail(email) ?? undefined) : undefined,
     website: website(user),
     phone: phone(user) ?? bioPhone(user),
+    biography: str(user.biography),
+    postCount: count(user.media_count),
+    followerCount: count(user.follower_count),
+    isPrivate: user.is_private === true,
   };
 }

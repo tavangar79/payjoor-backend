@@ -28,6 +28,8 @@ export type ShopInput = {
   profileImageId: Types.ObjectId;
   contact?: ContactInput;
   profileFetchedAt?: Date;
+  /** Set by the publish gate when it creates the shop from a post (§6.3). */
+  autoCreated?: boolean;
 };
 
 export type ShopPatch = Partial<ShopInput>;
@@ -141,6 +143,7 @@ export async function createShop(input: ShopInput): Promise<ShopDoc> {
       website: contact.website ?? undefined,
       phone: contact.phone ?? undefined,
     },
+    autoCreated: input.autoCreated === true,
     profileFetchedAt: input.profileFetchedAt,
   });
   await saveOrConflict(doc);

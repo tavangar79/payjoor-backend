@@ -84,7 +84,17 @@ describe('mapProfile', () => {
       email: undefined,
       website: 'https://sepidz.menu/mashmamad/1',
       phone: '+987136311002',
+      biography: expect.stringContaining('بُخور'),
+      postCount: 285,
+      followerCount: 32748,
+      isPrivate: false,
     });
+  });
+
+  it('mapProfile reads post count, followers, bio and private flag from the real fixture', () => {
+    const p = mapProfile(info.response.body.user, 'maashmamad');
+    expect([p?.postCount, p?.followerCount, p?.isPrivate]).toEqual([285, 32748, false]);
+    expect(mapProfile({ username: 'shop', is_private: true }, 'shop')).toMatchObject({ isPrivate: true });
   });
 
   it('leaves out fields the page does not show, and invalid values', () => {
@@ -92,7 +102,7 @@ describe('mapProfile', () => {
       { username: 'Shop', bio_links: [{ url: 'shop.ir' }], public_email: 'nope', public_phone_number: '9121234567', public_phone_country_code: '98' },
       'shop',
     );
-    expect(p).toEqual({ username: 'shop', website: 'https://shop.ir/', phone: '+989121234567' });
+    expect(p).toEqual({ username: 'shop', website: 'https://shop.ir/', phone: '+989121234567', isPrivate: false });
   });
 
   it('reads the phone from the bio when the contact fields have none', () => {
