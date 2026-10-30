@@ -22,10 +22,13 @@ export type PostAnalysis = {
 export type ClassifyInput = { caption: string; tagged: string[]; categories: string[] };
 
 const MAX_TOKENS = 1500;
+// A longer "category" is a sentence, and it would become a stored category.
+const MAX_CATEGORY = 40;
 
 const SHOP_ROLES = ['reviewed_shop', 'other'] as const;
 const ANALYSIS_DIRECTIONS = [...DIRECTIONS, 'none'] as const;
-const ANALYSIS_OUTCOMES = [...OUTCOMES, 'none'] as const;
+// scam_reported is the gate's to set, from scam_claim, so the data never claims more than the caption says.
+const ANALYSIS_OUTCOMES = [...OUTCOMES.filter((o) => o !== 'scam_reported'), 'none'] as const;
 
 // Runtime check of the model's reply: the strict schema is a request, not a guarantee.
 const RawSchema = z.object({
@@ -73,7 +76,7 @@ Fields:
 - is_review: true when the post reviews, recommends or warns about a shop. A named shop the reviewer warns against counts as a review even without a purchase.
 - shops: every shop or account the post names, with its Instagram handle without "@", lower case. A shop may be named without a tag, as plain text or a hashtag. role "reviewed_shop" is a shop being reviewed; role "other" covers police, government, friends, ambassadors and sponsors.
 - direction: positive, negative or mixed for the experience with the reviewed shop; "none" when it is not clear or not a review.
-- outcome: one of the listed values for what happened with the order; "none" when the caption does not say.
+- outcome: what happened with the order. delivered_ok: it arrived as described. delivered_not_as_described: it arrived but differs from the description. not_delivered: it never arrived. return_refused: the shop refused a return. other_problem: any other problem with the order. none: the caption does not say, or describes no order.
 - summary: one neutral Persian sentence saying only what the caption says. Do not add anything.
 - category: prefer a category from the supplied list; "" if unknown.
 - scam_claim: true only when the caption explicitly claims scam or fraud. A bad experience alone is not a scam claim.
@@ -105,7 +108,7 @@ export async function classifyPost(input: ClassifyInput, opts: AiOptions = {}): 
     direction: r.direction,
     outcome: r.outcome,
     summary: r.summary,
-    category: r.category,
+    category: r.category.trim().length > MAX_CATEGORY ? '' : r.category,
     scamClaim: r.scam_claim,
     hasEvidence: r.has_evidence,
     confidence: r.confidence,

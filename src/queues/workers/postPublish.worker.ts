@@ -3,7 +3,9 @@
 import type { Job } from 'bullmq';
 import { z } from 'zod';
 import { toObjectId } from '../../lib/mongo.js';
+import { recordFailure } from '../../services/postChecks.js';
 import { publishPostCheck } from '../../services/postPublish.js';
+import { isFinalAttempt } from '../jobData.js';
 import { QUEUES } from '../names.js';
 import type { WorkerDefinition } from './index.js';
 
@@ -11,6 +13,14 @@ export const postPublishData = z.object({ postCheckId: z.string().regex(/^[0-9a-
 
 export const postPublishWorker: WorkerDefinition = {
   queue: QUEUES.postPublish,
-  processor: async (job: Job, log) => publishPostCheck(toObjectId(postPublishData.parse(job.data).postCheckId)!, log),
+  processor: async (job: Job, log) => {
+    const id = toObjectId(postPublishData.parse(job.data).postCheckId)!;
+    try {
+      return await publishPostCheck(id, log);
+    } catch (err) {
+      if (isFinalAttempt(job, err)) await recordFailure(id, err);
+      throw err;
+    }
+  },
   options: { concurrency: 1 },
 };

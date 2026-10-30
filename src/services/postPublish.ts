@@ -70,9 +70,10 @@ export async function tagScammer(shopId: Types.ObjectId): Promise<void> {
   if (!shop.tags.includes(SCAMMER_TAG)) await updateShop(shopId, { tags: [...shop.tags, SCAMMER_TAG] });
 }
 
-async function ignoredHandles(sourceHandle?: string): Promise<Set<string>> {
-  const rows = await IgnoredHandle.find({}, { handle: 1 }).lean();
-  return new Set([...env.REVIEW_IGNORE_HANDLES, ...rows.map((r) => r.handle), ...(sourceHandle ? [sourceHandle] : [])]);
+/** Includes every reviewer page: a reviewer is never a shop, whichever page's post names it. */
+async function ignoredHandles(): Promise<Set<string>> {
+  const [rows, sources] = await Promise.all([IgnoredHandle.find({}, { handle: 1 }).lean(), ReviewerSource.find({}, { handle: 1 }).lean()]);
+  return new Set([...env.REVIEW_IGNORE_HANDLES, ...rows.map((r) => r.handle), ...sources.map((s) => s.handle)]);
 }
 
 /** Leaves the post for a person. Demand is counted first: if we crash in between, a repeat count beats a lost one. */
@@ -88,8 +89,8 @@ async function hold(check: PostCheckDoc, analysis: PostAnalysis, reasons: string
 /** True when the post went public, false when it was left for a person. */
 async function runGate(check: PostCheckDoc, log: Logger): Promise<boolean> {
   const analysis = check.analysis as PostAnalysis;
-  const source = await ReviewerSource.findById(check.reviewerSourceId, { handle: 1, trusted: 1 }).lean();
-  const ignored = await ignoredHandles(source?.handle);
+  const source = await ReviewerSource.findById(check.reviewerSourceId, { trusted: 1 }).lean();
+  const ignored = await ignoredHandles();
   const gate = evaluateGate({
     analysis,
     caption: check.caption ?? '',
@@ -145,10 +146,8 @@ export async function publishPostCheck(id: Types.ObjectId, log: Logger = logger)
     try {
       ctx.counts[(await runGate(check, log)) ? 'published' : 'held'] = 1;
     } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      await PostCheck.updateOne({ _id: check._id }, { $set: { lastError: message.slice(0, 500) } });
       // A 4xx (bad token, bad request) won't fix itself and each retry spends a Data API request.
-      if (err instanceof BoxApiError && !err.retryable) throw new UnrecoverableError(message);
+      if (err instanceof BoxApiError && !err.retryable) throw new UnrecoverableError(err.message);
       throw err;
     }
   });

@@ -1,16 +1,15 @@
-import { afterAll, describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import request from 'supertest';
 import { useMongo } from '../setup/mongo.js';
 import { createApp } from '../../src/app.js';
 import { createAdminAccount } from '../../src/auth/login.js';
 import { totpCode } from '../../src/auth/totp.js';
-import { closeQueues } from '../../src/queues/queues.js';
+
+// These tests are about access, not queues. Real ones would connect to Redis, and with no Redis running the rejected
+// connection can land as an unhandled rejection that fails the whole run with every test green.
+vi.mock('../../src/queues/queues.js', async () => ({ ...(await import('../setup/fakeQueues.js')).fakeQueuesModule(), allQueues: () => [] }));
 
 useMongo();
-
-afterAll(async () => {
-  await closeQueues();
-});
 
 const PW = 'a-long-enough-password';
 

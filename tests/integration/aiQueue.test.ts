@@ -8,9 +8,10 @@ import { fakeQueuesModule, resetQueues, take } from '../setup/fakeQueues.js';
 vi.mock('../../src/queues/queues.js', () => fakeQueuesModule());
 
 const { ingestPosts } = await import('../../src/services/reviewerPosts.js');
-const { processClassify } = await import('../../src/queues/workers/ai.worker.js');
+const { aiWorker, processClassify } = await import('../../src/queues/workers/ai.worker.js');
 const { aiJobData } = await import('../../src/queues/jobData.js');
 const { logger } = await import('../../src/lib/logger.js');
+const { env } = await import('../../src/config/env.js');
 const models = await import('../../src/models/index.js');
 const { getQueue } = await import('../../src/queues/queues.js');
 const { enqueueClassify } = await import('../../src/services/postChecks.js');
@@ -27,10 +28,13 @@ const ai = (reply: () => Response | Promise<Response>) => ({ token: 't', fetch: 
 
 beforeAll(async () => {
   await models.syncAllIndexes();
+  // The worker's processor uses the env token and the global fetch.
+  env.BOXAPI_AI_TOKEN = 't';
 });
 beforeEach(() => {
   resetQueues();
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
 });
 
 async function source(trusted: boolean) {
@@ -104,6 +108,14 @@ describe('trusted intake', () => {
     await models.PostCheck.updateOne({ postShortcode: post.code }, { $set: { status } });
     await ingestPosts(s, [post], { onlyNewer: false });
     expect(take('ai')).toHaveLength(0);
+  });
+
+  it('a post with no time logs its shortcode at warn, and never the caption', async () => {
+    const warn = vi.spyOn(logger, 'warn');
+    await ingestPosts(await source(true), [{ code: 'NOTIME1', caption: { text: 'secret caption' } }], { onlyNewer: false });
+    expect(warn).toHaveBeenCalledTimes(1);
+    expect(warn.mock.calls[0]![0]).toMatchObject({ shortcode: 'NOTIME1', source: 'nulbox' });
+    expect(JSON.stringify(warn.mock.calls[0])).not.toContain('secret caption');
   });
 
   it('a post with no time is counted like the non-trusted path: postsNew and skipped, nothing stored', async () => {
@@ -185,16 +197,6 @@ describe('classify job', () => {
     expect(take('post-publish')).toHaveLength(1);
   });
 
-  it('a final BoxApiError keeps status queued and saves lastError', async () => {
-    const { job, id } = await queued();
-    const bad = ai(() => json({ error: { message: 'bad key' } }, 401));
-    await expect(processClassify(job, logger, bad)).rejects.toBeInstanceOf(UnrecoverableError);
-    const check = await models.PostCheck.findById(id).lean();
-    expect(check?.status).toBe('queued');
-    expect(check?.lastError).toContain('401');
-    expect(take('post-publish')).toHaveLength(0);
-  });
-
   it('a temporary error rethrows so BullMQ retries', async () => {
     const { job, id } = await queued();
     const down = ai(() => json({ error: { message: 'overloaded' } }, 503));
@@ -202,5 +204,54 @@ describe('classify job', () => {
     expect(err).not.toBeInstanceOf(UnrecoverableError);
     expect(err).toMatchObject({ name: 'BoxApiError', retryable: true });
     expect((await models.PostCheck.findById(id).lean())?.status).toBe('queued');
+  });
+
+  describe('worker', () => {
+    const attempt = (job: unknown, attemptsMade: number) => ({ data: job, attemptsMade, opts: { attempts: 8 } }) as never;
+    const reply = (status: number) => vi.stubGlobal('fetch', fakeFetch([[/chat\/completions$/, () => json({ error: { message: 'nope' } }, status)]]));
+
+    it('a final BoxApiError keeps status queued and saves lastError on the first attempt', async () => {
+      const { job, id } = await queued();
+      reply(401);
+      await expect(aiWorker.processor(attempt(job, 0), logger)).rejects.toBeInstanceOf(UnrecoverableError);
+      const check = await models.PostCheck.findById(id).lean();
+      expect(check?.status).toBe('queued');
+      expect(check?.lastError).toContain('401');
+      expect(take('post-publish')).toHaveLength(0);
+    });
+
+    it('a temporary error writes no lastError while attempts remain', async () => {
+      const { job, id } = await queued();
+      reply(503);
+      await expect(aiWorker.processor(attempt(job, 6), logger)).rejects.toMatchObject({ retryable: true });
+      expect((await models.PostCheck.findById(id).lean())?.lastError).toBeUndefined();
+    });
+
+    it('a temporary error on the last attempt saves lastError', async () => {
+      const { job, id } = await queued();
+      reply(503);
+      await expect(aiWorker.processor(attempt(job, 7), logger)).rejects.toMatchObject({ retryable: true });
+      expect(await models.PostCheck.findById(id).lean()).toMatchObject({ status: 'queued', lastError: expect.stringContaining('503') });
+    });
+
+    it('a final failure writes nothing to a post that was decided meanwhile', async () => {
+      const { job, id } = await queued();
+      vi.stubGlobal(
+        'fetch',
+        fakeFetch([
+          [
+            /chat\/completions$/,
+            async () => {
+              await models.PostCheck.updateOne({ _id: id }, { $set: { status: 'dismissed' } });
+              return json({}, 503);
+            },
+          ],
+        ]),
+      );
+      await expect(aiWorker.processor(attempt(job, 7), logger)).rejects.toThrow();
+      const check = await models.PostCheck.findById(id).lean();
+      expect(check?.status).toBe('dismissed');
+      expect(check?.lastError).toBeUndefined();
+    });
   });
 });

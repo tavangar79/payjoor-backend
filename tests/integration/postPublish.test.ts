@@ -213,7 +213,7 @@ describe('publishPostCheck', () => {
     const id = await classified(botik, await source());
     vi.spyOn(Review, 'create').mockRejectedValueOnce(new Error('crash'));
     await expect(publishPostCheck(id)).rejects.toThrow('crash');
-    expect(await PostCheck.findById(id).lean()).toMatchObject({ status: 'classified', lastError: 'crash' });
+    expect((await PostCheck.findById(id).lean())?.status).toBe('classified');
     expect(await Shop.countDocuments()).toBe(1);
 
     const retry = useFetch([]);
@@ -277,18 +277,17 @@ describe('publishPostCheck', () => {
     expect(err).not.toBeInstanceOf(UnrecoverableError);
     const check = await PostCheck.findById(id).lean();
     expect(check?.status).toBe('classified');
-    expect(check?.lastError).toBeTruthy();
+    // Not until BullMQ gives up: lastError means failed for good.
+    expect(check?.lastError).toBeUndefined();
     expect(await Review.countDocuments()).toBe(0);
     expect(await Wishlist.countDocuments()).toBe(0);
   });
 
-  it('a final Data API error stops the retries and leaves status classified with lastError', async () => {
+  it('a final Data API error stops the retries and leaves status classified', async () => {
     useFetch([[/./, () => json({ success: false }, 401)]]);
     const id = await classified(botik, await source());
     await expect(publishPostCheck(id)).rejects.toBeInstanceOf(UnrecoverableError);
-    const check = await PostCheck.findById(id).lean();
-    expect(check?.status).toBe('classified');
-    expect(check?.lastError).toContain('401');
+    expect((await PostCheck.findById(id).lean())?.status).toBe('classified');
   });
 
   it('a post with no shop: needs_person with no_shop', async () => {
@@ -353,6 +352,27 @@ describe('publishPostCheck', () => {
     } finally {
       env.REVIEW_IGNORE_HANDLES.pop();
     }
+  });
+
+  it('another reviewer page is never a shop or wishlist entry', async () => {
+    useFetch([]);
+    await ReviewerSource.create({ handle: 'other.reviewer', name: 'Other' });
+    const id = await classified(about(ananas, 'other.reviewer', 'PEER1'), await source());
+    await publishPostCheck(id);
+    expect(await PostCheck.findById(id).lean()).toMatchObject({ status: 'needs_person', reasons: ['ignored_handle'] });
+    expect(await Shop.countDocuments()).toBe(0);
+    expect(await Wishlist.countDocuments()).toBe(0);
+  });
+
+  it('a truncated handle is held with no shop, no wishlist entry and no Data API call', async () => {
+    const f = useFetch([]);
+    const cut = { ...vebo, luna_reply: { ...vebo.luna_reply, shops: [{ handle: 'vebo', role: 'reviewed_shop' }] } };
+    const id = await classified(cut, await source());
+    await publishPostCheck(id);
+    expect(await PostCheck.findById(id).lean()).toMatchObject({ status: 'needs_person', reasons: ['handle_not_in_post'] });
+    expect(await Shop.countDocuments()).toBe(0);
+    expect(await Wishlist.countDocuments()).toBe(0);
+    expect(f).not.toHaveBeenCalled();
   });
 
   it('a handle the model made up is held with no wishlist entry', async () => {
@@ -461,6 +481,24 @@ describe('publishReview', () => {
 });
 
 describe('post-publish worker', () => {
+  const attempt = (id: Types.ObjectId, attemptsMade: number) => ({ data: { postCheckId: String(id) }, attemptsMade, opts: { attempts: 8 } }) as never;
+
+  it('a final Data API error saves lastError on the first attempt', async () => {
+    useFetch([[/./, () => json({ success: false }, 401)]]);
+    const id = await classified(botik, await source());
+    await expect(postPublishWorker.processor(attempt(id, 0), logger)).rejects.toBeInstanceOf(UnrecoverableError);
+    expect(await PostCheck.findById(id).lean()).toMatchObject({ status: 'classified', lastError: expect.stringContaining('401') });
+  });
+
+  it('a temporary error saves lastError only on the last attempt', async () => {
+    useFetch([[/./, () => json({ success: false }, 503)]]);
+    const id = await classified(botik, await source());
+    await expect(postPublishWorker.processor(attempt(id, 6), logger)).rejects.toThrow();
+    expect((await PostCheck.findById(id).lean())?.lastError).toBeUndefined();
+    await expect(postPublishWorker.processor(attempt(id, 7), logger)).rejects.toThrow();
+    expect((await PostCheck.findById(id).lean())?.lastError).toContain('503');
+  });
+
   it('is registered, one job at a time', () => {
     expect(postPublishWorker).toMatchObject({ queue: QUEUES.postPublish, options: { concurrency: 1 } });
     expect(workerDefinitions).toContain(postPublishWorker);

@@ -141,6 +141,24 @@ describe('classifyPost', () => {
     expect(schema.required.sort()).toEqual(Object.keys(schema.properties).sort());
   });
 
+  it('offers the model every outcome but scam_reported, and defines each one in the prompt', async () => {
+    const { f } = await run('x');
+    const body = sent(f);
+    const offered = body.response_format.json_schema.schema.properties.outcome.enum as string[];
+    expect(offered).toEqual(['delivered_ok', 'delivered_not_as_described', 'not_delivered', 'return_refused', 'other_problem', 'none']);
+    for (const value of offered) expect(body.messages[0].content).toContain(value);
+    expect(body.messages[0].content).not.toContain('scam_reported');
+  });
+
+  it('ignores a category over 40 characters, which must not create a stored category', async () => {
+    const reply = (category: string) => {
+      const f = fakeFetch([[/chat\/completions$/, () => completion(JSON.stringify({ ...post.luna_reply, category }))]]);
+      return classifyPost({ caption: 'x', tagged: [], categories: [] }, { token: 't', fetch: f });
+    };
+    expect((await reply('ک'.repeat(41))).category).toBe('');
+    expect((await reply('ک'.repeat(40))).category).toBe('ک'.repeat(40));
+  });
+
   it('every recorded Luna reply passes validation and maps to real fields', async () => {
     for (const p of posts) {
       const r = p.luna_reply as Record<string, any>;
@@ -174,6 +192,7 @@ describe('classifyPost', () => {
       ['confidence 7', { ...good, confidence: 7 }],
       ['an unknown direction', { ...good, direction: 'great' }],
       ['an unknown outcome', { ...good, outcome: 'lost' }],
+      ['scam_reported, which only the gate may set', { ...good, outcome: 'scam_reported' }],
       ['an unknown shop role', { ...good, shops: [{ handle: 'a', role: 'boss' }] }],
     ];
     it.each(cases)('%s', async (_name, reply) => {

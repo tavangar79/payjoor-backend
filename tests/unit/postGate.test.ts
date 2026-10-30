@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { GATE_REASONS, evaluateGate } from '../../src/services/postGate.js';
+import { GATE_REASONS, evaluateGate, handleInPost } from '../../src/services/postGate.js';
 import type { PostAnalysis } from '../../src/services/postClassify.js';
 
 type FixturePost = {
@@ -141,13 +141,78 @@ describe('evaluateGate', () => {
     expect(gate({ scamClaim: true, direction: 'negative' }).reasons).not.toContain('scam_contradiction');
   });
 
+  it('holds a scam_reported outcome with no scam claim: scam_contradiction', () => {
+    const r = gate({ outcome: 'scam_reported', scamClaim: false, direction: 'negative' });
+    expect(r.publish).toBe(false);
+    expect(r.reasons).toEqual(['scam_contradiction']);
+    expect(gate({ outcome: 'scam_reported', scamClaim: true, direction: 'negative' })).toMatchObject({ publish: true, outcome: 'scam_reported' });
+  });
+
+  it.each(['not_delivered', 'return_refused', 'scam_reported'] as const)('holds positive with %s: model_contradiction', (outcome) => {
+    const r = gate({ direction: 'positive', outcome, scamClaim: outcome === 'scam_reported' });
+    expect(r.publish).toBe(false);
+    expect(r.reasons).toContain('model_contradiction');
+  });
+
+  it('a positive direction fits a good outcome, and a bad outcome fits other directions', () => {
+    expect(gate({ direction: 'positive', outcome: 'delivered_ok' }).reasons).toEqual([]);
+    expect(gate({ direction: 'negative', outcome: 'not_delivered' }).reasons).toEqual([]);
+    expect(gate({ direction: 'mixed', outcome: 'return_refused' }).reasons).toEqual([]);
+  });
+
+  it('holds an empty or over-long summary: bad_summary', () => {
+    expect(gate({ summary: '' }).reasons).toEqual(['bad_summary']);
+    expect(gate({ summary: '   ' }).reasons).toEqual(['bad_summary']);
+    expect(gate({ summary: 'x'.repeat(501) }).reasons).toEqual(['bad_summary']);
+    expect(gate({ summary: 'x'.repeat(500) }).publish).toBe(true);
+  });
+
+  it('holds a truncated handle: vebo against vebo.ir, siamak against @siamak_kala', () => {
+    const shop = (handle: string) => ({ shops: [{ handle, role: 'reviewed_shop' as const }] });
+    expect(gate(shop('vebo'), { caption: 'خرید از vebo.ir کلاهبرداری بود' }).reasons).toContain('handle_not_in_post');
+    expect(gate(shop('siamak'), { caption: 'پیج @siamak_kala' }).reasons).toContain('handle_not_in_post');
+  });
+
   it('counts one shop written two ways as one', () => {
     const r = gate({ shops: [...clear.shops, { handle: '@Ananas__Collection', role: 'reviewed_shop' }] });
     expect(r.reasons).not.toContain('several_shops');
   });
 
   it('exports the reason list for the admin', () => {
-    expect(GATE_REASONS).toHaveLength(12);
+    expect(GATE_REASONS).toHaveLength(14);
     expect(GATE_REASONS).toContain('ignored_handle');
+  });
+});
+
+describe('handleInPost', () => {
+  it.each([
+    ['vebo.ir', 'vebo.ir'],
+    ['vebo.ir', 'سایت vebo.ir.'],
+    ['vebo.ir', 'سایت vebo.ir... بود'],
+    ['vebo.ir', 'Vebo.IR را ببینید'],
+    ['vebo.ir', 'پیج @vebo.ir، خرید نکنید'],
+    ['vebo.ir', 'https://vebo.ir/shop'],
+    ['crop_shoop', '#crop_shoop'],
+    ['crop_shoop', '(crop_shoop)'],
+    ['crop_shoop', 'پیجcrop_shoopبود'],
+  ])('finds %s in %j', (handle, caption) => {
+    expect(handleInPost(handle, caption, [])).toBe(true);
+  });
+
+  it.each([
+    ['vebo', 'vebo.ir'],
+    ['ir', 'vebo.ir'],
+    ['siamak', '@siamak_kala'],
+    ['kala', '@siamak_kala'],
+    ['shop', '#shop_online'],
+    ['shop', 'shop1'],
+    ['vebo.i', 'vebo.ir'],
+  ])('does not find %s inside %j', (handle, caption) => {
+    expect(handleInPost(handle, caption, [])).toBe(false);
+  });
+
+  it('matches a tagged handle exactly, whatever its case', () => {
+    expect(handleInPost('siamak_kala', 'x', ['Siamak_Kala'])).toBe(true);
+    expect(handleInPost('siamak', 'x', ['siamak_kala'])).toBe(false);
   });
 });

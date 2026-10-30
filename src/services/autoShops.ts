@@ -17,7 +17,7 @@ export type EnsureShopResult =
   | { held: 'profile_not_found' | 'profile_private' | 'no_image' | 'dismissed_handle' };
 
 // Reasons the picture can't be had, as opposed to a network or server hiccup that a retry may fix.
-const PERMANENT_IMAGE_ERROR = /^(no_image_url|image_\w+|host_not_allowed|bad_url|too_large|http_4\d\d)$/;
+const PERMANENT_IMAGE_ERROR = /^(no_image_url|image_\w+|host_not_allowed|bad_url|too_large|http_4(?!29)\d\d)$/;
 
 /** A shop with no category yet gets this one; one that has categories is left alone. */
 async function withCategory(shop: ShopDoc, category: string): Promise<ShopDoc> {

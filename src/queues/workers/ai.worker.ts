@@ -9,8 +9,8 @@ import { toObjectId } from '../../lib/mongo.js';
 import { Category } from '../../models/Category.js';
 import { PostCheck } from '../../models/PostCheck.js';
 import { classifyPost } from '../../services/postClassify.js';
-import { enqueuePublish } from '../../services/postChecks.js';
-import { aiJobData, type AiJobData } from '../jobData.js';
+import { enqueuePublish, recordFailure } from '../../services/postChecks.js';
+import { aiJobData, isFinalAttempt, type AiJobData } from '../jobData.js';
 import { QUEUES } from '../names.js';
 import type { WorkerDefinition } from './index.js';
 
@@ -40,10 +40,8 @@ export async function processClassify(data: Extract<AiJobData, { task: 'classify
       log.info({ postCheckId: String(check._id), confidence: analysis.confidence }, 'post classified');
       return { classified: true };
     } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      await PostCheck.updateOne({ _id: check._id }, { $set: { lastError: message.slice(0, 500) } });
       // A 4xx (bad token, bad request) won't fix itself and each retry is a paid call.
-      if (err instanceof BoxApiError && !err.retryable) throw new UnrecoverableError(message);
+      if (err instanceof BoxApiError && !err.retryable) throw new UnrecoverableError(err.message);
       throw err;
     }
   });
@@ -51,6 +49,14 @@ export async function processClassify(data: Extract<AiJobData, { task: 'classify
 
 export const aiWorker: WorkerDefinition = {
   queue: QUEUES.ai,
-  processor: (job: Job, log) => processClassify(aiJobData.parse(job.data), log),
+  processor: async (job: Job, log) => {
+    const data = aiJobData.parse(job.data);
+    try {
+      return await processClassify(data, log);
+    } catch (err) {
+      if (isFinalAttempt(job, err)) await recordFailure(toObjectId(data.postCheckId)!, err);
+      throw err;
+    }
+  },
   options: { concurrency: 1, limiter: { max: 20, duration: 60_000 } },
 };

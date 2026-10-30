@@ -13,6 +13,7 @@ import { publishReview, tagScammer } from './postPublish.js';
 import { approveReview } from './reviews.js';
 import { getShop, updateShop } from './shops.js';
 import { syncShopStatus } from './shopStatus.js';
+import { absorbWishlist } from './wishlist.js';
 
 /** Queues the AI analysis of a postCheck. A bad reply is a paid retry, so 8 attempts with a slow backoff. */
 export async function enqueueClassify(id: Types.ObjectId, opts: { rerun?: boolean } = {}): Promise<void> {
@@ -73,11 +74,27 @@ export async function enqueuePublish(id: Types.ObjectId, opts: { rerun?: boolean
 
 export type PostCheckListQuery = { status: PostCheckDoc['status'] | 'failed'; page: number; limit: number };
 
-// A job that gave up leaves the row `queued` or `classified` with lastError.
-const failedFilter = { status: { $in: ['queued', 'classified'] }, lastError: { $exists: true } };
+const WAITING = ['queued', 'classified'];
+// Longer than a job's whole retry cycle, so a row this quiet has lost its job (worker restarts, Redis data loss).
+const STALE_MS = 6 * 60 * 60 * 1000;
+
+/** A job gave up on the row (lastError), or it was lost and nothing will ever write one. */
+const failedFilter = () => ({
+  status: { $in: WAITING },
+  $or: [{ lastError: { $exists: true } }, { updatedAt: { $lt: new Date(Date.now() - STALE_MS) } }],
+});
+
+/** A person may act on a post the gate held, or on a failed one. */
+const personFilter = (id: Types.ObjectId) => ({ _id: id, $or: [{ status: 'needs_person' }, failedFilter()] });
+
+/** Called by a worker only when BullMQ won't retry, so lastError means failed for good. A decided row is left alone. */
+export async function recordFailure(id: Types.ObjectId, err: unknown): Promise<void> {
+  const message = err instanceof Error ? err.message : String(err);
+  await PostCheck.updateOne({ _id: id, status: { $in: WAITING } }, { $set: { lastError: message.slice(0, 500) } });
+}
 
 export async function listPostChecks(query: PostCheckListQuery) {
-  const filter = query.status === 'failed' ? failedFilter : { status: query.status };
+  const filter = query.status === 'failed' ? failedFilter() : { status: query.status };
   const [items, total] = await Promise.all([
     PostCheck.find(filter, { raw: 0 })
       .sort(query.status === 'needs_person' ? { createdAt: 1, _id: 1 } : { updatedAt: -1, _id: -1 })
@@ -95,11 +112,6 @@ async function loadOrThrow(id: Types.ObjectId): Promise<PostCheckDoc> {
   if (!check) throw new HttpError(404, 'not_found');
   return check;
 }
-
-/** A person may act on a post the gate held, or on one a job gave up on. */
-const person = (c: Pick<PostCheckDoc, 'status' | 'lastError'>) =>
-  c.status === 'needs_person' || ((c.status === 'queued' || c.status === 'classified') && Boolean(c.lastError));
-const personFilter = (id: Types.ObjectId) => ({ _id: id, $or: [{ status: 'needs_person' }, failedFilter] });
 
 export type PersonPublishInput = {
   shopIds: Types.ObjectId[];
@@ -132,7 +144,7 @@ async function publishFor(check: PostCheckDoc, shopId: Types.ObjectId, input: Pe
 
 export async function publishByPerson(id: Types.ObjectId, input: PersonPublishInput) {
   const check = await loadOrThrow(id);
-  if (!person(check)) throw new HttpError(409, 'not_needs_person');
+  if (!(await PostCheck.exists(personFilter(id)))) throw new HttpError(409, 'not_needs_person');
   const shopIds = [...new Map(input.shopIds.map((s) => [String(s), s])).values()];
   const shops = await Promise.all(shopIds.map((s) => getShop(s)));
 
@@ -140,6 +152,8 @@ export async function publishByPerson(id: Types.ObjectId, input: PersonPublishIn
   const reviewIds: Types.ObjectId[] = [];
   for (const shop of shops) {
     if (categoryId && shop.categoryIds.length === 0) await updateShop(shop._id, { categoryIds: [categoryId] });
+    // First, so a pending review of this post moves to the shop and is published below.
+    await absorbWishlist(shop.handle, shop._id);
     reviewIds.push(await publishFor(check, shop._id, input));
   }
   const { matchedCount } = await PostCheck.updateOne(personFilter(id), {
@@ -151,19 +165,24 @@ export async function publishByPerson(id: Types.ObjectId, input: PersonPublishIn
 }
 
 export async function dismissPostCheck(id: Types.ObjectId) {
-  const check = await loadOrThrow(id);
-  if (!person(check)) throw new HttpError(409, 'not_needs_person');
+  await loadOrThrow(id);
   const { matchedCount } = await PostCheck.updateOne(personFilter(id), { $set: { status: 'dismissed' }, $unset: { lastError: '' } });
   if (!matchedCount) throw new HttpError(409, 'not_needs_person');
   return PostCheck.findById(id, { raw: 0 }).lean();
 }
 
-/** `queued` gets a new AI job; `classified` only a new publish job (the AI answer is kept). */
+/** Failed rows only: `queued` gets a new AI job, `classified` only a new publish job (the AI answer is kept). */
 export async function rerunPostCheck(id: Types.ObjectId) {
-  const check = await loadOrThrow(id);
-  if (check.status === 'queued') await enqueueClassify(id, { rerun: true });
-  else if (check.status === 'classified') await enqueuePublish(id, { rerun: true });
-  else throw new HttpError(409, 'not_rerunnable');
-  await PostCheck.updateOne({ _id: id }, { $unset: { lastError: '' } });
+  await loadOrThrow(id);
+  // Cleared first, so a job that fails fast keeps its own error. This also restarts the 6 hours: a second click finds no failed row.
+  const check = await PostCheck.findOneAndUpdate({ _id: id, ...failedFilter() }, { $unset: { lastError: '' } }, { projection: { status: 1 } }).lean();
+  if (!check) throw new HttpError(409, 'not_rerunnable');
+  try {
+    if (check.status === 'queued') await enqueueClassify(id, { rerun: true });
+    else await enqueuePublish(id, { rerun: true });
+  } catch (err) {
+    await recordFailure(id, err);
+    throw err;
+  }
   return { status: check.status };
 }

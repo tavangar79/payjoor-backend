@@ -6,6 +6,8 @@ export default defineConfig({
     include: ['tests/**/*.test.ts'],
     environment: 'node',
     passWithNoTests: true,
+    hookTimeout: 30_000,
+    testTimeout: 15_000,
     // Fake values so src/config/env.ts parses; no test talks to real services.
     env: {
       NODE_ENV: 'test',

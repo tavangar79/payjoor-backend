@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 import request from 'supertest';
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useMongo } from '../setup/mongo.js';
 import { fakeQueuesModule, resetQueues, take } from '../setup/fakeQueues.js';
 
@@ -10,6 +10,7 @@ const { createApp } = await import('../../src/app.js');
 const { createAdminAccount } = await import('../../src/auth/login.js');
 const { totpCode } = await import('../../src/auth/totp.js');
 const { createShop, saveShopImage } = await import('../../src/services/shops.js');
+const { getQueue } = await import('../../src/queues/queues.js');
 const { IgnoredHandle, PostCheck, Review, ReviewerSource, Shop, Wishlist, syncAllIndexes } = await import('../../src/models/index.js');
 
 useMongo();
@@ -19,6 +20,9 @@ beforeAll(async () => {
 });
 beforeEach(() => {
   resetQueues();
+});
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 const png = Buffer.concat([Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]), Buffer.from('png-body')]);
@@ -53,6 +57,13 @@ async function check(status: string, extra: Record<string, unknown> = {}) {
 
 const body = { outcome: 'other_problem', direction: 'negative', summary: 'late delivery' };
 
+/** A row whose job was lost: no update for over 6 hours, and no lastError. */
+async function stale(status: string) {
+  const pc = await check(status);
+  await PostCheck.updateOne({ _id: pc._id }, { $set: { updatedAt: new Date(Date.now() - 6 * 3600_000 - 1000) } }, { timestamps: false });
+  return pc;
+}
+
 describe('GET /post-checks', () => {
   it('lists needs_person posts without raw', async () => {
     const { agent } = await admin();
@@ -74,6 +85,19 @@ describe('GET /post-checks', () => {
     const res = await agent.get('/admin/api/post-checks?status=failed');
     expect(res.body.total).toBe(2);
     expect(res.body.items.map((i: { status: string }) => i.status).sort()).toEqual(['classified', 'queued']);
+  });
+});
+
+describe('GET /post-checks?status=failed: lost jobs', () => {
+  it('lists rows with no update for over 6 hours, but not fresh ones or decided ones', async () => {
+    const { agent } = await admin();
+    const q = await stale('queued');
+    const c = await stale('classified');
+    await stale('needs_person');
+    await check('queued');
+    const res = await agent.get('/admin/api/post-checks?status=failed');
+    expect(res.body.total).toBe(2);
+    expect(res.body.items.map((i: { _id: string }) => i._id).sort()).toEqual([String(q._id), String(c._id)].sort());
   });
 });
 
@@ -113,6 +137,57 @@ describe('POST /post-checks/:id/publish', () => {
     const res = await agent.post(`/admin/api/post-checks/${pc._id}/publish`).set('X-CSRF-Token', csrf).send({ ...body, shopIds: [String(a._id)] });
     expect(res.status).toBe(200);
     expect(await PostCheck.findById(pc._id).lean()).toMatchObject({ status: 'published' });
+  });
+
+  it('publishes a stale row with no lastError, and refuses a fresh one', async () => {
+    const { agent, csrf } = await admin();
+    const a = await shop('shop_a');
+    const fresh = await check('queued');
+    const send = (id: unknown) => agent.post(`/admin/api/post-checks/${id}/publish`).set('X-CSRF-Token', csrf).send({ ...body, shopIds: [String(a._id)] });
+    expect(await send(fresh._id)).toMatchObject({ status: 409, body: { error: 'not_needs_person' } });
+    const pc = await stale('classified');
+    expect((await send(pc._id)).status).toBe(200);
+    expect(await PostCheck.findById(pc._id).lean()).toMatchObject({ status: 'published' });
+  });
+
+  it('promotes an open wishlist entry for the shop, moving its pending reviews', async () => {
+    const { agent, csrf } = await admin();
+    const a = await shop('shop_a');
+    const pc = await check('needs_person');
+    const entry = await Wishlist.create({ handle: 'shop_a', status: 'open' });
+    const waiting = await Review.create({
+      reviewerSourceId: pc.reviewerSourceId,
+      postShortcode: 'other-post',
+      postUrl: pc.postUrl,
+      occurredAt: pc.occurredAt,
+      wishlistId: entry._id,
+      status: 'pending',
+    });
+    const res = await agent.post(`/admin/api/post-checks/${pc._id}/publish`).set('X-CSRF-Token', csrf).send({ ...body, shopIds: [String(a._id)] });
+    expect(res.status).toBe(200);
+    expect(await Wishlist.findById(entry._id).lean()).toMatchObject({ status: 'promoted', promotedShopId: a._id });
+    expect(await Review.findById(waiting._id).lean()).toMatchObject({ status: 'pending', shopId: a._id });
+  });
+
+  it('applies the scam tag when it publishes an existing pending review', async () => {
+    const { agent, csrf } = await admin();
+    const a = await shop('shop_a');
+    const pc = await check('needs_person');
+    const pending = await Review.create({
+      reviewerSourceId: pc.reviewerSourceId,
+      postShortcode: pc.postShortcode,
+      postUrl: pc.postUrl,
+      occurredAt: pc.occurredAt,
+      shopId: a._id,
+      status: 'pending',
+    });
+    const res = await agent
+      .post(`/admin/api/post-checks/${pc._id}/publish`)
+      .set('X-CSRF-Token', csrf)
+      .send({ ...body, shopIds: [String(a._id)], scamClaim: true });
+    expect(res.status).toBe(200);
+    expect(await Review.findById(pending._id).lean()).toMatchObject({ status: 'published' });
+    expect(await Shop.findById(a._id).lean()).toMatchObject({ tags: ['scammer'], status: 'serious_warning' });
   });
 
   it('creates the category for a shop with none, and validates the body', async () => {
@@ -180,6 +255,58 @@ describe('dismiss and rerun', () => {
     expect(again).toMatchObject({ status: 409, body: { error: 'not_needs_person' } });
   });
 
+  it('dismiss works on a stale row with no lastError, and refuses a fresh one', async () => {
+    const { agent, csrf } = await admin();
+    const fresh = await check('classified');
+    expect((await agent.post(`/admin/api/post-checks/${fresh._id}/dismiss`).set('X-CSRF-Token', csrf)).status).toBe(409);
+    const pc = await stale('queued');
+    expect((await agent.post(`/admin/api/post-checks/${pc._id}/dismiss`).set('X-CSRF-Token', csrf)).status).toBe(200);
+    expect(await PostCheck.findById(pc._id).lean()).toMatchObject({ status: 'dismissed' });
+  });
+
+  it.each([
+    ['queued', 'ai'],
+    ['classified', 'post-publish'],
+  ])('rerun works on a stale %s row with no lastError', async (status, queue) => {
+    const { agent, csrf } = await admin();
+    const pc = await stale(status);
+    expect((await agent.post(`/admin/api/post-checks/${pc._id}/rerun`).set('X-CSRF-Token', csrf)).status).toBe(202);
+    expect(take(queue)).toHaveLength(1);
+    // Back to waiting: it leaves the failed tab until it fails or stalls again.
+    expect((await agent.get('/admin/api/post-checks?status=failed')).body.total).toBe(0);
+  });
+
+  it('rerun refuses a row that is still running, and a second click on the same row', async () => {
+    const { agent, csrf } = await admin();
+    const fresh = await check('queued');
+    expect(await agent.post(`/admin/api/post-checks/${fresh._id}/rerun`).set('X-CSRF-Token', csrf)).toMatchObject({ status: 409, body: { error: 'not_rerunnable' } });
+    const pc = await check('queued', { lastError: 'boom' });
+    expect((await agent.post(`/admin/api/post-checks/${pc._id}/rerun`).set('X-CSRF-Token', csrf)).status).toBe(202);
+    expect((await agent.post(`/admin/api/post-checks/${pc._id}/rerun`).set('X-CSRF-Token', csrf)).status).toBe(409);
+    expect(take('ai')).toHaveLength(1);
+  });
+
+  it('rerun clears lastError before enqueueing, so a job that fails fast keeps its own error', async () => {
+    const { agent, csrf } = await admin();
+    const pc = await check('queued', { lastError: 'old' });
+    const queue = getQueue('ai');
+    const add = queue.add.bind(queue);
+    vi.spyOn(queue, 'add').mockImplementationOnce((async (...args: Parameters<typeof add>) => {
+      await PostCheck.updateOne({ _id: pc._id }, { $set: { lastError: 'new' } });
+      return add(...args);
+    }) as never);
+    expect((await agent.post(`/admin/api/post-checks/${pc._id}/rerun`).set('X-CSRF-Token', csrf)).status).toBe(202);
+    expect((await PostCheck.findById(pc._id).lean())!.lastError).toBe('new');
+  });
+
+  it('a rerun that cannot be queued leaves the row on the failed tab', async () => {
+    const { agent, csrf } = await admin();
+    const pc = await check('queued', { lastError: 'old' });
+    vi.spyOn(getQueue('ai'), 'add').mockRejectedValueOnce(new Error('redis down'));
+    expect((await agent.post(`/admin/api/post-checks/${pc._id}/rerun`).set('X-CSRF-Token', csrf)).status).toBe(500);
+    expect((await PostCheck.findById(pc._id).lean())!.lastError).toBe('redis down');
+  });
+
   it('rerun queues a new ai job for a queued post and clears lastError', async () => {
     const { agent, csrf } = await admin();
     const pc = await check('queued', { lastError: 'boom' });
@@ -230,6 +357,63 @@ describe('POST /shops/:id/not-a-shop', () => {
     const entry = await Wishlist.findOne({ handle: 'not_a_shop_x' }).lean();
     expect(entry?.status).toBe('dismissed');
     expect(entry?.promotedShopId).toBeUndefined();
+  });
+
+  it('sends the post back to a person, so it can go to the right shop', async () => {
+    const { agent, csrf } = await admin();
+    const s = await shop('police_page', true);
+    const right = await shop('real_shop');
+    const pc = await check('published');
+    const review = await Review.create({
+      reviewerSourceId: pc.reviewerSourceId,
+      postShortcode: pc.postShortcode,
+      postUrl: pc.postUrl,
+      occurredAt: pc.occurredAt,
+      shopId: s._id,
+      status: 'published',
+      autoPublished: true,
+      outcome: 'other_problem',
+      direction: 'negative',
+      publishedAt: new Date(),
+    });
+    await PostCheck.updateOne({ _id: pc._id }, { $set: { shopIds: [s._id], reviewIds: [review._id] } });
+
+    expect((await agent.post(`/admin/api/shops/${s._id}/not-a-shop`).set('X-CSRF-Token', csrf)).status).toBe(200);
+    expect(await PostCheck.findById(pc._id).lean()).toMatchObject({ status: 'needs_person', reasons: ['not_a_shop'], shopIds: [], reviewIds: [] });
+    expect((await agent.get('/admin/api/post-checks')).body.total).toBe(1);
+
+    const res = await agent.post(`/admin/api/post-checks/${pc._id}/publish`).set('X-CSRF-Token', csrf).send({ ...body, shopIds: [String(right._id)] });
+    expect(res.status).toBe(200);
+    expect(await Review.countDocuments({ shopId: right._id, status: 'published' })).toBe(1);
+  });
+
+  it('keeps a post published that also has another shop, without the removed one', async () => {
+    const { agent, csrf } = await admin();
+    const s = await shop('police_page', true);
+    const other = await shop('real_shop');
+    const pc = await check('published');
+    const common = { reviewerSourceId: pc.reviewerSourceId, postShortcode: pc.postShortcode, postUrl: pc.postUrl, occurredAt: pc.occurredAt };
+    const gone = await Review.create({ ...common, shopId: s._id, status: 'rejected', rejectReason: 'takedown' });
+    const kept = await Review.create({ ...common, shopId: other._id, status: 'published', outcome: 'other_problem', direction: 'negative', publishedAt: new Date() });
+    await PostCheck.updateOne({ _id: pc._id }, { $set: { shopIds: [s._id, other._id], reviewIds: [gone._id, kept._id] } });
+
+    expect((await agent.post(`/admin/api/shops/${s._id}/not-a-shop`).set('X-CSRF-Token', csrf)).status).toBe(200);
+    const after = await PostCheck.findById(pc._id).lean();
+    expect(after).toMatchObject({ status: 'published', reasons: [] });
+    expect(after!.shopIds.map(String)).toEqual([String(other._id)]);
+    expect(after!.reviewIds.map(String)).toEqual([String(kept._id)]);
+  });
+
+  it('can run again after a crash before the shop is deleted', async () => {
+    const { agent, csrf } = await admin();
+    const s = await shop('police_page', true);
+    const pc = await check('published', { shopIds: [s._id] });
+    vi.spyOn(Shop, 'deleteOne').mockImplementationOnce((() => Promise.reject(new Error('crash'))) as never);
+    expect((await agent.post(`/admin/api/shops/${s._id}/not-a-shop`).set('X-CSRF-Token', csrf)).status).toBe(500);
+    expect(await PostCheck.findById(pc._id).lean()).toMatchObject({ status: 'needs_person', reasons: ['not_a_shop'] });
+    expect((await agent.post(`/admin/api/shops/${s._id}/not-a-shop`).set('X-CSRF-Token', csrf)).status).toBe(200);
+    expect(await Shop.exists({ _id: s._id })).toBeNull();
+    expect(await PostCheck.findById(pc._id).lean()).toMatchObject({ status: 'needs_person', reasons: ['not_a_shop'] });
   });
 
   it('refuses a hand-made shop, and one with a non-auto published review', async () => {

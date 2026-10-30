@@ -35,8 +35,10 @@ export async function ingestPosts(source: Source, posts: BoxApiPost[], opts: { o
     counts.postsNew++;
     if (source.trusted) {
       // Trusted sources skip the pending queue: the AI reads the post first (§6).
-      if (!at) counts.skipped++;
-      else if (await intakeTrustedPost(post, source, shortcode, at)) counts.postsQueued++;
+      if (!at) {
+        counts.skipped++;
+        logger.warn({ source: source.handle, shortcode }, 'trusted post has no timestamp: skipped');
+      } else if (await intakeTrustedPost(post, source, shortcode, at)) counts.postsQueued++;
       else counts.duplicates++;
       continue;
     }

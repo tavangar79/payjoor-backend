@@ -115,6 +115,12 @@ describe('ensureShop', () => {
     expect(await Shop.countDocuments()).toBe(0);
   });
 
+  it('a 429 from the image CDN is rethrown, not held', async () => {
+    useFetch(fakeFetch([info(), [/cdninstagram\.com/, () => new Response('', { status: 429 })]]));
+    await expect(ensureShop('maashmamad', 'رستوران')).rejects.toThrow(/http_429/);
+    expect(await Shop.countDocuments()).toBe(0);
+  });
+
   it('a temporary image failure is rethrown, not held', async () => {
     const cdn503 = [/cdninstagram\.com/, () => new Response('', { status: 503 })] as const;
     useFetch(fakeFetch([info(), [...cdn503]]));

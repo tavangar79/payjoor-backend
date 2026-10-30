@@ -5,6 +5,7 @@ import { Shop, type ShopDoc } from '../models/Shop.js';
 import { ShopImage } from '../models/ShopImage.js';
 import { Category } from '../models/Category.js';
 import { IgnoredHandle } from '../models/IgnoredHandle.js';
+import { PostCheck } from '../models/PostCheck.js';
 import { Review } from '../models/Review.js';
 import { Wishlist } from '../models/Wishlist.js';
 import type { ShopStatus } from '../models/enums.js';
@@ -236,7 +237,8 @@ export async function listShops(query: ShopListQuery): Promise<{ items: ShopDoc[
 
 /**
  * The page isn't a business (PRD §6.3): an auto-created shop is removed with its auto-published and pending reviews
- * (rejected as `not_a_shop`) and its handle is ignored from now on. Every step can run again after a crash.
+ * (rejected as `not_a_shop`) and its handle is ignored from now on. Its posts go back to a person, who can attach them
+ * to the right shop. Every step can run again after a crash.
  */
 export async function markNotAShop(id: Types.ObjectId): Promise<{ handle: string }> {
   const shop = await getShop(id);
@@ -250,6 +252,10 @@ export async function markNotAShop(id: Types.ObjectId): Promise<{ handle: string
   );
   // The handle must not stay promoted to a shop that is gone.
   await Wishlist.updateMany({ promotedShopId: id }, { $set: { status: 'dismissed' }, $unset: { promotedShopId: '' } });
+  // A post that also has another shop stays published, without this one; the rest lost their only shop.
+  const reviewIds = (await Review.find({ shopId: id }, { _id: 1 }).lean()).map((r) => r._id);
+  await PostCheck.updateMany({ shopIds: id, 'shopIds.1': { $exists: true } }, { $pull: { shopIds: id, reviewIds: { $in: reviewIds } } });
+  await PostCheck.updateMany({ shopIds: id }, { $set: { status: 'needs_person', reasons: ['not_a_shop'], shopIds: [], reviewIds: [] } });
   await Shop.deleteOne({ _id: id });
   return { handle: shop.handle };
 }
