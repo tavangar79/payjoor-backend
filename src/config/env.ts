@@ -57,6 +57,8 @@ const schema = z.object({
   PAGESANJ_MONGODB_URI: z.string().optional(),
   // Only for `npm run admin:create`; never passed as an argument (§9.1).
   ADMIN_PASSWORD: z.string().optional(),
+  // Turns on POST /admin/api/auth/setup for the first admin; empty or unset keeps it off (§9.1).
+  ADMIN_SETUP_TOKEN: z.union([z.literal(''), z.string().min(32)]).optional(),
 });
 
 export type Env = z.infer<typeof schema>;
