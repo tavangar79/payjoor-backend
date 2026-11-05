@@ -18,13 +18,8 @@ export const dmInboundData = z.object({
   senderIgsid: z.string().min(1),
   receivedAt: z.string(),
   message: dmMessage,
-  // Set on the job the post-owner worker re-enqueues (§5.1).
-  ownerLookupDone: z.boolean().optional(),
 });
 export type DmInboundData = z.infer<typeof dmInboundData>;
-
-export const postOwnerData = z.object({ shortcode: z.string().min(1), dm: dmInboundData });
-export type PostOwnerData = z.infer<typeof postOwnerData>;
 
 export const dmSendData = z.object({
   mid: z.string().min(1),

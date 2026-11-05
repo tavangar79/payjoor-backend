@@ -1,7 +1,6 @@
 // BullMQ queue names (PRD §11).
 export const QUEUES = {
   dmInbound: 'dm-inbound',
-  postOwner: 'post-owner',
   dmSend: 'dm-send',
   reviewerDaily: 'reviewer-daily',
   reviewerBackfill: 'reviewer-backfill',

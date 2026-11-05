@@ -1,5 +1,5 @@
 // handleMessage(message) -> reply plan. Pure and transport-agnostic (PRD §5, §10.8): the caller (the
-// dm-inbound worker, or later ManyChat) sends the replies and runs the owner lookup when asked to.
+// dm-inbound worker, or later ManyChat) sends the replies.
 import type { DmResult } from '../models/enums.js';
 import { strings } from '../i18n/index.js';
 import { detectLang, type Lang } from './language.js';
@@ -19,27 +19,19 @@ export type BotOutcome = {
   kind: Target['kind'];
   lang: Lang;
   targetHandle?: string;
-  /** Unset while an owner lookup is pending. */
-  result?: DmResult;
+  result: DmResult;
   replies: string[];
-  /** Run the post-owner lookup for this shortcode, then call handleMessage again with ownerLookupDone. */
-  needsOwnerLookup?: string;
 };
 
-export async function handleMessage(
-  msg: IncomingMessage,
-  deps: BotDeps,
-  opts: { ownerLookupDone?: boolean } = {},
-): Promise<BotOutcome> {
+export async function handleMessage(msg: IncomingMessage, deps: BotDeps): Promise<BotOutcome> {
   const lang = detectLang(msg.text);
   const t = strings[lang];
   const target = parseMessage(msg);
   const base = { kind: target.kind, lang };
 
-  const resolved = await resolveTarget(target, deps, opts);
+  const resolved = await resolveTarget(target, deps);
   if ('none' in resolved) return { ...base, result: 'help', replies: [t.help] };
   if ('unresolved' in resolved) return { ...base, result: 'unresolved', replies: [t.unresolved] };
-  if ('needsLookup' in resolved) return { ...base, replies: [t.checking], needsOwnerLookup: resolved.needsLookup };
 
   const handle = resolved.handle;
   const found = await lookupHandle(handle, deps);

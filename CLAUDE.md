@@ -5,7 +5,7 @@ API only: Express web process (`src/server.ts`) and BullMQ worker process (`src/
 ## Structure
 
 - `src/bot/`: parse, resolve, lookup, reply. **Pure and transport-agnostic**: no Express, BullMQ or Graph API imports here (PRD §10.8).
-- `src/boxapi/`: **the** Instagram and AI integration (BoxAPI: DM, Data and AI APIs, webhook signature). Use the `boxapi` skill. `src/services/`: domain logic shared by routes and workers (e.g. `reviewerPosts.ts` for the backfill and daily check, `postOwners.ts`).
+- `src/boxapi/`: **the** Instagram and AI integration (BoxAPI: DM, Data and AI APIs, webhook signature). Use the `boxapi` skill. `src/services/`: domain logic shared by routes and workers (e.g. `reviewerPosts.ts` for the backfill and daily check).
 - `src/models/`: one Mongoose model per collection in PRD §8. `src/queues/`: queue names, instances, schedulers, `workers/`.
 - `src/routes/`: webhooks, media, `public.ts` (`/api/deletion-status` for the website), `admin/` JSON API and Bull Board. No HTML pages.
 - `src/auth/`, `src/lib/encryptField.ts`: copied from pagesanj; keep formats byte-compatible (PRD §9.1).

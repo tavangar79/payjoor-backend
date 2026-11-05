@@ -1,5 +1,6 @@
-// Resolve a target to the handle we look up (PRD §5.3). A post resolves to its author: first from posts we
-// already store (free), then the postOwners cache, else it needs a Data API lookup. Pure; lookups are injected.
+// Resolve a target to the handle we look up (PRD §5.3). A post resolves to its author only from data we already
+// have (posts we store, then the postOwners cache); otherwise we ask for the profile and never call the paid
+// Data API. Pure; lookups are injected.
 import type { Target } from './parse.js';
 
 export type ResolveDeps = {
@@ -9,22 +10,16 @@ export type ResolveDeps = {
   ownerFromCache(shortcode: string): Promise<string | null>;
 };
 
-export type Resolved = { handle: string } | { needsLookup: string } | { unresolved: true } | { none: true };
+export type Resolved = { handle: string } | { unresolved: true } | { none: true };
 
-/** `ownerLookupDone`: the post-owner lookup already ran for this message, so a cache miss means unresolved. */
-export async function resolveTarget(
-  target: Target,
-  deps: ResolveDeps,
-  opts: { ownerLookupDone?: boolean } = {},
-): Promise<Resolved> {
+export async function resolveTarget(target: Target, deps: ResolveDeps): Promise<Resolved> {
   switch (target.kind) {
     case 'profile':
     case 'text':
       return { handle: target.handle };
     case 'post': {
       const owner = (await deps.ownerFromReviews(target.shortcode)) ?? (await deps.ownerFromCache(target.shortcode));
-      if (owner) return { handle: owner };
-      return opts.ownerLookupDone ? { unresolved: true } : { needsLookup: target.shortcode };
+      return owner ? { handle: owner } : { unresolved: true };
     }
     default:
       return { none: true };

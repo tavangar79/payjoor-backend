@@ -59,14 +59,13 @@ describe('resolveTarget', () => {
     ownerFromCache: vi.fn(async () => cache),
   });
 
-  it('resolves posts from stored reviews first, then the cache, else asks for a lookup', async () => {
+  it('resolves posts from stored reviews first, then the cache, else gives up', async () => {
     const post = { kind: 'post', shortcode: 'Deyc1w9hwTI' } as const;
     const fromReviews = deps('sadegh.delicious', 'other');
     expect(await resolveTarget(post, fromReviews)).toEqual({ handle: 'sadegh.delicious' });
     expect(fromReviews.ownerFromCache).not.toHaveBeenCalled();
     expect(await resolveTarget(post, deps(null, 'maashmamad'))).toEqual({ handle: 'maashmamad' });
-    expect(await resolveTarget(post, deps(null, null))).toEqual({ needsLookup: 'Deyc1w9hwTI' });
-    expect(await resolveTarget(post, deps(null, null), { ownerLookupDone: true })).toEqual({ unresolved: true });
+    expect(await resolveTarget(post, deps(null, null))).toEqual({ unresolved: true });
     expect(await resolveTarget({ kind: 'unknown' }, deps(null, null))).toEqual({ none: true });
   });
 });
@@ -159,15 +158,14 @@ describe('handleMessage', () => {
     expect(d.addWishlistRequest).toHaveBeenCalledWith('new.shop');
   });
 
-  it('asks for an owner lookup, then answers or gives up', async () => {
-    const pending = await handleMessage(messageOf('post_link'), deps());
-    expect(pending).toMatchObject({ kind: 'post', lang: 'en', needsOwnerLookup: 'Deyc1w9hwTI', replies: ['Checking… one moment.'] });
-    expect(pending.result).toBeUndefined();
-
-    const cached = await handleMessage(messageOf('post_link'), deps({ ownerFromCache: vi.fn(async () => 'maashmamad') }), { ownerLookupDone: true });
-    expect(cached).toMatchObject({ result: 'found', targetHandle: 'maashmamad' });
-    const gone = await handleMessage(messageOf('post_link'), deps(), { ownerLookupDone: true });
-    expect(gone).toMatchObject({ result: 'unresolved', replies: ["We couldn't read this. Please share the page's profile instead."] });
+  it('answers a known post, and asks for the profile for an unknown one', async () => {
+    const cached = await handleMessage(messageOf('post_link'), deps({ ownerFromCache: vi.fn(async () => 'maashmamad') }));
+    expect(cached).toMatchObject({ kind: 'post', result: 'found', targetHandle: 'maashmamad' });
+    const unknown = await handleMessage(messageOf('post_link'), deps());
+    expect(unknown).toMatchObject({ kind: 'post', lang: 'en', result: 'unresolved' });
+    expect(unknown.replies).toHaveLength(1);
+    expect(unknown.replies[0]).toContain("Please share the page's profile instead");
+    expect(unknown.replies[0]).toContain('Share this profile');
   });
 
   it('sends help when there is nothing to look up', async () => {

@@ -29,13 +29,13 @@ describe.skipIf(!redisUp)('queues on Redis', () => {
   });
 
   it('runs a job through a started worker with retries configured', async () => {
-    const q = getQueue('post-owner');
+    const q = getQueue('shop-profile');
     await q.obliterate({ force: true });
     let seen: Job | undefined;
     const done = new Promise<void>((resolve) => {
       const workers = startWorkers([
         {
-          queue: 'post-owner',
+          queue: 'shop-profile',
           processor: async (job) => {
             seen = job;
             setImmediate(() => void closeWorkers(workers).then(resolve));

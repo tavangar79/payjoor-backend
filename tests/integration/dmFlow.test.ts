@@ -1,10 +1,10 @@
-// End to end without Redis (plan 8.6): signed BoxAPI webhook -> dm-inbound -> (post-owner) -> dm-send -> BoxAPI send_message.
+// End to end without Redis (plan 8.6): signed BoxAPI webhook -> dm-inbound -> dm-send -> BoxAPI send_message.
 import { readFileSync } from 'node:fs';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import request from 'supertest';
 import { UnrecoverableError } from 'bullmq';
 import { useMongo } from '../setup/mongo.js';
-import { boxapiBody, dataRoute, fakeFetch, json } from '../setup/fakeFetch.js';
+import { fakeFetch, json } from '../setup/fakeFetch.js';
 import { fakeQueuesModule, resetQueues, take } from '../setup/fakeQueues.js';
 
 vi.mock('../../src/queues/queues.js', () => fakeQueuesModule());
@@ -18,7 +18,6 @@ const { createShop, saveShopImage } = await import('../../src/services/shops.js'
 const { createCategory } = await import('../../src/services/categories.js');
 const { processDmInbound } = await import('../../src/queues/workers/dmInbound.worker.js');
 const { processDmSend } = await import('../../src/queues/workers/dmSend.worker.js');
-const { processPostOwner } = await import('../../src/queues/workers/postOwner.worker.js');
 
 useMongo();
 
@@ -116,41 +115,24 @@ describe('DM flow', () => {
     expect(take('dm-inbound')).toEqual([]);
   });
 
-  it('looks up a post author, says "checking", then answers', async () => {
+  it('asks for the profile for an unknown post, without calling the Data API', async () => {
     await postWebhook(samples.post_link);
     const [job] = take('dm-inbound');
-    expect(await processDmInbound(job!.data, logger)).toEqual({ pending: 'post_owner' });
-    const checking = await drainSends();
-    expect(checking.map((m) => m.message.text)).toEqual(['Checking… one moment.']);
-    expect((await models.DmEvent.findOne().lean())?.replySentAt).toBeUndefined();
+    expect(await processDmInbound(job!.data, logger)).toEqual({ result: 'unresolved' });
+    const [reply, ...rest] = await drainSends();
+    expect(rest).toEqual([]);
+    expect(reply!.message.text).toContain("Please share the page's profile instead");
+    expect(take('dm-inbound')).toEqual([]);
+    expect(await models.DmEvent.findOne().lean()).toMatchObject({ kind: 'post', result: 'unresolved' });
+  });
 
-    const [lookup] = take('post-owner');
-    const boxapi = fakeFetch([
-      dataRoute('media/get_info_by_shortcode', () => boxapiBody({ items: [{ code: 'Deyc1w9hwTI', user: { username: 'MaashMamad' } }] })),
-    ]);
-    await processPostOwner(lookup!, lookup!.data, logger, { fetch: boxapi });
-    expect(JSON.parse(String(boxapi.mock.calls[0]![1]!.body))).toEqual({ shortcode: 'Deyc1w9hwTI' });
-    expect((await models.PostOwner.findOne().lean())?.ownerUsername).toBe('maashmamad');
-    expect(await models.JobRun.findOne({ type: 'post_owner_lookup' }).lean()).toMatchObject({ counts: { found: 1 } });
-
-    const [again] = take('dm-inbound');
-    expect(again!.data.ownerLookupDone).toBe(true);
-    await processDmInbound(again!.data, logger);
+  it('answers a post whose author is already cached', async () => {
+    await models.PostOwner.create({ shortcode: 'Deyc1w9hwTI', ownerUsername: 'maashmamad' });
+    await postWebhook(samples.post_link);
+    await processDmInbound(take('dm-inbound')[0]!.data, logger);
     const [answer] = await drainSends();
     expect(answer!.message.text).toContain('Status: Recommended (tested)');
     expect(await models.DmEvent.findOne().lean()).toMatchObject({ kind: 'post', result: 'found', targetHandle: 'maashmamad' });
-  });
-
-  it('answers "couldn\'t read this" when the post lookup gives up', async () => {
-    await postWebhook(samples.post_link);
-    await processDmInbound(take('dm-inbound')[0]!.data, logger);
-    take('dm-send');
-    const [lookup] = take('post-owner');
-    const broke = fakeFetch([[/\/api\/instagram\//, () => json({ success: false, data: { message: 'Invalid username or password.' } }, 401)]]);
-    await expect(processPostOwner(lookup!, lookup!.data, logger, { fetch: broke })).rejects.toBeInstanceOf(UnrecoverableError);
-    await processDmInbound(take('dm-inbound')[0]!.data, logger);
-    const [reply] = await drainSends();
-    expect(reply!.message.text).toBe("We couldn't read this. Please share the page's profile instead.");
   });
 
   it('wishlists an unknown page and counts repeat requests', async () => {

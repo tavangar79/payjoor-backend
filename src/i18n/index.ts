@@ -13,7 +13,6 @@ export type BotStrings = {
   notFound: string;
   notReviewedYet: string;
   disclaimer: string;
-  checking: string;
   more: (n: number) => string;
   date: (d: Date) => string;
 };
